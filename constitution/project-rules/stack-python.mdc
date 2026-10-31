@@ -1,0 +1,15 @@
+---
+description: Python backend/jobs standards when custom backend is approved
+globs: "**/*.py,**/pyproject.toml,**/requirements.txt"
+alwaysApply: false
+---
+
+# Python (m4tr!x)
+
+Use only when captain approved Python (jobs, ML, scripts, APIs). Captain is Flutter-first — keep explanations practical.
+
+- Clear entrypoints; typed where helpful (`mypy` optional unless project already uses it)
+- `pytest` for critical logic
+- Virtualenv / dependency pin documented
+- Secrets via env
+- Document how to run and deploy in `docs/sdlc/DEPLOYMENT.md` when relevant

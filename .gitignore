@@ -1,0 +1,17 @@
+.DS_Store
+**/.DS_Store
+*.swp
+*.swo
+.idea/
+.vscode/
+*.iml
+Thumbs.db
+
+# Flutter / Dart junk that may appear under _pilot
+**/.dart_tool/
+**/build/
+**/Flutter/ephemeral/
+**/android/local.properties
+**/.flutter-plugins-dependencies
+*.env
+!.env.example

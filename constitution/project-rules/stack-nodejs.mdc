@@ -1,0 +1,17 @@
+---
+description: Node.js backend standards when custom backend is approved
+globs: "**/*.{js,mjs,cjs,ts},**/package.json"
+alwaysApply: false
+---
+
+# Node.js (m4tr!x)
+
+Use only when captain approved a **custom backend** (not pure Firebase client).
+
+- Clear module boundaries; validate inputs at the edge
+- Structured errors; no silent catch-and-ignore
+- Secrets via env — never commit `.env` with real credentials
+- Tests for critical paths; document run/deploy in `docs/sdlc/DEPLOYMENT.md` when relevant
+- Prefer TypeScript when starting greenfield Node services unless captain says otherwise
+
+If the only JS/TS is Flutter tooling or unrelated scripts, do not force a Node service architecture.

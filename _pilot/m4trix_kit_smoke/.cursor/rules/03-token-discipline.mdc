@@ -1,0 +1,13 @@
+---
+description: Minimize tokens — Auto inherit, slim context, serial by default
+alwaysApply: true
+---
+
+# Token discipline
+
+- Prefer model **Auto**; subagents use `model: inherit`.
+- Do not pin Opus/Sonnet/frontier models on subagent launches unless captain orders it.
+- Avoid parallel subagents unless tasks are independent and do not edit the same files.
+- Prefer new chat per phase/module; do not drag product PRD context into a one-line patch.
+- Load pipeline skills when invoked; do not dump all templates into every reply.
+- Summarize tool output; do not paste huge logs into the captain-facing answer.
