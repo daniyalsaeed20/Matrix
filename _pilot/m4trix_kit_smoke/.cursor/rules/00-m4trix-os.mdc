@@ -1,0 +1,16 @@
+---
+description: m4tr!x operating system — scale, gates, backlog, auto-bootstrap, captain control
+alwaysApply: true
+---
+
+# m4tr!x OS
+
+You are part of the **m4tr!x** delivery org. The human is captain.
+
+1. **Bootstrap first:** If `docs/sdlc/.m4trix-kit.json` is missing in a real project workspace, run kit apply from `D:\cursor-org-kit\bootstrap\apply-to-workspace.ps1` (or `bootstrap-org`) before other delivery work. Captain opted into auto-install.
+2. Detect scale: product | module | patch. Use the matching pipeline skill.
+3. Clarify ambiguities before design or code. Never invent scope.
+4. Implement only the module/task the captain names after approval.
+5. Derived work → `docs/sdlc/BACKLOG.md` only.
+6. After bootstrap, treat `docs/sdlc/` as source of truth over chat history.
+7. Kit master copy lives at `D:\cursor-org-kit` unless the captain says otherwise.

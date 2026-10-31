@@ -1,0 +1,85 @@
+{
+  "kitName": "m4trix",
+  "kitVersionFile": "VERSION",
+  "kitRootHint": "D:\\cursor-org-kit",
+  "kitRootHintMac": "$HOME/Desktop/cursor-org-kit",
+  "kitRootEnv": "M4TRIX_KIT_ROOT",
+
+  "common": {
+    "rules": [
+      "constitution/project-rules/00-m4trix-os.mdc",
+      "constitution/project-rules/01-production-bar.mdc",
+      "constitution/project-rules/02-mode-switching.mdc",
+      "constitution/project-rules/03-token-discipline.mdc"
+    ],
+    "agents": [
+      "agents/m4trix-product.md",
+      "agents/m4trix-requirements.md",
+      "agents/m4trix-architect.md",
+      "agents/m4trix-design-system.md",
+      "agents/m4trix-scrum.md",
+      "agents/m4trix-verifier.md",
+      "agents/m4trix-security.md",
+      "agents/m4trix-docs-deploy.md"
+    ],
+    "skills": [
+      "skills/bootstrap-org",
+      "skills/pipeline-product",
+      "skills/pipeline-module",
+      "skills/pipeline-patch"
+    ],
+    "templates": [
+      "templates/sdlc/PRD.md",
+      "templates/sdlc/REQUIREMENTS.md",
+      "templates/sdlc/DESIGN.md",
+      "templates/sdlc/DESIGN_SYSTEM.md",
+      "templates/sdlc/BACKLOG.md",
+      "templates/sdlc/TEST_PLAN.md",
+      "templates/sdlc/DEPLOYMENT.md",
+      "templates/sdlc/MODULE_HANDOFF.md"
+    ]
+  },
+  "stacks": {
+    "flutter": {
+      "detect": ["pubspec.yaml", "**/*.dart"],
+      "rules": ["constitution/project-rules/stack-flutter.mdc"],
+      "agents": ["agents/m4trix-flutter.md"]
+    },
+    "firebase": {
+      "detect": ["firebase.json", ".firebaserc", "firestore.rules", "**/firebase_options.dart"],
+      "rules": ["constitution/project-rules/stack-firebase.mdc"],
+      "agents": ["agents/m4trix-firebase.md"]
+    },
+    "nodejs": {
+      "detect": ["package.json", "**/*.ts", "**/*.js"],
+      "rules": ["constitution/project-rules/stack-nodejs.mdc"],
+      "agents": ["agents/m4trix-node.md"],
+      "excludeIfOnlyFlutterTooling": true
+    },
+    "python": {
+      "detect": ["requirements.txt", "pyproject.toml", "**/*.py"],
+      "rules": ["constitution/project-rules/stack-python.mdc"],
+      "agents": ["agents/m4trix-python.md"]
+    }
+  },
+  "workspaceTargets": {
+    "rules": ".cursor/rules",
+    "agents": ".cursor/agents",
+    "skills": ".cursor/skills",
+    "sdlc": "docs/sdlc",
+    "kitMarker": "docs/sdlc/.m4trix-kit.json"
+  },
+  "eccReference": {
+  "optionalCopy": [
+    "ecc-cherry-pick/ORIGIN.md",
+    "ecc-cherry-pick/flutter-patterns.md",
+    "ecc-cherry-pick/flutter-review-checklist.md",
+    "ecc-cherry-pick/python-patterns.md",
+    "ecc-cherry-pick/security-checklist.md",
+    "ecc-cherry-pick/tdd-verify.md",
+    "ecc-cherry-pick/deployment-checklist.md"
+  ],
+  "workspaceTarget": "docs/sdlc/ecc-reference"
+},
+  "mergePolicy": "dry-run-first; never overwrite existing docs/sdlc content without captain approval; overwrite m4trix-* agents/rules/skills when version bumps"
+}

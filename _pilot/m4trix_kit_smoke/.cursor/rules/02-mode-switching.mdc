@@ -1,0 +1,23 @@
+---
+description: Require explicit MODE SWITCH prompts for Ask Plan Agent Debug
+alwaysApply: true
+---
+
+# Mode switching
+
+Cursor does not auto-switch Ask / Plan / Agent / Debug. After every phase gate, output:
+
+```text
+**MODE SWITCH:** <Ask|Plan|Agent|Debug> — <one-line why> — <exact phrase the captain should type next>
+```
+
+Guidance:
+
+| Situation | Mode |
+|-----------|------|
+| Research, Q&A, read-only exploration | Ask |
+| PRD, requirements, design, sequencing | Plan |
+| Approved implementation | Agent |
+| Hard runtime / flaky reproduction | Debug |
+
+Do not continue implementing across a gate without the captain’s go-ahead in the correct mode.
