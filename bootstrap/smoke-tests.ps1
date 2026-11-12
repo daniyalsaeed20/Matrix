@@ -84,6 +84,8 @@ Assert-True ($activeTpl -match '"egm"') "ACTIVE_TASK has egm block"
 Assert-True (Test-Path (Join-Path $KitRoot "skills\egm-review\SKILL.md")) "egm-review skill exists"
 Assert-True (Test-Path (Join-Path $KitRoot "templates\sdlc\EGM_REVIEW.md")) "EGM_REVIEW template exists"
 Assert-True (Test-Path (Join-Path $KitRoot "ecc-cherry-pick\egm.md")) "egm attribution reference exists"
+Assert-True (Test-Path (Join-Path $KitRoot "ecc-cherry-pick\ui-craft.md")) "ui-craft reference exists"
+Assert-True (Test-Path (Join-Path $KitRoot "ecc-cherry-pick\ui-stress.md")) "ui-stress reference exists"
 $prodPipe = Get-Content (Join-Path $KitRoot "skills\pipeline-product\SKILL.md") -Raw
 $modPipe = Get-Content (Join-Path $KitRoot "skills\pipeline-module\SKILL.md") -Raw
 $patchPipe = Get-Content (Join-Path $KitRoot "skills\pipeline-patch\SKILL.md") -Raw

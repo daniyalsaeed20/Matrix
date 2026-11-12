@@ -29,21 +29,24 @@ Write a brief in chat or append a short note under `docs/sdlc/` (optional file `
 ### 3. Implement
 
 - Prefer single agent; no multi-agent swarm
-- Inspect impacted files; smallest correct change; reuse theme/components
+- Surgical: only files the patch needs; no drive-by cleanup
+- Inspect impacted files; smallest clear change; reuse theme/components
 - No new services, PRDs, or abstraction ceremony for a label/copy fix
-- Reuse theme/design system; no new visual language unless patch is theme itself
 - Brief handoff: what changed / reused / verified
 
 ### 4. Verify
 
-- **m4trix-verifier** (lightweight)
+- Focused check or lightweight **m4trix-verifier**; report what actually ran
 - Update docs only if user-facing behavior or public API changed
-- Derived ideas → `BACKLOG.md`
+- Derived ideas → `BACKLOG.md` (mention unrelated debt; do not fix it here)
 
 `**MODE SWITCH:** Ask — next item — Captain: next patch, module, or backlog ID`
 
 ## Hard rules
 
+- **EGM / Goldfish: skip** — no planning review swarm for ordinary patches
+- If investigation reveals material architecture/product decisions → propose upgrade to **pipeline-module** (captain must acknowledge); never silent scope expand
 - Do not open full PRD/design-system ceremony
 - Still production-quality for the touched surface
 - Emit MODE SWITCH before implementation if currently in Ask/Plan
+- Set `ACTIVE_TASK.egm.required=false`, `egm.status=skipped`

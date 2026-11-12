@@ -47,6 +47,7 @@ Write a brief in chat or append a short note under `docs/sdlc/` (optional file `
 - **EGM / Goldfish: skip** — no planning review swarm for ordinary patches
 - If investigation reveals material architecture/product decisions → propose upgrade to **pipeline-module** (captain must acknowledge); never silent scope expand
 - Do not open full PRD/design-system ceremony
+- Do not load full `ui-craft` / `ui-stress` reviews for tiny copy/token patches — spot-check the touched surface only
 - Still production-quality for the touched surface
 - Emit MODE SWITCH before implementation if currently in Ask/Plan
 - Set `ACTIVE_TASK.egm.required=false`, `egm.status=skipped`

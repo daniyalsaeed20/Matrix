@@ -89,7 +89,9 @@
       "ecc-cherry-pick/deployment-checklist.md",
       "ecc-cherry-pick/karpathy-principles.md",
       "ecc-cherry-pick/context-engineering.md",
-      "ecc-cherry-pick/egm.md"
+      "ecc-cherry-pick/egm.md",
+      "ecc-cherry-pick/ui-craft.md",
+      "ecc-cherry-pick/ui-stress.md"
     ],
     "workspaceTarget": "docs/sdlc/ecc-reference"
   },

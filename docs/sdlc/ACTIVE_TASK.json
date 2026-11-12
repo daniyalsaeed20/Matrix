@@ -1,55 +1,64 @@
 {
-  "taskId": "KIT-rel-1.5.3",
-  "title": "Strip IDE commit attribution (delivery voice hardening)",
-  "scale": "patch",
+  "taskId": "KIT-rel-1.6.0",
+  "title": "Design engineering intelligence upgrade (UI craft / motion / stress)",
+  "scale": "module",
   "phase": "accepted",
   "status": "accepted",
-  "approvedScope": "Harden delivery-voice + USER_RULES for injected Co-authored-by Cursor; commit-msg strip hook; install disables CLI attribution; apply installs hook; docs/smoke — no product scope",
+  "approvedScope": "Selectively adapt emilkowalski/skills principles into existing Matrix agents/rules/templates; on-demand ui-craft + ui-stress refs; isolated ui_craft_eval fixtures; no new agents/skills; no SDLC/EGM change; no customer projects; no commit without captain auth",
   "acceptanceCriteria": [
-    "Happy: agent/kit commits have no Co-authored-by Cursor / Made-with Cursor after commit-msg hook",
-    "Fail: missing hook source fails install preflight; malformed cases do not invent trailers",
-    "Edge: kit install docs may name the IDE; git commits/PRs/trailers never may — including Matrix kit repo"
+    "Happy: design-system, flutter, verifier point at condensed craft/motion/stress guidance without duplicating full upstream skills",
+    "Fail: backend-only / tiny patch paths skip loading ui-craft/ui-stress",
+    "Edge: Flutter motion notes stay Flutter-native; web/RN notes stay platform-specific; MIT attribution in ORIGIN"
   ],
   "permittedPaths": [
-    "constitution/",
     "agents/",
+    "constitution/",
+    "skills/",
+    "templates/",
+    "ecc-cherry-pick/",
     "bootstrap/",
-    "hooks/",
     "docs/sdlc/",
+    "_pilot/ui_craft_eval/",
     "VERSION",
     "README.md",
-    "INSTALL.md",
     ".cursor/"
   ],
   "designSystemChangesApproved": false,
   "decisionRefs": [
-    "2026-11-12 Delivery voice covers kit commits too; strip IDE trailers via commit-msg + CLI attribution off"
+    "2026-11-12 Selective design-eng principles via on-demand ecc-cherry-pick; no new agents"
   ],
-  "conventions": ["04-code-craft", "05-delivery-voice"],
-  "reusableComponents": ["hooks/m4trix-platform.ps1 helpers"],
+  "conventions": ["04-code-craft", "03-token-discipline", "01-production-bar"],
+  "reusableComponents": [],
   "filesChanged": [
-    "constitution/project-rules/05-delivery-voice.mdc",
-    "constitution/USER_RULES.md",
+    "ecc-cherry-pick/ui-craft.md",
+    "ecc-cherry-pick/ui-stress.md",
+    "ecc-cherry-pick/ORIGIN.md",
+    "ecc-cherry-pick/flutter-review-checklist.md",
+    "agents/m4trix-design-system.md",
+    "agents/m4trix-flutter.md",
     "agents/m4trix-verifier.md",
-    "agents/m4trix-docs-deploy.md",
-    "bootstrap/git-hooks/commit-msg",
-    "bootstrap/apply-to-workspace.ps1",
-    "bootstrap/install-globals.ps1",
+    "constitution/project-rules/01-production-bar.mdc",
+    "constitution/project-rules/03-token-discipline.mdc",
+    "templates/sdlc/DESIGN_SYSTEM.md",
+    "skills/pipeline-patch/SKILL.md",
+    "skills/pipeline-module/SKILL.md",
+    "bootstrap/MANIFEST.json",
     "bootstrap/smoke-tests.ps1",
-    "hooks/m4trix-platform.ps1",
+    "_pilot/ui_craft_eval/",
     "VERSION",
     "README.md",
-    "INSTALL.md",
     "docs/sdlc/DECISIONS.md",
     "docs/sdlc/ACTIVE_TASK.json"
   ],
   "verified": [
-    "smoke-tests.ps1 RESULT: all checks passed (includes commit-msg strip functional test)"
+    "flutter test in _pilot/ui_craft_eval — All tests passed (9)",
+    "bootstrap/smoke-tests.ps1 RESULT: all checks passed (includes ui-craft/ui-stress path asserts)",
+    "Scenario 5 patch ceremony: policy check against pipeline-patch + token-discipline (manual)"
   ],
   "blockers": [],
   "context": {
     "staleAfterHours": 48,
-    "notes": "Captain must also turn off Settings → Git & PRs → Attribution; re-paste USER_RULES after install-globals."
+    "notes": "Scenario 5 (patch ceremony) is policy/manual. Do not commit until captain authorizes."
   },
   "egm": {
     "required": false,

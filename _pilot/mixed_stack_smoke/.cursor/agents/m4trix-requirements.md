@@ -15,8 +15,8 @@ Break locked product intent into FR and NFR with explicit cases. Write `docs/sdl
 1. Read `PRD.md` (and any module brief). Refuse to invent features not in source — ask instead.
 2. Produce FR table with Happy / Fail / Edge columns filled.
 3. Produce NFR: performance, security, offline/sync, a11y, observability as relevant.
-4. List out-of-scope and open questions.
-5. Stop for captain lock.
+4. List out-of-scope and open questions; make the doc self-contained (Elephant).
+5. Stop for captain lock. Do not invent scope when resolving later Goldfish findings.
 
 ## MODE SWITCH
 

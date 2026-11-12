@@ -1,16 +1,36 @@
+<p align="center">
+  <img src="assets/m4trix-logo.png" alt="m4tr!x" width="280" />
+</p>
+
 # m4tr!x — Cursor Org Kit (Matrix)
 
 **m4tr!x** turns Cursor into a delivery org: you are the **captain** (CEO); specialist agents plan, clarify, design, implement, verify, and document — with gates, scale-matched ceremony, and a production bar (no mockups as “done”).
 
 | | |
 |--|--|
-| **Version** | `1.5.3` (`VERSION`) |
+| **Version** | `1.6.0` (`VERSION`) |
 | **Kit root** | This clone (self-locating). Override: `M4TRIX_KIT_ROOT` |
 | **Platforms** | Windows + macOS (`pwsh` on Mac) |
 | **Defaults** | Flutter (BLoC + GoRouter + M3), Firebase-first; Node/Python only when approved |
 | **Planning review** | Elephant→Goldfish (`egm-review`) for product / design-heavy modules; **patches skip** |
+| **UI craft** | On-demand `ui-craft` / `ui-stress` (no new agents); patches stay light |
 
 This repo **is** the kit. Nothing wires itself until you install and apply.
+
+---
+
+## What's new in 1.6.0
+
+| Area | Change |
+|------|--------|
+| **Brand** | Official **m4tr!x** logo (`assets/m4trix-logo.png`) |
+| **UI craft** | Selective design-eng principles via `ecc-cherry-pick/ui-craft.md` + `ui-stress.md` (adapted from [emilkowalski/skills](https://github.com/emilkowalski/skills), MIT) — purpose-gated motion, hierarchy, a11y |
+| **UI stress** | Proportional worst-case checks in verifier / production bar (long copy, overflow, reduced motion) — not a 13th agent |
+| **Token load** | `03-token-discipline` loads UI craft refs **only** for relevant UI work; backend / tiny copy patches skip them |
+| **Pipelines** | Module/patch skills + design-system / Flutter / verifier agents wire the new refs without ceremony bloat |
+| **Pilot** | `_pilot/ui_craft_eval` — theme, reuse, stress, motion restraint, MediaQuery a11y |
+
+Prior (1.5.x): delivery-voice hardening — `commit-msg` strip of IDE trailers, CLI attribution off, `strip-ide-commit-trailers.ps1`.
 
 ---
 
@@ -53,6 +73,7 @@ Comparable runs live under `_pilot/`. Cursor does not expose reliable in-agent t
 |------|--------|
 | **Behavior** | **PASS** — surgical patch, shared UI reuse, auth gate, verifier from HANDOFF (5 files) |
 | **EGM** | **PASS** — fresh Task isolation; incomplete-spec flagged Blocking |
+| **UI craft** | **PASS** — `_pilot/ui_craft_eval` (theme, reuse, stress, motion restraint, a11y MediaQuery); patch ceremony = policy |
 | **Craft / context** | Encoded in rules + smoke; context = rubric over time |
 
 Residual: progressive load / handoffs rely on agent compliance (hooks do not hard-enforce). Numeric tokens → Cursor usage UI outside the agent.
@@ -67,8 +88,9 @@ Residual: progressive load / handoffs rely on agent compliance (hooks do not har
 | **Agents** | 12× `m4trix-*` specialists |
 | **Skills** | `bootstrap-org`, `pipeline-product`, `pipeline-module`, `pipeline-patch`, `egm-review` |
 | **SDLC templates** | PRD, REQUIREMENTS, DESIGN, DESIGN_SYSTEM, BACKLOG, ACTIVE_TASK, HANDOFF, EGM_REVIEW, … |
+| **UI refs** | `ecc-cherry-pick/ui-craft.md` + `ui-stress.md` (on-demand for UI work) |
 | **Hooks** | `sessionStart` advisory; `workspaceOpen` only with `-AutoApplyWorkspaces` |
-| **Validation** | `bootstrap/smoke-tests.ps1` + `_pilot/` evals |
+| **Validation** | `bootstrap/smoke-tests.ps1` + `_pilot/` evals (behavior / EGM / UI craft) |
 
 ### Specialist agents
 
@@ -101,9 +123,9 @@ Captain directs the org. Typical order: plan → design → implement → securi
 | Rule | Role |
 |------|------|
 | `00-m4trix-os` | Org, bootstrap, scale, EGM, `docs/sdlc` SoT |
-| `01-production-bar` | Done = AC + states + security + docs + craft + honest verify |
+| `01-production-bar` | Done = AC + states + security + docs + craft + honest verify (+ proportional UI resilience) |
 | `02-mode-switching` | Ask / Plan / Agent / Debug after phases |
-| `03-token-discipline` | Progressive context, soft budgets |
+| `03-token-discipline` | Progressive context, soft budgets; UI craft refs only when UI |
 | `04-code-craft` | Think → simple → surgical → verify |
 | `05-delivery-voice` | No IDE branding in product docs/commits/PRs |
 
@@ -143,6 +165,7 @@ Goldfish complete ≠ captain approval. Risk acceptance ≠ approval.
 - [ ] Loading / empty / error where the UI/API needs them
 - [ ] Security considered; no placeholder secrets
 - [ ] Design-system compliance for UI
+- [ ] UI work: purposeful motion + proportional stress (content/overflow/reduced-motion) where the surface needs it
 - [ ] Craft rules satisfied
 - [ ] Verifier reports what actually ran — no false “tests passed”
 
@@ -281,15 +304,16 @@ Matrix/                         ← kit root = clone path
 ├── VERSION
 ├── README.md                   ← this file
 ├── INSTALL.md                  ← shorter install cheat sheet
+├── assets/                     brand (m4trix-logo.png)
 ├── constitution/               USER_RULES + project-rules (+ stack rules)
 ├── agents/                     m4trix-*.md (12 specialists)
 ├── skills/                     bootstrap-org, pipelines, egm-review
 ├── templates/sdlc/             PRD, requirements, ACTIVE_TASK, …
-├── ecc-cherry-pick/            adapted reference excerpts
+├── ecc-cherry-pick/            adapted reference excerpts (incl. ui-craft / ui-stress)
 ├── bootstrap/                  MANIFEST, install-globals, apply-to-workspace, smoke-tests
 ├── hooks/                      platform + user hooks + hooks.json template
 ├── docs/sdlc/                  kit’s own SDLC / marker (when used as a workspace)
-└── _pilot/                     smoke fixtures + behavior / EGM / craft / context evals
+└── _pilot/                     smoke fixtures + behavior / EGM / craft / UI / context evals
 ```
 
 ---
@@ -330,11 +354,15 @@ If you used a fixed path (e.g. `D:\cursor-org-kit`):
 | Doc | Contents |
 |-----|----------|
 | [`INSTALL.md`](INSTALL.md) | Condensed install / uninstall |
+| [`assets/m4trix-logo.png`](assets/m4trix-logo.png) | Brand mark + wordmark |
 | [`constitution/USER_RULES.md`](constitution/USER_RULES.md) | Captain constitution (pre path-resolve) |
 | [`bootstrap/MANIFEST.json`](bootstrap/MANIFEST.json) | Exact files applied per stack |
+| [`ecc-cherry-pick/ui-craft.md`](ecc-cherry-pick/ui-craft.md) | On-demand UI craft + motion gate |
+| [`ecc-cherry-pick/ui-stress.md`](ecc-cherry-pick/ui-stress.md) | Proportional UI stress checks |
 | [`_pilot/behavior_eval/evidence/REPORT.md`](_pilot/behavior_eval/evidence/REPORT.md) | Behavioral PASS report |
 | [`_pilot/egm_eval/EVIDENCE.md`](_pilot/egm_eval/EVIDENCE.md) | EGM isolation evidence |
-| [`ecc-cherry-pick/`](ecc-cherry-pick/) | Context / EGM / craft attributions |
+| [`_pilot/ui_craft_eval/`](_pilot/ui_craft_eval/) | UI craft pilot eval |
+| [`ecc-cherry-pick/`](ecc-cherry-pick/) | Context / EGM / craft / UI attributions |
 
 ---
 

@@ -21,6 +21,8 @@ Use `ecc-cherry-pick/security-checklist.md` when present.
 
 Guard security **without** requiring a heavyweight architecture for every routine change. Prefer the smallest fix that closes the issue.
 
+When spawned as a **Goldfish** via **egm-review** (fresh Task on product plans with material auth/PII/payment risk): read only listed specs; classify Blocking/Major/Minor/Observation; do not invent scope or approve implementation.
+
 ## Output
 
 Findings by severity: Critical / High / Medium / Low. Concrete fix guidance. Block “done” on Critical/High until captain accepts risk in writing. You may note findings in docs; do not weaken production bar for brevity.

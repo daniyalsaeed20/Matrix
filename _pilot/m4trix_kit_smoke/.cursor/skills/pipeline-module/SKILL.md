@@ -1,6 +1,6 @@
 ---
 name: pipeline-module
-description: m4tr!x mid-scale feature/module pipeline. Lighter than full product but still clarify, requirements/design slice, tasks with AC, design-system check, implement on captain command, verify, docs. Example - in-app review system after action A.
+description: m4tr!x mid-scale feature/module pipeline. Clarify, focused spec, one EGM Goldfish review when upfront design is needed, captain approval, implement, verify, docs.
 ---
 
 # pipeline-module (m4tr!x)
@@ -13,37 +13,35 @@ A coherent feature/module — bigger than a patch, smaller than a new product.
 
 ### 1. Clarify
 
-Ask open questions (triggers, permissions, offline, notifications, etc.). Prefer Ask mode.
+Ask open questions. Prefer Ask mode.
 
 `**MODE SWITCH:** Plan — module brief — Draft module requirements and impact`
 
-### 2. Module requirements + impact
+### 2–3. Elephant slice
 
-- Short FR/NFR section (can append to `REQUIREMENTS.md` or a dated section)
-- Impact on existing screens/data
-- Happy / fail / edge
+- Short FR/NFR (REQUIREMENTS section or dated brief) with happy/fail/edge  
+- DESIGN touch if architecture changes; design-system if new shared UI  
+- Self-contained enough for a Goldfish who never saw the chat  
 
-### 3. Design slice
+If the module needs meaningful upfront design: `egm.required=true`. If it is a thin slice of an already-approved design, captain may set `egm.required=false` explicitly.
 
-- Touch `DESIGN.md` if architecture changes
-- If new UI controls needed, involve **m4trix-design-system** for tokens/components — do not invent one-off styles
+### 4. EGM Goldfish (when required)
 
-### 4. Tasks
+- Skill **egm-review**: **one** fresh Task (`m4trix-architect` as Goldfish)  
+- More reviewers only if material unresolved risks remain  
+- Resolve into `EGM_REVIEW.md`; Blocking → no implement until fixed in docs or (eligible tradeoff only) captain risk-accepted in writing  
+ 
 
-- **m4trix-scrum**: 2–N sequenced tasks with AC if too big for one go; else one task
-- STOP for captain: which task to build
+`**MODE SWITCH:** Plan — captain approve module — Reply approve module <NAME> after EGM`
 
-`**MODE SWITCH:** Agent — build module slice — Build task <ID> only`
+### 5. Tasks + implement
 
-### 5. Implement → secure (if needed) → verify → docs
-
-- Check existing shared components first; add approved shared primitives without a separate epic
-- Track slice in `ACTIVE_TASK.json`
-- Implementers → optional **m4trix-security** → **m4trix-verifier** (includes code-craft) → **m4trix-docs-deploy**
-- Brief handoff: what changed / reused or extracted / why any new layer / verified
-- Park extras in `BACKLOG.md`
+- **m4trix-scrum** if multi-task; else one task  
+- Captain names what to build  
+- Progressive context; reuse shared components; HANDOFF only if multi-agent  
 
 ## Hard rules
 
-- Production-ready module, not a demo stub
-- Scale ceremony down vs product, but never skip clarify or AC
+- Production-ready module  
+- Do not silently expand from patch; upgrade scale only with captain acknowledgment  
+- EGM skip only when captain confirms no meaningful upfront design  

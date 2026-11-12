@@ -15,6 +15,7 @@ Inspired by [jasontang-ai/Context-Engineering](https://github.com/jasontang-ai/C
 3. Open only architecture, requirements, design-system, and code slices needed for this task.
 4. Expand when correctness, security, dependencies, reuse discovery, or verification require it.
 5. Never omit critical constraints (approvals, security, AC) just to stay under a budget.
+6. Load `ecc-cherry-pick/ui-craft.md` / `ui-stress.md` **only** for relevant UI work; backend-only and tiny copy patches skip them.
 
 ## Soft budgets (guidelines, not hard caps)
 

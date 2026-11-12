@@ -16,7 +16,8 @@ Turn the captain’s rough requirement into a polished PRD in `docs/sdlc/PRD.md`
 2. Ask concise clarifying questions (batch them). Cover users, platforms, must-haves vs later, constraints.
 3. Scope **only real outcomes** — no invented features or speculative extension points.
 4. Draft PRD: problem, audience, goals, non-goals, key features, metrics, assumptions, open questions, risks.
-5. Iterate until captain says **Locked**.
+5. Iterate until captain says **Locked**. Spec must be readable without this chat (Elephant).
+6. For product scale: EGM Goldfish runs after REQUIREMENTS+DESIGN via **egm-review** — not after PRD alone.
 
 ## Output
 

@@ -1,0 +1,45 @@
+---
+description: No IDE/tooling attribution in product docs, commits, or PRs
+alwaysApply: true
+---
+
+# Delivery voice
+
+Product codebases must read as the team’s work — not as an IDE or AI-editor showcase.
+
+## Never put in product delivery artifacts
+
+Do **not** mention Cursor (or “made / generated / co-authored with” Cursor or similar IDE/AI-editor branding) in:
+
+- README and other repo documentation written for the product/codebase
+- `docs/` that ship with the app (including product-facing `docs/sdlc` notes meant for the repo history)
+- Commit messages and git trailers (`Co-authored-by`, “Generated with …”, “Made with …”, etc.)
+- Pull request titles/bodies, push notes, release notes, and changelogs
+
+## Commits and pushes (hard)
+
+IDE tooling may **inject** trailers such as `Co-authored-by: Cursor <cursoragent@cursor.com>` after the agent runs `git commit`. That still makes the IDE a GitHub contributor. Treat injection as a defect to remove — rules alone do not block the injector.
+
+When committing or pushing under m4tr!x:
+
+1. **Never** add IDE/AI co-author or “Made with …” trailers yourself.
+2. After every `git commit`, run `git log -1 --format=%B` and confirm the message has **no** IDE/AI trailers.
+3. If a trailer appeared and the commit is **not** pushed: strip it. Prefer `bootstrap/strip-ide-commit-trailers.ps1` (kit) which rebuilds HEAD via `commit-tree` — plain `git commit --amend` may be re-injected by the IDE shell. Do not start unrelated amend loops.
+4. If already pushed: stop and ask the captain before any history rewrite / force-push; do not leave the trailer as “fine.”
+5. Prefer the repo’s m4tr!x `commit-msg` hook (installed on apply) which strips known IDE trailers (line or inline).
+6. Captain machine setup: turn **off** Cursor **Settings → Git & PRs → Attribution** (older builds: **Agent → Attribution**), and set CLI `~/.cursor/cli-config.json` → `attribution.attributeCommitsToAgent` / `attributePRsToAgent` to `false`.
+7. Pass commit messages via `git commit -F <file>` with real newlines when possible; avoid IDE shells rewriting `git commit` into `--trailer` forms.
+
+## Prefer
+
+- Neutral, tool-agnostic wording when process must be described (“isolated review task”, “workspace apply”, “agent handoff”).
+- Commit and PR text that explains the product change only.
+
+## Exception
+
+The **Matrix kit** source tree may name the IDE in **install/setup/constitution docs** that teach how to run m4tr!x.
+
+That exception does **not** apply to:
+
+- product apps the kit is applied onto
+- **any** git commit messages, trailers, PR text, or release notes — including commits inside the Matrix kit repo itself
