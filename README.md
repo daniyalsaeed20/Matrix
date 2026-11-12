@@ -16,32 +16,13 @@ This repo **is** the kit. Nothing wires itself until you install and apply.
 
 ## How it works
 
-```text
-  You (captain) ──► state the ask
-                         │
-                         ▼
-              ┌── scale detection ──┐
-              │                     │
-         product              module              patch
-              │                     │                │
-              ▼                     ▼                ▼
-     pipeline-product      pipeline-module    pipeline-patch
-              │                     │                │
-              ▼                     ▼                │
-        approvals + MODE SWITCH ────┘                │
-              │                                      │
-              ▼                                      │
-        EGM needed? ──yes──► Goldfish Task           │
-              │                     │                │
-              no / patch            ▼                │
-              │            captain says go           │
-              └──────────────┬──────┘                │
-                             ▼                       │
-                    implement → verify ◄─────────────┘
-                             │
-                             ▼
-                    update docs/sdlc + BACKLOG
-```
+1. You state the ask (you are captain).
+2. Agents classify scale: **product**, **module**, or **patch**.
+3. The matching pipeline runs (`pipeline-product` / `pipeline-module` / `pipeline-patch`).
+4. Product/module hit approvals and **MODE SWITCH** gates; patches stay light.
+5. Design-heavy product/module work gets **EGM** (fresh Goldfish review) before you say go.
+6. Named slice is implemented and verified.
+7. `docs/sdlc` and `BACKLOG.md` are updated; derived ideas stay in backlog only.
 
 Always-on under the hood: **rules**, **12 agents**, **pipeline skills**, and **`docs/sdlc`** as source of truth.
 
@@ -91,33 +72,19 @@ Residual: progressive load / handoffs rely on agent compliance (hooks do not har
 
 ### Specialist agents
 
-```text
-                         Captain
-                            │
-      ┌─────────┬───────────┼───────────┬──────────┐
-      ▼         ▼           ▼           ▼          ▼
-  product  requirements  architect  design-sys  scrum
-                            │           │          │
-                            └─────┬─────┘──────────┘
-                                  ▼
-              flutter · firebase · node · python
-                                  │
-                    ┌─────────────┼─────────────┐
-                    ▼             ▼             ▼
-                security      verifier     docs-deploy
-```
+Captain directs the org. Typical order: plan → design → implement → security/verify → docs.
 
-| Agent | Job |
-|-------|-----|
-| `m4trix-product` | PRD, framing, non-goals, risks |
-| `m4trix-requirements` | FR/NFR — happy / fail / edge |
-| `m4trix-architect` | `DESIGN.md`; Elephant or **Goldfish** |
-| `m4trix-design-system` | Themes, catalog, motion |
-| `m4trix-scrum` | Scale, sequencing, MODE SWITCH |
-| `m4trix-flutter` / `firebase` / `node` / `python` | Stack implementers (Node/Python only when approved) |
-| `m4trix-security` | Auth, PII, payments, rules — OWASP-minded |
-| `m4trix-verifier` | Skeptical QA — never rubber-stamps |
-| `m4trix-docs-deploy` | SDLC / handoff / late deploy docs (you still deploy) |
+| Phase | Agent | Job |
+|-------|-------|-----|
+| Plan | `m4trix-product` | PRD, framing, non-goals, risks |
+| Plan | `m4trix-requirements` | FR/NFR — happy / fail / edge |
+| Plan | `m4trix-scrum` | Scale, sequencing, MODE SWITCH |
+| Design | `m4trix-architect` | `DESIGN.md`; Elephant or **Goldfish** |
+| Design | `m4trix-design-system` | Themes, catalog, motion |
+| Build | `m4trix-flutter` / `firebase` / `node` / `python` | Stack implementers (Node/Python only when approved) |
+| Gate | `m4trix-security` | Auth, PII, payments, rules — OWASP-minded |
+| Gate | `m4trix-verifier` | Skeptical QA — never rubber-stamps |
+| Ship docs | `m4trix-docs-deploy` | SDLC / handoff / late deploy docs (you still deploy) |
 
 ### Skills
 
@@ -150,14 +117,6 @@ Residual: progressive load / handoffs rely on agent compliance (hooks do not har
 | **module** | Coherent multi-file feature | Focused brief/FR; EGM when design-heavy; implement named slice only |
 | **patch** | Localized UI / bug / copy | Short AC brief; one implementer; **skip EGM** and full PRD |
 
-```text
-request
-   │
-   ├── product ──► PRD → reqs → design → DS → EGM → BACKLOG → authorize modules
-   ├── module  ──► brief/FR → (EGM if design-heavy) → implement named slice
-   └── patch   ──► short AC → one implementer → skip EGM
-```
-
 Agents must **not** silently upgrade patch → module; you acknowledge scope growth.
 
 ---
@@ -166,31 +125,11 @@ Agents must **not** silently upgrade patch → module; you acknowledge scope gro
 
 Inspired by [google/elephant-goldfish-model](https://github.com/google/elephant-goldfish-model) (Apache-2.0; not installed wholesale).
 
-```text
-Captain ──► Elephant (product / BA / architect / design-system)
-                │
-                ▼
-         docs/sdlc/*  (self-contained; no chat dependency)
-                │
-Captain ──► Goldfish = fresh Task (listed paths only; no parent chat)
-                │
-                ▼
-         EGM_REVIEW.md
-                │
-        ┌───────┴────────┐
-   Blocking open      Clear
-        │                │
-   fix docs (or     findings only
-   eligible risk-   (still ≠ approval)
-   accept*)              │
-        │                ▼
-        └──────► Captain explicit go + named module/task
-                         │
-                         ▼
-                    Implementer
-
-* Missing requirements and unresolved security defects are not risk-acceptable.
-```
+1. **Elephant** (product / requirements / architect / design-system) writes specs that stand alone in `docs/sdlc/*` — no chat dependency.
+2. **Goldfish** = fresh Cursor Task (`egm-review`) with **no** parent chat; reads only listed paths.
+3. Findings land in `EGM_REVIEW.md`.
+4. If **Blocking** is open: fix the docs first. Eligible implementation tradeoffs may be risk-accepted in writing; missing requirements and unresolved security defects are **not** risk-acceptable.
+5. If clear: findings only — still not approval. You explicitly say go and name the module/task before implementers start.
 
 Goldfish complete ≠ captain approval. Risk acceptance ≠ approval.
 
