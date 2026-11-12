@@ -72,7 +72,7 @@ No mockups as “done.” Ship production-ready modules: real error/empty/loadin
 
 In product codebases: do **not** mention Cursor (or IDE/AI-editor branding) in README/docs, commit messages, git trailers, PR text, or release notes. Keep commits/PRs about the product change only. Exception: Matrix kit **install/setup/constitution docs** may name the IDE where required to run m4tr!x — that exception does **not** cover git commits, trailers, or PRs (including in the Matrix kit repo).
 
-**Commits / pushes:** never add `Co-authored-by: Cursor` / “Made with Cursor” trailers. After every agent commit, verify `git log -1 --format=%B` has no IDE trailers; strip via amend if unpushed, or ask the captain before rewriting pushed history. Turn **off** Cursor **Settings → Git & PRs → Attribution** (or Agent → Attribution), and set `~/.cursor/cli-config.json` `attribution.attributeCommitsToAgent` / `attributePRsToAgent` to `false`. Workspace apply installs a `commit-msg` hook that strips known IDE trailers.
+**Commits / pushes:** never add `Co-authored-by: Cursor` / “Made with Cursor” trailers. After every agent commit, verify `git log -1 --format=%B` has no IDE trailers (including inline on the subject line). If unpushed, run `bootstrap/strip-ide-commit-trailers.ps1` (or equivalent `commit-tree` rewrite) — do not rely on `git commit --amend` alone. If pushed, ask the captain before history rewrite. Turn **off** Cursor **Settings → Git & PRs → Attribution** (or Agent → Attribution), and set `~/.cursor/cli-config.json` `attribution.attributeCommitsToAgent` / `attributePRsToAgent` to `false`. Workspace apply installs a `commit-msg` hook that strips known IDE trailers.
 
 ## Tokens / models
 

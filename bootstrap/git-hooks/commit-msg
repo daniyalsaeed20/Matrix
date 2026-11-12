@@ -2,28 +2,31 @@
 # m4tr!x commit-msg hook: strip IDE/AI-editor attribution trailers.
 # Installed into <repo>/.git/hooks/commit-msg by apply-to-workspace / Install-M4trixGitCommitMsgHook.
 # Does not change git config. Safe no-op when MSG_FILE missing.
+# Handles both standalone trailer lines and inline injection on the subject line.
 
 MSG_FILE="$1"
 if [ -z "$MSG_FILE" ] || [ ! -f "$MSG_FILE" ]; then
   exit 0
 fi
 
-# Prefer perl (Git for Windows / macOS / Linux); fall back to sed.
 if command -v perl >/dev/null 2>&1; then
-  perl -i -ne 'print unless /^\s*Co-authored-by:\s*Cursor\s*<cursoragent@cursor\.com>\s*$/i
-    || /^\s*Made-with:\s*Cursor\s*$/i
-    || /^\s*Made with Cursor\s*$/i
-    || /^\s*Generated with Cursor\s*$/i
-    || /^\s*Generated-by:\s*Cursor\s*$/i' "$MSG_FILE"
+  perl -i -0pe 's/[ \t]*Co-authored-by:\s*Cursor\s*<cursoragent@cursor\.com>[ \t]*//gi;
+    s/[ \t]*Made-with:\s*Cursor[ \t]*//gi;
+    s/[ \t]*Made with Cursor[ \t]*//gi;
+    s/[ \t]*Generated with Cursor[ \t]*//gi;
+    s/[ \t]*Generated-by:\s*Cursor[ \t]*//gi;
+    s/\n{3,}/\n\n/g;
+    s/[ \t]+\n/\n/g;
+    s/[ \t]+$//;' "$MSG_FILE"
 elif command -v sed >/dev/null 2>&1; then
-  # BSD/GNU sed: delete known trailer lines (case-sensitive common forms).
   tmp="${MSG_FILE}.m4trix.tmp"
+  # Best-effort line deletes when perl is unavailable.
   sed \
-    -e '/^[[:space:]]*Co-authored-by:[[:space:]]*Cursor[[:space:]]*<cursoragent@cursor\.com>[[:space:]]*$/Id' \
-    -e '/^[[:space:]]*Made-with:[[:space:]]*Cursor[[:space:]]*$/Id' \
-    -e '/^[[:space:]]*Made with Cursor[[:space:]]*$/Id' \
-    -e '/^[[:space:]]*Generated with Cursor[[:space:]]*$/Id' \
-    -e '/^[[:space:]]*Generated-by:[[:space:]]*Cursor[[:space:]]*$/Id' \
+    -e '/Co-authored-by:[[:space:]]*Cursor[[:space:]]*<cursoragent@cursor\.com>/d' \
+    -e '/Made-with:[[:space:]]*Cursor/d' \
+    -e '/Made with Cursor/d' \
+    -e '/Generated with Cursor/d' \
+    -e '/Generated-by:[[:space:]]*Cursor/d' \
     "$MSG_FILE" > "$tmp" && mv "$tmp" "$MSG_FILE"
 fi
 

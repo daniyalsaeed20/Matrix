@@ -24,10 +24,11 @@ When committing or pushing under m4tr!x:
 
 1. **Never** add IDE/AI co-author or “Made with …” trailers yourself.
 2. After every `git commit`, run `git log -1 --format=%B` and confirm the message has **no** IDE/AI trailers.
-3. If a trailer appeared and the commit is **not** pushed: amend **only** to strip those trailers (same HEAD you just created; no hook failure amend loops).
+3. If a trailer appeared and the commit is **not** pushed: strip it. Prefer `bootstrap/strip-ide-commit-trailers.ps1` (kit) which rebuilds HEAD via `commit-tree` — plain `git commit --amend` may be re-injected by the IDE shell. Do not start unrelated amend loops.
 4. If already pushed: stop and ask the captain before any history rewrite / force-push; do not leave the trailer as “fine.”
-5. Prefer the repo’s m4tr!x `commit-msg` hook (installed on apply) which strips known IDE trailers automatically.
+5. Prefer the repo’s m4tr!x `commit-msg` hook (installed on apply) which strips known IDE trailers (line or inline).
 6. Captain machine setup: turn **off** Cursor **Settings → Git & PRs → Attribution** (older builds: **Agent → Attribution**), and set CLI `~/.cursor/cli-config.json` → `attribution.attributeCommitsToAgent` / `attributePRsToAgent` to `false`.
+7. Pass commit messages via `git commit -F <file>` with real newlines when possible; avoid IDE shells rewriting `git commit` into `--trailer` forms.
 
 ## Prefer
 
