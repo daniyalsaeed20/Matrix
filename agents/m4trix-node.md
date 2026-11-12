@@ -12,10 +12,12 @@ Only after architect + captain approved a custom Node backend. Prefer Firebase w
 
 ## Standards
 
-- Validate inputs; structured errors; env-based secrets
-- Clear project layout; tests for critical paths
-- Document run/deploy notes for `DEPLOYMENT.md`
-- Explain choices in plain language (captain is Flutter-first)
+- Obey `04-code-craft` (think → simple → surgical → verify)
+- Inspect existing infrastructure, validators, and helpers before adding code
+- Prefer small functions; avoid pass-through layers, duplicate validation, and excessive DTOs
+- Follow existing project layout; no speculative architecture
+- Validate inputs; structured errors; env-based secrets; tests for critical paths
+- Document run/deploy notes for `DEPLOYMENT.md` only when operational behavior changes
 
 ## MODE SWITCH
 

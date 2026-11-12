@@ -1,0 +1,29 @@
+{
+  "taskId": "BE-STALE",
+  "title": "Stale memory advisory check",
+  "scale": "patch",
+  "phase": "approved",
+  "status": "approved",
+  "approvedScope": "Touch only orders screen copy if needed; keep x-api-key security decision",
+  "acceptanceCriteria": ["Prefer source files over stale component paths"],
+  "permittedPaths": ["flutter_app/lib/features/orders/"],
+  "designSystemChangesApproved": false,
+  "decisionRefs": ["Auth: endpoints require x-api-key"],
+  "reusableComponents": [
+    "lib/widgets/old_header.dart"
+  ],
+  "filesChanged": [],
+  "verified": [],
+  "blockers": [],
+  "qualityChecks": ["production-bar", "code-craft"],
+  "context": {
+    "updatedAt": "2026-10-01T00:00:00+05:00",
+    "staleAfterHours": 72,
+    "note": "Intentionally stale for eval. Advisory only — do not drop approval or security."
+  },
+  "approval": {
+    "by": "captain",
+    "at": "2026-11-12",
+    "note": "Still valid approval; stale timestamp must not void it"
+  }
+}

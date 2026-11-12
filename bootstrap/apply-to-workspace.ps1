@@ -5,11 +5,11 @@
 .PARAMETER Workspace
   Target project root.
 .PARAMETER KitRoot
-  Kit root (default: parent of bootstrap/, or M4TRIX_KIT_ROOT / OS default).
+  Kit root (default: parent of bootstrap/, else M4TRIX_KIT_ROOT / ~/.cursor/m4trix/kit.json).
 .PARAMETER DryRun
   List actions only.
 .PARAMETER IncludeNode
-  Force include Node stack agents/rules even if only package.json heuristics are weak.
+  Force include Node stack agents/rules.
 #>
 param(
   [Parameter(Mandatory = $true)][string]$Workspace,
@@ -28,10 +28,18 @@ if (-not (Test-Path $platformPs1)) {
 . $platformPs1
 
 if ([string]::IsNullOrWhiteSpace($KitRoot)) {
-  $KitRoot = Split-Path -Parent $PSScriptRoot
+  $fromBootstrap = Split-Path -Parent $PSScriptRoot
+  if (Test-M4trixKitRootCandidate $fromBootstrap) {
+    $KitRoot = $fromBootstrap
+  } else {
+    $KitRoot = Get-M4trixKitRoot
+  }
 }
 $Workspace = (Resolve-Path $Workspace).Path
 $KitRoot = (Resolve-Path $KitRoot).Path
+if (-not (Test-M4trixKitRootCandidate $KitRoot)) {
+  throw "Invalid kit root: $KitRoot"
+}
 $manifestPath = Join-M4trixPath -Base $KitRoot -Parts @("bootstrap", "MANIFEST.json")
 $manifest = Get-Content $manifestPath -Raw | ConvertFrom-Json
 $version = (Get-Content (Join-Path $KitRoot "VERSION") -Raw).Trim()
@@ -42,6 +50,8 @@ function Test-ExcludedPath([string]$fullPath) {
     $n -match '/\.dart_tool/' -or
     $n -match '/build/' -or
     $n -match '/\.git/' -or
+    $n -match '/_pilot/' -or
+    $n -match '/node_modules/' -or
     $n -match '/ios/flutter/ephemeral/' -or
     $n -match '/android/\.gradle/' -or
     $n -match '/windows/flutter/ephemeral/' -or
@@ -82,10 +92,31 @@ if ((Test-MarkerFile "requirements.txt") -or (Test-MarkerFile "pyproject.toml"))
     } | Select-Object -First 1
   if ($realPy) { $stacks += "python" }
 }
-if ($IncludeNode) {
-  $stacks += "nodejs"
-} elseif (Test-MarkerFile "package.json") {
-  if (-not ($stacks -contains "flutter")) { $stacks += "nodejs" }
+# Node is additive (Flutter + Functions/backend is valid). Detect by subtree, not "Flutter wins".
+$nodeMarkers = @(
+  (Join-Path $Workspace "package.json"),
+  (Join-Path $Workspace "functions\package.json"),
+  (Join-Path $Workspace "functions/package.json"),
+  (Join-Path $Workspace "backend\package.json"),
+  (Join-Path $Workspace "backend/package.json"),
+  (Join-Path $Workspace "api\package.json"),
+  (Join-Path $Workspace "api/package.json"),
+  (Join-Path $Workspace "server\package.json"),
+  (Join-Path $Workspace "server/package.json")
+)
+$hasNodePackage = $false
+foreach ($nm in $nodeMarkers) {
+  if (Test-Path $nm -PathType Leaf) { $hasNodePackage = $true; break }
+}
+if (-not $hasNodePackage -and (Test-MarkerFile "package.json")) { $hasNodePackage = $true }
+if ($IncludeNode -or $hasNodePackage) {
+  if (-not ($stacks -contains "nodejs")) { $stacks += "nodejs" }
+}
+
+$isKitRepo = (Normalize-M4trixPath $Workspace) -eq (Normalize-M4trixPath $KitRoot)
+# Kit repo itself: install every stack pack so agents/rules stay complete while developing the kit.
+if ($isKitRepo) {
+  $stacks = @($manifest.stacks.PSObject.Properties.Name)
 }
 
 Write-Host "Workspace: $Workspace"
@@ -132,9 +163,21 @@ foreach ($s in $manifest.common.skills) {
 foreach ($t in $manifest.common.templates) {
   $name = Split-Path $t -Leaf
   $dest = Join-M4trixPath -Base $Workspace -Parts @("docs", "sdlc", $name)
-  if ((Test-Path $dest) -and -not $DryRun) {
+  # Never overwrite SDLC docs inside the kit repo itself; skip any non-empty existing doc.
+  if ($isKitRepo -and (Test-Path $dest)) {
+    $actions.Add("skip`t$t`t->`t$dest (kit repo keeps existing docs)") | Out-Null
+    continue
+  }
+  if (Test-Path $dest) {
     $content = Get-Content $dest -Raw -ErrorAction SilentlyContinue
-    if ($content -and ($content -notmatch "<Product / Epic Name>" -and $content -notmatch "<Name>" -and $content -notmatch "<App Name>" -and $content -notmatch "<Name / Module>" -and $content -notmatch "<Module Name>" -and $content.Length -gt 400)) {
+    $looksLikeBlankTemplate = $content -and (
+      $content -match "<Product / Epic Name>" -or
+      $content -match "<App Name>" -or
+      $content -match "<Name / Module>" -or
+      $content -match "<Module Name>" -or
+      $content -match '"taskId":\s*""'
+    )
+    if ($content -and -not $looksLikeBlankTemplate -and $content.Trim().Length -gt 80) {
       $actions.Add("skip`t$t`t->`t$dest (existing content)") | Out-Null
       continue
     }

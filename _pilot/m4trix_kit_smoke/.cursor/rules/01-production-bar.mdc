@@ -13,6 +13,7 @@ A task/module is not done until:
 - Security/authz considered for the change (delegate to m4trix-security when sensitive)
 - Relevant docs in `docs/sdlc/` updated
 - For UI: uses the project design system / theme — no one-off colors/typography unless approved
+- Code craft satisfied: no needless layers/duplication; shared UI reused where warranted (`04-code-craft`)
 - Verifier checklist passed (m4trix-verifier)
 
 Mockups, stubs, and “wire it later” are backlog items — not done.

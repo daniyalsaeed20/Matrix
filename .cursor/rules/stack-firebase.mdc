@@ -1,0 +1,20 @@
+---
+description: Firebase BaaS standards — propose then await captain approval
+globs: "**/firebase.json,**/firestore.rules,**/.firebaserc,**/firebase_options.dart,**/*.rules"
+alwaysApply: false
+---
+
+# Firebase (m4tr!x)
+
+Firebase-first. Before implementing auth, data model, offline sync, or Functions:
+
+1. Propose options (Auth providers, Firestore vs alternatives, offline local DB, security rules shape).
+2. Wait for captain approval.
+3. Document decisions in `docs/sdlc/DESIGN.md`.
+
+## Always
+
+- Security rules are part of the feature — not an afterthought
+- No secrets in client source; use proper config / env patterns
+- Offline/multi-user sync: call out conflict strategy explicitly
+- Prefer Cloud Functions only when client-only is insufficient

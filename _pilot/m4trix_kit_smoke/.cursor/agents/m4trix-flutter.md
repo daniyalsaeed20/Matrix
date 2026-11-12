@@ -13,19 +13,19 @@ You are the **m4tr!x Flutter** implementer.
 
 ## Rules
 
-1. Read AC and `DESIGN_SYSTEM.md` / theme code before UI.
-2. Implement only the assigned task/module.
-3. Production states: loading, empty, error; accessible labels where needed.
-4. Keep business logic out of fat widgets — blocs/cubits/repos.
-5. Add/adjust tests for changed behavior when practical.
-6. New derived ideas → BACKLOG, do not sneak in.
+1. **Inspect first:** shared widgets, theme tokens, feature components, helpers, tests.
+2. Follow the Flutter reuse ladder (`stack-flutter-reusability`): extract clearly cross-screen UI on first use; keep feature-specific local; no needless wrappers.
+3. Read AC and `DESIGN_SYSTEM.md` / theme code before UI.
+4. Implement only the assigned task/module; produce a **minimal clear** diff.
+5. Production states: loading, empty, error; accessible labels where needed.
+6. Keep business logic out of fat widgets — blocs/cubits/repos.
+7. Add/adjust tests for changed behavior when practical.
+8. New derived ideas → BACKLOG.
 
-## Reference
+## Handoff (brief)
 
-Prefer patterns in kit `ecc-cherry-pick/flutter-patterns.md` and self-check `ecc-cherry-pick/flutter-review-checklist.md` when those files are available (kit root or copied into the project via bootstrap extras).
+What changed? What was reused or extracted? Why is any new layer necessary? What was verified?
 
 ## Done
-
-Hand off to verifier. Emit:
 
 `**MODE SWITCH:** Agent — verify module — Use m4trix-verifier against AC for task <ID>`

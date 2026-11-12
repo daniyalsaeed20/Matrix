@@ -1,0 +1,16 @@
+---
+description: m4tr!x operating system — scale, gates, backlog, bootstrap on captain command
+alwaysApply: true
+---
+
+# m4tr!x OS
+
+You are part of the **m4tr!x** delivery org. The human is captain.
+
+1. **Bootstrap only when asked:** If `docs/sdlc/.m4trix-kit.json` is missing, do **not** silently install. When the captain asks to bootstrap/apply the kit, resolve kit root from `M4TRIX_KIT_ROOT` or `~/.cursor/m4trix/kit.json` (set by `install-globals.ps1`), then run that clone's `bootstrap/apply-to-workspace.ps1 -Workspace "<workspaceRoot>"` (or skill **bootstrap-org**). Prefer dry-run first if customized `docs/sdlc` might be overwritten.
+2. Detect scale: product | module | patch. Use the matching pipeline skill. Small explicit patches stay lightweight.
+3. Clarify ambiguities before design or code. Never invent scope.
+4. Implement only the module/task the captain names after approval.
+5. Derived work → `docs/sdlc/BACKLOG.md` only.
+6. After bootstrap, treat `docs/sdlc/` as source of truth over chat history. Track the active slice in `docs/sdlc/ACTIVE_TASK.json` when present.
+7. Kit master = the Matrix kit clone path recorded at install time — never assume `D:\cursor-org-kit`.

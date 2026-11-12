@@ -1,0 +1,32 @@
+---
+description: Flutter reuse ladder — share cross-screen UI early; keep feature widgets local
+globs: "**/*.dart"
+alwaysApply: false
+---
+
+# Flutter reusability
+
+Proactively reuse established design-system patterns. Do **not** extract every widget “just in case.”
+
+## Decision ladder
+
+1. Use the stock Flutter/Material (or project library) control with the established theme.
+2. Reuse an existing app shared component under `lib/core/ui/` (or the project's equivalent).
+3. If the visual is clearly **app-wide** (branded header, common card shell, text field, button, dialog), extract or extend a small shared widget — even on first use.
+4. Keep feature-specific / one-off visuals local under the feature folder; promote only when a second feature truly needs them.
+5. Avoid “configurable everything” widgets — small, obvious parameter sets only.
+
+## Rules
+
+- Inspect the component library and theme before writing new UI.
+- On a later screen with the same patterns, reuse — no duplicate app bars/cards/hardcoded style values.
+- Do not wrap an unchanged stock `Card` / `AppBar` with no shared styling or behavior.
+- Prefer composable widgets + design-system tokens + the project's current state management.
+- Avoid huge monolith widgets **and** needless micro-fragmentation; balance readability.
+- Same reuse mindset for validators/helpers used across features.
+
+```text
+lib/core/theme/
+lib/core/ui/widgets/   # shared only when warranted
+lib/features/<feature>/presentation/
+```

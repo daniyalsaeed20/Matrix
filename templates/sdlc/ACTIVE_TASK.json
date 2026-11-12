@@ -1,0 +1,36 @@
+{
+  "taskId": "",
+  "title": "",
+  "scale": "patch",
+  "phase": "draft",
+  "status": "draft",
+  "approvedScope": "",
+  "acceptanceCriteria": [],
+  "permittedPaths": [],
+  "designSystemChangesApproved": false,
+  "decisionRefs": [],
+  "conventions": [],
+  "reusableComponents": [],
+  "filesChanged": [],
+  "verified": [],
+  "blockers": [],
+  "qualityChecks": ["production-bar", "code-craft", "tests-or-manual"],
+  "egm": {
+    "required": false,
+    "status": "skipped",
+    "reviewPaths": [],
+    "blockingOpen": false,
+    "note": "required=true for product and for modules needing upfront design. patch always skipped. status: skipped|pending|in_review|findings|resolved|blocked. Implementation blocked while blockingOpen is true."
+  },
+  "context": {
+    "updatedAt": null,
+    "staleAfterHours": 72,
+    "note": "If updatedAt is older than staleAfterHours, re-check scope/decisions/components before trusting. Never drop approval or security constraints as stale."
+  },
+  "approval": {
+    "by": "captain",
+    "at": null,
+    "note": "Captain must explicitly approve; agents must not self-approve. EGM/Goldfish completion does not grant approval. Handoffs do not grant new approval."
+  },
+  "notes": "Durable truth stays in PRD/REQUIREMENTS/DESIGN/DECISIONS/EGM_REVIEW. This file is the active slice + lightweight task memory."
+}

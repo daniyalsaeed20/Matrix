@@ -1,0 +1,13 @@
+---
+description: Lean readable reusable code — inspect before invent; reject needless layers
+alwaysApply: true
+---
+
+# Code craft
+
+- Prefer the shortest **clear** correct change. Not code golf; not ceremony.
+- **Inspect first:** existing utilities, widgets, theme/tokens, architecture, and tests before adding anything.
+- No needless pass-through classes, duplicate helpers, generic wrappers, speculative interfaces, or new dependencies.
+- Do not add layers only to satisfy a pattern. Use built-ins when they already fit the design system.
+- Keep validation, security, loading/error/empty states, accessibility, and tests — brevity never removes them.
+- Architect and verifier reject unjustified abstraction, duplication, bloated diffs, and unreadable code.
