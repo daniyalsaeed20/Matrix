@@ -16,3 +16,7 @@ On-demand. Activation lives in `skills/egm-review` + product/module pipelines.
 ## Isolation note
 
 Cursor Task without `resume` starts without parent chat history. If that capability is missing, stop and report — do not simulate Goldfish in-thread.
+
+## Blocking vs risk acceptance
+
+Unresolved **Blocking** keeps `egm.blockingOpen=true` and blocks implementation. Missing requirements and unresolved security defects must be fixed in Elephant docs — not risk-accepted. Captain may accept **implementation/architecture tradeoff** risks only, in writing (`EGM_REVIEW.md` + `DECISIONS.md`). Risk acceptance ≠ implementation approval; captain go-ahead remains mandatory.

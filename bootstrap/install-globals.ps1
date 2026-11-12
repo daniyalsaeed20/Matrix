@@ -81,17 +81,21 @@ Get-ChildItem -Path $skillSrc -Directory | ForEach-Object {
   Write-Host "  skill -> $($_.Name)"
 }
 
-# Hook scripts
+# Hook scripts (before-prompt retired; delete leftover from prior installs)
 $hookSrc = Join-Path $KitRoot "hooks"
 @(
   "m4trix-platform.ps1",
   "m4trix-workspace-open.ps1",
-  "m4trix-before-prompt.ps1",
   "m4trix-session-start.ps1"
 ) | ForEach-Object {
   Copy-Item -Path (Join-Path $hookSrc $_) -Destination (Join-Path $HooksDst $_) -Force
 }
-Write-Host "  hooks -> m4trix-platform, workspace-open, before-prompt, session-start"
+$legacyBefore = Join-Path $HooksDst "m4trix-before-prompt.ps1"
+if (Test-Path $legacyBefore) {
+  Remove-Item -Force $legacyBefore
+  Write-Host "  removed legacy hook m4trix-before-prompt.ps1"
+}
+Write-Host "  hooks -> m4trix-platform, workspace-open, session-start"
 
 # Persist kit state (self-locate for future hook runs)
 Write-M4trixKitState -KitRoot $KitRoot -Version $version -AutoApplyWorkspaces:$AutoApplyWorkspaces -Installed:$true
@@ -106,66 +110,18 @@ $utf8Bom = New-Object System.Text.UTF8Encoding $true
 [System.IO.File]::WriteAllText($userRulesOut, $userRulesBody, $utf8Bom)
 Write-Host "  user rules copy -> $userRulesOut"
 
-# Merge hooks.json (keep unrelated hooks)
-$m4trixWorkspaceCmd = Get-M4trixHookCommand "./hooks/m4trix-workspace-open.ps1"
-$m4trixPromptCmd = Get-M4trixHookCommand "./hooks/m4trix-before-prompt.ps1"
-$m4trixSessionCmd = Get-M4trixHookCommand "./hooks/m4trix-session-start.ps1"
-
-$cfg = @{ version = 1; hooks = @{} }
-if (Test-Path $HooksJson) {
-  try {
-    $existing = Get-Content $HooksJson -Raw | ConvertFrom-Json
-    if ($existing.version) { $cfg.version = [int]$existing.version }
-    if ($existing.hooks) {
-      foreach ($prop in $existing.hooks.PSObject.Properties) {
-        $list = @()
-        foreach ($item in @($prop.Value)) {
-          $cmd = [string]$item.command
-          if ($cmd -match "m4trix-(workspace-open|before-prompt|session-start|platform)") { continue }
-          $list += $item
-        }
-        $cfg.hooks[$prop.Name] = $list
-      }
-    }
-  } catch {
-    Write-Host "  warning: could not parse existing hooks.json; creating m4trix merge base"
-  }
+# Merge hooks.json (preserve unrelated hooks + all properties; fail on malformed JSON)
+$m4trixEntries = @{
+  workspaceOpen = @(
+    @{ command = (Get-M4trixHookCommand "./hooks/m4trix-workspace-open.ps1"); timeout = 120 }
+  )
+  sessionStart = @(
+    @{ command = (Get-M4trixHookCommand "./hooks/m4trix-session-start.ps1"); timeout = 20 }
+  )
 }
-
-foreach ($k in @("workspaceOpen", "beforeSubmitPrompt", "sessionStart")) {
-  if (-not $cfg.hooks.ContainsKey($k)) { $cfg.hooks[$k] = @() }
-}
-
-$cfg.hooks["workspaceOpen"] = @($cfg.hooks["workspaceOpen"]) + @(
-  @{ command = $m4trixWorkspaceCmd; timeout = 120 }
-)
-$cfg.hooks["beforeSubmitPrompt"] = @($cfg.hooks["beforeSubmitPrompt"]) + @(
-  @{ command = $m4trixPromptCmd; timeout = 20 }
-)
-$cfg.hooks["sessionStart"] = @($cfg.hooks["sessionStart"]) + @(
-  @{ command = $m4trixSessionCmd; timeout = 20 }
-)
-
-$hooksOut = [ordered]@{ version = $cfg.version; hooks = [ordered]@{} }
-foreach ($key in $cfg.hooks.Keys) {
-  $arr = @()
-  foreach ($h in @($cfg.hooks[$key])) {
-    if ($h -is [hashtable]) {
-      $arr += $h
-    } else {
-      $obj = @{ command = [string]$h.command }
-      if ($h.PSObject.Properties.Name -contains "timeout") { $obj.timeout = [int]$h.timeout }
-      if ($h.PSObject.Properties.Name -contains "type") { $obj.type = [string]$h.type }
-      if ($h.PSObject.Properties.Name -contains "matcher") { $obj.matcher = [string]$h.matcher }
-      if ($h.PSObject.Properties.Name -contains "failClosed") { $obj.failClosed = [bool]$h.failClosed }
-      $arr += $obj
-    }
-  }
-  $hooksOut.hooks[$key] = $arr
-}
-
-($hooksOut | ConvertTo-Json -Depth 8) | Set-Content -Path $HooksJson -Encoding UTF8
-Write-Host "  hooks.json -> workspaceOpen + beforeSubmitPrompt + sessionStart"
+# Strip prior m4trix beforeSubmitPrompt (retired) while merging; do not re-register it.
+Merge-M4trixHooksJson -Path $HooksJson -M4trixEntries $m4trixEntries
+Write-Host "  hooks.json -> workspaceOpen + sessionStart (beforeSubmitPrompt not registered)"
 
 Write-Host ""
 Write-Host "DONE. Globals installed from $KitRoot"

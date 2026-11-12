@@ -4,7 +4,7 @@
 
 | | |
 |--|--|
-| **Version** | `1.5.0` (see `VERSION`) |
+| **Version** | `1.5.1` (see `VERSION`) |
 | **Kit root** | Wherever **this repo was cloned** (self-locating). Optional override: `M4TRIX_KIT_ROOT` |
 | **Org** | m4tr!x |
 | **Platforms** | **Windows** + **macOS** (PowerShell; Mac needs PowerShell Core / `pwsh`) |
@@ -140,10 +140,9 @@ Merged into `~/.cursor/hooks.json` on globals install:
 | Hook | Default behavior |
 |------|------------------|
 | `workspaceOpen` | Apply kit only if you installed with **`-AutoApplyWorkspaces`** (default **off**) |
-| `sessionStart` | Reminder context when workspace marker is missing |
-| `beforeSubmitPrompt` | Schema-safe `continue: true` only |
+| `sessionStart` | Reminder when workspace marker is missing; concise upgrade advisory when marker version is behind installed kit (never auto-upgrades) |
 
-Scripts: `hooks/m4trix-*.ps1`. Unrelated Cursor hooks and `~/.cursor/skills-cursor/` are **not** touched.
+Scripts: `hooks/m4trix-*.ps1`. Unrelated Cursor hooks and `~/.cursor/skills-cursor/` are **not** touched. `beforeSubmitPrompt` is **not** registered (prior m4tr!x entries are stripped on install/uninstall).
 
 ### 6. ECC cherry-pick (adapted excerpts)
 
@@ -176,8 +175,8 @@ Inspired by [google/elephant-goldfish-model](https://github.com/google/elephant-
 
 1. **Elephant** (product / requirements / architect / design-system) writes specs that stand alone without the chat.  
 2. **Goldfish** = fresh Cursor **Task** (`m4trix-architect`, optional security) with **no** parent chat — reads only listed paths.  
-3. Findings → `EGM_REVIEW.md`; **Blocking** open ⇒ no implementation.  
-4. Goldfish complete ≠ captain approval. You still say go.
+3. Findings → `EGM_REVIEW.md`; **Blocking** open ⇒ no implementation until fixed in docs, or (eligible implementation tradeoffs only) captain risk-accepted in writing. Missing requirements and unresolved security defects are **not** risk-acceptable.  
+4. Goldfish complete ≠ captain approval. Risk acceptance ≠ approval. You still say go.
 
 ### Production bar
 

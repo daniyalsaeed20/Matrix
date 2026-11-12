@@ -7,12 +7,6 @@
         "timeout": 120
       }
     ],
-    "beforeSubmitPrompt": [
-      {
-        "command": "powershell -NoProfile -ExecutionPolicy Bypass -File ./hooks/m4trix-before-prompt.ps1",
-        "timeout": 20
-      }
-    ],
     "sessionStart": [
       {
         "command": "powershell -NoProfile -ExecutionPolicy Bypass -File ./hooks/m4trix-session-start.ps1",

@@ -1,21 +1,24 @@
 # Module handoff — EGM planning intelligence
 
-**From:** 1.4.0 → **1.5.0**  
-**Scope:** Elephant-Goldfish planning for product/modules; patches unchanged; no customer app edits
+**From:** 1.5.0 → **1.5.1**  
+**Scope:** Install/hooks reliability + EGM Blocking policy clarity; no new agents/pipelines; no customer app edits
 
 ## What changed
 
-- Skill `egm-review`; template `EGM_REVIEW.md`; ACTIVE_TASK `egm` fields
-- Product/module pipelines activate Goldfish; patch explicitly skips
-- Architect/security Goldfish modes; still 12 agents
-- Attribution: `ecc-cherry-pick/egm.md` (Apache-2.0)
+- Safe `hooks.json` merge (backup, fail on malformed, preserve third-party props, no duplicate m4trix hooks)
+- `sessionStart` outdated-marker upgrade advisory (no auto-upgrade)
+- `egm-review` included in Fresh/uninstall skill cleanup; retire no-op `beforeSubmitPrompt`
+- EGM Blocking classes: requirements/security not risk-acceptable; tradeoffs captain-writable
+- `.m4trix-kit.json` gitignored; `package-source.ps1` for clean source archives
+- Smoke tests use platform shell launcher (no hard-coded Windows powershell invokes)
 
 ## Verified
 
-- `bootstrap/smoke-tests.ps1` PASS  
-- Real fresh Task Goldfish against incomplete fixture → Blocking findings  
+- See smoke-test run notes in ACTIVE_TASK / release report  
 
 ## Limits
 
 - Isolation depends on Cursor Task without `resume`  
 - Blocking gate is process/ACTIVE_TASK — not a hard hook  
+- macOS runtime not claimed unless executed on macOS  
+
