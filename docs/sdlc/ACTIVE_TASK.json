@@ -1,67 +1,49 @@
 {
-  "taskId": "KIT-rel-1.5.1",
-  "title": "Targeted reliability and installation hardening",
+  "taskId": "KIT-rel-1.5.2",
+  "title": "Final reliability corrections (packaging + install preflight)",
   "scale": "patch",
   "phase": "accepted",
   "status": "accepted",
-  "approvedScope": "Hooks merge safety, session version advisory, egm-review cleanup, cross-platform smoke launchers, kit marker hygiene, EGM Blocking policy reconcile, retire beforeSubmitPrompt, distribution packaging — no new agents/pipelines/rules",
+  "approvedScope": "package-source hidden .cursor inclusion, packaging inclusion asserts, install/Fresh fail-closed preflight, top-level hooks metadata + collision-resistant backups, isolated Cursor-home tests, sessionStart verification best-effort — no agent/skill/EGM architecture changes",
   "acceptanceCriteria": [
-    "Happy: reinstall preserves third-party hooks/props; sessionStart advises when marker behind; Fresh removes egm-review; smoke passes on Windows",
-    "Fail: malformed hooks.json aborts without silent replace",
-    "Edge: strip removes only m4trix hooks; packaging excludes .git/caches/markers; EGM risk acceptance limited to eligible tradeoffs"
+    "Happy: zip includes .cursor/rules|agents|skills, .gitignore, bootstrap, docs; install succeeds when hooks.json valid",
+    "Fail: malformed hooks.json aborts install and Fresh before mutating managed files/state",
+    "Edge: top-level metadata preserved; backup names unique; sessionStart contract tested (live IDE noted if unsupported)"
   ],
   "permittedPaths": [
     "bootstrap/",
     "hooks/",
-    "skills/",
-    "templates/",
-    "constitution/",
-    ".cursor/skills/",
     "docs/sdlc/",
-    "ecc-cherry-pick/",
-    ".gitignore",
-    "README.md",
-    "INSTALL.md",
     "VERSION",
-    "_pilot/egm_eval/"
+    "README.md"
   ],
   "designSystemChangesApproved": false,
   "decisionRefs": [
-    "2026-11-12 Retire beforeSubmitPrompt",
-    "2026-11-12 hooks.json merge fail-closed",
-    "2026-11-12 sessionStart version advisory",
-    "2026-11-12 EGM Blocking classes"
+    "2026-11-12 package-source Force+ZipFile",
+    "2026-11-12 Install/Fresh preflight",
+    "2026-11-12 hooks metadata + backups",
+    "2026-11-12 M4TRIX_CURSOR_HOME"
   ],
-  "conventions": ["04-code-craft", "03-token-discipline"],
-  "reusableComponents": [
-    "hooks/m4trix-platform.ps1 helpers"
-  ],
+  "conventions": ["04-code-craft"],
+  "reusableComponents": ["hooks/m4trix-platform.ps1 helpers"],
   "filesChanged": [
-    "hooks/m4trix-platform.ps1",
-    "hooks/m4trix-session-start.ps1",
-    "hooks/hooks.json",
-    "hooks/m4trix-before-prompt.ps1 (removed)",
+    "bootstrap/package-source.ps1",
     "bootstrap/install-globals.ps1",
     "bootstrap/smoke-tests.ps1",
-    "bootstrap/package-source.ps1",
-    "skills/egm-review/SKILL.md",
-    "skills/pipeline-product/SKILL.md",
-    "skills/pipeline-module/SKILL.md",
-    "templates/sdlc/EGM_REVIEW.md",
-    ".gitignore",
+    "hooks/m4trix-platform.ps1",
     "VERSION",
     "README.md",
-    "INSTALL.md",
-    "docs/sdlc/*"
+    "docs/sdlc/DECISIONS.md",
+    "docs/sdlc/MODULE_HANDOFF.md",
+    "docs/sdlc/ACTIVE_TASK.json"
   ],
   "verified": [
-    "bootstrap/smoke-tests.ps1 PASS (Windows)",
-    "bootstrap/smoke-tests.ps1 -TestFreshInstall PASS (Windows) — egm-review cleaned+reinstalled; beforeSubmitPrompt not registered",
-    "package-source zip exclusions verified on Windows",
-    "macOS: not executed (statically using Get-M4trixShellLauncher / pwsh path only)"
+    "bootstrap/smoke-tests.ps1 PASS (Windows) — inclusions, isolated install+Fresh fail-closed, metadata/backups",
+    "Fresh Task sessionStart context: HOOK_CONTEXT_PRESENT=no (IDE hooks not inherited by Task)",
+    "macOS: not executed"
   ],
   "blockers": [],
-  "qualityChecks": ["smoke-tests", "TestFreshInstall"],
+  "qualityChecks": ["smoke-tests"],
   "egm": {
     "required": false,
     "status": "skipped",
@@ -70,14 +52,14 @@
     "note": "Patch — EGM skipped"
   },
   "context": {
-    "updatedAt": "2026-11-12T15:45:00+05:00",
+    "updatedAt": "2026-11-12T15:55:00+05:00",
     "staleAfterHours": 72,
     "note": "Advisory stale hint."
   },
   "approval": {
     "by": "captain",
     "at": "2026-11-12",
-    "note": "Captain ordered targeted reliability upgrade; VERSION bumped to 1.5.1 after verify"
+    "note": "Captain ordered final 1.5.1 audit corrections; bump 1.5.2 after verify"
   },
-  "notes": "No commit/push/deploy. Reload Cursor to pick up hooks. Re-paste USER_RULES only if needed."
+  "notes": "No commit/push/deploy per order."
 }

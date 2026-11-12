@@ -13,6 +13,10 @@ Short log of **accepted** choices only. Date · choice · reason. Do not duplica
 | 2026-11-12 | sessionStart advises when project `.m4trix-kit.json` version is behind installed kit | Detect outdated workspaces without auto-upgrade |
 | 2026-11-12 | EGM Blocking: missing requirements / security defects not risk-acceptable; implementation tradeoffs may be captain-accepted in writing | Reconcile template vs skill; captain approval still mandatory |
 | 2026-11-12 | Ignore tracked `docs/sdlc/.m4trix-kit.json`; package-source excludes .git/caches/markers | Machine kitRoot is not portable repo config |
+| 2026-11-12 | package-source enumerates with -Force + ZipFile API | Reliably include hidden `.cursor` trees on Windows |
+| 2026-11-12 | Install/Fresh preflight validates sources + hooks.json before any managed mutation | Prevent partial Fresh cleanup on malformed hooks |
+| 2026-11-12 | Preserve hooks.json top-level metadata; collision-resistant backups | Third-party config semantics + safe repeated installs |
+| 2026-11-12 | `M4TRIX_CURSOR_HOME` override for isolated install tests | Smoke can prove fail-closed without touching real ~/.cursor |
 | 2026-11-12 | Merge Karpathy four principles into `04-code-craft` (not a separate always-on rule) | Avoid token duplication; MIT attribution in ecc-cherry-pick |
 | 2026-11-12 | Decision hierarchy: correctness/security/scope → architecture → production → reuse → simplicity → tokens | Resolve craft vs reuse vs ceremony conflicts |
 | 2026-11-12 | Context engineering via expanded `03-token-discipline` + richer ACTIVE_TASK + compact HANDOFF | Progressive load/prune without new infra or always-on rule |

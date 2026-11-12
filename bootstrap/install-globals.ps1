@@ -47,6 +47,7 @@ $version = (Get-Content (Join-Path $KitRoot "VERSION") -Raw).Trim()
 Write-Host "m4tr!x kit install"
 Write-Host "  version  -> $version"
 Write-Host "  kitRoot  -> $KitRoot"
+Write-Host "  cursorHome -> $CursorHome"
 Write-Host "  fresh    -> $Fresh"
 Write-Host "  autoApplyWorkspaces -> $AutoApplyWorkspaces"
 if (Test-M4trixIsWindows) {
@@ -54,6 +55,9 @@ if (Test-M4trixIsWindows) {
 } else {
   Write-Host "  platform -> macOS/Linux (pwsh)"
 }
+
+# Validate sources + existing hooks.json BEFORE any managed-file mutation (including Fresh cleanup).
+Assert-M4trixInstallPreflight -KitRoot $KitRoot -HooksJsonPath $HooksJson
 
 if ($Fresh) {
   Write-Host "Removing previous m4tr!x-managed setup..."

@@ -111,16 +111,18 @@ Assert-True ((Compare-M4trixVersion "1.5.0" "1.5.1") -lt 0) "version compare: 1.
 Assert-True ((Compare-M4trixVersion "1.5.1" "1.5.1") -eq 0) "version compare: equal"
 Assert-True ((Compare-M4trixVersion "1.6.0" "1.5.1") -gt 0) "version compare: 1.6.0 > 1.5.1"
 
-# --- Hooks merge: third-party props, malformed JSON, reinstall dedupe, strip-only ---
+# --- Hooks merge: third-party props, top-level metadata, malformed JSON, reinstall dedupe ---
 $tmpRoot = Join-Path ([System.IO.Path]::GetTempPath()) ("m4trix-smoke-hooks-" + [guid]::NewGuid().ToString("n"))
 New-Item -ItemType Directory -Force -Path $tmpRoot | Out-Null
 try {
   $hooksPath = Join-Path $tmpRoot "hooks.json"
-  $thirdParty = @{
+  $thirdPartyObj = [ordered]@{
     version = 1
-    hooks = @{
+    vendorMeta = [ordered]@{ owner = "third-party"; schema = 2 }
+    experimentalFlag = $true
+    hooks = [ordered]@{
       beforeSubmitPrompt = @(
-        @{
+        [ordered]@{
           command = "vendor-hook --check"
           timeout = 15
           type = "command"
@@ -130,11 +132,11 @@ try {
         }
       )
       sessionStart = @(
-        @{ command = "other-session.sh"; timeout = 5; annotation = "third-party" }
+        [ordered]@{ command = "other-session.sh"; timeout = 5; annotation = "third-party" }
       )
     }
   }
-  ($thirdParty | ConvertTo-Json -Depth 8) | Set-Content -Path $hooksPath -Encoding UTF8
+  ($thirdPartyObj | ConvertTo-Json -Depth 8) | Set-Content -Path $hooksPath -Encoding UTF8
 
   $m4 = @{
     workspaceOpen = @(@{ command = (Get-M4trixHookCommand "./hooks/m4trix-workspace-open.ps1"); timeout = 120 })
@@ -147,19 +149,28 @@ try {
   Assert-True ([string]$bsp[0].command -eq "vendor-hook --check") "third-party command preserved"
   Assert-True ([string]$bsp[0].customVendorFlag -eq "keep-me") "custom hook property preserved"
   Assert-True ([bool]$bsp[0].failClosed -eq $true) "failClosed property preserved"
-  Assert-True ($null -eq $merged1.hooks.beforeSubmitPrompt -or (@($merged1.hooks.beforeSubmitPrompt) | Where-Object { Test-M4trixOwnedHookCommand ([string]$_.command) }).Count -eq 0) "m4trix beforeSubmitPrompt not registered"
+  Assert-True ((@($merged1.hooks.beforeSubmitPrompt) | Where-Object { Test-M4trixOwnedHookCommand ([string]$_.command) }).Count -eq 0) "m4trix beforeSubmitPrompt not registered"
+  Assert-True ([bool]$merged1.experimentalFlag -eq $true) "top-level experimentalFlag preserved"
+  Assert-True ([string]$merged1.vendorMeta.owner -eq "third-party") "top-level vendorMeta.owner preserved"
+  Assert-True ([int]$merged1.vendorMeta.schema -eq 2) "top-level vendorMeta.schema preserved"
   $ss = @($merged1.hooks.sessionStart)
   Assert-True ((@($ss | Where-Object { [string]$_.command -eq "other-session.sh" })).Count -eq 1) "third-party sessionStart kept"
   Assert-True ((@($ss | Where-Object { Test-M4trixOwnedHookCommand ([string]$_.command) })).Count -eq 1) "exactly one m4trix sessionStart after merge"
-  Assert-True ((@(Get-ChildItem $tmpRoot -Filter "hooks.json.m4trix-backup-*")).Count -ge 1) "hooks.json backed up before mutation"
+  $baks1 = @(Get-ChildItem $tmpRoot -Filter "hooks.json.m4trix-backup-*")
+  Assert-True ($baks1.Count -ge 1) "hooks.json backed up before mutation"
+  Assert-True ($baks1[0].Name -match 'm4trix-backup-\d{8}-\d{9}-[a-f0-9]{8}') "backup filename is collision-resistant"
 
-  # Reinstall must not duplicate m4trix hooks
+  # Reinstall must not duplicate m4trix hooks; second backup must not clobber first
   Merge-M4trixHooksJson -Path $hooksPath -M4trixEntries $m4
+  $baks2 = @(Get-ChildItem $tmpRoot -Filter "hooks.json.m4trix-backup-*")
+  Assert-True ($baks2.Count -ge 2) "repeated backups create distinct files"
+  Assert-True ((@($baks2 | Select-Object -ExpandProperty Name | Sort-Object -Unique)).Count -eq $baks2.Count) "backup names are unique"
   $merged2 = Get-Content $hooksPath -Raw | ConvertFrom-Json
   $ss2 = @($merged2.hooks.sessionStart)
   Assert-True ((@($ss2 | Where-Object { Test-M4trixOwnedHookCommand ([string]$_.command) })).Count -eq 1) "reinstall does not duplicate m4trix sessionStart"
   Assert-True ((@($ss2 | Where-Object { [string]$_.command -eq "other-session.sh" })).Count -eq 1) "third-party sessionStart still present after reinstall"
   Assert-True ([string](@($merged2.hooks.beforeSubmitPrompt)[0].customVendorFlag) -eq "keep-me") "custom props survive reinstall"
+  Assert-True ([string]$merged2.vendorMeta.owner -eq "third-party") "top-level metadata survives reinstall"
 
   # Strip removes only m4trix-owned
   Strip-M4trixHooksJson -Path $hooksPath
@@ -173,6 +184,7 @@ try {
   Assert-True (($allCmds | Where-Object { Test-M4trixOwnedHookCommand $_ }).Count -eq 0) "strip removes only m4trix-owned commands"
   Assert-True ($allCmds -contains "vendor-hook --check") "strip keeps third-party beforeSubmitPrompt"
   Assert-True ($allCmds -contains "other-session.sh") "strip keeps third-party sessionStart"
+  Assert-True ([string]$stripped.vendorMeta.owner -eq "third-party") "strip preserves top-level metadata"
 
   # Malformed JSON must fail without replace
   $badPath = Join-Path $tmpRoot "bad-hooks.json"
@@ -196,10 +208,61 @@ finally {
   Remove-Item -Recurse -Force $tmpRoot -ErrorAction SilentlyContinue
 }
 
-# Session-start: outdated marker advisory (uses VERSION file via M4TRIX_KIT_ROOT; no state mutation)
+# --- Isolated Cursor homes: malformed hooks.json must not mutate managed files (install + Fresh) ---
+$isoRoot = Join-Path ([System.IO.Path]::GetTempPath()) ("m4trix-smoke-iso-" + [guid]::NewGuid().ToString("n"))
+$isoCursor = Join-Path $isoRoot "cursor-home"
+$prevCursorHome = $env:M4TRIX_CURSOR_HOME
+try {
+  New-Item -ItemType Directory -Force -Path (Join-Path $isoCursor "agents"), (Join-Path $isoCursor "skills\bootstrap-org"), (Join-Path $isoCursor "hooks"), (Join-Path $isoCursor "m4trix") | Out-Null
+  $sentinelAgent = Join-Path $isoCursor "agents\m4trix-architect.md"
+  $sentinelSkill = Join-Path $isoCursor "skills\bootstrap-org\SKILL.md"
+  $sentinelHook = Join-Path $isoCursor "hooks\m4trix-session-start.ps1"
+  $sentinelState = Join-Path $isoCursor "m4trix\kit.json"
+  Set-Content -Path $sentinelAgent -Value "SENTINEL-AGENT" -Encoding UTF8
+  Set-Content -Path $sentinelSkill -Value "SENTINEL-SKILL" -Encoding UTF8
+  Set-Content -Path $sentinelHook -Value "SENTINEL-HOOK" -Encoding UTF8
+  Set-Content -Path $sentinelState -Value '{"kit":"m4trix","version":"9.9.9","kitRoot":"SENTINEL"}' -Encoding UTF8
+  $badHooks = Join-Path $isoCursor "hooks.json"
+  Set-Content -Path $badHooks -Value "{ deliberately-broken" -Encoding UTF8
+  $badHooksBefore = Get-Content $badHooks -Raw
+  $env:M4TRIX_CURSOR_HOME = $isoCursor
+
+  $installScript = Join-Path $KitRoot "bootstrap\install-globals.ps1"
+  $outLog = Join-Path $isoRoot "install-out.txt"
+  $errLog = Join-Path $isoRoot "install-err.txt"
+  $ia = @($launcher.PrefixArgs) + @("-File", $installScript)
+  $pInstall = Start-Process -FilePath $launcher.Exe -ArgumentList $ia -Wait -PassThru -NoNewWindow -RedirectStandardOutput $outLog -RedirectStandardError $errLog
+  Assert-True ($pInstall.ExitCode -ne 0) "install fails safely on malformed hooks.json (isolated home)"
+  Assert-True ((Get-Content $badHooks -Raw) -eq $badHooksBefore) "isolated install left malformed hooks.json unchanged"
+  Assert-True ((Get-Content $sentinelAgent -Raw).Trim() -eq "SENTINEL-AGENT") "isolated install did not replace agents"
+  Assert-True ((Get-Content $sentinelSkill -Raw).Trim() -eq "SENTINEL-SKILL") "isolated install did not replace skills"
+  Assert-True ((Get-Content $sentinelHook -Raw).Trim() -eq "SENTINEL-HOOK") "isolated install did not replace hook scripts"
+  Assert-True ((Get-Content $sentinelState -Raw) -match "SENTINEL") "isolated install did not replace kit state"
+
+  $outLog2 = Join-Path $isoRoot "fresh-out.txt"
+  $errLog2 = Join-Path $isoRoot "fresh-err.txt"
+  $fa = @($launcher.PrefixArgs) + @("-File", $installScript, "-Fresh")
+  $pFresh = Start-Process -FilePath $launcher.Exe -ArgumentList $fa -Wait -PassThru -NoNewWindow -RedirectStandardOutput $outLog2 -RedirectStandardError $errLog2
+  Assert-True ($pFresh.ExitCode -ne 0) "Fresh install fails safely on malformed hooks.json (isolated home)"
+  Assert-True ((Get-Content $badHooks -Raw) -eq $badHooksBefore) "isolated Fresh left malformed hooks.json unchanged"
+  Assert-True ((Get-Content $sentinelAgent -Raw).Trim() -eq "SENTINEL-AGENT") "isolated Fresh did not remove agents before abort"
+  Assert-True ((Get-Content $sentinelSkill -Raw).Trim() -eq "SENTINEL-SKILL") "isolated Fresh did not remove skills before abort"
+  Assert-True ((Get-Content $sentinelHook -Raw).Trim() -eq "SENTINEL-HOOK") "isolated Fresh did not remove hooks before abort"
+  Assert-True ((Get-Content $sentinelState -Raw) -match "SENTINEL") "isolated Fresh did not remove kit state before abort"
+  Assert-True ((@(Get-ChildItem $isoCursor -Filter "hooks.json.m4trix-backup-*")).Count -eq 0) "no backup written when preflight rejects malformed hooks"
+}
+finally {
+  if ($null -ne $prevCursorHome) { $env:M4TRIX_CURSOR_HOME = $prevCursorHome } else { Remove-Item Env:M4TRIX_CURSOR_HOME -ErrorAction SilentlyContinue }
+  Remove-Item -Recurse -Force $isoRoot -ErrorAction SilentlyContinue
+}
+
+# Session-start: outdated marker advisory with Cursor-like stdin payload.
+# Live IDE sessionStart injection into a new agent chat is not automatable from smoke tests;
+# we simulate the hook contract Cursor invokes (stdin JSON + CURSOR_PROJECT_DIR).
 $sessionHook = Join-Path $KitRoot "hooks\m4trix-session-start.ps1"
 $projTmp = Join-Path ([System.IO.Path]::GetTempPath()) ("m4trix-smoke-proj-" + [guid]::NewGuid().ToString("n"))
 New-Item -ItemType Directory -Force -Path (Join-Path $projTmp "docs\sdlc") | Out-Null
+$sessionLiveNote = "sessionStart live IDE chat injection: NOT automated (Cursor hooks fire in IDE sessions only)"
 try {
   Set-Content -Path (Join-Path $projTmp "package.json") -Value '{ "name": "smoke" }' -Encoding UTF8
   @{
@@ -214,11 +277,15 @@ try {
     $env:CURSOR_PROJECT_DIR = $projTmp
     $env:M4TRIX_KIT_ROOT = $KitRoot
     $sessionArgs = @($launcher.PrefixArgs) + @("-File", $sessionHook)
-    $out = "" | & $launcher.Exe @sessionArgs 2>$null | Out-String
-    # Prefer kit.json version when present; else VERSION. Project 1.0.0 must be behind either.
+    $cursorLikeStdin = '{"session_id":"smoke-session","composer_mode":"agent"}'
+    $out = $cursorLikeStdin | & $launcher.Exe @sessionArgs 2>$null | Out-String
     Assert-True ($out -match "Upgrade available") "sessionStart advises when project marker is behind"
     Assert-True ($out -match "do not auto-upgrade|DryRun") "sessionStart requires captain auth / dry-run"
     Assert-True ($out -match "additional_context") "sessionStart emits additional_context for advisory"
+    $payload = $null
+    try { $payload = ($out.Trim() | ConvertFrom-Json) } catch { $payload = $null }
+    Assert-True ($null -ne $payload -and -not [string]::IsNullOrWhiteSpace([string]$payload.additional_context)) "sessionStart additional_context is valid JSON field"
+    Write-Host "NOTE  $sessionLiveNote"
   }
   finally {
     if ($null -ne $prevProject) { $env:CURSOR_PROJECT_DIR = $prevProject } else { Remove-Item Env:CURSOR_PROJECT_DIR -ErrorAction SilentlyContinue }
@@ -258,11 +325,12 @@ if (Test-Path $pilot) {
   Assert-True ($pilotDry -match "04-code-craft|code-craft") "pilot plan includes code-craft rule"
 }
 
-# package-source exclusions (static + light run into temp)
+# package-source: required inclusions + exclusions
 $pkgScript = Join-Path $KitRoot "bootstrap\package-source.ps1"
 $pkgSrc = Get-Content $pkgScript -Raw
 Assert-True ($pkgSrc -match "\.git") "package-source excludes .git"
 Assert-True ($pkgSrc -match "dart_tool|\.m4trix-kit\.json") "package-source excludes caches/markers"
+Assert-True ($pkgSrc -match "Get-ChildItem.*-Force|ZipFileExtensions") "package-source enumerates hidden files explicitly"
 $pkgOut = Join-Path ([System.IO.Path]::GetTempPath()) ("m4trix-pkg-" + [guid]::NewGuid().ToString("n"))
 try {
   $pkgArgs = @($launcher.PrefixArgs) + @("-File", $pkgScript, "-OutDir", $pkgOut)
@@ -278,6 +346,16 @@ try {
       Assert-True (($names | Where-Object { $_ -match '\.m4trix-kit\.json$' }).Count -eq 0) "zip has no .m4trix-kit.json"
       Assert-True (($names | Where-Object { $_ -match '\.dart_tool/' }).Count -eq 0) "zip has no .dart_tool"
       Assert-True (($names | Where-Object { $_ -match '_pilot/.*/EVIDENCE\.md|_pilot/egm_eval/' }).Count -gt 0) "zip keeps pilot verification sources"
+      Assert-True (($names | Where-Object { $_ -match '(^|/)\.cursor/rules/' }).Count -gt 0) "zip includes .cursor/rules"
+      Assert-True (($names | Where-Object { $_ -match '(^|/)\.cursor/agents/' }).Count -gt 0) "zip includes .cursor/agents"
+      Assert-True (($names | Where-Object { $_ -match '(^|/)\.cursor/skills/' }).Count -gt 0) "zip includes .cursor/skills"
+      Assert-True (($names | Where-Object { $_ -match '(^|/)\.gitignore$' }).Count -gt 0) "zip includes .gitignore"
+      Assert-True (($names | Where-Object { $_ -match '(^|/)bootstrap/install-globals\.ps1$' }).Count -gt 0) "zip includes bootstrap/install-globals.ps1"
+      Assert-True (($names | Where-Object { $_ -match '(^|/)bootstrap/smoke-tests\.ps1$' }).Count -gt 0) "zip includes bootstrap/smoke-tests.ps1"
+      Assert-True (($names | Where-Object { $_ -match '(^|/)bootstrap/package-source\.ps1$' }).Count -gt 0) "zip includes bootstrap/package-source.ps1"
+      Assert-True (($names | Where-Object { $_ -match '(^|/)README\.md$' }).Count -gt 0) "zip includes README.md"
+      Assert-True (($names | Where-Object { $_ -match '(^|/)INSTALL\.md$' }).Count -gt 0) "zip includes INSTALL.md"
+      Assert-True (($names | Where-Object { $_ -match '(^|/)docs/sdlc/' }).Count -gt 0) "zip includes docs/sdlc kit documentation"
     } finally {
       $zipFile.Dispose()
     }

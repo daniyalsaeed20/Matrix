@@ -1,24 +1,23 @@
 # Module handoff — EGM planning intelligence
 
-**From:** 1.5.0 → **1.5.1**  
-**Scope:** Install/hooks reliability + EGM Blocking policy clarity; no new agents/pipelines; no customer app edits
+**From:** 1.5.1 → **1.5.2**  
+**Scope:** Final install/packaging reliability corrections; no new agents/pipelines; no customer app edits
 
 ## What changed
 
-- Safe `hooks.json` merge (backup, fail on malformed, preserve third-party props, no duplicate m4trix hooks)
-- `sessionStart` outdated-marker upgrade advisory (no auto-upgrade)
-- `egm-review` included in Fresh/uninstall skill cleanup; retire no-op `beforeSubmitPrompt`
-- EGM Blocking classes: requirements/security not risk-acceptable; tradeoffs captain-writable
-- `.m4trix-kit.json` gitignored; `package-source.ps1` for clean source archives
-- Smoke tests use platform shell launcher (no hard-coded Windows powershell invokes)
+- `package-source` reliably includes hidden `.cursor` (+ inclusion smoke asserts)
+- Install/Fresh preflight: malformed `hooks.json` or missing sources abort before managed mutations
+- Top-level hooks.json metadata preserved; collision-resistant backups
+- Isolated `M4TRIX_CURSOR_HOME` regression for install + Fresh fail-closed
 
 ## Verified
 
-- See smoke-test run notes in ACTIVE_TASK / release report  
+- `bootstrap/smoke-tests.ps1` PASS (Windows) including isolated malformed-hooks homes  
+- Live IDE sessionStart injection: not automatable via Task (hook stdout + Cursor-like stdin covered)
 
 ## Limits
 
-- Isolation depends on Cursor Task without `resume`  
-- Blocking gate is process/ACTIVE_TASK — not a hard hook  
 - macOS runtime not claimed unless executed on macOS  
+- sessionStart IDE chat injection requires manual Cursor session check  
+
 

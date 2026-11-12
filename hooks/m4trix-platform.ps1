@@ -18,6 +18,10 @@ function Get-M4trixHome {
 }
 
 function Get-M4trixCursorHome {
+  # Optional override for isolated install tests (temp Cursor homes).
+  if (-not [string]::IsNullOrWhiteSpace($env:M4TRIX_CURSOR_HOME)) {
+    return (Normalize-M4trixPath $env:M4TRIX_CURSOR_HOME)
+  }
   return (Join-Path (Get-M4trixHome) ".cursor")
 }
 
@@ -203,8 +207,14 @@ function Compare-M4trixVersion([string]$Left, [string]$Right) {
 
 function Backup-M4trixFile([string]$Path) {
   if (-not (Test-Path $Path -PathType Leaf)) { return $null }
-  $stamp = Get-Date -Format "yyyyMMdd-HHmmss"
-  $bak = "$Path.m4trix-backup-$stamp"
+  $stamp = Get-Date -Format "yyyyMMdd-HHmmssfff"
+  $nonce = [guid]::NewGuid().ToString("n").Substring(0, 8)
+  $bak = "$Path.m4trix-backup-$stamp-$nonce"
+  $n = 0
+  while (Test-Path -LiteralPath $bak) {
+    $n++
+    $bak = "$Path.m4trix-backup-$stamp-$nonce-$n"
+  }
   Copy-Item -LiteralPath $Path -Destination $bak -Force
   return $bak
 }
@@ -222,20 +232,55 @@ function Read-M4trixHooksJsonFile([string]$Path) {
   }
 }
 
+function ConvertTo-M4trixJsonValue($value) {
+  if ($null -eq $value) { return $null }
+  if ($value -is [System.Collections.IDictionary]) {
+    $map = [ordered]@{}
+    foreach ($k in $value.Keys) { $map[[string]$k] = (ConvertTo-M4trixJsonValue $value[$k]) }
+    return $map
+  }
+  if ($value -is [System.Management.Automation.PSCustomObject]) {
+    $map = [ordered]@{}
+    foreach ($p in $value.PSObject.Properties) {
+      $map[$p.Name] = (ConvertTo-M4trixJsonValue $p.Value)
+    }
+    return $map
+  }
+  if (($value -is [System.Collections.IEnumerable]) -and -not ($value -is [string])) {
+    $arr = @()
+    foreach ($item in @($value)) { $arr += ,(ConvertTo-M4trixJsonValue $item) }
+    return $arr
+  }
+  return $value
+}
+
 function New-M4trixHooksConfigFromExisting($existing) {
   $cfg = @{
-    version = 1
-    hooks   = @{}  # event name -> list of entry maps
+    version  = 1
+    hooks    = @{}  # event name -> list of entry maps
+    metadata = [ordered]@{}  # valid additional top-level keys
   }
   if ($null -eq $existing) { return $cfg }
-  if ($existing.version) { $cfg.version = [int]$existing.version }
-  if (-not $existing.hooks) { return $cfg }
-  foreach ($prop in $existing.hooks.PSObject.Properties) {
-    $list = @()
-    foreach ($item in @($prop.Value)) {
-      $list += ,(ConvertTo-M4trixHookEntryMap $item)
+  foreach ($prop in $existing.PSObject.Properties) {
+    $name = [string]$prop.Name
+    if ($name -eq "version") {
+      if ($null -ne $prop.Value -and "$($prop.Value)" -ne "") {
+        $cfg.version = [int]$prop.Value
+      }
+      continue
     }
-    $cfg.hooks[$prop.Name] = $list
+    if ($name -eq "hooks") {
+      if ($null -eq $prop.Value) { continue }
+      foreach ($hp in $prop.Value.PSObject.Properties) {
+        $list = @()
+        foreach ($item in @($hp.Value)) {
+          $list += ,(ConvertTo-M4trixHookEntryMap $item)
+        }
+        $cfg.hooks[$hp.Name] = $list
+      }
+      continue
+    }
+    $cfg.metadata[$name] = (ConvertTo-M4trixJsonValue $prop.Value)
   }
   return $cfg
 }
@@ -285,8 +330,13 @@ function Write-M4trixHooksJsonFile {
   )
   $hooksOut = [ordered]@{
     version = [int]$Config.version
-    hooks   = [ordered]@{}
   }
+  if ($Config.metadata -and $Config.metadata.Keys.Count -gt 0) {
+    foreach ($mk in $Config.metadata.Keys) {
+      $hooksOut[$mk] = $Config.metadata[$mk]
+    }
+  }
+  $hooksOut["hooks"] = [ordered]@{}
   foreach ($key in $Config.hooks.Keys) {
     $arr = @()
     foreach ($h in @($Config.hooks[$key])) {
@@ -339,17 +389,64 @@ function Strip-M4trixHooksJson {
   Write-M4trixHooksJsonFile -Path $Path -Config $cfg
 }
 
+function Assert-M4trixInstallSources([string]$KitRoot) {
+  $required = @(
+    (Join-M4trixPath -Base $KitRoot -Parts @("VERSION")),
+    (Join-M4trixPath -Base $KitRoot -Parts @("bootstrap", "MANIFEST.json")),
+    (Join-M4trixPath -Base $KitRoot -Parts @("hooks", "m4trix-platform.ps1")),
+    (Join-M4trixPath -Base $KitRoot -Parts @("hooks", "m4trix-workspace-open.ps1")),
+    (Join-M4trixPath -Base $KitRoot -Parts @("hooks", "m4trix-session-start.ps1")),
+    (Join-M4trixPath -Base $KitRoot -Parts @("constitution", "USER_RULES.md"))
+  )
+  foreach ($p in $required) {
+    if (-not (Test-Path -LiteralPath $p -PathType Leaf)) {
+      throw "Required install source missing: $p — no managed files were modified."
+    }
+  }
+  $agentSrc = Join-M4trixPath -Base $KitRoot -Parts @("agents")
+  $agents = @(Get-ChildItem -Path $agentSrc -Filter "m4trix-*.md" -ErrorAction SilentlyContinue)
+  if ($agents.Count -lt 1) {
+    throw "No m4trix agents found under $agentSrc — no managed files were modified."
+  }
+  $skillSrc = Join-M4trixPath -Base $KitRoot -Parts @("skills")
+  foreach ($name in (Get-M4trixManagedSkillNames)) {
+    $skillPath = Join-Path $skillSrc $name
+    if (-not (Test-Path -LiteralPath $skillPath -PathType Container)) {
+      throw "Required skill source missing: $skillPath — no managed files were modified."
+    }
+  }
+}
+
+function Assert-M4trixHooksJsonReady([string]$HooksJsonPath) {
+  if (Test-Path -LiteralPath $HooksJsonPath -PathType Leaf) {
+    $null = Read-M4trixHooksJsonFile -Path $HooksJsonPath
+  }
+}
+
+function Assert-M4trixInstallPreflight {
+  param(
+    [Parameter(Mandatory = $true)][string]$KitRoot,
+    [Parameter(Mandatory = $true)][string]$HooksJsonPath
+  )
+  Assert-M4trixInstallSources -KitRoot $KitRoot
+  Assert-M4trixHooksJsonReady -HooksJsonPath $HooksJsonPath
+}
+
 function Remove-M4trixManagedGlobals {
   <#
   .SYNOPSIS
     Removes prior m4tr!x-managed agents, skills, hook scripts, and hooks.json entries.
     Leaves unrelated Cursor hooks/skills untouched.
+    Validates hooks.json before any deletion so Fresh cannot partially wipe then fail on bad JSON.
   #>
   $CursorHome = Get-M4trixCursorHome
   $AgentsDst = Join-Path $CursorHome "agents"
   $SkillsDst = Join-Path $CursorHome "skills"
   $HooksDst = Join-Path $CursorHome "hooks"
   $HooksJson = Join-Path $CursorHome "hooks.json"
+
+  # Fail closed before mutating managed files when hooks.json cannot be safely rewritten.
+  Assert-M4trixHooksJsonReady -HooksJsonPath $HooksJson
 
   if (Test-Path $AgentsDst) {
     Get-ChildItem -Path $AgentsDst -Filter "m4trix-*.md" -ErrorAction SilentlyContinue | ForEach-Object {
