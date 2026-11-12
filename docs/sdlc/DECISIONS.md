@@ -23,3 +23,4 @@ Short log of **accepted** choices only. Date · choice · reason. Do not duplica
 | 2026-11-12 | Soft context budgets by scale; no hard token caps | Never drop security/approvals/AC for a budget |
 | 2026-11-12 | EGM via egm-review skill + pipelines; no 13th agent; patches skip | Fresh Task = Goldfish isolation on Cursor; Apache-2.0 attribution |
 | 2026-11-12 | Delivery voice: no Cursor/IDE attribution in product docs, commits, PRs | Product repos stay team-branded; Matrix kit install docs may name the IDE |
+| 2026-11-12 | Delivery voice covers kit commits too; strip IDE trailers via commit-msg + CLI attribution off | Injected `Co-authored-by: Cursor` still creates GitHub contributors; rules alone cannot block the injector |

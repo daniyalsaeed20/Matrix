@@ -4,7 +4,7 @@
 
 | | |
 |--|--|
-| **Version** | `1.5.2` (`VERSION`) |
+| **Version** | `1.5.3` (`VERSION`) |
 | **Kit root** | This clone (self-locating). Override: `M4TRIX_KIT_ROOT` |
 | **Platforms** | Windows + macOS (`pwsh` on Mac) |
 | **Defaults** | Flutter (BLoC + GoRouter + M3), Firebase-first; Node/Python only when approved |
@@ -16,40 +16,34 @@ This repo **is** the kit. Nothing wires itself until you install and apply.
 
 ## How it works
 
-```mermaid
-flowchart TB
-  subgraph captain["You = Captain"]
-    Ask["State the ask"]
-  end
-
-  subgraph os["m4tr!x OS"]
-    Scale{"Scale?"}
-    Rules["Rules + User Rules"]
-    Agents["12 specialist agents"]
-    Skills["Pipelines + EGM + bootstrap"]
-    SDLC["docs/sdlc source of truth"]
-  end
-
-  Ask --> Scale
-  Scale -->|product| P["pipeline-product"]
-  Scale -->|module| M["pipeline-module"]
-  Scale -->|patch| Patch["pipeline-patch"]
-  P --> Gates["Approvals + MODE SWITCH"]
-  M --> Gates
-  Patch --> Implement["Surgical implement → verify"]
-  Gates --> EGM{"EGM needed?"}
-  EGM -->|yes| Goldfish["Fresh Goldfish Task"]
-  EGM -->|no / patch| Implement
-  Goldfish --> CaptainGo["Captain says go"]
-  CaptainGo --> Implement
-  Implement --> Docs["Update SDLC / BACKLOG"]
-  Rules -.-> Scale
-  Agents -.-> Gates
-  Skills -.-> P
-  Skills -.-> M
-  Skills -.-> Patch
-  SDLC -.-> Gates
+```text
+  You (captain) ──► state the ask
+                         │
+                         ▼
+              ┌── scale detection ──┐
+              │                     │
+         product              module              patch
+              │                     │                │
+              ▼                     ▼                ▼
+     pipeline-product      pipeline-module    pipeline-patch
+              │                     │                │
+              ▼                     ▼                │
+        approvals + MODE SWITCH ────┘                │
+              │                                      │
+              ▼                                      │
+        EGM needed? ──yes──► Goldfish Task           │
+              │                     │                │
+              no / patch            ▼                │
+              │            captain says go           │
+              └──────────────┬──────┘                │
+                             ▼                       │
+                    implement → verify ◄─────────────┘
+                             │
+                             ▼
+                    update docs/sdlc + BACKLOG
 ```
+
+Always-on under the hood: **rules**, **12 agents**, **pipeline skills**, and **`docs/sdlc`** as source of truth.
 
 ---
 
@@ -57,39 +51,17 @@ flowchart TB
 
 Cursor is a strong coding IDE. It does **not** by itself enforce ownership, ceremony-by-size, stop-and-ask gates, progressive context, skeptical verification, or isolated planning review.
 
-```mermaid
-flowchart LR
-  subgraph vanilla["Vanilla Cursor"]
-    V1["You + ad-hoc agent"]
-    V2["Same energy for toggle & epic"]
-    V3["Easy to invent scope"]
-    V4["Spec and chat blur"]
-    V5["“Looks good” = done"]
-  end
-
-  subgraph matrix["With m4tr!x"]
-    M1["Captain + named specialists"]
-    M2["product / module / patch pipelines"]
-    M3["Clarify first; park extras in BACKLOG"]
-    M4["Self-contained docs + Goldfish review"]
-    M5["Production bar + verifier honesty"]
-  end
-
-  V1 -.->|adds OS| M1
-  V2 -.-> M2
-  V3 -.-> M3
-  V4 -.-> M4
-  V5 -.-> M5
-```
-
-| Area | Vanilla | m4tr!x |
-|------|---------|--------|
-| Role | You + ad-hoc agent | Captain + specialists |
-| Ceremony | Flat | Scale-matched pipelines |
-| Approvals | Soft / absent | Explicit gates; you name what ships |
-| Modes | Easy to keep coding | Forced **MODE SWITCH** (Ask / Plan / Agent / Debug) |
+| Area | Vanilla Cursor | With m4tr!x |
+|------|----------------|-------------|
+| Role | You + ad-hoc agent | Captain + named specialists |
+| Ceremony | Same energy for toggle and epic | **product / module / patch** pipelines |
+| Scope | Easy to invent features | Clarify first; park extras in `BACKLOG.md` |
+| Approvals | Soft / absent | Explicit gates; implement only what you name |
+| Modes | Easy to keep coding across phases | Forced **MODE SWITCH** (Ask / Plan / Agent / Debug) |
+| Planning | Spec and chat blur together | Self-contained `docs/sdlc/*` + **Goldfish** fresh Task |
+| Patches | Often pull full PRD / swarm | Lightweight brief; **EGM skipped** |
 | Context | Full-history reread common | Progressive load + `ACTIVE_TASK.json` + `HANDOFF.md` |
-| Done | “Looks good” | AC, tests/checks, states, security, craft, verifier |
+| Done | “Looks good” | Production bar + skeptical verifier |
 | Cost | Easy to pin expensive models | Prefer **Auto**; subagents `model: inherit` |
 
 ### Pilot evidence (honest)
@@ -108,58 +80,31 @@ Residual: progressive load / handoffs rely on agent compliance (hooks do not har
 
 ## What you get
 
-```mermaid
-mindmap
-  root((m4tr!x kit))
-    Constitution
-      User Rules
-      Project rules 00–05
-      Stack rules
-    Agents
-      Product BA Architect
-      Design Scrum
-      Flutter Firebase
-      Node Python
-      Security Verifier Docs
-    Skills
-      bootstrap-org
-      pipeline-product
-      pipeline-module
-      pipeline-patch
-      egm-review
-    SDLC templates
-      PRD REQUIREMENTS DESIGN
-      ACTIVE_TASK HANDOFF
-      BACKLOG EGM_REVIEW
-    Hooks
-      sessionStart advisory
-      workspaceOpen opt-in
-    Validation
-      smoke-tests
-      _pilot evals
-```
+| Layer | Contents |
+|-------|----------|
+| **Constitution** | User Rules + project rules `00`–`05` + stack rules |
+| **Agents** | 12× `m4trix-*` specialists |
+| **Skills** | `bootstrap-org`, `pipeline-product`, `pipeline-module`, `pipeline-patch`, `egm-review` |
+| **SDLC templates** | PRD, REQUIREMENTS, DESIGN, DESIGN_SYSTEM, BACKLOG, ACTIVE_TASK, HANDOFF, EGM_REVIEW, … |
+| **Hooks** | `sessionStart` advisory; `workspaceOpen` only with `-AutoApplyWorkspaces` |
+| **Validation** | `bootstrap/smoke-tests.ps1` + `_pilot/` evals |
 
 ### Specialist agents
 
-```mermaid
-flowchart TB
-  Cap["Captain"] --> Prod["m4trix-product"]
-  Cap --> Req["m4trix-requirements"]
-  Cap --> Arch["m4trix-architect"]
-  Cap --> DS["m4trix-design-system"]
-  Cap --> Scrum["m4trix-scrum"]
-  Arch --> Impl
-  DS --> Impl
-  Scrum --> Impl
-  subgraph Impl["Implementers"]
-    Fl["m4trix-flutter"]
-    Fb["m4trix-firebase"]
-    Nd["m4trix-node"]
-    Py["m4trix-python"]
-  end
-  Impl --> Sec["m4trix-security"]
-  Impl --> Ver["m4trix-verifier"]
-  Ver --> Docs["m4trix-docs-deploy"]
+```text
+                         Captain
+                            │
+      ┌─────────┬───────────┼───────────┬──────────┐
+      ▼         ▼           ▼           ▼          ▼
+  product  requirements  architect  design-sys  scrum
+                            │           │          │
+                            └─────┬─────┘──────────┘
+                                  ▼
+              flutter · firebase · node · python
+                                  │
+                    ┌─────────────┼─────────────┐
+                    ▼             ▼             ▼
+                security      verifier     docs-deploy
 ```
 
 | Agent | Job |
@@ -199,30 +144,18 @@ flowchart TB
 
 ## Scale & pipelines
 
-```mermaid
-flowchart TD
-  Ask["Incoming request"] --> Detect{"Detect scale"}
-  Detect -->|"New app / large epic"| Product
-  Detect -->|"Multi-file feature"| Module
-  Detect -->|"Localized UI/bug/copy"| Patch
+| Scale | When | Ceremony |
+|-------|------|----------|
+| **product** | New app / large epic | PRD → FR/NFR → design → design system → **EGM** → sequenced backlog → you authorize **each** module |
+| **module** | Coherent multi-file feature | Focused brief/FR; EGM when design-heavy; implement named slice only |
+| **patch** | Localized UI / bug / copy | Short AC brief; one implementer; **skip EGM** and full PRD |
 
-  subgraph Product["pipeline-product"]
-    P1["PRD → FR/NFR → Design → Design system"] --> P2["EGM Goldfish"]
-    P2 --> P3["Sequenced BACKLOG"]
-    P3 --> P4["Captain authorizes each module"]
-  end
-
-  subgraph Module["pipeline-module"]
-    Mo1["Focused brief / FR"] --> Mo2{"Design-heavy?"}
-    Mo2 -->|yes| Mo3["EGM"]
-    Mo2 -->|no| Mo4["Implement named slice"]
-    Mo3 --> Mo4
-  end
-
-  subgraph Patch["pipeline-patch"]
-    Pa1["Short AC brief"] --> Pa2["One implementer"]
-    Pa2 --> Pa3["Skip EGM + full PRD"]
-  end
+```text
+request
+   │
+   ├── product ──► PRD → reqs → design → DS → EGM → BACKLOG → authorize modules
+   ├── module  ──► brief/FR → (EGM if design-heavy) → implement named slice
+   └── patch   ──► short AC → one implementer → skip EGM
 ```
 
 Agents must **not** silently upgrade patch → module; you acknowledge scope growth.
@@ -233,26 +166,30 @@ Agents must **not** silently upgrade patch → module; you acknowledge scope gro
 
 Inspired by [google/elephant-goldfish-model](https://github.com/google/elephant-goldfish-model) (Apache-2.0; not installed wholesale).
 
-```mermaid
-sequenceDiagram
-  participant Cap as Captain
-  participant El as Elephant<br/>(product / BA / architect / DS)
-  participant Docs as docs/sdlc/*
-  participant Gf as Goldfish<br/>(fresh Task)
-  participant Imp as Implementer
+```text
+Captain ──► Elephant (product / BA / architect / design-system)
+                │
+                ▼
+         docs/sdlc/*  (self-contained; no chat dependency)
+                │
+Captain ──► Goldfish = fresh Task (listed paths only; no parent chat)
+                │
+                ▼
+         EGM_REVIEW.md
+                │
+        ┌───────┴────────┐
+   Blocking open      Clear
+        │                │
+   fix docs (or     findings only
+   eligible risk-   (still ≠ approval)
+   accept*)              │
+        │                ▼
+        └──────► Captain explicit go + named module/task
+                         │
+                         ▼
+                    Implementer
 
-  Cap->>El: Plan / specify
-  El->>Docs: Self-contained specs (no chat dependency)
-  Cap->>Gf: Run egm-review
-  Note over Gf: No parent chat — listed paths only
-  Gf->>Docs: Write EGM_REVIEW.md
-  alt Blocking open
-    Gf-->>Cap: Fix docs (or eligible risk-accept in writing)
-    Note over Cap: Missing reqs / security defects ≠ risk-acceptable
-  else Clear
-    Gf-->>Cap: Findings only — still not approval
-    Cap->>Imp: Explicit go + named module/task
-  end
+* Missing requirements and unresolved security defects are not risk-acceptable.
 ```
 
 Goldfish complete ≠ captain approval. Risk acceptance ≠ approval.
@@ -261,17 +198,14 @@ Goldfish complete ≠ captain approval. Risk acceptance ≠ approval.
 
 ## Production bar & context
 
-```mermaid
-flowchart LR
-  subgraph Done["Done only when"]
-    AC["AC happy/fail/edge"]
-    UI["Loading / empty / error"]
-    Sec["Security considered"]
-    DS["Design-system UI"]
-    Craft["Craft rules"]
-    Ver["Verifier: what actually ran"]
-  end
-```
+**Done only when all of these hold:**
+
+- [ ] AC covered (happy / fail / edge)
+- [ ] Loading / empty / error where the UI/API needs them
+- [ ] Security considered; no placeholder secrets
+- [ ] Design-system compliance for UI
+- [ ] Craft rules satisfied
+- [ ] Verifier reports what actually ran — no false “tests passed”
 
 | Context layer | Role |
 |---------------|------|
@@ -327,13 +261,14 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\bootstrap\install-globals.
 pwsh -NoProfile -File ./bootstrap/install-globals.ps1 -Fresh
 ```
 
-Writes: `~/.cursor/agents/m4trix-*`, kit skills, `hooks/m4trix-*.ps1`, `~/.cursor/m4trix/kit.json` + `USER_RULES.md`, merged `hooks.json`.
+Writes: `~/.cursor/agents/m4trix-*`, kit skills, `hooks/m4trix-*.ps1`, `~/.cursor/m4trix/kit.json` + `USER_RULES.md`, merged `hooks.json`. Also disables CLI commit/PR attribution in `cli-config.json` when present, and installs a kit-local `commit-msg` hook that strips IDE trailers.
 
 Optional auto-apply on folder open (default **off**): add `-AutoApplyWorkspaces`.
 
-### Step 3 — Paste User Rules
+### Step 3 — Paste User Rules + turn off Attribution
 
-Cursor → **Customize → Rules** → paste full `~/.cursor/m4trix/USER_RULES.md` → save.
+1. Cursor → **Customize → Rules** → paste full `~/.cursor/m4trix/USER_RULES.md` → save.  
+2. Cursor → **Settings → Git & PRs → Attribution** → turn **off** commit and PR attribution (older builds: **Agent → Attribution**). This stops injected `Co-authored-by: Cursor` on agent commits.
 
 ### Step 4 — Reload Cursor
 
@@ -365,7 +300,7 @@ pwsh -NoProfile -File ~/Developer/Matrix/bootstrap/apply-to-workspace.ps1 \
 
 Or ask for skill **bootstrap-org** in chat (still prefer dry-run when docs exist).
 
-Apply copies `.cursor/` assets, seeds `docs/sdlc`, detects stacks additively, writes `.m4trix-kit.json`.
+Apply copies `.cursor/` assets, seeds `docs/sdlc`, detects stacks additively, writes `.m4trix-kit.json`, and installs `.git/hooks/commit-msg` (when `.git` exists) to strip IDE attribution trailers.
 
 ### Step 6 — Smoke-test (optional)
 

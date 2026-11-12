@@ -114,6 +114,18 @@ $utf8Bom = New-Object System.Text.UTF8Encoding $true
 [System.IO.File]::WriteAllText($userRulesOut, $userRulesBody, $utf8Bom)
 Write-Host "  user rules copy -> $userRulesOut"
 
+# Delivery voice: disable CLI agent commit/PR attribution when cli-config.json exists
+if (Disable-M4trixCursorCliAttribution) {
+  Write-Host "  cli attribution -> attributeCommitsToAgent/attributePRsToAgent = false"
+} else {
+  Write-Host "  cli attribution -> skipped (no cli-config.json or update failed)"
+}
+
+# Kit clone: install local commit-msg hook so kit releases stay trailer-clean
+if (Install-M4trixGitCommitMsgHook -Workspace $KitRoot -KitRoot $KitRoot) {
+  Write-Host "  kit git hook -> .git/hooks/commit-msg (strip IDE trailers)"
+}
+
 # Merge hooks.json (preserve unrelated hooks + all properties; fail on malformed JSON)
 $m4trixEntries = @{
   workspaceOpen = @(
@@ -132,8 +144,10 @@ Write-Host "DONE. Globals installed from $KitRoot"
 Write-Host "NEXT:"
 Write-Host "  1. Paste User Rules from: $userRulesOut"
 Write-Host "     (Cursor Settings -> Rules / Customize -> Rules)"
-Write-Host "  2. Reload Cursor so hooks load."
-Write-Host "  3. Apply to a project only when you choose:"
+Write-Host "  2. Turn OFF Cursor Settings -> Git & PRs -> Attribution (commit + PR)."
+Write-Host "     (Older builds: Settings -> Agent -> Attribution)"
+Write-Host "  3. Reload Cursor so hooks load."
+Write-Host "  4. Apply to a project only when you choose:"
 $apply = Join-M4trixPath -Base $KitRoot -Parts @("bootstrap", "apply-to-workspace.ps1")
 if (Test-M4trixIsWindows) {
   Write-Host "     powershell -NoProfile -ExecutionPolicy Bypass -File `"$apply`" -Workspace `"<projectRoot>`""

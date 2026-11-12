@@ -1,65 +1,58 @@
 {
-  "taskId": "KIT-rel-1.5.2",
-  "title": "Final reliability corrections (packaging + install preflight)",
+  "taskId": "KIT-rel-1.5.3",
+  "title": "Strip IDE commit attribution (delivery voice hardening)",
   "scale": "patch",
   "phase": "accepted",
   "status": "accepted",
-  "approvedScope": "package-source hidden .cursor inclusion, packaging inclusion asserts, install/Fresh fail-closed preflight, top-level hooks metadata + collision-resistant backups, isolated Cursor-home tests, sessionStart verification best-effort — no agent/skill/EGM architecture changes",
+  "approvedScope": "Harden delivery-voice + USER_RULES for injected Co-authored-by Cursor; commit-msg strip hook; install disables CLI attribution; apply installs hook; docs/smoke — no product scope",
   "acceptanceCriteria": [
-    "Happy: zip includes .cursor/rules|agents|skills, .gitignore, bootstrap, docs; install succeeds when hooks.json valid",
-    "Fail: malformed hooks.json aborts install and Fresh before mutating managed files/state",
-    "Edge: top-level metadata preserved; backup names unique; sessionStart contract tested (live IDE noted if unsupported)"
+    "Happy: agent/kit commits have no Co-authored-by Cursor / Made-with Cursor after commit-msg hook",
+    "Fail: missing hook source fails install preflight; malformed cases do not invent trailers",
+    "Edge: kit install docs may name the IDE; git commits/PRs/trailers never may — including Matrix kit repo"
   ],
   "permittedPaths": [
+    "constitution/",
+    "agents/",
     "bootstrap/",
     "hooks/",
     "docs/sdlc/",
     "VERSION",
-    "README.md"
+    "README.md",
+    "INSTALL.md",
+    ".cursor/"
   ],
   "designSystemChangesApproved": false,
   "decisionRefs": [
-    "2026-11-12 package-source Force+ZipFile",
-    "2026-11-12 Install/Fresh preflight",
-    "2026-11-12 hooks metadata + backups",
-    "2026-11-12 M4TRIX_CURSOR_HOME"
+    "2026-11-12 Delivery voice covers kit commits too; strip IDE trailers via commit-msg + CLI attribution off"
   ],
-  "conventions": ["04-code-craft"],
+  "conventions": ["04-code-craft", "05-delivery-voice"],
   "reusableComponents": ["hooks/m4trix-platform.ps1 helpers"],
   "filesChanged": [
-    "bootstrap/package-source.ps1",
+    "constitution/project-rules/05-delivery-voice.mdc",
+    "constitution/USER_RULES.md",
+    "agents/m4trix-verifier.md",
+    "agents/m4trix-docs-deploy.md",
+    "bootstrap/git-hooks/commit-msg",
+    "bootstrap/apply-to-workspace.ps1",
     "bootstrap/install-globals.ps1",
     "bootstrap/smoke-tests.ps1",
     "hooks/m4trix-platform.ps1",
     "VERSION",
     "README.md",
+    "INSTALL.md",
     "docs/sdlc/DECISIONS.md",
-    "docs/sdlc/MODULE_HANDOFF.md",
     "docs/sdlc/ACTIVE_TASK.json"
   ],
   "verified": [
-    "bootstrap/smoke-tests.ps1 PASS (Windows) — inclusions, isolated install+Fresh fail-closed, metadata/backups",
-    "Fresh Task sessionStart context: HOOK_CONTEXT_PRESENT=no (IDE hooks not inherited by Task)",
-    "macOS: not executed"
+    "smoke-tests.ps1 RESULT: all checks passed (includes commit-msg strip functional test)"
   ],
   "blockers": [],
-  "qualityChecks": ["smoke-tests"],
+  "context": {
+    "staleAfterHours": 48,
+    "notes": "Captain must also turn off Settings → Git & PRs → Attribution; re-paste USER_RULES after install-globals."
+  },
   "egm": {
     "required": false,
-    "status": "skipped",
-    "reviewPaths": [],
-    "blockingOpen": false,
-    "note": "Patch — EGM skipped"
-  },
-  "context": {
-    "updatedAt": "2026-11-12T15:55:00+05:00",
-    "staleAfterHours": 72,
-    "note": "Advisory stale hint."
-  },
-  "approval": {
-    "by": "captain",
-    "at": "2026-11-12",
-    "note": "Captain ordered final 1.5.1 audit corrections; bump 1.5.2 after verify"
-  },
-  "notes": "No commit/push/deploy per order."
+    "status": "skipped"
+  }
 }

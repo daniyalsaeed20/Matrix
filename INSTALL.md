@@ -40,13 +40,19 @@ Installs:
 
 Does **not** touch `~/.cursor/skills-cursor/` or unrelated hooks.
 
+Also on install:
+
+- Sets `~/.cursor/cli-config.json` `attribution.attributeCommitsToAgent` / `attributePRsToAgent` to `false` when that file exists (stops CLI/agent `Co-authored-by: Cursor` trailers).
+- Installs a local `commit-msg` git hook in the **kit clone** that strips known IDE attribution trailers.
+
 Reload Cursor after installing.
 
-## 2. User Rules
+## 2. User Rules + Attribution
 
 1. Open Cursor → **Customize → Rules**.
 2. Paste **full** contents of `~/.cursor/m4trix/USER_RULES.md`.
 3. Save.
+4. Turn **off** Cursor **Settings → Git & PRs → Attribution** (commit + PR). Older builds: **Settings → Agent → Attribution**.
 
 ## 3. Per-project apply — explicit
 
@@ -55,7 +61,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\bootstrap\apply-to-workspa
 # then without -DryRun
 ```
 
-Copies rules/agents/skills/templates (incl. code craft + ACTIVE_TASK), detects stacks additively, writes `docs/sdlc/.m4trix-kit.json` with the clone `kitRoot`.
+Copies rules/agents/skills/templates (incl. code craft + ACTIVE_TASK), detects stacks additively, writes `docs/sdlc/.m4trix-kit.json` with the clone `kitRoot`, and installs `.git/hooks/commit-msg` (when `.git` exists) to strip IDE `Co-authored-by` / Made-with trailers.
 
 ## 4. Optional auto-apply
 

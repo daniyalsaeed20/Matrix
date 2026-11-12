@@ -396,7 +396,8 @@ function Assert-M4trixInstallSources([string]$KitRoot) {
     (Join-M4trixPath -Base $KitRoot -Parts @("hooks", "m4trix-platform.ps1")),
     (Join-M4trixPath -Base $KitRoot -Parts @("hooks", "m4trix-workspace-open.ps1")),
     (Join-M4trixPath -Base $KitRoot -Parts @("hooks", "m4trix-session-start.ps1")),
-    (Join-M4trixPath -Base $KitRoot -Parts @("constitution", "USER_RULES.md"))
+    (Join-M4trixPath -Base $KitRoot -Parts @("constitution", "USER_RULES.md")),
+    (Join-M4trixPath -Base $KitRoot -Parts @("bootstrap", "git-hooks", "commit-msg"))
   )
   foreach ($p in $required) {
     if (-not (Test-Path -LiteralPath $p -PathType Leaf)) {
@@ -430,6 +431,83 @@ function Assert-M4trixInstallPreflight {
   )
   Assert-M4trixInstallSources -KitRoot $KitRoot
   Assert-M4trixHooksJsonReady -HooksJsonPath $HooksJsonPath
+}
+
+function Install-M4trixGitCommitMsgHook {
+  <#
+  .SYNOPSIS
+    Installs bootstrap/git-hooks/commit-msg into a repo's .git/hooks to strip IDE attribution trailers.
+    Does not modify git config. No-ops when .git is missing. Backs up a non-m4tr!x commit-msg once.
+  #>
+  param(
+    [Parameter(Mandatory = $true)][string]$Workspace,
+    [Parameter(Mandatory = $true)][string]$KitRoot
+  )
+  $gitPath = Join-Path $Workspace ".git"
+  if (-not (Test-Path -LiteralPath $gitPath)) { return $false }
+
+  $gitDir = $gitPath
+  if (Test-Path -LiteralPath $gitPath -PathType Leaf) {
+    $line = ((Get-Content -LiteralPath $gitPath -Raw -ErrorAction SilentlyContinue) + "").Trim()
+    if ($line -match '(?im)^gitdir:\s*(.+)$') {
+      $gitDir = $Matches[1].Trim().Trim('"')
+      if (-not [System.IO.Path]::IsPathRooted($gitDir)) {
+        $gitDir = Join-Path $Workspace $gitDir
+      }
+      $gitDir = Normalize-M4trixPath $gitDir
+    } else {
+      return $false
+    }
+  }
+  if (-not (Test-Path -LiteralPath $gitDir -PathType Container)) { return $false }
+
+  $src = Join-M4trixPath -Base $KitRoot -Parts @("bootstrap", "git-hooks", "commit-msg")
+  if (-not (Test-Path -LiteralPath $src -PathType Leaf)) {
+    throw "Missing commit-msg hook source: $src"
+  }
+
+  $hooksDir = Join-Path $gitDir "hooks"
+  New-Item -ItemType Directory -Force -Path $hooksDir | Out-Null
+  $dest = Join-Path $hooksDir "commit-msg"
+
+  if (Test-Path -LiteralPath $dest -PathType Leaf) {
+    $existing = Get-Content -LiteralPath $dest -Raw -ErrorAction SilentlyContinue
+    if ($existing -and ($existing -notmatch 'm4tr!x commit-msg hook')) {
+      $stamp = Get-Date -Format "yyyyMMddHHmmss"
+      Copy-Item -LiteralPath $dest -Destination "$dest.m4trix-backup-$stamp" -Force
+    }
+  }
+
+  Copy-Item -LiteralPath $src -Destination $dest -Force
+  if (-not (Test-M4trixIsWindows)) {
+    try { & chmod +x -- $dest 2>$null } catch { }
+  }
+  return $true
+}
+
+function Disable-M4trixCursorCliAttribution {
+  <#
+  .SYNOPSIS
+    Sets ~/.cursor/cli-config.json attribution.attributeCommitsToAgent / attributePRsToAgent to false.
+    Does not touch IDE UI settings (captain still toggles Settings → Git & PRs → Attribution).
+  #>
+  $cli = Join-Path (Get-M4trixCursorHome) "cli-config.json"
+  if (-not (Test-Path -LiteralPath $cli -PathType Leaf)) { return $false }
+  try {
+    $cfg = Get-Content -LiteralPath $cli -Raw -Encoding UTF8 | ConvertFrom-Json
+    if ($null -eq $cfg.attribution) {
+      $cfg | Add-Member -NotePropertyName attribution -NotePropertyValue ([pscustomobject]@{}) -Force
+    }
+    $cfg.attribution | Add-Member -NotePropertyName attributeCommitsToAgent -NotePropertyValue $false -Force
+    $cfg.attribution | Add-Member -NotePropertyName attributePRsToAgent -NotePropertyValue $false -Force
+    $json = $cfg | ConvertTo-Json -Depth 40
+    $utf8 = New-Object System.Text.UTF8Encoding $false
+    [System.IO.File]::WriteAllText((Normalize-M4trixPath $cli), $json + "`n", $utf8)
+    return $true
+  } catch {
+    Write-Warning "Could not disable CLI attribution in $cli : $_"
+    return $false
+  }
 }
 
 function Remove-M4trixManagedGlobals {

@@ -1,0 +1,30 @@
+#!/bin/sh
+# m4tr!x commit-msg hook: strip IDE/AI-editor attribution trailers.
+# Installed into <repo>/.git/hooks/commit-msg by apply-to-workspace / Install-M4trixGitCommitMsgHook.
+# Does not change git config. Safe no-op when MSG_FILE missing.
+
+MSG_FILE="$1"
+if [ -z "$MSG_FILE" ] || [ ! -f "$MSG_FILE" ]; then
+  exit 0
+fi
+
+# Prefer perl (Git for Windows / macOS / Linux); fall back to sed.
+if command -v perl >/dev/null 2>&1; then
+  perl -i -ne 'print unless /^\s*Co-authored-by:\s*Cursor\s*<cursoragent@cursor\.com>\s*$/i
+    || /^\s*Made-with:\s*Cursor\s*$/i
+    || /^\s*Made with Cursor\s*$/i
+    || /^\s*Generated with Cursor\s*$/i
+    || /^\s*Generated-by:\s*Cursor\s*$/i' "$MSG_FILE"
+elif command -v sed >/dev/null 2>&1; then
+  # BSD/GNU sed: delete known trailer lines (case-sensitive common forms).
+  tmp="${MSG_FILE}.m4trix.tmp"
+  sed \
+    -e '/^[[:space:]]*Co-authored-by:[[:space:]]*Cursor[[:space:]]*<cursoragent@cursor\.com>[[:space:]]*$/Id' \
+    -e '/^[[:space:]]*Made-with:[[:space:]]*Cursor[[:space:]]*$/Id' \
+    -e '/^[[:space:]]*Made with Cursor[[:space:]]*$/Id' \
+    -e '/^[[:space:]]*Generated with Cursor[[:space:]]*$/Id' \
+    -e '/^[[:space:]]*Generated-by:[[:space:]]*Cursor[[:space:]]*$/Id' \
+    "$MSG_FILE" > "$tmp" && mv "$tmp" "$MSG_FILE"
+fi
+
+exit 0

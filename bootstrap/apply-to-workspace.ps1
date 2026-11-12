@@ -211,9 +211,20 @@ $markerJson = @{
   stacks      = $stacks
 } | ConvertTo-Json
 $actions.Add("$(if (Test-Path $marker) {'overwrite'} else {'create'})`tMARKER`t->`t$marker") | Out-Null
+
+$gitDirPresent = Test-Path (Join-Path $Workspace ".git")
+if ($gitDirPresent) {
+  $actions.Add("install`tbootstrap/git-hooks/commit-msg`t->`t.git/hooks/commit-msg (strip IDE trailers)") | Out-Null
+} else {
+  $actions.Add("skip`tcommit-msg hook`t->`tno .git in workspace") | Out-Null
+}
+
 if (-not $DryRun) {
   New-Item -ItemType Directory -Force -Path (Split-Path $marker) | Out-Null
   Set-Content -Path $marker -Value $markerJson -Encoding UTF8
+  if ($gitDirPresent) {
+    $null = Install-M4trixGitCommitMsgHook -Workspace $Workspace -KitRoot $KitRoot
+  }
 }
 
 Write-Host ""

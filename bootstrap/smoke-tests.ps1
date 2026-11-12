@@ -60,6 +60,11 @@ Assert-True ($ver -match "Delivery voice|IDE / AI-editor attribution|no Cursor")
 $voice = Get-Content (Join-Path $KitRoot "constitution\project-rules\05-delivery-voice.mdc") -Raw
 Assert-True ($voice -match "commit|Pull request|PR") "delivery voice covers commits/PRs"
 Assert-True ($voice -match "Matrix kit") "delivery voice exempts Matrix kit install docs"
+Assert-True ($voice -match "Co-authored-by|cursoragent|attributeCommitsToAgent|commit-msg") "delivery voice covers injected IDE trailers"
+Assert-True ($voice -match "including commits inside the Matrix kit") "delivery voice: kit exception excludes git trailers"
+$hookSrc = Join-Path $KitRoot "bootstrap\git-hooks\commit-msg"
+Assert-True (Test-Path $hookSrc) "commit-msg strip hook source exists"
+Assert-True ((Get-Content $hookSrc -Raw) -match "cursoragent@cursor") "commit-msg strips Cursor co-author email"
 $manifest = Get-Content (Join-Path $KitRoot "bootstrap\MANIFEST.json") -Raw
 Assert-True ($manifest -match "05-delivery-voice") "MANIFEST ships 05-delivery-voice"
 
@@ -389,6 +394,37 @@ if ($TestFreshInstall) {
     }
     Assert-True ($m4Before.Count -eq 0) "Fresh install does not register m4trix beforeSubmitPrompt"
   }
+}
+
+# --- commit-msg hook strips IDE attribution trailers ---
+$hookRepo = Join-Path $env:TEMP ("m4trix-commit-msg-" + [guid]::NewGuid().ToString("N"))
+try {
+  New-Item -ItemType Directory -Force -Path $hookRepo | Out-Null
+  Push-Location $hookRepo
+  git init -q | Out-Null
+  git config user.email "m4trix-smoke@example.com" | Out-Null
+  git config user.name "m4trix-smoke" | Out-Null
+  $installed = Install-M4trixGitCommitMsgHook -Workspace $hookRepo -KitRoot $KitRoot
+  Assert-True $installed "Install-M4trixGitCommitMsgHook returns true for git repo"
+  Assert-True (Test-Path (Join-Path $hookRepo ".git\hooks\commit-msg")) "commit-msg hook installed under .git/hooks"
+  Set-Content -Path (Join-Path $hookRepo "README") -Value "smoke" -Encoding ASCII
+  git add README | Out-Null
+  $msgFile = Join-Path $hookRepo "COMMIT_EDITMSG_SMOKE"
+  @(
+    "smoke delivery voice",
+    "",
+    "Co-authored-by: Cursor <cursoragent@cursor.com>",
+    "Made with Cursor"
+  ) | Set-Content -Path $msgFile -Encoding ASCII
+  git commit -q -F $msgFile | Out-Null
+  $body = git log -1 --format=%B
+  Assert-True ($body -notmatch "cursoragent@cursor\.com") "commit-msg stripped Cursor co-author trailer"
+  Assert-True ($body -notmatch "(?i)Made with Cursor") "commit-msg stripped Made with Cursor"
+  Assert-True ($body -match "smoke delivery voice") "commit subject preserved after strip"
+  Pop-Location
+} finally {
+  Pop-Location -ErrorAction SilentlyContinue
+  if (Test-Path $hookRepo) { Remove-Item -Recurse -Force $hookRepo -ErrorAction SilentlyContinue }
 }
 
 Write-Host ""
