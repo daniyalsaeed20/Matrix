@@ -78,7 +78,11 @@ $psi.RedirectStandardError = $true
 $psi.CreateNoWindow = $true
 
 $proc = [System.Diagnostics.Process]::Start($psi)
-$proc.StandardInput.Write($clean)
+# Avoid StreamWriter UTF-8 BOM on stdin.
+$utf8NoBom = New-Object System.Text.UTF8Encoding $false
+$msgBytes = $utf8NoBom.GetBytes([string]$clean)
+$proc.StandardInput.BaseStream.Write($msgBytes, 0, $msgBytes.Length)
+$proc.StandardInput.BaseStream.Flush()
 $proc.StandardInput.Close()
 $new = $proc.StandardOutput.ReadToEnd().Trim()
 $err = $proc.StandardError.ReadToEnd()
