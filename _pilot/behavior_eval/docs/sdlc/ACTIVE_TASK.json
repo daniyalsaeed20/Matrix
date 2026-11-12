@@ -1,0 +1,36 @@
+{
+  "taskId": "BE-S1",
+  "title": "Small UI patch — Continue button padding",
+  "scale": "patch",
+  "phase": "approved",
+  "status": "approved",
+  "approvedScope": "Increase ElevatedButton horizontal padding in AppTheme only; no new screens or services",
+  "acceptanceCriteria": [
+    "ElevatedButton padding horizontal is 28",
+    "Only theme file changes for style",
+    "Existing home test still passes"
+  ],
+  "permittedPaths": [
+    "flutter_app/lib/core/theme/app_theme.dart",
+    "flutter_app/test/"
+  ],
+  "designSystemChangesApproved": true,
+  "decisionRefs": ["Theme seed 0xFF1B4D3E"],
+  "conventions": ["theme owns button styles"],
+  "reusableComponents": [],
+  "filesChanged": [],
+  "verified": [],
+  "blockers": [],
+  "qualityChecks": ["production-bar", "code-craft", "tests-or-manual"],
+  "context": {
+    "updatedAt": "2026-11-12T14:10:00+05:00",
+    "staleAfterHours": 72,
+    "note": "Advisory stale hint only."
+  },
+  "approval": {
+    "by": "captain",
+    "at": "2026-11-12",
+    "note": "Approved for behavior eval scenarios"
+  },
+  "notes": "Eval workspace under _pilot/behavior_eval"
+}

@@ -29,7 +29,10 @@ Write a brief in chat or append a short note under `docs/sdlc/` (optional file `
 ### 3. Implement
 
 - Prefer single agent; no multi-agent swarm
+- Inspect impacted files; smallest correct change; reuse theme/components
+- No new services, PRDs, or abstraction ceremony for a label/copy fix
 - Reuse theme/design system; no new visual language unless patch is theme itself
+- Brief handoff: what changed / reused / verified
 
 ### 4. Verify
 

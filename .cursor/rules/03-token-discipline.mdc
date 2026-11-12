@@ -1,0 +1,40 @@
+---
+description: Right context at the right time — progressive load, prune, soft budgets
+alwaysApply: true
+---
+
+# Context & token discipline
+
+Principle: **the right context, for the right agent, at the right time—in the smallest sufficient amount.**  
+Inspired by [jasontang-ai/Context-Engineering](https://github.com/jasontang-ai/Context-Engineering) (MIT) — merged, not vendored. Detail: `ecc-cherry-pick/context-engineering.md`.
+
+## Progressive load
+
+1. Start from: captain request, approved scope / `ACTIVE_TASK.json`, project conventions, `DECISIONS.md` pointers.
+2. Discover with search/glob **before** opening whole files.
+3. Open only architecture, requirements, design-system, and code slices needed for this task.
+4. Expand when correctness, security, dependencies, reuse discovery, or verification require it.
+5. Never omit critical constraints (approvals, security, AC) just to stay under a budget.
+
+## Soft budgets (guidelines, not hard caps)
+
+| Scale | Prefer |
+|-------|--------|
+| patch | Task + touched files + theme tokens; skip full PRD/DESIGN |
+| module | ACTIVE_TASK + relevant DESIGN/REQUIREMENTS sections + feature paths |
+| product | Pipeline docs as needed per phase — not the entire history every turn |
+
+## Prune & retrieve
+
+- Prefer relevant over exhaustive; summarize long nonessential tool output.
+- Keep exact code/errors/logs when debugging.
+- Do not re-scan the repo or re-read unchanged large docs without a reason.
+- Load skills/subagents only when needed; one implementer for simple patches.
+- Handoffs carry essentials only (see `templates/sdlc/HANDOFF.md`); no scope expansion implied.
+- Context cutting must **not** skip reusable-component search or craft standards (`04-code-craft`).
+
+## Models / chat hygiene
+
+- Prefer **Auto**; subagents `model: inherit`; no frontier pins unless captain orders.
+- Prefer new chat per phase/module; do not drag full product PRD into a one-line patch.
+- Optimize tokens **per correctly verified task**, not shorter answers that skip verification.

@@ -1,8 +1,7 @@
 {
   "kitName": "m4trix",
   "kitVersionFile": "VERSION",
-  "kitRootHint": "D:\\cursor-org-kit",
-  "kitRootHintMac": "$HOME/Desktop/cursor-org-kit",
+  "kitRootHint": "self-locating: parent of bootstrap/ after clone; persisted in ~/.cursor/m4trix/kit.json",
   "kitRootEnv": "M4TRIX_KIT_ROOT",
 
   "common": {
@@ -10,7 +9,8 @@
       "constitution/project-rules/00-m4trix-os.mdc",
       "constitution/project-rules/01-production-bar.mdc",
       "constitution/project-rules/02-mode-switching.mdc",
-      "constitution/project-rules/03-token-discipline.mdc"
+      "constitution/project-rules/03-token-discipline.mdc",
+      "constitution/project-rules/04-code-craft.mdc"
     ],
     "agents": [
       "agents/m4trix-product.md",
@@ -26,7 +26,8 @@
       "skills/bootstrap-org",
       "skills/pipeline-product",
       "skills/pipeline-module",
-      "skills/pipeline-patch"
+      "skills/pipeline-patch",
+      "skills/egm-review"
     ],
     "templates": [
       "templates/sdlc/PRD.md",
@@ -36,13 +37,20 @@
       "templates/sdlc/BACKLOG.md",
       "templates/sdlc/TEST_PLAN.md",
       "templates/sdlc/DEPLOYMENT.md",
-      "templates/sdlc/MODULE_HANDOFF.md"
+      "templates/sdlc/MODULE_HANDOFF.md",
+      "templates/sdlc/HANDOFF.md",
+      "templates/sdlc/EGM_REVIEW.md",
+      "templates/sdlc/ACTIVE_TASK.json",
+      "templates/sdlc/DECISIONS.md"
     ]
   },
   "stacks": {
     "flutter": {
       "detect": ["pubspec.yaml", "**/*.dart"],
-      "rules": ["constitution/project-rules/stack-flutter.mdc"],
+      "rules": [
+        "constitution/project-rules/stack-flutter.mdc",
+        "constitution/project-rules/stack-flutter-reusability.mdc"
+      ],
       "agents": ["agents/m4trix-flutter.md"]
     },
     "firebase": {
@@ -51,10 +59,10 @@
       "agents": ["agents/m4trix-firebase.md"]
     },
     "nodejs": {
-      "detect": ["package.json", "**/*.ts", "**/*.js"],
+      "detect": ["package.json", "functions/package.json", "backend/package.json", "api/package.json", "server/package.json"],
       "rules": ["constitution/project-rules/stack-nodejs.mdc"],
       "agents": ["agents/m4trix-node.md"],
-      "excludeIfOnlyFlutterTooling": true
+      "additive": true
     },
     "python": {
       "detect": ["requirements.txt", "pyproject.toml", "**/*.py"],
@@ -70,16 +78,19 @@
     "kitMarker": "docs/sdlc/.m4trix-kit.json"
   },
   "eccReference": {
-  "optionalCopy": [
-    "ecc-cherry-pick/ORIGIN.md",
-    "ecc-cherry-pick/flutter-patterns.md",
-    "ecc-cherry-pick/flutter-review-checklist.md",
-    "ecc-cherry-pick/python-patterns.md",
-    "ecc-cherry-pick/security-checklist.md",
-    "ecc-cherry-pick/tdd-verify.md",
-    "ecc-cherry-pick/deployment-checklist.md"
-  ],
-  "workspaceTarget": "docs/sdlc/ecc-reference"
-},
-  "mergePolicy": "dry-run-first; never overwrite existing docs/sdlc content without captain approval; overwrite m4trix-* agents/rules/skills when version bumps"
+    "optionalCopy": [
+      "ecc-cherry-pick/ORIGIN.md",
+      "ecc-cherry-pick/flutter-patterns.md",
+      "ecc-cherry-pick/flutter-review-checklist.md",
+      "ecc-cherry-pick/python-patterns.md",
+      "ecc-cherry-pick/security-checklist.md",
+      "ecc-cherry-pick/tdd-verify.md",
+      "ecc-cherry-pick/deployment-checklist.md",
+      "ecc-cherry-pick/karpathy-principles.md",
+      "ecc-cherry-pick/context-engineering.md",
+      "ecc-cherry-pick/egm.md"
+    ],
+    "workspaceTarget": "docs/sdlc/ecc-reference"
+  },
+  "mergePolicy": "explicit-apply-only-by-default; dry-run available; never overwrite customized docs/sdlc without captain approval; overwrite m4trix-* agents/rules/skills on re-apply; install-globals -Fresh wipes prior m4trix globals only"
 }

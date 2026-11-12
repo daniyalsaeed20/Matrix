@@ -1,104 +1,83 @@
-# m4tr!x Org Kit — Install
+# m4tr!x Kit — Install
 
-Works on **Windows** and **macOS**. Bootstrap/hooks stay PowerShell; on Mac install **PowerShell Core** first:
+Works on **Windows** and **macOS**. Bootstrap/hooks are PowerShell; on Mac install PowerShell Core first:
 
 ```bash
 brew install powershell
 ```
 
-Optional: set `M4TRIX_KIT_ROOT` if the kit is not at the default path.
+**Kit root = this clone.** No fixed `D:\cursor-org-kit` default. Optional override: `M4TRIX_KIT_ROOT`.
 
-| OS | Default kit root |
-|----|------------------|
-| Windows | `D:\cursor-org-kit` |
-| macOS | `$HOME/Desktop/cursor-org-kit` |
+## 1. Globals (account-wide) — only when you say so
 
-## 1. Globals (account-wide)
+From the clone directory:
 
 **Windows**
 
 ```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File D:\cursor-org-kit\bootstrap\install-globals.ps1
+powershell -NoProfile -ExecutionPolicy Bypass -File .\bootstrap\install-globals.ps1 -Fresh
 ```
 
 **macOS**
 
 ```bash
-pwsh -NoProfile -File "$HOME/Desktop/cursor-org-kit/bootstrap/install-globals.ps1"
+pwsh -NoProfile -File ./bootstrap/install-globals.ps1 -Fresh
 ```
+
+`-Fresh` **removes previous m4tr!x-managed setup** (agents `m4trix-*`, kit skills, m4trix hook scripts, m4trix `hooks.json` entries, `~/.cursor/m4trix/`), then installs clean from this clone.
 
 Installs:
 
-- `~/.cursor/agents/m4trix-*.md` (Windows: `%USERPROFILE%\.cursor\agents\`)
-- `~/.cursor/skills/{bootstrap-org,pipeline-product,pipeline-module,pipeline-patch}/`
-- `~/.cursor/hooks/m4trix-*.ps1` (includes `m4trix-platform.ps1`)
-- Merges m4tr!x entries into `~/.cursor/hooks.json`:
-  - `workspaceOpen` — auto-apply kit when you open a real project without the marker
-  - `beforeSubmitPrompt` — injects a short reminder if the kit is still missing
-  - Commands use `powershell` on Windows and `pwsh` on macOS
+- `~/.cursor/agents/m4trix-*.md`
+- `~/.cursor/skills/{bootstrap-org,pipeline-*}/`
+- `~/.cursor/hooks/m4trix-*.ps1`
+- `~/.cursor/m4trix/kit.json` (persists kit root + flags)
+- `~/.cursor/m4trix/USER_RULES.md` (path-resolved paste source)
+- Merges into `~/.cursor/hooks.json`:
+  - `workspaceOpen` — applies only if you later used `-AutoApplyWorkspaces`
+  - `beforeSubmitPrompt` — `continue: true` only (documented schema)
+  - `sessionStart` — reminder context if workspace marker missing
 
-Does **not** touch `~/.cursor/skills-cursor/`.
+Does **not** touch `~/.cursor/skills-cursor/` or unrelated hooks.
 
-Reload the Cursor window after installing hooks (or check **Customize → Hooks**).
+Reload Cursor after installing.
 
-## 2. User Rules (manual paste — required)
+## 2. User Rules
 
-1. Open Cursor → **Customize → Rules** (User Rules).
-2. Paste the **full** contents of `constitution/USER_RULES.md` from the kit root (includes auto-bootstrap for Windows + Mac).
+1. Open Cursor → **Customize → Rules**.
+2. Paste **full** contents of `~/.cursor/m4trix/USER_RULES.md`.
 3. Save.
 
-This is the reliable fallback if a hook does not fire. You do **not** paste rules again per project.
-
-## 3. Per-project install (usually automatic)
-
-When you open a project folder that looks like an app (`pubspec.yaml`, `package.json`, etc.) and `docs/sdlc/.m4trix-kit.json` is missing, the **workspaceOpen** hook runs:
-
-```text
-apply-to-workspace.ps1 → .cursor/ + docs/sdlc/
-```
-
-### Manual / agent fallback
-
-**Windows**
+## 3. Per-project apply — explicit
 
 ```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File D:\cursor-org-kit\bootstrap\apply-to-workspace.ps1 -Workspace "C:\path\to\your\app"
+powershell -NoProfile -ExecutionPolicy Bypass -File .\bootstrap\apply-to-workspace.ps1 -Workspace "C:\path\to\your\app" -DryRun
+# then without -DryRun
 ```
 
-**macOS**
+Copies rules/agents/skills/templates (incl. code craft + ACTIVE_TASK), detects stacks additively, writes `docs/sdlc/.m4trix-kit.json` with the clone `kitRoot`.
 
-```bash
-pwsh -NoProfile -File "$HOME/Desktop/cursor-org-kit/bootstrap/apply-to-workspace.ps1" -Workspace "/path/to/your/app"
+## 4. Optional auto-apply
+
+```powershell
+.\bootstrap\install-globals.ps1 -Fresh -AutoApplyWorkspaces
 ```
 
-Or in Agent chat (User Rules will push this if the marker is missing):
+## 5. Smoke tests
 
-```text
-Bootstrap m4tr!x for this workspace from the kit root (apply now).
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\bootstrap\smoke-tests.ps1
 ```
 
-Add `-IncludeNode` only when you want Node agents on a Flutter repo (custom backend).
+## Uninstall m4tr!x globals only
 
-Creates/updates:
+Re-run with a wipe helper:
 
-- `.cursor/rules/` (m4trix OS + detected stacks)
-- `.cursor/agents/` (relevant m4trix agents)
-- `.cursor/skills/` (pipelines + bootstrap)
-- `docs/sdlc/` templates + ecc-reference
-- `docs/sdlc/.m4trix-kit.json` marker
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -Command {
+  . .\hooks\m4trix-platform.ps1
+  Remove-M4trixManagedGlobals
+}
+```
 
-## 4. Model picker
-
-Set chat model to **Auto**. Prefer **Cost** optimization when your plan offers it.
-
-## 5. Update kit later
-
-1. Edit files under the kit root.
-2. Re-run `install-globals.ps1` (same OS command as step 1).
-3. Re-paste User Rules if `constitution/USER_RULES.md` changed.
-4. Open projects again (or re-run apply) so workspace copies refresh.
-5. Bump `VERSION` when you publish a meaningful kit change.
-
-## 6. Uninstall globals (optional)
-
-Delete `~/.cursor/agents/m4trix-*.md`, the four skill folders under `~/.cursor/skills/`, `~/.cursor/hooks/m4trix-*.ps1`, and remove m4trix entries from `hooks.json`. Remove User Rules text you pasted. Project `.cursor` / `docs/sdlc` remain until you delete them per repo.
+Then remove pasted User Rules manually if desired.

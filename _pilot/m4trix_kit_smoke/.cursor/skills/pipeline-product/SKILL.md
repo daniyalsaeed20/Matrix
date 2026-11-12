@@ -13,7 +13,7 @@ New application or very large epic. Not for small UI tweaks.
 
 ### 0. Bootstrap check
 
-If `docs/sdlc/.m4trix-kit.json` missing, run **bootstrap-org** dry-run first.
+If `docs/sdlc/.m4trix-kit.json` missing, ask the captain before applying; then run **bootstrap-org** (dry-run first when docs already exist).
 
 ### 1. Discover / PRD
 
@@ -54,11 +54,12 @@ If `docs/sdlc/.m4trix-kit.json` missing, run **bootstrap-org** dry-run first.
 
 For each named module:
 
-1. Implementers (flutter/firebase/node/python as relevant)
-2. **m4trix-security** when sensitive
-3. **m4trix-verifier**
-4. **m4trix-docs-deploy** (handoff + backlog)
-5. Deploy doc only late when captain asks
+1. Implementers (flutter/firebase/node/python as relevant) — create shared visual primitives on first relevant approved screen; reuse thereafter
+2. Track `ACTIVE_TASK.json`; keep slices small
+3. **m4trix-security** when sensitive
+4. **m4trix-verifier** (AC + code craft)
+5. **m4trix-docs-deploy** (handoff + backlog)
+6. Deploy doc only late when captain asks
 
 ### 7. Maintenance
 

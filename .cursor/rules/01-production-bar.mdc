@@ -1,0 +1,19 @@
+---
+description: Production-ready Definition of Done — no mockups as finished work
+alwaysApply: true
+---
+
+# Production bar
+
+A task/module is not done until:
+
+- Acceptance criteria covered (happy, fail, edge) with tests or explicit verified manual checks when UI-only
+- Error, empty, and loading states handled where the UI/API surface needs them
+- No placeholder secrets; no `TODO` left as the only path for a claimed feature
+- Security/authz considered for the change (delegate to m4trix-security when sensitive)
+- Relevant docs in `docs/sdlc/` updated
+- For UI: uses the project design system / theme — no one-off colors/typography unless approved
+- Code craft satisfied (`04-code-craft`): think → simple → surgical → verified; reuse where warranted
+- Verifier checklist passed (m4trix-verifier); no false “tests passed”
+
+Mockups, stubs, and “wire it later” are backlog items — not done.

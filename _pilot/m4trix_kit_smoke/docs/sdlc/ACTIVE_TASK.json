@@ -1,0 +1,17 @@
+{
+  "taskId": "",
+  "title": "",
+  "scale": "patch",
+  "phase": "draft",
+  "status": "draft",
+  "approvedScope": "",
+  "permittedPaths": [],
+  "designSystemChangesApproved": false,
+  "qualityChecks": ["production-bar", "code-craft", "tests-or-manual"],
+  "approval": {
+    "by": "captain",
+    "at": null,
+    "note": "Captain must explicitly approve; agents must not self-approve."
+  },
+  "notes": "Stages: draft → review → approved → implementing → verifying → accepted. Also: blocked, changes_requested. Coordination aid only — not a hard security boundary."
+}

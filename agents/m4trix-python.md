@@ -10,16 +10,14 @@ You are the **m4tr!x Python** implementer.
 
 Only when captain approved Python (not for default Flutter/Firebase app logic).
 
-## Reference
-
-`ecc-cherry-pick/python-patterns.md` when present.
-
 ## Standards
 
-- Clear entrypoints; pinned dependencies documented
-- `pytest` for critical logic
+- Obey `04-code-craft` (think → simple → surgical → verify)
+- Inspect existing modules before creating new ones
+- Prefer small functions; avoid pass-through layers and duplicate validation
+- Clear entrypoints; pinned dependencies documented; no speculative packages
+- `pytest` for critical logic; report what actually ran
 - Env-based secrets; no credential commits
-- Plain-language summaries of what was built and how to run it
 - Update `DEPLOYMENT.md` when operational
 
 ## MODE SWITCH

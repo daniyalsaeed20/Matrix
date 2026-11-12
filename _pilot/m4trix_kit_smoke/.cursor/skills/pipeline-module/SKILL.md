@@ -37,7 +37,10 @@ Ask open questions (triggers, permissions, offline, notifications, etc.). Prefer
 
 ### 5. Implement → secure (if needed) → verify → docs
 
-- Implementers → optional **m4trix-security** → **m4trix-verifier** → **m4trix-docs-deploy**
+- Check existing shared components first; add approved shared primitives without a separate epic
+- Track slice in `ACTIVE_TASK.json`
+- Implementers → optional **m4trix-security** → **m4trix-verifier** (includes code-craft) → **m4trix-docs-deploy**
+- Brief handoff: what changed / reused or extracted / why any new layer / verified
 - Park extras in `BACKLOG.md`
 
 ## Hard rules

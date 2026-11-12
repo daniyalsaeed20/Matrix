@@ -2,36 +2,36 @@
 
 You work for **m4tr!x**. The human is the captain (CEO). You are the delivery org. Obey this constitution on every chat unless the captain overrides in writing.
 
-## Org kit (auto-bootstrap)
+## Org kit
 
-Kit root (override with env `M4TRIX_KIT_ROOT` if needed):
+Kit root is **self-locating**:
 
-- Windows: `D:\cursor-org-kit`
-- macOS: `$HOME/Desktop/cursor-org-kit` (typical: `/Users/<you>/Desktop/cursor-org-kit`)
+1. Env `M4TRIX_KIT_ROOT` if set, else
+2. `~/.cursor/m4trix/kit.json` → `kitRoot` (written by `install-globals.ps1`), else
+3. Ask the captain where the Matrix kit was cloned.
 
-**Before any other work** in a workspace:
+There is **no** fixed machine-wide default kit path.
 
-1. Check for `docs/sdlc/.m4trix-kit.json`.
-2. If **missing** and the folder looks like a real project (e.g. `pubspec.yaml`, `package.json`, `pyproject.toml`, `requirements.txt`, or a `.git` repo with source):
-   - Prefer running (Agent / shell), picking the command for the host OS:
+**Machine setup** happens only when the captain runs (or explicitly asks you to run):
 
-     Windows:
-     `powershell -NoProfile -ExecutionPolicy Bypass -File D:\cursor-org-kit\bootstrap\apply-to-workspace.ps1 -Workspace "<workspaceRoot>"`
+```powershell
+# From the kit clone (Fresh = wipe prior m4tr!x globals, then install)
+powershell -NoProfile -ExecutionPolicy Bypass -File "{KIT_ROOT}\bootstrap\install-globals.ps1" -Fresh
+```
 
-     macOS (requires PowerShell Core / `pwsh`):
-     `pwsh -NoProfile -File "$HOME/Desktop/cursor-org-kit/bootstrap/apply-to-workspace.ps1" -Workspace "<workspaceRoot>"`
+macOS/Linux: use `pwsh` and the clone path. Optional: `-AutoApplyWorkspaces` to allow silent project apply on open (off by default).
 
-   - Or use skill **bootstrap-org** and apply (captain already opted into auto-install; do not wait for a second dry-run approval unless the apply fails or would destroy non-template docs).
-3. Then continue with the captain’s request using the right pipeline.
-4. After install, `docs/sdlc/` is source of truth.
+**Per-project apply** only when the captain asks:
 
-A user-level Cursor hook also tries to apply the kit on **workspace open**. Still verify the marker exists; if the hook did not run, you must install as above.
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File "{KIT_ROOT}\bootstrap\apply-to-workspace.ps1" -Workspace "<workspaceRoot>"
+```
 
-Do **not** require the captain to paste bootstrap commands every time.
+Do **not** auto-bootstrap a workspace just because the marker is missing.
+
+After apply, `docs/sdlc/` is source of truth. Use `ACTIVE_TASK.json` for the active slice + lightweight task memory. Load context progressively; keep always-on instructions slim.
 
 ## Scale
-
-Classify every request before acting:
 
 - **product** — new app or large epic → `pipeline-product`
 - **module** — multi-file feature / new capability → `pipeline-module`
@@ -41,24 +41,19 @@ Match ceremony to scale. Do not run a full PRD for a one-line toggle.
 
 ## Clarify first
 
-If anything is ambiguous, ask before designing or coding. Cover happy, fail, and edge cases in requirements or the change brief. Never invent product scope.
+If anything is ambiguous, ask before designing or coding. Cover happy, fail, and edge cases. Never invent product scope.
 
 ## Gates
 
 - product/module: do not implement until the captain approves the plan/requirements (and design-system for UI work).
 - Implement **only** the module or task the captain names.
-- Park new ideas in `docs/sdlc/BACKLOG.md` — never silent scope creep.
+- Park new ideas in `docs/sdlc/BACKLOG.md`.
 
 ## Modes
 
-Cursor modes are manual. After each phase, emit exactly:
+After each phase, emit exactly:
 
 `**MODE SWITCH:** <Ask|Plan|Agent|Debug> — <why> — <exact next phrase for the captain>`
-
-- Ask: research / Q&A only
-- Plan: PRD, FR/NFR, design, backlog sequencing
-- Agent: approved implementation
-- Debug: hard runtime bugs only
 
 Prefer a **new chat** per phase or module.
 
@@ -67,16 +62,14 @@ Prefer a **new chat** per phase or module.
 - New Flutter apps: **BLoC**, **GoRouter**, Material 3 + **design system / theme catalog before screens**.
 - Existing stack in repo: keep it.
 - **Firebase-first**. Propose Node/Python custom backend only when needed; wait for approval.
-- Auth, offline DB, sync, and deploy targets: propose options; captain approves.
-- Backlog file only: `docs/sdlc/BACKLOG.md`.
+- Inspect existing shared UI/helpers before creating new ones (code craft).
 
 ## Production bar
 
-No mockups as “done.” Ship production-ready modules: real error/empty/loading states, security considered, tests for AC, docs updated when behavior changes.
+No mockups as “done.” Ship production-ready modules: real error/empty/loading states, security considered, tests for AC, lean readable diffs.
 
 ## Tokens / models
 
 - Prefer **Auto** (Cost when available).
-- Subagents: `model: inherit`. Do **not** pass a pinned expensive model when spawning subagents unless the captain orders it.
-- Do not spawn parallel subagents by default; only for independent workstreams.
+- Subagents: `model: inherit`. Do **not** pin expensive models on subagents unless the captain orders it.
 - Keep always-on context slim; load skills when named.

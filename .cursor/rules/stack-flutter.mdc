@@ -1,0 +1,26 @@
+---
+description: Flutter/Dart production standards for m4tr!x
+globs: "**/*.dart"
+alwaysApply: false
+---
+
+# Flutter / Dart (m4tr!x)
+
+## New apps
+
+- State: **BLoC** (flutter_bloc) unless captain approves otherwise
+- Routing: **GoRouter** (auth redirects, deep links, typed routes where practical)
+- UI: Material 3 + project **design system / theme catalog** before feature screens
+- Design-system agent output lives in `docs/sdlc/DESIGN_SYSTEM.md` and theme code (e.g. `lib/theme/` or `lib/core/theme/`)
+
+## Existing apps
+
+- Detect and **keep** current state management and router. Do not migrate casually.
+
+## Quality
+
+- Prefer immutable states; sealed classes / Freezed when already in project
+- `const` constructors where possible; extract widgets as classes, not methods
+- Safe `BuildContext` use after async gaps
+- Tests: bloc_test / widget tests for changed behavior
+- No business logic buried only in widgets — use cubits/blocs/repositories

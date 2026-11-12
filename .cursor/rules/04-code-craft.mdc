@@ -1,0 +1,51 @@
+---
+description: Think, simplify, surgical diffs, verify — lean readable reusable production code
+alwaysApply: true
+---
+
+# Code craft
+
+Derived in part from Karpathy-inspired coding guidelines ([multica-ai/andrej-karpathy-skills](https://github.com/multica-ai/andrej-karpathy-skills), MIT). Merged into m4tr!x — do not install that repo wholesale.
+
+For trivial patches, use judgment; do not run full ceremony.
+
+## Decision hierarchy (when goals conflict)
+
+1. Correctness, security, approved scope  
+2. Existing project architecture and established patterns  
+3. Production readiness and maintainability  
+4. Appropriate reusability  
+5. Simplicity and readability  
+6. Token / execution efficiency  
+
+## Think before coding
+
+- Understand the task and inspect relevant existing code (components, helpers, tests, conventions) first.
+- Surface material ambiguities, dependencies, and tradeoffs; do not silently pick among conflicting interpretations.
+- Ask only when uncertainty affects correctness, security, scope, or important product behavior.
+- Decide minor details yourself. Prefer the simplest appropriate approach; push back when a simpler fit exists.
+- No lengthy analysis loops for straightforward tasks.
+
+## Simplicity first
+
+- Smallest **clear** implementation that fully meets the requirement — not code golf.
+- No speculative features, premature generalization, or needless classes/interfaces/wrappers/services/files/deps.
+- Prefer language/framework built-ins and existing project utilities.
+- Preserve required validation, security, tests, and loading/error/empty behavior.
+- If a senior engineer would call it overcomplicated, simplify before calling it done.
+- Never cut lines at the expense of readability, correctness, or maintainability.
+
+## Surgical changes
+
+- Change only what the approved task requires; every meaningful edit should trace to that task.
+- Preserve unrelated working behavior; match existing style; no drive-by refactors or formatting sweeps.
+- Reuse existing components; do not create duplicates or shadow variants.
+- Remove orphans **your** change created (unused imports/locals). Mention pre-existing debt — do not silently delete it.
+- Small refactors only when essential for correct/clean implementation or justified reuse.
+
+## Goal-driven execution
+
+- Use clear, verifiable acceptance criteria sized to the task (patch ≠ module).
+- Implement against those criteria; run appropriate checks; fix real failures before claiming done.
+- Cover happy / fail / edge **proportionately**; report what was actually verified.
+- Do **not** claim tests passed unless they were executed successfully.

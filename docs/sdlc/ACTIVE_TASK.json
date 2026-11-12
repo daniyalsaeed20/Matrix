@@ -1,0 +1,59 @@
+{
+  "taskId": "KIT-1.5",
+  "title": "EGM planning intelligence upgrade",
+  "scale": "module",
+  "phase": "accepted",
+  "status": "accepted",
+  "approvedScope": "Selective EGM in Matrix kit only; no RTMES/customer edits; no new permanent agent",
+  "acceptanceCriteria": [
+    "Product/module activate egm-review; patch skips",
+    "Fresh Task Goldfish detects incomplete fixture",
+    "Smoke pass; 12 agents; version 1.5.0 after verify"
+  ],
+  "permittedPaths": [
+    "skills/",
+    "agents/",
+    "templates/sdlc/",
+    "constitution/project-rules/",
+    "ecc-cherry-pick/",
+    "bootstrap/",
+    "docs/sdlc/",
+    "_pilot/egm_eval/",
+    "VERSION",
+    "README.md"
+  ],
+  "designSystemChangesApproved": false,
+  "decisionRefs": ["2026-11-12 EGM via egm-review skill"],
+  "conventions": [],
+  "reusableComponents": [],
+  "filesChanged": [
+    "skills/egm-review/SKILL.md",
+    "skills/pipeline-product/SKILL.md",
+    "skills/pipeline-module/SKILL.md",
+    "skills/pipeline-patch/SKILL.md"
+  ],
+  "verified": [
+    "bootstrap/smoke-tests.ps1 PASS",
+    "Task Goldfish incomplete_module_spec Blocking findings"
+  ],
+  "blockers": [],
+  "qualityChecks": ["smoke-tests", "egm-isolation"],
+  "egm": {
+    "required": true,
+    "status": "resolved",
+    "reviewPaths": ["_pilot/egm_eval/incomplete_module_spec.md"],
+    "blockingOpen": false,
+    "note": "Meta-kit upgrade used live Goldfish on fixture; customer product plans still need captain approve before implement"
+  },
+  "context": {
+    "updatedAt": "2026-11-12T14:40:00+05:00",
+    "staleAfterHours": 72,
+    "note": "Advisory stale hint."
+  },
+  "approval": {
+    "by": "captain",
+    "at": "2026-11-12",
+    "note": "Elephant-Goldfish Planning Intelligence Upgrade prompt"
+  },
+  "notes": "Tokens N/A"
+}
