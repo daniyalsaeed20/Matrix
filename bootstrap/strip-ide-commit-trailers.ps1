@@ -23,7 +23,8 @@ function Get-CleanCommitMessage([string]$msg) {
     '(?i)[ \t]*Generated with Cursor[ \t]*',
     '(?i)[ \t]*Generated-by:\s*Cursor[ \t]*'
   )
-  $clean = $msg
+  # Strip UTF-8 BOM if present (PowerShell Set-Content -Encoding UTF8 often adds it).
+  $clean = $msg -replace '^\uFEFF', ''
   foreach ($p in $patterns) {
     $clean = [regex]::Replace($clean, $p, "")
   }
