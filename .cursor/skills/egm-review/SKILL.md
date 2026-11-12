@@ -44,9 +44,13 @@ If Task / fresh subagents are unavailable → **stop EGM**, report limitation, d
 
 1. Elephant accepts, contests (with evidence), or escalates.
 2. Record material outcomes in `docs/sdlc/EGM_REVIEW.md`.
-3. Unresolved **Blocking** (architecture/security/spec) → set `ACTIVE_TASK` blocked; **no implementation**.
-4. Captain still must explicitly approve implementation. Goldfish complete ≠ approval.
-5. Re-review only after substantive spec changes.
+3. **Blocking** keeps `egm.blockingOpen=true` and blocks implementation until resolved per class:
+   - **Missing / contradictory requirements** or incomplete happy/fail/edge AC → fix Elephant docs (not risk-acceptable).
+   - **Unresolved security defects** → fix or redesign in docs (not risk-acceptable).
+   - **Implementation / architecture tradeoff risks** only → captain may accept-as-risk **in writing** (`EGM_REVIEW.md` + `DECISIONS.md`), then clear that finding.
+4. Set `blockingOpen=false` only after all Blocking are fixed or (eligible) captain-accepted.
+5. Captain still must explicitly approve implementation. Goldfish complete ≠ approval; risk acceptance ≠ approval.
+6. Re-review only after substantive spec changes.
 
 ## ACTIVE_TASK fields
 

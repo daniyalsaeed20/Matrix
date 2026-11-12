@@ -29,14 +29,14 @@ pwsh -NoProfile -File ./bootstrap/install-globals.ps1 -Fresh
 Installs:
 
 - `~/.cursor/agents/m4trix-*.md`
-- `~/.cursor/skills/{bootstrap-org,pipeline-*}/`
+- `~/.cursor/skills/{bootstrap-org,pipeline-*,egm-review}/`
 - `~/.cursor/hooks/m4trix-*.ps1`
 - `~/.cursor/m4trix/kit.json` (persists kit root + flags)
 - `~/.cursor/m4trix/USER_RULES.md` (path-resolved paste source)
-- Merges into `~/.cursor/hooks.json`:
+- Merges into `~/.cursor/hooks.json` (backs up first; fails clearly on malformed JSON; preserves unrelated hooks + custom properties):
   - `workspaceOpen` — applies only if you later used `-AutoApplyWorkspaces`
-  - `beforeSubmitPrompt` — `continue: true` only (documented schema)
-  - `sessionStart` — reminder context if workspace marker missing
+  - `sessionStart` — missing-marker reminder or outdated-marker upgrade advisory (never auto-upgrades)
+  - Strips any prior m4tr!x `beforeSubmitPrompt` entries (no longer registered)
 
 Does **not** touch `~/.cursor/skills-cursor/` or unrelated hooks.
 

@@ -29,7 +29,8 @@ If the module needs meaningful upfront design: `egm.required=true`. If it is a t
 
 - Skill **egm-review**: **one** fresh Task (`m4trix-architect` as Goldfish)  
 - More reviewers only if material unresolved risks remain  
-- Resolve into `EGM_REVIEW.md`; Blocking → no implement  
+- Resolve into `EGM_REVIEW.md`; Blocking → no implement until fixed in docs or (eligible tradeoff only) captain risk-accepted in writing  
+ 
 
 `**MODE SWITCH:** Plan — captain approve module — Reply approve module <NAME> after EGM`
 

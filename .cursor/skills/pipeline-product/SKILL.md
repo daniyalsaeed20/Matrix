@@ -29,7 +29,7 @@ Specs must stand alone without the chat. Set `ACTIVE_TASK.egm.required=true`, `e
 ### 5. EGM Goldfish (required)
 
 - Run **egm-review**: fresh Task Goldfish (`m4trix-architect`; optional `m4trix-security` if material risk).
-- Record findings in `EGM_REVIEW.md`; Elephant resolves; Blocking open → `egm.blockingOpen=true`, no implement.
+- Record findings in `EGM_REVIEW.md`; Elephant resolves; Blocking open → `egm.blockingOpen=true`, no implement. Missing requirements / security defects must be fixed in docs; only eligible implementation tradeoffs may be captain risk-accepted in writing (see egm-review).
 - Present summary to captain (what / decisions / findings / risks / ready?).
 
 `**MODE SWITCH:** Plan — captain approve spec — Reply approve product spec for backlog after EGM`

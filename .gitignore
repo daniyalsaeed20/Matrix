@@ -7,11 +7,21 @@
 *.iml
 Thumbs.db
 
+# Machine-local apply markers (generated on apply; kitRoot is not portable)
+**/docs/sdlc/.m4trix-kit.json
+
 # Flutter / Dart junk that may appear under _pilot
 **/.dart_tool/
 **/build/
 **/Flutter/ephemeral/
 **/android/local.properties
 **/.flutter-plugins-dependencies
+**/ios/Flutter/Generated.xcconfig
+**/ios/Flutter/flutter_export_environment.sh
+**/macos/Flutter/ephemeral/
 *.env
 !.env.example
+
+# Local packaging output
+dist/
+*.m4trix-backup-*

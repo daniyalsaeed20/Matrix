@@ -1,4 +1,4 @@
-# EGM validation evidence (v1.5.0)
+# EGM validation evidence (v1.5.0 policy; Blocking-class clarify carried in 1.5.1)
 
 | # | Scenario | Type | Result |
 |---|----------|------|--------|
@@ -8,7 +8,7 @@
 | 4 | Fresh Task isolation | Real Task (`m4trix-architect`, no resume) | PASS — Cursor Task does not inherit parent chat |
 | 5 | Goldfish detects incomplete spec | Real Task on `incomplete_module_spec.md` | PASS — Blocking: no AC, vague timing/arch; Major: fail/edge, security, reuse |
 | 6 | Elephant must not invent scope | Policy in agents + skill | PASS (policy); not a live resolve cycle in this run |
-| 7 | Blocking prevents implement | ACTIVE_TASK `egm.blockingOpen` + pipelines | PASS (policy encoded) |
+| 7 | Blocking prevents implement | ACTIVE_TASK `egm.blockingOpen` + pipelines + Blocking class policy | PASS (policy encoded; requirements/security not risk-acceptable) |
 | 8 | Captain approval still required | Skill + ACTIVE_TASK approval note | PASS (policy) |
 | 9 | Craft/context/token rules intact | smoke always-apply ≤5, craft checks | PASS |
 

@@ -154,6 +154,191 @@ function Join-M4trixPath {
   return $p
 }
 
+function Get-M4trixManagedSkillNames {
+  return @(
+    "bootstrap-org",
+    "pipeline-product",
+    "pipeline-module",
+    "pipeline-patch",
+    "egm-review"
+  )
+}
+
+function Test-M4trixOwnedHookCommand([string]$command) {
+  if ([string]::IsNullOrWhiteSpace($command)) { return $false }
+  return [bool]($command -match "m4trix-(workspace-open|before-prompt|session-start|platform)")
+}
+
+function ConvertTo-M4trixHookEntryMap($item) {
+  $map = [ordered]@{}
+  if ($null -eq $item) { return $map }
+  if ($item -is [System.Collections.IDictionary]) {
+    foreach ($k in $item.Keys) { $map[[string]$k] = $item[$k] }
+    return $map
+  }
+  foreach ($p in $item.PSObject.Properties) {
+    $map[$p.Name] = $p.Value
+  }
+  return $map
+}
+
+function ConvertTo-M4trixVersionParts([string]$Version) {
+  $parts = [System.Collections.Generic.List[int]]::new()
+  foreach ($piece in @($Version.Trim() -split '[^0-9]+' | Where-Object { $_ -ne '' })) {
+    $parts.Add([int]$piece)
+  }
+  while ($parts.Count -lt 3) { $parts.Add(0) }
+  return $parts
+}
+
+function Compare-M4trixVersion([string]$Left, [string]$Right) {
+  $a = ConvertTo-M4trixVersionParts $Left
+  $b = ConvertTo-M4trixVersionParts $Right
+  for ($i = 0; $i -lt 3; $i++) {
+    if ($a[$i] -lt $b[$i]) { return -1 }
+    if ($a[$i] -gt $b[$i]) { return 1 }
+  }
+  return 0
+}
+
+function Backup-M4trixFile([string]$Path) {
+  if (-not (Test-Path $Path -PathType Leaf)) { return $null }
+  $stamp = Get-Date -Format "yyyyMMdd-HHmmss"
+  $bak = "$Path.m4trix-backup-$stamp"
+  Copy-Item -LiteralPath $Path -Destination $bak -Force
+  return $bak
+}
+
+function Read-M4trixHooksJsonFile([string]$Path) {
+  if (-not (Test-Path $Path -PathType Leaf)) { return $null }
+  $raw = Get-Content -LiteralPath $Path -Raw -ErrorAction Stop
+  if ([string]::IsNullOrWhiteSpace($raw)) {
+    throw "hooks.json at '$Path' is empty. Fix or move it aside before changing m4tr!x hooks."
+  }
+  try {
+    return ($raw | ConvertFrom-Json -ErrorAction Stop)
+  } catch {
+    throw "hooks.json at '$Path' is malformed JSON ($($_.Exception.Message)). Fix or move it aside before installing/uninstalling m4tr!x — existing file was not modified."
+  }
+}
+
+function New-M4trixHooksConfigFromExisting($existing) {
+  $cfg = @{
+    version = 1
+    hooks   = @{}  # event name -> list of entry maps
+  }
+  if ($null -eq $existing) { return $cfg }
+  if ($existing.version) { $cfg.version = [int]$existing.version }
+  if (-not $existing.hooks) { return $cfg }
+  foreach ($prop in $existing.hooks.PSObject.Properties) {
+    $list = @()
+    foreach ($item in @($prop.Value)) {
+      $list += ,(ConvertTo-M4trixHookEntryMap $item)
+    }
+    $cfg.hooks[$prop.Name] = $list
+  }
+  return $cfg
+}
+
+function Remove-M4trixOwnedHookEntries($cfg) {
+  $keys = @($cfg.hooks.Keys)
+  foreach ($key in $keys) {
+    $kept = @()
+    foreach ($entry in @($cfg.hooks[$key])) {
+      $cmd = ""
+      if ($entry -is [System.Collections.IDictionary]) {
+        $cmd = [string]$entry["command"]
+      } else {
+        $cmd = [string]$entry.command
+      }
+      if (Test-M4trixOwnedHookCommand $cmd) { continue }
+      $kept += ,$entry
+    }
+    if ($kept.Count -gt 0) {
+      $cfg.hooks[$key] = $kept
+    } else {
+      $cfg.hooks.Remove($key)
+    }
+  }
+  return $cfg
+}
+
+function Add-M4trixHookEntries {
+  param(
+    $Config,
+    [hashtable]$Entries  # event -> array of entry maps/hashtables
+  )
+  foreach ($eventName in $Entries.Keys) {
+    if (-not $Config.hooks.ContainsKey($eventName)) {
+      $Config.hooks[$eventName] = @()
+    }
+    $toAdd = @($Entries[$eventName]) | ForEach-Object { ConvertTo-M4trixHookEntryMap $_ }
+    $Config.hooks[$eventName] = @($Config.hooks[$eventName]) + $toAdd
+  }
+  return $Config
+}
+
+function Write-M4trixHooksJsonFile {
+  param(
+    [Parameter(Mandatory = $true)][string]$Path,
+    [Parameter(Mandatory = $true)]$Config
+  )
+  $hooksOut = [ordered]@{
+    version = [int]$Config.version
+    hooks   = [ordered]@{}
+  }
+  foreach ($key in $Config.hooks.Keys) {
+    $arr = @()
+    foreach ($h in @($Config.hooks[$key])) {
+      $arr += ,(ConvertTo-M4trixHookEntryMap $h)
+    }
+    $hooksOut.hooks[$key] = $arr
+  }
+  ($hooksOut | ConvertTo-Json -Depth 10) | Set-Content -LiteralPath $Path -Encoding UTF8
+}
+
+function Merge-M4trixHooksJson {
+  <#
+  .SYNOPSIS
+    Merge m4tr!x hook entries into hooks.json. Preserves unrelated hooks and all their properties.
+    Backs up before mutation. Fails clearly on malformed JSON (no silent replace).
+    Strips prior m4tr!x-owned entries first so reinstall does not duplicate.
+  #>
+  param(
+    [Parameter(Mandatory = $true)][string]$Path,
+    [Parameter(Mandatory = $true)][hashtable]$M4trixEntries
+  )
+  $existing = $null
+  if (Test-Path $Path -PathType Leaf) {
+    $existing = Read-M4trixHooksJsonFile -Path $Path
+  }
+  $cfg = New-M4trixHooksConfigFromExisting $existing
+  $cfg = Remove-M4trixOwnedHookEntries $cfg
+  $cfg = Add-M4trixHookEntries -Config $cfg -Entries $M4trixEntries
+  if (Test-Path $Path -PathType Leaf) {
+    $bak = Backup-M4trixFile -Path $Path
+    if ($bak) { Write-Host "  hooks.json backup -> $bak" }
+  }
+  Write-M4trixHooksJsonFile -Path $Path -Config $cfg
+}
+
+function Strip-M4trixHooksJson {
+  <#
+  .SYNOPSIS
+    Remove only m4tr!x-owned hook entries. Fails clearly on malformed JSON.
+  #>
+  param(
+    [Parameter(Mandatory = $true)][string]$Path
+  )
+  if (-not (Test-Path $Path -PathType Leaf)) { return }
+  $existing = Read-M4trixHooksJsonFile -Path $Path
+  $cfg = New-M4trixHooksConfigFromExisting $existing
+  $cfg = Remove-M4trixOwnedHookEntries $cfg
+  $bak = Backup-M4trixFile -Path $Path
+  if ($bak) { Write-Host "  hooks.json backup -> $bak" }
+  Write-M4trixHooksJsonFile -Path $Path -Config $cfg
+}
+
 function Remove-M4trixManagedGlobals {
   <#
   .SYNOPSIS
@@ -173,13 +358,7 @@ function Remove-M4trixManagedGlobals {
     }
   }
 
-  $skillNames = @(
-    "bootstrap-org",
-    "pipeline-product",
-    "pipeline-module",
-    "pipeline-patch"
-  )
-  foreach ($name in $skillNames) {
+  foreach ($name in (Get-M4trixManagedSkillNames)) {
     $dest = Join-Path $SkillsDst $name
     if (Test-Path $dest) {
       Remove-Item -Recurse -Force $dest
@@ -201,28 +380,8 @@ function Remove-M4trixManagedGlobals {
   }
 
   if (Test-Path $HooksJson) {
-    try {
-      $existing = Get-Content $HooksJson -Raw | ConvertFrom-Json
-      $hooksOut = [ordered]@{ version = 1; hooks = [ordered]@{} }
-      if ($existing.version) { $hooksOut.version = [int]$existing.version }
-      if ($existing.hooks) {
-        foreach ($prop in $existing.hooks.PSObject.Properties) {
-          $kept = @()
-          foreach ($item in @($prop.Value)) {
-            $cmd = [string]$item.command
-            if ($cmd -match "m4trix-(workspace-open|before-prompt|session-start|platform)") { continue }
-            $kept += $item
-          }
-          if ($kept.Count -gt 0) {
-            $hooksOut.hooks[$prop.Name] = @($kept)
-          }
-        }
-      }
-      ($hooksOut | ConvertTo-Json -Depth 8) | Set-Content -Path $HooksJson -Encoding UTF8
-      Write-Host "  stripped m4trix entries from hooks.json"
-    } catch {
-      Write-Host "  warning: could not clean hooks.json: $($_.Exception.Message)"
-    }
+    Strip-M4trixHooksJson -Path $HooksJson
+    Write-Host "  stripped m4trix entries from hooks.json"
   }
 
   $stateDir = Get-M4trixStateDir
