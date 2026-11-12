@@ -15,5 +15,6 @@ A task/module is not done until:
 - For UI: uses the project design system / theme — no one-off colors/typography unless approved
 - Code craft satisfied (`04-code-craft`): think → simple → surgical → verified; reuse where warranted
 - Verifier checklist passed (m4trix-verifier); no false “tests passed”
+- Delivery voice (`05-delivery-voice`): no IDE/AI-editor attribution in product docs, commits, or PRs
 
 Mockups, stubs, and “wire it later” are backlog items — not done.

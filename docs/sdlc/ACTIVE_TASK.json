@@ -1,59 +1,60 @@
 {
-  "taskId": "KIT-1.5",
-  "title": "EGM planning intelligence upgrade",
-  "scale": "module",
+  "taskId": "KIT-voice-1",
+  "title": "Delivery voice — no IDE attribution in product git/docs",
+  "scale": "patch",
   "phase": "accepted",
   "status": "accepted",
-  "approvedScope": "Selective EGM in Matrix kit only; no RTMES/customer edits; no new permanent agent",
+  "approvedScope": "Add always-on rule + MANIFEST/USER_RULES/docs-deploy/verifier wiring; Matrix kit install docs remain exempt",
   "acceptanceCriteria": [
-    "Product/module activate egm-review; patch skips",
-    "Fresh Task Goldfish detects incomplete fixture",
-    "Smoke pass; 12 agents; version 1.5.0 after verify"
+    "Happy: product docs/commits/PRs omit Cursor and IDE/AI-editor branding",
+    "Fail: verifier flags attribution in product delivery artifacts",
+    "Edge: Matrix kit install/setup docs may still name the IDE"
   ],
   "permittedPaths": [
-    "skills/",
+    "constitution/",
+    ".cursor/rules/",
+    ".cursor/agents/",
     "agents/",
-    "templates/sdlc/",
-    "constitution/project-rules/",
-    "ecc-cherry-pick/",
     "bootstrap/",
-    "docs/sdlc/",
-    "_pilot/egm_eval/",
-    "VERSION",
-    "README.md"
+    "docs/sdlc/"
   ],
   "designSystemChangesApproved": false,
-  "decisionRefs": ["2026-11-12 EGM via egm-review skill"],
-  "conventions": [],
+  "decisionRefs": ["2026-11-12 Delivery voice"],
+  "conventions": ["05-delivery-voice"],
   "reusableComponents": [],
   "filesChanged": [
-    "skills/egm-review/SKILL.md",
-    "skills/pipeline-product/SKILL.md",
-    "skills/pipeline-module/SKILL.md",
-    "skills/pipeline-patch/SKILL.md"
+    "constitution/project-rules/05-delivery-voice.mdc",
+    "constitution/project-rules/01-production-bar.mdc",
+    "constitution/USER_RULES.md",
+    ".cursor/rules/05-delivery-voice.mdc",
+    ".cursor/rules/01-production-bar.mdc",
+    "agents/m4trix-docs-deploy.md",
+    "agents/m4trix-verifier.md",
+    "bootstrap/MANIFEST.json",
+    "bootstrap/smoke-tests.ps1",
+    "docs/sdlc/DECISIONS.md"
   ],
   "verified": [
-    "bootstrap/smoke-tests.ps1 PASS",
-    "Task Goldfish incomplete_module_spec Blocking findings"
+    "bootstrap/smoke-tests.ps1 PASS (includes 05-delivery-voice + MANIFEST + lean ≤6)"
   ],
   "blockers": [],
-  "qualityChecks": ["smoke-tests", "egm-isolation"],
+  "qualityChecks": ["smoke-tests"],
   "egm": {
-    "required": true,
-    "status": "resolved",
-    "reviewPaths": ["_pilot/egm_eval/incomplete_module_spec.md"],
+    "required": false,
+    "status": "skipped",
+    "reviewPaths": [],
     "blockingOpen": false,
-    "note": "Meta-kit upgrade used live Goldfish on fixture; customer product plans still need captain approve before implement"
+    "note": "Patch — EGM skipped"
   },
   "context": {
-    "updatedAt": "2026-11-12T14:40:00+05:00",
+    "updatedAt": "2026-11-12T14:55:00+05:00",
     "staleAfterHours": 72,
     "note": "Advisory stale hint."
   },
   "approval": {
     "by": "captain",
     "at": "2026-11-12",
-    "note": "Elephant-Goldfish Planning Intelligence Upgrade prompt"
+    "note": "Captain requested no Cursor mentions in codebase docs, commits, pushes"
   },
-  "notes": "Tokens N/A"
+  "notes": "Re-apply kit to product workspaces; refresh pasted USER_RULES from constitution/USER_RULES.md or re-run install-globals"
 }

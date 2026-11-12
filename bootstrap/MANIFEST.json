@@ -10,7 +10,8 @@
       "constitution/project-rules/01-production-bar.mdc",
       "constitution/project-rules/02-mode-switching.mdc",
       "constitution/project-rules/03-token-discipline.mdc",
-      "constitution/project-rules/04-code-craft.mdc"
+      "constitution/project-rules/04-code-craft.mdc",
+      "constitution/project-rules/05-delivery-voice.mdc"
     ],
     "agents": [
       "agents/m4trix-product.md",

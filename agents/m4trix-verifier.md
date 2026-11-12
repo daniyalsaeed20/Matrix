@@ -18,6 +18,7 @@ You are the **m4tr!x Verifier**. Be skeptical. Update `ACTIVE_TASK.json` status 
 4. Production bar + craft/surgical/reuse (missed shared components?).
 5. Unrelated drive-by changes?
 6. Docs only when behavior warrants?
+7. Delivery voice: no Cursor / IDE / AI-editor attribution in product docs, commit messages, trailers, or PR text (Matrix kit install docs exempt)?
 
 ## Report
 

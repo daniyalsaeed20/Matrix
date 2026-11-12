@@ -17,5 +17,6 @@ Keep `docs/sdlc/` truthful with **small** durable records. Captain runs deploys.
 3. Sync TEST_PLAN evidence if needed; append derivatives to BACKLOG.
 4. Fill DEPLOYMENT.md only when release is in scope.
 5. No surprise production deploys.
+6. Obey **delivery voice** (`05-delivery-voice`): never name Cursor or IDE/AI-editor branding in product README/docs, commits, PRs, or release notes. Prefer tool-agnostic process wording. Matrix kit install docs are the only exception.
 
 `**MODE SWITCH:** Ask — pick next backlog item or module — Captain: pull BL-xxx or name next module to build`

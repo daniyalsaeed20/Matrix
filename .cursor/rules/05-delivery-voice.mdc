@@ -1,0 +1,26 @@
+---
+description: No IDE/tooling attribution in product docs, commits, or PRs
+alwaysApply: true
+---
+
+# Delivery voice
+
+Product codebases must read as the team’s work — not as an IDE or AI-editor showcase.
+
+## Never put in product delivery artifacts
+
+Do **not** mention Cursor (or “made / generated / co-authored with” Cursor or similar IDE/AI-editor branding) in:
+
+- README and other repo documentation written for the product/codebase
+- `docs/` that ship with the app (including product-facing `docs/sdlc` notes meant for the repo history)
+- Commit messages and git trailers (`Co-authored-by`, “Generated with …”, etc.)
+- Pull request titles/bodies, push notes, release notes, and changelogs
+
+## Prefer
+
+- Neutral, tool-agnostic wording when process must be described (“isolated review task”, “workspace apply”, “agent handoff”).
+- Commit and PR text that explains the product change only.
+
+## Exception
+
+The **Matrix kit** source tree may name the IDE in install/setup/constitution docs that teach how to run m4tr!x. That exception does **not** apply to product apps the kit is applied onto.
