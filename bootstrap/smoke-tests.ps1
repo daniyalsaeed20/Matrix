@@ -27,6 +27,7 @@ Write-Host "KitRoot: $KitRoot"
 
 Assert-True (Test-M4trixKitRootCandidate $KitRoot) "clone path is a valid kit root"
 Assert-True (Test-Path (Join-Path $KitRoot "constitution\project-rules\04-code-craft.mdc")) "04-code-craft.mdc exists"
+Assert-True (Test-Path (Join-Path $KitRoot "constitution\project-rules\05-delivery-voice.mdc")) "05-delivery-voice.mdc exists"
 Assert-True (Test-Path (Join-Path $KitRoot "constitution\project-rules\stack-flutter-reusability.mdc")) "stack-flutter-reusability.mdc exists"
 Assert-True (Test-Path (Join-Path $KitRoot "templates\sdlc\ACTIVE_TASK.json")) "ACTIVE_TASK.json template exists"
 Assert-True (Test-Path (Join-Path $KitRoot "hooks\m4trix-session-start.ps1")) "session-start hook exists"
@@ -44,6 +45,12 @@ Assert-True ($craft -match "Never cut lines") "craft: rejects pure LOC golf"
 $ver = Get-Content (Join-Path $KitRoot "agents\m4trix-verifier.md") -Raw
 Assert-True ($ver -match "drive-by|Unrelated|surgical") "verifier checks surgical/unrelated diffs"
 Assert-True ($ver -match "actually run|What was verified") "verifier requires real verification evidence"
+Assert-True ($ver -match "Delivery voice|IDE / AI-editor attribution|no Cursor") "verifier checks delivery voice"
+$voice = Get-Content (Join-Path $KitRoot "constitution\project-rules\05-delivery-voice.mdc") -Raw
+Assert-True ($voice -match "commit|Pull request|PR") "delivery voice covers commits/PRs"
+Assert-True ($voice -match "Matrix kit") "delivery voice exempts Matrix kit install docs"
+$manifest = Get-Content (Join-Path $KitRoot "bootstrap\MANIFEST.json") -Raw
+Assert-True ($manifest -match "05-delivery-voice") "MANIFEST ships 05-delivery-voice"
 
 $tok = Get-Content (Join-Path $KitRoot "constitution\project-rules\03-token-discipline.mdc") -Raw
 Assert-True ($tok -match "Progressive load") "context: progressive load"
@@ -69,7 +76,7 @@ Assert-True ($modPipe -match "egm-review|Goldfish") "module pipeline activates E
 Assert-True ($patchPipe -match "EGM / Goldfish: skip|skip.*EGM") "patch pipeline skips EGM"
 Assert-True ((@(Get-ChildItem (Join-Path $KitRoot "constitution\project-rules") -Filter "*.mdc" | Where-Object {
   (Get-Content $_.FullName -Raw) -match "alwaysApply:\s*true"
-}).Count) -le 5) "always-apply rules stay lean (≤5)"
+}).Count) -le 6) "always-apply rules stay lean (≤6)"
 Assert-True ((@(Get-ChildItem (Join-Path $KitRoot "agents") -Filter "m4trix-*.md")).Count -eq 12) "still 12 m4trix agents (no permanent Goldfish agent)"
 
 # beforeSubmitPrompt schema

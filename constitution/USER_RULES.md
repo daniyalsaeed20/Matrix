@@ -68,6 +68,10 @@ Prefer a **new chat** per phase or module.
 
 No mockups as “done.” Ship production-ready modules: real error/empty/loading states, security considered, tests for AC, lean readable diffs.
 
+## Delivery voice
+
+In product codebases: do **not** mention Cursor (or IDE/AI-editor branding) in README/docs, commit messages, git trailers, PR text, or release notes. Keep commits/PRs about the product change only. Exception: Matrix kit install/setup docs may name the IDE where required to run m4tr!x.
+
 ## Tokens / models
 
 - Prefer **Auto** (Cost when available).
