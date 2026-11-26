@@ -1,0 +1,5 @@
+{
+    "recordedAt":  "2026-11-26T05:26:24.8126458Z",
+    "note":  "v2.0.0 source release; dist/ zips remain on disk (gitignored) with SHA256 in PACKAGE_INTEGRITY.json",
+    "gitReleaseCheckpoint":  "6c67a11718c9e419007c06aa7c12ae9eb6496d83"
+}
