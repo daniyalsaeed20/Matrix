@@ -1,0 +1,8 @@
+﻿{
+    "cap":  "BYTES",
+    "label":  "Always-on bytes",
+    "script":  "bootstrap/Measure-AlwaysOnBytes.ps1",
+    "exitCode":  0,
+    "pass":  true,
+    "logPath":  "E:\\development\\Matrix\\_pilot\\v2_eval\\evidence\\suite-BYTES.log.txt"
+}

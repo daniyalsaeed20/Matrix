@@ -47,8 +47,17 @@ Only after captain approval of the reviewed spec:
 
 Implementers → optional security → verifier → docs. Track `ACTIVE_TASK`. Deploy doc late when asked.
 
+If a module hits repeated/uncertain failures: skill **pipeline-recovery** + **m4trix-debugger** (product-critical budget 3 then escalate). Not a fourth scale.
+
+**Routing:** at product and each module start, classify full attributes → `Evaluate-Routing.ps1` → invoke mandatory specialists with evidence → Guard `-Validators …,routing` before done claims. No markdown-only route.
+
+**Research:** unfamiliar stack/architecture choices → skill **engineering-research** + `ACTIVE_TASK.research`; Guard `-Validators …,research` when `researchNeeded`. Scale alone ≠ research gate.
+
 ## Hard rules
 
 - No one-shot full-app implementation  
 - EGM required; review ≠ captain approval  
 - Production bar every module; emit MODE SWITCH at every gate  
+- Solution Escalation Ladder (`04-code-craft`): no silent patch→module/product promotion; significant architecture needs evidence + captain approval (anti-promotion)  
+- **Significant UI:** product and UI modules use **m4trix-ui-designer** (design→render→critique→refine→honest `visualStatus`) with design-system token ownership; design-doc-only done fails; Guard `-Validators …,visual` before done; patches skip designer and full visual bar  
+- **Completion gate:** before any module/product `done|accepted` claim, stamp fingerprints then run `Invoke-CompletionGate.ps1` (always includes `approval`); refuse while `ok=false`. Process gate only — see `docs/sdlc/GUARD_BYPASS_MATRIX.md`  

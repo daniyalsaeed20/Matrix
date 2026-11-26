@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://m4trix.local/guard/regression.schema.json",
+  "title": "ACTIVE_TASK.regression",
+  "description": "Regression Lock fields (REG-001…REG-006). Validated by bootstrap/guard/validators/regression.ps1.",
+  "type": "object",
+  "required": ["status", "behaviours", "protectedChecks", "dirtyPaths"],
+  "properties": {
+    "baselineRev": {
+      "type": "string",
+      "description": "Required when status is baseline_locked|unit_check|done|accepted"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["inventory", "baseline_locked", "unit_check", "done", "accepted", "blocked"]
+    },
+    "behaviours": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "state"],
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "state": {
+            "type": "string",
+            "enum": ["verified_working", "verified_failing", "not_verified", "blocked"]
+          },
+          "evidence": {
+            "type": "string",
+            "description": "Required when state is verified_working or verified_failing"
+          }
+        }
+      }
+    },
+    "protectedChecks": {
+      "type": "array",
+      "description": "Non-empty when status is unit_check|done|accepted; any result=fail rejects the unit",
+      "items": {
+        "type": "object",
+        "required": ["result"],
+        "properties": {
+          "unitId": { "type": "string" },
+          "protectedIds": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "result": { "type": "string", "enum": ["pass", "fail"] },
+          "command": { "type": "string" }
+        }
+      }
+    },
+    "dirtyPaths": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "User dirty files to preserve; empty array allowed"
+    },
+    "integrity": {
+      "type": "object",
+      "required": ["status"],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["ok", "justified_change", "violated"]
+        },
+        "notes": { "type": ["string", "null"] },
+        "justification": { "type": ["string", "null"] }
+      }
+    },
+    "coordinatedFix": {
+      "type": "object",
+      "properties": {
+        "active": { "type": "boolean" },
+        "sharedRootCause": { "type": "string" },
+        "affectedIds": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    }
+  },
+  "additionalProperties": true
+}

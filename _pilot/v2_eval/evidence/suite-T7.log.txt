@@ -1,0 +1,39 @@
+=== Proportionality eval (T7) ===
+EvalRoot: E:\development\Matrix\_pilot\proportionality_eval
+KitRoot:  E:\development\Matrix
+PASS  04-code-craft.mdc present
+PASS  craft: Solution Escalation Ladder heading
+PASS  craft: Localized fix level
+PASS  craft: Extend existing level
+PASS  craft: Extract shared level
+PASS  craft: Restructure level
+PASS  craft: Significant decision definition
+PASS  craft: anti silent promotion
+PASS  .cursor 04-code-craft mirror present
+PASS  .cursor craft mirror has ladder
+PASS  verifier: proportionality / ladder checklist
+PASS  verifier: rejects unjustified restructure
+PASS  verifier: ordinary patches need no essay
+PASS  pipeline-patch: ladder pointer
+PASS  pipeline-patch: anti-promotion
+PASS  pipeline-module: ladder pointer
+PASS  pipeline-module: anti-promotion
+PASS  pipeline-product: ladder/anti-promotion
+PASS  pipeline-recovery: ladder / localized preference
+PASS  live procedure documented
+PASS  README present
+PASS  fixture present: localized-fix-ok.json
+PASS  fixture localized-fix-ok: expected=pass got=pass
+PASS  fixture localized-fix-ok: ordinary/localized needs no essay
+PASS  fixture present: unjustified-restructure-fail.json
+PASS  fixture unjustified-restructure-fail: expected=fail got=fail
+PASS  fixture present: justified-extract-ok.json
+PASS  fixture justified-extract-ok: expected=pass got=pass
+PASS  fixture present: ordinary-patch-ok.json
+PASS  fixture ordinary-patch-ok: expected=pass got=pass
+PASS  fixture ordinary-patch-ok: ordinary/localized needs no essay
+NOTE  live ± not yet recorded — see LIVE_PROCEDURE.md
+PASS  live limitation placeholder recorded (honest; not a live pass claim)
+
+Report: E:\development\Matrix\_pilot\proportionality_eval\evidence\REPORT.md
+RESULT: Proportionality eval passed (script layer)

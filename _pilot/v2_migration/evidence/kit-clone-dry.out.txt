@@ -1,0 +1,67 @@
+Workspace: E:\development\Matrix
+Kit: E:\development\Matrix v2.0.0
+Detected stacks: flutter, firebase, nodejs, python
+
+---- plan ----
+overwrite	constitution/project-rules/00-m4trix-os.mdc	->	E:\development\Matrix\.cursor\rules\00-m4trix-os.mdc
+overwrite	constitution/project-rules/01-production-bar.mdc	->	E:\development\Matrix\.cursor\rules\01-production-bar.mdc
+overwrite	constitution/project-rules/02-mode-switching.mdc	->	E:\development\Matrix\.cursor\rules\02-mode-switching.mdc
+overwrite	constitution/project-rules/03-token-discipline.mdc	->	E:\development\Matrix\.cursor\rules\03-token-discipline.mdc
+overwrite	constitution/project-rules/04-code-craft.mdc	->	E:\development\Matrix\.cursor\rules\04-code-craft.mdc
+overwrite	constitution/project-rules/05-delivery-voice.mdc	->	E:\development\Matrix\.cursor\rules\05-delivery-voice.mdc
+overwrite	agents/m4trix-product.md	->	E:\development\Matrix\.cursor\agents\m4trix-product.md
+overwrite	agents/m4trix-requirements.md	->	E:\development\Matrix\.cursor\agents\m4trix-requirements.md
+overwrite	agents/m4trix-architect.md	->	E:\development\Matrix\.cursor\agents\m4trix-architect.md
+overwrite	agents/m4trix-design-system.md	->	E:\development\Matrix\.cursor\agents\m4trix-design-system.md
+overwrite	agents/m4trix-scrum.md	->	E:\development\Matrix\.cursor\agents\m4trix-scrum.md
+overwrite	agents/m4trix-verifier.md	->	E:\development\Matrix\.cursor\agents\m4trix-verifier.md
+overwrite	agents/m4trix-security.md	->	E:\development\Matrix\.cursor\agents\m4trix-security.md
+overwrite	agents/m4trix-docs-deploy.md	->	E:\development\Matrix\.cursor\agents\m4trix-docs-deploy.md
+overwrite	agents/m4trix-debugger.md	->	E:\development\Matrix\.cursor\agents\m4trix-debugger.md
+overwrite	agents/m4trix-ui-designer.md	->	E:\development\Matrix\.cursor\agents\m4trix-ui-designer.md
+overwrite	skills/bootstrap-org	->	E:\development\Matrix\.cursor\skills\bootstrap-org
+overwrite	skills/pipeline-product	->	E:\development\Matrix\.cursor\skills\pipeline-product
+overwrite	skills/pipeline-module	->	E:\development\Matrix\.cursor\skills\pipeline-module
+overwrite	skills/pipeline-patch	->	E:\development\Matrix\.cursor\skills\pipeline-patch
+overwrite	skills/pipeline-recovery	->	E:\development\Matrix\.cursor\skills\pipeline-recovery
+overwrite	skills/engineering-research	->	E:\development\Matrix\.cursor\skills\engineering-research
+overwrite	skills/egm-review	->	E:\development\Matrix\.cursor\skills\egm-review
+skip	templates/sdlc/PRD.md	->	E:\development\Matrix\docs\sdlc\PRD.md (kit repo keeps existing docs)
+skip	templates/sdlc/REQUIREMENTS.md	->	E:\development\Matrix\docs\sdlc\REQUIREMENTS.md (kit repo keeps existing docs)
+skip	templates/sdlc/DESIGN.md	->	E:\development\Matrix\docs\sdlc\DESIGN.md (kit repo keeps existing docs)
+skip	templates/sdlc/DESIGN_SYSTEM.md	->	E:\development\Matrix\docs\sdlc\DESIGN_SYSTEM.md (kit repo keeps existing docs)
+skip	templates/sdlc/BACKLOG.md	->	E:\development\Matrix\docs\sdlc\BACKLOG.md (kit repo keeps existing docs)
+skip	templates/sdlc/TEST_PLAN.md	->	E:\development\Matrix\docs\sdlc\TEST_PLAN.md (kit repo keeps existing docs)
+skip	templates/sdlc/DEPLOYMENT.md	->	E:\development\Matrix\docs\sdlc\DEPLOYMENT.md (kit repo keeps existing docs)
+skip	templates/sdlc/MODULE_HANDOFF.md	->	E:\development\Matrix\docs\sdlc\MODULE_HANDOFF.md (kit repo keeps existing docs)
+skip	templates/sdlc/HANDOFF.md	->	E:\development\Matrix\docs\sdlc\HANDOFF.md (kit repo keeps existing docs)
+skip	templates/sdlc/EGM_REVIEW.md	->	E:\development\Matrix\docs\sdlc\EGM_REVIEW.md (kit repo keeps existing docs)
+skip	templates/sdlc/ACTIVE_TASK.json	->	E:\development\Matrix\docs\sdlc\ACTIVE_TASK.json (kit repo keeps existing docs)
+skip	templates/sdlc/routing-policy.json	->	E:\development\Matrix\docs\sdlc\routing-policy.json (kit repo keeps existing docs)
+skip	templates/sdlc/DECISIONS.md	->	E:\development\Matrix\docs\sdlc\DECISIONS.md (kit repo keeps existing docs)
+overwrite	constitution/project-rules/stack-flutter.mdc	->	E:\development\Matrix\.cursor\rules\stack-flutter.mdc
+overwrite	constitution/project-rules/stack-flutter-reusability.mdc	->	E:\development\Matrix\.cursor\rules\stack-flutter-reusability.mdc
+overwrite	agents/m4trix-flutter.md	->	E:\development\Matrix\.cursor\agents\m4trix-flutter.md
+overwrite	constitution/project-rules/stack-firebase.mdc	->	E:\development\Matrix\.cursor\rules\stack-firebase.mdc
+overwrite	agents/m4trix-firebase.md	->	E:\development\Matrix\.cursor\agents\m4trix-firebase.md
+overwrite	constitution/project-rules/stack-nodejs.mdc	->	E:\development\Matrix\.cursor\rules\stack-nodejs.mdc
+overwrite	agents/m4trix-node.md	->	E:\development\Matrix\.cursor\agents\m4trix-node.md
+overwrite	constitution/project-rules/stack-python.mdc	->	E:\development\Matrix\.cursor\rules\stack-python.mdc
+overwrite	agents/m4trix-python.md	->	E:\development\Matrix\.cursor\agents\m4trix-python.md
+overwrite	ecc-cherry-pick/ORIGIN.md	->	E:\development\Matrix\docs\sdlc\ecc-reference\ORIGIN.md
+overwrite	ecc-cherry-pick/flutter-patterns.md	->	E:\development\Matrix\docs\sdlc\ecc-reference\flutter-patterns.md
+overwrite	ecc-cherry-pick/flutter-review-checklist.md	->	E:\development\Matrix\docs\sdlc\ecc-reference\flutter-review-checklist.md
+overwrite	ecc-cherry-pick/python-patterns.md	->	E:\development\Matrix\docs\sdlc\ecc-reference\python-patterns.md
+overwrite	ecc-cherry-pick/security-checklist.md	->	E:\development\Matrix\docs\sdlc\ecc-reference\security-checklist.md
+overwrite	ecc-cherry-pick/tdd-verify.md	->	E:\development\Matrix\docs\sdlc\ecc-reference\tdd-verify.md
+overwrite	ecc-cherry-pick/deployment-checklist.md	->	E:\development\Matrix\docs\sdlc\ecc-reference\deployment-checklist.md
+overwrite	ecc-cherry-pick/karpathy-principles.md	->	E:\development\Matrix\docs\sdlc\ecc-reference\karpathy-principles.md
+overwrite	ecc-cherry-pick/context-engineering.md	->	E:\development\Matrix\docs\sdlc\ecc-reference\context-engineering.md
+overwrite	ecc-cherry-pick/model-policy.md	->	E:\development\Matrix\docs\sdlc\ecc-reference\model-policy.md
+overwrite	ecc-cherry-pick/egm.md	->	E:\development\Matrix\docs\sdlc\ecc-reference\egm.md
+overwrite	ecc-cherry-pick/ui-craft.md	->	E:\development\Matrix\docs\sdlc\ecc-reference\ui-craft.md
+overwrite	ecc-cherry-pick/ui-stress.md	->	E:\development\Matrix\docs\sdlc\ecc-reference\ui-stress.md
+overwrite	MARKER	->	E:\development\Matrix\docs\sdlc\.m4trix-kit.json
+install	bootstrap/git-hooks/commit-msg	->	.git/hooks/commit-msg (strip IDE trailers)
+
+Dry-run only. Re-run without -DryRun to apply.

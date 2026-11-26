@@ -1,0 +1,57 @@
+{
+    "measuredAt":  "2026-11-25T10:57:15+05:00",
+    "source":  "create-hook skill docs (Cursor hooks) + local kit/installed hooks.json",
+    "cursorAppVersion":  "3.31.15",
+    "docsAdvertisedEvents":  [
+                                 "sessionStart",
+                                 "sessionEnd",
+                                 "preToolUse",
+                                 "postToolUse",
+                                 "postToolUseFailure",
+                                 "subagentStart",
+                                 "subagentStop",
+                                 "beforeShellExecution",
+                                 "afterShellExecution",
+                                 "beforeMCPExecution",
+                                 "afterMCPExecution",
+                                 "beforeReadFile",
+                                 "afterFileEdit",
+                                 "beforeSubmitPrompt",
+                                 "preCompact",
+                                 "stop",
+                                 "afterAgentResponse",
+                                 "afterAgentThought",
+                                 "beforeTabFileRead",
+                                 "afterTabFileEdit",
+                                 "workspaceOpen"
+                             ],
+    "kitShippedEvents":  [
+                             "workspaceOpen",
+                             "sessionStart"
+                         ],
+    "installedUserHookEvents":  [
+                                    "sessionStart",
+                                    "workspaceOpen"
+                                ],
+    "liveFireVerified":  {
+                             "status":  "unverified_in_this_environment",
+                             "verifiedAdvisory":  [
+                                                      "sessionStart",
+                                                      "workspaceOpen"
+                                                  ],
+                             "note":  "T1 does not register experimental deny hooks into globals (ISO-002). Live fire of beforeShellExecution/preToolUse/subagentStart NOT executed."
+                         },
+    "implicationsForT10":  [
+                               "Do not claim preventive enforcement for events not live-verified.",
+                               "Candidate preventive events per DESIGN: beforeShellExecution, preToolUse, subagentStart — status unverified_local until live probe with captain-approved temporary project hooks in sibling eval workspace.",
+                               "Kit currently ships only sessionStart + workspaceOpen (advisory)."
+                           ],
+    "limitation":  "Docs list richer events; local Cursor build may support them, but T1 did not mutate hooks to prove deny/allow behaviour.",
+    "docsUrl":  "https://cursor.com/docs/hooks",
+    "docsCheckedAt":  "2026-11-25",
+    "denyCandidateEvents":  [
+                                "beforeShellExecution",
+                                "preToolUse",
+                                "subagentStart"
+                            ]
+}

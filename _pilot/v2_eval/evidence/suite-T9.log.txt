@@ -1,0 +1,43 @@
+=== Visual verification eval (T9) ===
+EvalRoot: E:\development\Matrix\_pilot\visual_verify_eval
+KitRoot:  E:\development\Matrix
+PASS  validators/visual.ps1 present
+PASS  visual.ps1: visually_verified rule
+PASS  visual.ps1: method honesty
+PASS  visual.ps1: rejects static-only verified
+PASS  fixture valid-visual-verified
+PASS  fixture valid-visual-blocked
+PASS  fixture invalid-visual-static-verified
+PASS  fixture invalid-visual-missing-artifact
+PASS  real Guard sample artifact on disk
+PASS  eval evidence/sample-render-note.md exists (real file)
+PASS  defect fixture weak-hierarchy.md
+PASS  defect fixture spacing.md
+PASS  defect fixture overflow.md
+PASS  defect fixture shared-component-regression.md
+PASS  shared-component defect refs ui_craft AppInfoCard
+PASS  shared-component defect cites neighbor/VIS-002
+PASS  production-bar: visualStatus honesty
+PASS  production-bar: patch skip full visual bar
+PASS  verifier: visual checklist
+PASS  verifier: Guard visual
+PASS  pipeline-module: visualStatus
+PASS  pipeline-module: Guard visual
+PASS  pipeline-patch: mentions visual skip
+PASS  ACTIVE_TASK template has verificationEvidence
+PASS  template documents visualStatus enum
+PASS  ui_craft_eval present
+PASS  eval sample states widget/golden ≠ visually_verified alone
+PASS  routing-policy significant-ui rule
+PASS  routing-policy includes visual validator
+PASS  Invoke-GuardTests.ps1 present
+PASS  Invoke-GuardTests.ps1 EXIT_CODE=0 (includes visual ±)
+PASS  Guard report: valid-visual-verified ok
+PASS  Guard report: valid-visual-blocked ok
+PASS  Guard report: static-verified fails
+PASS  Guard report: missing-artifact fails
+PASS  direct static-verified Guard non-zero
+PASS  direct static-verified ok=false
+PASS  evidence/REPORT.md written
+
+RESULT: visual_verify_eval PASS

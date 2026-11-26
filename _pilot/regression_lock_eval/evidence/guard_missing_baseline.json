@@ -1,0 +1,44 @@
+﻿{
+    "ok":  false,
+    "errors":  [
+                   "regression: \u0027regression.baselineRev\u0027 required when status is baseline_locked/unit_check/done/accepted or completion is claimed"
+               ],
+    "warnings":  [
+
+                 ],
+    "checks":  [
+                   {
+                       "name":  "parse",
+                       "ok":  true,
+                       "errors":  [
+
+                                  ],
+                       "warnings":  [
+
+                                    ]
+                   },
+                   {
+                       "name":  "task-state",
+                       "ok":  true,
+                       "errors":  [
+
+                                  ],
+                       "warnings":  [
+
+                                    ]
+                   },
+                   {
+                       "name":  "regression",
+                       "ok":  false,
+                       "errors":  [
+                                      "\u0027regression.baselineRev\u0027 required when status is baseline_locked/unit_check/done/accepted or completion is claimed"
+                                  ],
+                       "warnings":  [
+
+                                    ]
+                   }
+               ],
+    "taskPath":  "E:\\development\\Matrix\\bootstrap\\guard\\tests\\fixtures\\invalid-regression-missing-baseline.json",
+    "runner":  "Invoke-M4trixGuard.ps1",
+    "schemaVersion":  "1.0.0"
+}

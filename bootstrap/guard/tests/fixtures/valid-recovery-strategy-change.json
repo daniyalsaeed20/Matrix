@@ -1,0 +1,72 @@
+{
+  "taskId": "T4-fixture-pass",
+  "title": "Valid recovery with strategy change after fail",
+  "scale": "module",
+  "phase": "implement",
+  "status": "in_progress",
+  "approvedScope": "fixture only",
+  "acceptanceCriteria": ["strategy delta after fail"],
+  "egm": {
+    "required": false,
+    "status": "skipped"
+  },
+  "recovery": {
+    "active": true,
+    "status": "attempting",
+    "scale": "module",
+    "attemptBudget": 3,
+    "attemptCount": 2,
+    "facts": ["repro: null deref on empty list"],
+    "assumptions": ["list always non-empty"],
+    "hypotheses": ["missing null guard"],
+    "contradicted": ["list always non-empty"],
+    "rejectedApproaches": [
+      {
+        "id": "A1",
+        "summary": "blind retry same null-guard patch",
+        "reason": "same failure after attempt 1"
+      }
+    ],
+    "attempts": [
+      {
+        "id": "1",
+        "approachId": "A1",
+        "approach": "add null guard at call site",
+        "hypothesis": "caller passes null",
+        "predicted": "NPE gone",
+        "actual": "NPE persists from empty list",
+        "strategyDelta": null,
+        "newEvidence": null,
+        "meaningful": true,
+        "renameOnly": false,
+        "result": "fail"
+      },
+      {
+        "id": "2",
+        "approachId": "A2",
+        "approach": "handle empty list in producer",
+        "hypothesis": "empty list reaches consumer",
+        "predicted": "no NPE; empty UI state",
+        "actual": "pass",
+        "strategyDelta": "disproved non-empty assumption; fix producer empty path instead of call-site null guard",
+        "newEvidence": "stack shows empty-list branch",
+        "meaningful": true,
+        "renameOnly": false,
+        "result": "pass"
+      }
+    ],
+    "checkpoint": "pre-attempt-2",
+    "nextAction": "verify protected behaviours",
+    "escalation": {
+      "required": false,
+      "reported": false,
+      "summary": null
+    }
+  },
+  "evidence": {
+    "commands": ["Invoke-M4trixGuard -Validators task-state,recovery"],
+    "artifacts": ["bootstrap/guard/tests/fixtures/valid-recovery-strategy-change.json"],
+    "limitations": [],
+    "recordedAt": "2026-11-25T00:00:00Z"
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "taskId": "T11-fixture-missing-fp",
+  "title": "Missing fingerprints must fail",
+  "scale": "module",
+  "phase": "done",
+  "status": "done",
+  "approvedScope": "T11 approval fixture only",
+  "acceptanceCriteria": ["missing fp fails"],
+  "permittedPaths": [
+    "bootstrap/guard/"
+  ],
+  "filesChanged": [
+    "bootstrap/guard/validators/approval.ps1"
+  ],
+  "egm": {
+    "required": false,
+    "status": "skipped",
+    "blockingOpen": false,
+    "reviewPaths": [
+      "bootstrap/guard/tests/fixtures/fp-content/locked-spec.md"
+    ]
+  },
+  "approval": {
+    "by": "captain",
+    "at": "2026-11-25T12:00:00Z",
+    "note": "missing fingerprints",
+    "specFingerprint": null,
+    "scopeFingerprint": null,
+    "baselineRev": null
+  },
+  "evidence": {
+    "commands": ["echo fake"],
+    "artifacts": ["bootstrap/guard/tests/fixtures/invalid-approval-missing-fingerprints.json"],
+    "limitations": [],
+    "recordedAt": "2026-11-25T12:00:00Z"
+  }
+}

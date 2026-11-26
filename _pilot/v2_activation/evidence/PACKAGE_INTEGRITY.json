@@ -1,0 +1,16 @@
+{
+    "versionFile":  "2.0.0",
+    "packages":  [
+                     {
+                         "path":  "dist\\matrix-kit-2.0.0-src.zip",
+                         "sha256":  "D61A147CD6E1B68312BAA76B521F360A415A52DEC8CB8FEBF5B54C06F6D710B6",
+                         "size":  1035477
+                     },
+                     {
+                         "path":  "dist\\matrix-kit-1.6.0-src.zip",
+                         "sha256":  "B12A9B74D9423DC6209C8BA790FD08E30DFFDEA50884F14A2BD5377E584EB637",
+                         "size":  653422
+                     }
+                 ],
+    "recordedAt":  "2026-11-26T05:24:40.2285577Z"
+}

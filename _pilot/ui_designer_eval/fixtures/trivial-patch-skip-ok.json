@@ -1,0 +1,11 @@
+{
+  "id": "trivial-patch-skip-ok",
+  "title": "Trivial copy patch skips designer",
+  "uiInvolvement": "patch",
+  "designerInvoked": false,
+  "rendered": false,
+  "critiqueNotes": [],
+  "designDocOnly": false,
+  "expectedVerdict": "pass",
+  "expectDesigner": false
+}

@@ -1,0 +1,8 @@
+﻿{
+    "cap":  "T5",
+    "label":  "Routing",
+    "script":  "_pilot/routing_eval/scripts/Invoke-RoutingEval.ps1",
+    "exitCode":  0,
+    "pass":  true,
+    "logPath":  "E:\\development\\Matrix\\_pilot\\v2_eval\\evidence\\suite-T5.log.txt"
+}

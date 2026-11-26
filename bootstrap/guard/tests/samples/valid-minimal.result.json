@@ -1,0 +1,34 @@
+﻿{
+    "ok":  true,
+    "errors":  [
+
+               ],
+    "warnings":  [
+
+                 ],
+    "checks":  [
+                   {
+                       "name":  "parse",
+                       "ok":  true,
+                       "errors":  [
+
+                                  ],
+                       "warnings":  [
+
+                                    ]
+                   },
+                   {
+                       "name":  "task-state",
+                       "ok":  true,
+                       "errors":  [
+
+                                  ],
+                       "warnings":  [
+
+                                    ]
+                   }
+               ],
+    "taskPath":  "e:\\development\\Matrix\\bootstrap\\guard\\tests\\fixtures\\valid-minimal.json",
+    "runner":  "Invoke-M4trixGuard.ps1",
+    "schemaVersion":  "1.0.0"
+}

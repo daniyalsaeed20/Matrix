@@ -1,0 +1,6 @@
+﻿{
+    "id":  "unjustified-restructure-fail",
+    "expectedVerdict":  "fail",
+    "actualVerdict":  "fail",
+    "pass":  true
+}

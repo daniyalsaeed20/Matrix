@@ -1,0 +1,11 @@
+{
+    "flutter":  true,
+    "flutterVersionLine":  "Flutter 3.47.6 • channel stable • https://github.com/flutter/flutter.git",
+    "dart":  true,
+    "uiCraftTestExit":  0,
+    "uiCraftTestTail":  "00:00 +3: 3b — empty members shows empty state\r\n00:00 +4: 4 — CalmList has no AnimationControllers; OverAnimatedList does\r\n00:00 +5: 4b — CalmList has no list-owned FadeTransition\r\n00:00 +6: 4c — OverAnimatedList uses per-row FadeTransition (anti-pattern)\r\n00:00 +7: 6 — large text scale still lays out members without exception\r\n00:00 +8: 6b — disableAnimations MediaQuery is honored by host\r\n00:00 +9: All tests passed!\r\n",
+    "goldenDocsNote":  "Flutter golden/widget tests available via flutter test; no golden CI productization in T9 (BL-002)",
+    "browserMcp":  "cursor-ide-browser namespace present in agent session (navigate/snapshot/screenshot) — not claimed run for T9 kit scripts",
+    "computerUse":  "cursor-computer-use namespace present — desktop capture available; not claimed as emulator coverage",
+    "emulator":  "No Flutter emulator/device launch claimed in this probe"
+}

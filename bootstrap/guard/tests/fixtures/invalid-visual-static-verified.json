@@ -1,0 +1,56 @@
+{
+  "taskId": "T9-fixture-visual-static-fail",
+  "title": "Static-only claimed visually_verified — must fail",
+  "scale": "module",
+  "phase": "done",
+  "status": "done",
+  "approvedScope": "fixture only",
+  "acceptanceCriteria": ["static must not visually_verified"],
+  "egm": {
+    "required": false,
+    "status": "skipped"
+  },
+  "routing": {
+    "attributes": {
+      "scale": "module",
+      "taskType": "ui-feature",
+      "stacks": ["flutter"],
+      "layers": ["presentation"],
+      "uncertainty": "low",
+      "securityRisk": false,
+      "uiInvolvement": "significant",
+      "regressionRisk": false,
+      "recoveryActive": false,
+      "researchNeeded": false,
+      "reviewsRequired": ["verifier"]
+    },
+    "calculated": null,
+    "invoked": ["m4trix-verifier"],
+    "evidence": [
+      {
+        "type": "artifact",
+        "name": "m4trix-verifier",
+        "ref": "agents/m4trix-verifier.md",
+        "note": "fixture"
+      }
+    ],
+    "validated": false,
+    "evidenceLimitation": null,
+    "limitationAck": false
+  },
+  "evidence": {
+    "commands": ["flutter analyze"],
+    "artifacts": ["bootstrap/guard/tests/fixtures/invalid-visual-static-verified.json"],
+    "limitations": [],
+    "recordedAt": "2026-11-25T00:00:00Z"
+  },
+  "verificationEvidence": {
+    "commands": ["flutter analyze"],
+    "exitCodes": [0],
+    "artifacts": ["bootstrap/guard/tests/fixtures/visual-artifacts/sample-render-note.md"],
+    "visualStatus": "visually_verified",
+    "method": "static",
+    "interactionChecks": [],
+    "limitations": []
+  }
+}

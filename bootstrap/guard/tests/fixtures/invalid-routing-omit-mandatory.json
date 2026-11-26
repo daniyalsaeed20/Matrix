@@ -1,0 +1,47 @@
+{
+  "taskId": "T5-fixture-omit",
+  "title": "Invalid: omit mandatory security specialist",
+  "scale": "module",
+  "phase": "implement",
+  "status": "in_progress",
+  "approvedScope": "fixture only",
+  "acceptanceCriteria": ["must fail omit-mandatory"],
+  "egm": {
+    "required": false,
+    "status": "skipped"
+  },
+  "routing": {
+    "attributes": {
+      "scale": "module",
+      "taskType": "auth",
+      "stacks": ["flutter"],
+      "layers": ["client"],
+      "uncertainty": "med",
+      "securityRisk": true,
+      "uiInvolvement": "none",
+      "regressionRisk": false,
+      "recoveryActive": false,
+      "researchNeeded": false,
+      "reviewsRequired": ["security"]
+    },
+    "calculated": null,
+    "invoked": ["pipeline-module"],
+    "evidence": [
+      {
+        "type": "artifact",
+        "name": "pipeline-module",
+        "ref": "skills/pipeline-module/SKILL.md",
+        "note": null
+      }
+    ],
+    "validated": false,
+    "evidenceLimitation": null,
+    "limitationAck": false
+  },
+  "evidence": {
+    "commands": ["none"],
+    "artifacts": ["bootstrap/guard/tests/fixtures/invalid-routing-omit-mandatory.json"],
+    "limitations": [],
+    "recordedAt": "2026-11-25T00:00:00Z"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "taskId": "T2-empty-evidence",
+  "title": "Empty evidence shape must fail",
+  "scale": "module",
+  "phase": "implement",
+  "status": "in_progress",
+  "approvedScope": "fixture",
+  "acceptanceCriteria": ["must fail"],
+  "egm": {
+    "required": false,
+    "status": "skipped"
+  },
+  "evidence": {}
+}

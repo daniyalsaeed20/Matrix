@@ -1,0 +1,44 @@
+﻿{
+    "ok":  false,
+    "errors":  [
+                   "regression: test integrity violated — weaken/remove/skip/mock-away/hardcode/fake-ran is forbidden"
+               ],
+    "warnings":  [
+
+                 ],
+    "checks":  [
+                   {
+                       "name":  "parse",
+                       "ok":  true,
+                       "errors":  [
+
+                                  ],
+                       "warnings":  [
+
+                                    ]
+                   },
+                   {
+                       "name":  "task-state",
+                       "ok":  true,
+                       "errors":  [
+
+                                  ],
+                       "warnings":  [
+
+                                    ]
+                   },
+                   {
+                       "name":  "regression",
+                       "ok":  false,
+                       "errors":  [
+                                      "test integrity violated — weaken/remove/skip/mock-away/hardcode/fake-ran is forbidden"
+                                  ],
+                       "warnings":  [
+
+                                    ]
+                   }
+               ],
+    "taskPath":  "E:\\development\\Matrix\\bootstrap\\guard\\tests\\fixtures\\invalid-regression-integrity.json",
+    "runner":  "Invoke-M4trixGuard.ps1",
+    "schemaVersion":  "1.0.0"
+}

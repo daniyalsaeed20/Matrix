@@ -1,0 +1,38 @@
+{
+  "taskId": "T3-fixture-no-baseline",
+  "title": "Missing baselineRev must fail when locking",
+  "scale": "module",
+  "phase": "implement",
+  "status": "in_progress",
+  "approvedScope": "fixture only",
+  "acceptanceCriteria": ["must reject"],
+  "egm": {
+    "required": false,
+    "status": "skipped"
+  },
+  "regression": {
+    "baselineRev": "",
+    "status": "baseline_locked",
+    "behaviours": [
+      {
+        "id": "B01",
+        "name": "normalizeEmail",
+        "state": "verified_working",
+        "evidence": "test:B01"
+      }
+    ],
+    "protectedChecks": [],
+    "dirtyPaths": [],
+    "integrity": {
+      "status": "ok",
+      "notes": null,
+      "justification": null
+    }
+  },
+  "evidence": {
+    "commands": [],
+    "artifacts": [],
+    "limitations": [],
+    "recordedAt": null
+  }
+}

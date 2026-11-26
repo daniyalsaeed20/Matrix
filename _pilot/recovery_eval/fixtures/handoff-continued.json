@@ -1,0 +1,62 @@
+{
+  "taskId": "T4-eval-handoff",
+  "title": "Simulated new chat continuing recovery",
+  "scale": "module",
+  "phase": "implement",
+  "status": "in_progress",
+  "approvedScope": "eval handoff persistence",
+  "acceptanceCriteria": ["attemptCount not reset"],
+  "egm": {
+    "required": false,
+    "status": "skipped"
+  },
+  "recovery": {
+    "active": true,
+    "status": "attempting",
+    "scale": "module",
+    "attemptBudget": 3,
+    "attemptCount": 2,
+    "facts": ["carried from prior chat"],
+    "assumptions": [],
+    "hypotheses": ["empty list"],
+    "contradicted": [],
+    "rejectedApproaches": [
+      {
+        "id": "A1",
+        "summary": "call-site null guard",
+        "reason": "fail in prior chat"
+      }
+    ],
+    "attempts": [
+      {
+        "id": "1",
+        "approachId": "A1",
+        "approach": "call-site null guard",
+        "meaningful": true,
+        "result": "fail"
+      },
+      {
+        "id": "2",
+        "approachId": "A2",
+        "approach": "producer empty-list fix",
+        "strategyDelta": "new chat continues; different approach with strategy delta",
+        "newEvidence": "handoff carried stack notes",
+        "meaningful": true,
+        "result": "pass"
+      }
+    ],
+    "checkpoint": "chat-1-end",
+    "nextAction": "verify",
+    "escalation": {
+      "required": false,
+      "reported": false,
+      "summary": null
+    }
+  },
+  "evidence": {
+    "commands": ["handoff continue"],
+    "artifacts": ["_pilot/recovery_eval/fixtures/handoff-continued.json"],
+    "limitations": [],
+    "recordedAt": "2026-11-25T00:00:00Z"
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "taskId": "T5-fixture-limitation",
+  "title": "Valid routing via evidenceLimitation + captain ack",
+  "scale": "module",
+  "phase": "implement",
+  "status": "in_progress",
+  "approvedScope": "fixture only",
+  "acceptanceCriteria": ["limitation ack allows missing invoke"],
+  "egm": {
+    "required": false,
+    "status": "skipped"
+  },
+  "routing": {
+    "attributes": {
+      "scale": "module",
+      "taskType": "auth",
+      "stacks": ["flutter"],
+      "layers": ["client"],
+      "uncertainty": "high",
+      "securityRisk": true,
+      "uiInvolvement": "none",
+      "regressionRisk": false,
+      "recoveryActive": false,
+      "researchNeeded": false,
+      "reviewsRequired": ["security"]
+    },
+    "calculated": null,
+    "invoked": ["pipeline-module"],
+    "evidence": [
+      {
+        "type": "artifact",
+        "name": "pipeline-module",
+        "ref": "skills/pipeline-module/SKILL.md",
+        "note": null
+      },
+      {
+        "type": "limitation",
+        "name": "identity",
+        "ref": null,
+        "note": "subagentStart identity unverifiable in this Cursor build"
+      }
+    ],
+    "validated": false,
+    "evidenceLimitation": "Cursor subagent identity unverifiable locally (T1 HOOK_PROBE); captain ack for high-risk routing evidence gap",
+    "limitationAck": true
+  },
+  "evidence": {
+    "commands": ["Invoke-M4trixGuard -Validators task-state,routing"],
+    "artifacts": ["bootstrap/guard/tests/fixtures/valid-routing-limitation-ack.json"],
+    "limitations": ["subagent identity unverifiable"],
+    "recordedAt": "2026-11-25T00:00:00Z"
+  }
+}

@@ -15,6 +15,8 @@ Practical theme + small composable primitives **before** feature screens. Inspec
 - Consistent component library; encourage reuse of genuine design-system elements.
 - Avoid excessive variants, properties, and speculative components.
 - App-wide patterns (header/card/field/button/dialog) deserve shared widgets; one-off feature chrome stays local.
+- Craftsmanship for UI planning: hierarchy, spacing/alignment, typography, cohesive surfaces, and explicit loading/empty/error/success/disabled patterns — within the **approved** tokens (no arbitrary new color/spacing systems).
+- Motion: define **purposeful** motion only (state, spatial continuity, feedback, progress). Default to restraint; honor reduced-motion. Detail: load `ecc-cherry-pick/ui-craft.md` when drafting motion guidance — do not paste CSS recipes into Flutter specs.
 
 ## Process
 

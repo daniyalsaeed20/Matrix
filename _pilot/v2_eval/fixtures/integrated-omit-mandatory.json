@@ -1,0 +1,87 @@
+{
+  "taskId": "T13-integrated-omit",
+  "title": "Integrated negative: omit mandatory security on done claim",
+  "scale": "module",
+  "phase": "done",
+  "status": "done",
+  "approvedScope": "T13 integrated negative fixture only",
+  "acceptanceCriteria": [
+    "CompletionGate refuses done when mandatory routing evidence missing"
+  ],
+  "permittedPaths": [
+    "_pilot/v2_eval/",
+    "docs/sdlc/"
+  ],
+  "filesChanged": [
+    "_pilot/v2_eval/MASTER_REPORT.md"
+  ],
+  "egm": {
+    "required": false,
+    "status": "skipped",
+    "blockingOpen": false,
+    "reviewPaths": [
+      "bootstrap/guard/tests/fixtures/fp-content/locked-spec.md"
+    ]
+  },
+  "approval": {
+    "by": "captain",
+    "at": "2026-11-25T12:00:00Z",
+    "note": "fixture approval",
+    "baselineRev": null,
+    "specFingerprint": "1d750c859d74a835dd4231ff658a080188ce61fb1259565124221caba7bb41f0",
+    "scopeFingerprint": "ed8f8ef4d1ab26cd867bc2427490050f12d64deb6b6c070c344a60a07a3bb9b4"
+  },
+  "routing": {
+    "attributes": {
+      "scale": "module",
+      "taskType": "auth",
+      "stacks": ["scripts"],
+      "layers": ["tooling"],
+      "uiInvolvement": "none",
+      "securityRisk": true,
+      "recoveryActive": false,
+      "researchNeeded": false,
+      "regressionRisk": false,
+      "uncertainty": "med",
+      "reviewsRequired": ["security"]
+    },
+    "calculated": {
+      "schemaVersion": "1.0.0",
+      "trivialPatch": false,
+      "mandatoryAgents": ["m4trix-security"],
+      "conditionalAgents": ["m4trix-scrum", "m4trix-verifier"],
+      "unnecessaryAgents": [],
+      "requiredSkills": ["pipeline-module"],
+      "requiredValidators": ["routing"],
+      "deferred": [],
+      "errors": [],
+      "ok": true,
+      "policyVersion": "1.0.0",
+      "policyPath": "templates/sdlc/routing-policy.json"
+    },
+    "invoked": [
+      "pipeline-module"
+    ],
+    "evidence": [
+      {
+        "type": "artifact",
+        "name": "pipeline-module",
+        "ref": "skills/pipeline-module/SKILL.md",
+        "note": "skill only — security omitted"
+      }
+    ],
+    "validated": false,
+    "evidenceLimitation": null,
+    "limitationAck": false
+  },
+  "evidence": {
+    "commands": [
+      "none"
+    ],
+    "artifacts": [
+      "_pilot/v2_eval/fixtures/integrated-omit-mandatory.json"
+    ],
+    "limitations": [],
+    "recordedAt": "2026-11-25T12:00:00Z"
+  }
+}

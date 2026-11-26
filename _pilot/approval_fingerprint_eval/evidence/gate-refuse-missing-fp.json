@@ -1,0 +1,54 @@
+﻿{
+    "ok":  false,
+    "errors":  [
+                   "approval: approval.specFingerprint and approval.scopeFingerprint required (VER-002 bind)"
+               ],
+    "warnings":  [
+
+                 ],
+    "checks":  [
+                   {
+                       "name":  "parse",
+                       "ok":  true,
+                       "errors":  [
+
+                                  ],
+                       "warnings":  [
+
+                                    ]
+                   },
+                   {
+                       "name":  "task-state",
+                       "ok":  true,
+                       "errors":  [
+
+                                  ],
+                       "warnings":  [
+
+                                    ]
+                   },
+                   {
+                       "name":  "completion",
+                       "ok":  true,
+                       "errors":  [
+
+                                  ],
+                       "warnings":  [
+
+                                    ]
+                   },
+                   {
+                       "name":  "approval",
+                       "ok":  false,
+                       "errors":  [
+                                      "approval.specFingerprint and approval.scopeFingerprint required (VER-002 bind)"
+                                  ],
+                       "warnings":  [
+
+                                    ]
+                   }
+               ],
+    "taskPath":  "E:\\development\\Matrix\\bootstrap\\guard\\tests\\fixtures\\invalid-approval-missing-fingerprints.json",
+    "runner":  "Invoke-M4trixGuard.ps1",
+    "schemaVersion":  "1.0.0"
+}

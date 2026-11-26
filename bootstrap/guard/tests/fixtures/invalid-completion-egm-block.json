@@ -1,0 +1,27 @@
+{
+  "taskId": "T10-egm-block",
+  "title": "Done with egm.blockingOpen must fail",
+  "scale": "module",
+  "phase": "accepted",
+  "status": "accepted",
+  "approvedScope": "fixture",
+  "acceptanceCriteria": ["must fail"],
+  "permittedPaths": ["docs/sdlc/"],
+  "filesChanged": ["docs/sdlc/EGM_REVIEW.md"],
+  "egm": {
+    "required": true,
+    "status": "blocked",
+    "blockingOpen": true
+  },
+  "approval": {
+    "by": "captain",
+    "at": "2026-11-25T12:00:00Z",
+    "note": "stale while EGM open"
+  },
+  "evidence": {
+    "commands": ["guard"],
+    "artifacts": ["fixture"],
+    "limitations": [],
+    "recordedAt": "2026-11-25T12:00:00Z"
+  }
+}

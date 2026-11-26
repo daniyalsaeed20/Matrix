@@ -1,0 +1,6 @@
+﻿{
+    "id":  "justified-extract-ok",
+    "expectedVerdict":  "pass",
+    "actualVerdict":  "pass",
+    "pass":  true
+}

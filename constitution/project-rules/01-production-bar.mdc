@@ -13,6 +13,7 @@ A task/module is not done until:
 - Security/authz considered for the change (delegate to m4trix-security when sensitive)
 - Relevant docs in `docs/sdlc/` updated
 - For UI: uses the project design system / theme — no one-off colors/typography unless approved; significant UI holds under plausible content edge cases (proportional — see `ecc-cherry-pick/ui-stress.md`); motion is purposeful, not decorative
+- Significant UI: set `ACTIVE_TASK.verificationEvidence.visualStatus` honestly (`visually_verified` only with real on-disk artifacts and non-static method); static analysis / widget tests alone ≠ visual pass; blocked or functionally_verified_visually_unverified must list limitations; tiny copy/colour patches skip the full visual bar
 - Code craft satisfied (`04-code-craft`): think → simple → surgical → verified; reuse where warranted
 - Verifier checklist passed (m4trix-verifier); no false “tests passed”
 - Delivery voice (`05-delivery-voice`): no IDE/AI-editor attribution in product docs, commits, or PRs

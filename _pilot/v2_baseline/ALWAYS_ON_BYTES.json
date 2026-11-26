@@ -1,0 +1,59 @@
+{
+    "measuredAt":  "2026-11-25T10:56:25+05:00",
+    "kitVersion":  "1.6.0",
+    "rulesDir":  "e:\\development\\Matrix\\constitution\\project-rules",
+    "files":  [
+                  {
+                      "bytes":  1546,
+                      "file":  "00-m4trix-os.mdc"
+                  },
+                  {
+                      "bytes":  1181,
+                      "file":  "01-production-bar.mdc"
+                  },
+                  {
+                      "bytes":  681,
+                      "file":  "02-mode-switching.mdc"
+                  },
+                  {
+                      "bytes":  2202,
+                      "file":  "03-token-discipline.mdc"
+                  },
+                  {
+                      "bytes":  2688,
+                      "file":  "04-code-craft.mdc"
+                  },
+                  {
+                      "bytes":  2745,
+                      "file":  "05-delivery-voice.mdc"
+                  },
+                  {
+                      "bytes":  776,
+                      "file":  "stack-firebase.mdc"
+                  },
+                  {
+                      "bytes":  974,
+                      "file":  "stack-flutter.mdc"
+                  },
+                  {
+                      "bytes":  1527,
+                      "file":  "stack-flutter-reusability.mdc"
+                  },
+                  {
+                      "bytes":  712,
+                      "file":  "stack-nodejs.mdc"
+                  },
+                  {
+                      "bytes":  571,
+                      "file":  "stack-python.mdc"
+                  }
+              ],
+    "totals":  {
+                   "stackRulesBytes":  4560,
+                   "alwaysOnCoreBytes":  11043,
+                   "allProjectRulesBytes":  15603,
+                   "budgetCeilingPlus25All":  19504,
+                   "budgetCeilingPlus25Core":  13804
+               },
+    "note":  "Authoritative always-on budget baseline uses alwaysOnCoreBytes (00-05). Stack rules are conditional by stack detect."
+}

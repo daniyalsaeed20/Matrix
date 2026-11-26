@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://m4trix.local/guard/result.schema.json",
+  "title": "M4TR!X Guard result",
+  "description": "Shared machine-readable result from Invoke-M4trixGuard.ps1 and validators/*.ps1. Extensibility is folder convention only — same shape for every validator.",
+  "type": "object",
+  "required": ["ok", "errors", "warnings", "checks"],
+  "additionalProperties": true,
+  "properties": {
+    "ok": {
+      "type": "boolean",
+      "description": "True only when errors is empty and every check.ok is true."
+    },
+    "errors": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Human-readable hard failures. Non-empty ⇒ ok=false."
+    },
+    "warnings": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Non-blocking notes."
+    },
+    "checks": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/check" }
+    },
+    "taskPath": { "type": ["string", "null"] },
+    "runner": { "type": "string" },
+    "schemaVersion": { "type": "string" }
+  },
+  "$defs": {
+    "check": {
+      "type": "object",
+      "required": ["name", "ok"],
+      "properties": {
+        "name": { "type": "string" },
+        "ok": { "type": "boolean" },
+        "errors": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "warnings": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    }
+  }
+}

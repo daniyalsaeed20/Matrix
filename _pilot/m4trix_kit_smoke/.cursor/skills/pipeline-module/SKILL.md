@@ -20,7 +20,8 @@ Ask open questions. Prefer Ask mode.
 ### 2–3. Elephant slice
 
 - Short FR/NFR (REQUIREMENTS section or dated brief) with happy/fail/edge  
-- DESIGN touch if architecture changes; design-system if new shared UI  
+- DESIGN touch if architecture changes; design-system if new shared UI
+- UI modules: implementers/verifier load `ecc-cherry-pick/ui-craft.md` + proportional `ui-stress.md` — not a new pipeline phase  
 - Self-contained enough for a Goldfish who never saw the chat  
 
 If the module needs meaningful upfront design: `egm.required=true`. If it is a thin slice of an already-approved design, captain may set `egm.required=false` explicitly.

@@ -1,0 +1,41 @@
+=== Routing eval (T5) ===
+EvalRoot: E:\development\Matrix\_pilot\routing_eval
+KitRoot:  E:\development\Matrix
+PASS  Evaluate-Routing.ps1 present
+PASS  routing-policy.json present
+PASS  routing validator present
+PASS  live ± procedure documented
+PASS  evidence helper present
+PASS  trivial patch calculate exit 0
+PASS  trivial patch flagged trivialPatch=true
+PASS  trivial: security not mandatory
+PASS  trivial: ui-designer not mandatory
+PASS  trivial: pipeline-patch skill
+PASS  significant UI calculate exit 0
+PASS  significant UI: ui-designer not deferred (agent present)
+PASS  significant UI: ui-designer mandatory
+PASS  significant UI: design-system mandatory
+PASS  significant UI: agents/m4trix-ui-designer.md present
+PASS  auth/security calculate exit 0
+PASS  auth: security mandatory
+PASS  recovery calculate exit 0
+PASS  recovery: debugger mandatory
+PASS  recovery: pipeline-recovery skill
+PASS  recovery: regression validator (regressionRisk)
+PASS  mixed-stack calculate exit 0
+PASS  mixed-stack: flutter conditional
+PASS  mixed-stack: node conditional
+PASS  researchNeeded calculate exit 0
+PASS  researchNeeded: engineering-research not deferred (skill present)
+PASS  researchNeeded: engineering-research required
+PASS  researchNeeded: research validator required
+PASS  Guard valid security ok=true
+PASS  Guard valid UI significant ok=true
+PASS  Guard limitation+ack ok=true
+PASS  Guard recovery routing ok=true
+PASS  Guard omit-mandatory ok=false
+PASS  Guard parent-impersonation ok=false
+PASS  live ± evidence files present
+
+Report: E:\development\Matrix\_pilot\routing_eval\evidence\REPORT.md
+RESULT: Routing eval passed (script layer)

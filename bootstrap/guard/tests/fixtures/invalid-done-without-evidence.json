@@ -1,0 +1,13 @@
+{
+  "taskId": "T2-done-no-evidence",
+  "title": "Done without evidence must fail",
+  "scale": "module",
+  "phase": "accepted",
+  "status": "accepted",
+  "approvedScope": "fixture",
+  "acceptanceCriteria": ["must fail"],
+  "egm": {
+    "required": false,
+    "status": "skipped"
+  }
+}

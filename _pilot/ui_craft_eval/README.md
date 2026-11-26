@@ -4,6 +4,8 @@ Safe fixtures for the Design Engineering Intelligence upgrade. **Not** a custome
 
 Validates that kit guidance produces: design-system usage, reuse, stress-resistant layout, motion restraint, and light patch ceremony.
 
+**Evidence expectation (T9):** Passing `flutter test` / widget scenarios here is **functional** evidence. It does **not** alone justify `ACTIVE_TASK.verificationEvidence.visualStatus=visually_verified` — that requires real render artifacts (or an honest blocked/unverified status). See `_pilot/visual_verify_eval/`.
+
 ## Scenarios
 
 | # | Scenario | How verified |

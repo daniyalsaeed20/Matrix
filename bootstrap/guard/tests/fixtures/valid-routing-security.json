@@ -1,0 +1,53 @@
+{
+  "taskId": "T5-fixture-security",
+  "title": "Valid routing with security mandatory invoked",
+  "scale": "module",
+  "phase": "implement",
+  "status": "in_progress",
+  "approvedScope": "fixture only",
+  "acceptanceCriteria": ["security specialist invoked with evidence"],
+  "egm": {
+    "required": false,
+    "status": "skipped"
+  },
+  "routing": {
+    "attributes": {
+      "scale": "module",
+      "taskType": "auth",
+      "stacks": ["flutter", "firebase"],
+      "layers": ["client", "rules"],
+      "uncertainty": "med",
+      "securityRisk": true,
+      "uiInvolvement": "none",
+      "regressionRisk": false,
+      "recoveryActive": false,
+      "researchNeeded": false,
+      "reviewsRequired": ["security"]
+    },
+    "calculated": null,
+    "invoked": ["m4trix-security", "pipeline-module"],
+    "evidence": [
+      {
+        "type": "task",
+        "name": "m4trix-security",
+        "ref": "_pilot/routing_eval/evidence/security-task.md",
+        "note": "fresh Task subagent"
+      },
+      {
+        "type": "artifact",
+        "name": "pipeline-module",
+        "ref": "skills/pipeline-module/SKILL.md",
+        "note": "skill loaded"
+      }
+    ],
+    "validated": false,
+    "evidenceLimitation": null,
+    "limitationAck": false
+  },
+  "evidence": {
+    "commands": ["Invoke-M4trixGuard -Validators task-state,routing"],
+    "artifacts": ["bootstrap/guard/tests/fixtures/valid-routing-security.json"],
+    "limitations": [],
+    "recordedAt": "2026-11-25T00:00:00Z"
+  }
+}

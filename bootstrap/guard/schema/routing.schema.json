@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://m4trix.local/guard/routing.schema.json",
+  "title": "ACTIVE_TASK.routing",
+  "description": "Intelligent routing fields (RTE-001…RTE-003). Validated by bootstrap/guard/validators/routing.ps1.",
+  "type": "object",
+  "required": ["attributes", "invoked", "evidence", "validated"],
+  "properties": {
+    "attributes": {
+      "type": "object",
+      "description": "Classification attributes. Patch-minimal: scale, taskType, stacks, uiInvolvement, securityRisk. Full set adds layers, uncertainty, regressionRisk, recoveryActive, researchNeeded, reviewsRequired."
+    },
+    "calculated": {
+      "description": "Output of Evaluate-Routing.ps1 (or null before calculate).",
+      "type": ["object", "null"]
+    },
+    "invoked": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Agent/skill names actually invoked"
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["type", "name"],
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["task", "subagent", "artifact", "limitation"]
+          },
+          "name": { "type": "string" },
+          "ref": { "type": ["string", "null"] },
+          "note": { "type": ["string", "null"] }
+        }
+      }
+    },
+    "validated": { "type": "boolean" },
+    "evidenceLimitation": { "type": ["string", "null"] },
+    "limitationAck": { "type": "boolean" }
+  },
+  "additionalProperties": true
+}

@@ -1,0 +1,14 @@
+{
+  "scale": "module",
+  "taskType": "unfamiliar-integration",
+  "stacks": ["flutter"],
+  "layers": ["client"],
+  "uncertainty": "high",
+  "securityRisk": false,
+  "uiInvolvement": "none",
+  "regressionRisk": false,
+  "recoveryActive": false,
+  "researchNeeded": true,
+  "reviewsRequired": [],
+  "unfamiliarTech": true
+}

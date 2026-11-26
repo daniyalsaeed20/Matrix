@@ -1,0 +1,47 @@
+﻿{
+    "taskId":  "T10-fixture-done",
+    "title":  "Valid completion claim with approval and evidence",
+    "scale":  "module",
+    "phase":  "done",
+    "status":  "done",
+    "approvedScope":  "fixture only",
+    "acceptanceCriteria":  [
+                               "gate allows done"
+                           ],
+    "permittedPaths":  [
+                           "bootstrap/guard/",
+                           "docs/sdlc/"
+                       ],
+    "filesChanged":  [
+                         "bootstrap/guard/validators/completion.ps1",
+                         "docs/sdlc/GUARD_BYPASS_MATRIX.md"
+                     ],
+    "egm":  {
+                "required":  false,
+                "status":  "skipped",
+                "blockingOpen":  false,
+                "reviewPaths":  [
+                                    "bootstrap/guard/tests/fixtures/fp-content/locked-spec.md"
+                                ]
+            },
+    "approval":  {
+                     "by":  "captain",
+                     "at":  "2026-11-25T12:00:00Z",
+                     "note":  "fixture approval",
+                     "baselineRev":  null,
+                     "specFingerprint":  "1d750c859d74a835dd4231ff658a080188ce61fb1259565124221caba7bb41f0",
+                     "scopeFingerprint":  "b092c1b28dffb9912d999a07fe122a2b163099567cb42051d826faedb7db4027"
+                 },
+    "evidence":  {
+                     "commands":  [
+                                      "powershell -NoProfile -File bootstrap/guard/tests/Invoke-GuardTests.ps1"
+                                  ],
+                     "artifacts":  [
+                                       "bootstrap/guard/tests/fixtures/valid-completion-done.json"
+                                   ],
+                     "limitations":  [
+
+                                     ],
+                     "recordedAt":  "2026-11-25T12:00:00Z"
+                 }
+}

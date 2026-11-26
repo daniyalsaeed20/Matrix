@@ -1,0 +1,43 @@
+{
+  "measuredAt": "2026-11-25T14:45:00+05:00",
+  "source": "T10 re-validation of T1 HOOK_PROBE.json + local kit hooks.json + create-hook skill docs",
+  "priorProbe": "_pilot/v2_baseline/HOOK_PROBE.json",
+  "cursorAppVersion": "3.31.15",
+  "kitShippedEvents": [
+    "workspaceOpen",
+    "sessionStart"
+  ],
+  "kitDenyCandidateScripts": [
+    "hooks/m4trix-before-shell.ps1",
+    "hooks/m4trix-pre-tool-use.ps1",
+    "hooks/m4trix-subagent-start.ps1"
+  ],
+  "denyCandidateEvents": [
+    "beforeShellExecution",
+    "preToolUse",
+    "subagentStart"
+  ],
+  "registeredInDefaultHooksJson": {
+    "workspaceOpen": true,
+    "sessionStart": true,
+    "beforeShellExecution": false,
+    "preToolUse": false,
+    "subagentStart": false
+  },
+  "liveFireVerified": {
+    "status": "unverified_in_this_environment",
+    "verifiedAdvisory": [
+      "sessionStart",
+      "workspaceOpen"
+    ],
+    "verifiedPreventive": [],
+    "note": "T10 ships deny-candidate scripts unregistered. LIVE_PROCEDURE exists for optional sibling-eval fire. Do not claim preventive enforcement."
+  },
+  "implicationsForT10": [
+    "Completion-blocking via Invoke-CompletionGate is the mandatory done gate.",
+    "Preventive claims require live-verified deny events; currently unverified.",
+    "Bypass matrix documents Write/StrReplace, fail-open, model ignore, unverified events."
+  ],
+  "docsUrl": "https://cursor.com/docs/hooks",
+  "docsCheckedAt": "2026-11-25"
+}

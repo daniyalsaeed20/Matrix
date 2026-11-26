@@ -1,0 +1,13 @@
+{
+  "scale": "module",
+  "taskType": "ui-feature",
+  "stacks": ["flutter"],
+  "layers": ["presentation"],
+  "uncertainty": "med",
+  "securityRisk": false,
+  "uiInvolvement": "significant",
+  "regressionRisk": false,
+  "recoveryActive": false,
+  "researchNeeded": false,
+  "reviewsRequired": ["design-system"]
+}

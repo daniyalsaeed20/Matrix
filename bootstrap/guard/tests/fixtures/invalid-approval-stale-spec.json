@@ -1,0 +1,46 @@
+﻿{
+    "taskId":  "T11-fixture-stale-spec",
+    "title":  "Stale spec fingerprint must fail",
+    "scale":  "module",
+    "phase":  "done",
+    "status":  "done",
+    "approvedScope":  "T11 approval fixture only",
+    "acceptanceCriteria":  [
+                               "stale spec fails"
+                           ],
+    "permittedPaths":  [
+                           "bootstrap/guard/",
+                           "agents/"
+                       ],
+    "filesChanged":  [
+                         "bootstrap/guard/validators/approval.ps1"
+                     ],
+    "egm":  {
+                "required":  false,
+                "status":  "skipped",
+                "blockingOpen":  false,
+                "reviewPaths":  [
+                                    "bootstrap/guard/tests/fixtures/fp-content/locked-spec.md"
+                                ]
+            },
+    "approval":  {
+                     "by":  "captain",
+                     "at":  "2026-11-25T12:00:00Z",
+                     "note":  "stale spec fingerprint",
+                     "baselineRev":  null,
+                     "specFingerprint":  "0000000000000000000000000000000000000000000000000000000000000000",
+                     "scopeFingerprint":  "7679183a2500b6af658381111a18fe666f5c6866fefae197d447ad311a980ee6"
+                 },
+    "evidence":  {
+                     "commands":  [
+                                      "echo fake"
+                                  ],
+                     "artifacts":  [
+                                       "bootstrap/guard/tests/fixtures/invalid-approval-stale-spec.json"
+                                   ],
+                     "limitations":  [
+
+                                     ],
+                     "recordedAt":  "2026-11-25T12:00:00Z"
+                 }
+}

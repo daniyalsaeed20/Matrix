@@ -1,0 +1,13 @@
+{
+  "scale": "module",
+  "taskType": "capability-validator",
+  "stacks": ["powershell", "docs"],
+  "layers": ["tooling", "process"],
+  "uncertainty": "med",
+  "securityRisk": false,
+  "uiInvolvement": "none",
+  "regressionRisk": true,
+  "recoveryActive": false,
+  "researchNeeded": true,
+  "reviewsRequired": ["verifier"]
+}

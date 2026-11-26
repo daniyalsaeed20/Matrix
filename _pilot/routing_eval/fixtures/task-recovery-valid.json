@@ -1,0 +1,41 @@
+{
+  "taskId": "T5-eval-recovery",
+  "title": "Recovery routing with debugger evidence",
+  "scale": "module",
+  "phase": "implement",
+  "status": "in_progress",
+  "approvedScope": "eval fixture",
+  "acceptanceCriteria": ["debugger invoked"],
+  "egm": { "required": false, "status": "skipped" },
+  "routing": {
+    "attributes": {
+      "scale": "module",
+      "taskType": "bugfix",
+      "stacks": ["flutter"],
+      "layers": ["client"],
+      "uncertainty": "high",
+      "securityRisk": false,
+      "uiInvolvement": "none",
+      "regressionRisk": true,
+      "recoveryActive": true,
+      "researchNeeded": false,
+      "reviewsRequired": []
+    },
+    "calculated": null,
+    "invoked": ["m4trix-debugger", "pipeline-recovery", "pipeline-module"],
+    "evidence": [
+      { "type": "task", "name": "m4trix-debugger", "ref": "agents/m4trix-debugger.md", "note": "Task tool" },
+      { "type": "artifact", "name": "pipeline-recovery", "ref": "skills/pipeline-recovery/SKILL.md", "note": null },
+      { "type": "artifact", "name": "pipeline-module", "ref": "skills/pipeline-module/SKILL.md", "note": null }
+    ],
+    "validated": false,
+    "evidenceLimitation": null,
+    "limitationAck": false
+  },
+  "evidence": {
+    "commands": ["Invoke-RoutingEval"],
+    "artifacts": ["_pilot/routing_eval/fixtures/task-recovery-valid.json"],
+    "limitations": [],
+    "recordedAt": "2026-11-25T00:00:00Z"
+  }
+}

@@ -29,7 +29,7 @@ pwsh -NoProfile -File ./bootstrap/install-globals.ps1 -Fresh
 Installs:
 
 - `~/.cursor/agents/m4trix-*.md`
-- `~/.cursor/skills/{bootstrap-org,pipeline-*,egm-review}/`
+- `~/.cursor/skills/{bootstrap-org,pipeline-*,egm-review,engineering-research}/`
 - `~/.cursor/hooks/m4trix-*.ps1`
 - `~/.cursor/m4trix/kit.json` (persists kit root + flags)
 - `~/.cursor/m4trix/USER_RULES.md` (path-resolved paste source)
@@ -74,6 +74,16 @@ Copies rules/agents/skills/templates (incl. code craft + ACTIVE_TASK), detects s
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File .\bootstrap\smoke-tests.ps1
 ```
+
+## 6. Migration / REL-002 fixtures (isolated)
+
+Does **not** touch your real `~/.cursor`. Uses temp `M4TRIX_CURSOR_HOME` homes:
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\_pilot\v2_migration\Invoke-Rel002Fixtures.ps1
+```
+
+Upgrade path from 1.6.0: re-run `install-globals.ps1` from the 2.0.0 clone (optional `-Fresh`). Retain `dist/matrix-kit-1.6.0-src.zip` for rollback. **Captain activation of globals on this machine is a separate gate (Task 16)** — packaging an RC does not activate it.
 
 ## Uninstall m4tr!x globals only
 

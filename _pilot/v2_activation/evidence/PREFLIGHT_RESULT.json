@@ -1,0 +1,24 @@
+{
+  "taskId": "T16",
+  "recordedAt": "2026-11-26T05:25:00Z",
+  "captainAuth": "Activate globals 2.0.0 — globals only",
+  "scope": "globals-only",
+  "agentFreshForbidden": true,
+  "checks": [
+    { "id": "RB-01..RB-10", "ok": true, "ref": "_pilot/v2_eval/evidence/RB_CHECKLIST.md" },
+    { "id": "VERSION", "ok": true, "value": "2.0.0" },
+    { "id": "RC_ZIP", "ok": true, "ref": "PACKAGE_INTEGRITY.json + RC_ZIP_VERIFY.json" },
+    { "id": "ROLLBACK_ZIP", "ok": true, "ref": "ROLLBACK_ZIP_VERIFY.json" },
+    { "id": "PRE_BACKUP", "ok": true, "ref": "pre-activation-backup-2026-11-26T102412Z" },
+    { "id": "THIRD_PARTY_HOOKS", "ok": true, "note": "none present; merge preserves unrelated entries" },
+    { "id": "WORKSPACE_APPLY", "ok": true, "note": "none scheduled" }
+  ],
+  "limitationsAcceptedByCaptain": [
+    "Incomplete real-world pilot coverage",
+    "isolation:unproven",
+    "CTX-003 token/cost unavailable",
+    "Incomplete live Cursor behavioural evaluations",
+    "Guard is process gate not unbypassable security"
+  ],
+  "next": "Captain runs install-globals.ps1 -Fresh; replies Fresh complete — verify T16"
+}

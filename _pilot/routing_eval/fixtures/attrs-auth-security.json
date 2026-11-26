@@ -1,0 +1,13 @@
+{
+  "scale": "module",
+  "taskType": "auth",
+  "stacks": ["flutter", "firebase"],
+  "layers": ["client", "rules"],
+  "uncertainty": "med",
+  "securityRisk": true,
+  "uiInvolvement": "none",
+  "regressionRisk": false,
+  "recoveryActive": false,
+  "researchNeeded": false,
+  "reviewsRequired": ["security"]
+}

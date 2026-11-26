@@ -1,0 +1,64 @@
+﻿{
+    "ok":  false,
+    "errors":  [
+                   "routing: mandatory agent \u0027m4trix-security\u0027 missing from invoked/evidence (omit-mandatory)"
+               ],
+    "warnings":  [
+
+                 ],
+    "checks":  [
+                   {
+                       "name":  "parse",
+                       "ok":  true,
+                       "errors":  [
+
+                                  ],
+                       "warnings":  [
+
+                                    ]
+                   },
+                   {
+                       "name":  "task-state",
+                       "ok":  true,
+                       "errors":  [
+
+                                  ],
+                       "warnings":  [
+
+                                    ]
+                   },
+                   {
+                       "name":  "completion",
+                       "ok":  true,
+                       "errors":  [
+
+                                  ],
+                       "warnings":  [
+
+                                    ]
+                   },
+                   {
+                       "name":  "approval",
+                       "ok":  true,
+                       "errors":  [
+
+                                  ],
+                       "warnings":  [
+
+                                    ]
+                   },
+                   {
+                       "name":  "routing",
+                       "ok":  false,
+                       "errors":  [
+                                      "mandatory agent \u0027m4trix-security\u0027 missing from invoked/evidence (omit-mandatory)"
+                                  ],
+                       "warnings":  [
+
+                                    ]
+                   }
+               ],
+    "taskPath":  "E:\\development\\Matrix\\_pilot\\v2_eval\\fixtures\\integrated-omit-mandatory.json",
+    "runner":  "Invoke-M4trixGuard.ps1",
+    "schemaVersion":  "1.0.0"
+}

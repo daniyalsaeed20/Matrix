@@ -1,0 +1,8 @@
+﻿{
+    "cap":  "T4",
+    "label":  "Recovery",
+    "script":  "_pilot/recovery_eval/scripts/Invoke-RecoveryEval.ps1",
+    "exitCode":  0,
+    "pass":  true,
+    "logPath":  "E:\\development\\Matrix\\_pilot\\v2_eval\\evidence\\suite-T4.log.txt"
+}

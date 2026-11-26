@@ -1,0 +1,46 @@
+﻿{
+    "ok":  false,
+    "errors":  [
+                   "research: sources[1].urlOrPath empty or fabricated/placeholder",
+                   "research: sources[2].urlOrPath empty or fabricated/placeholder"
+               ],
+    "warnings":  [
+
+                 ],
+    "checks":  [
+                   {
+                       "name":  "parse",
+                       "ok":  true,
+                       "errors":  [
+
+                                  ],
+                       "warnings":  [
+
+                                    ]
+                   },
+                   {
+                       "name":  "task-state",
+                       "ok":  true,
+                       "errors":  [
+
+                                  ],
+                       "warnings":  [
+
+                                    ]
+                   },
+                   {
+                       "name":  "research",
+                       "ok":  false,
+                       "errors":  [
+                                      "sources[1].urlOrPath empty or fabricated/placeholder",
+                                      "sources[2].urlOrPath empty or fabricated/placeholder"
+                                  ],
+                       "warnings":  [
+
+                                    ]
+                   }
+               ],
+    "taskPath":  "E:\\development\\Matrix\\bootstrap\\guard\\tests\\fixtures\\invalid-research-fabricated.json",
+    "runner":  "Invoke-M4trixGuard.ps1",
+    "schemaVersion":  "1.0.0"
+}

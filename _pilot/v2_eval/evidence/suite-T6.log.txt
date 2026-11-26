@@ -1,0 +1,23 @@
+=== Research eval (T6) ===
+EvalRoot: E:\development\Matrix\_pilot\research_eval
+KitRoot:  E:\development\Matrix
+PASS  engineering-research skill present
+PASS  research validator present
+PASS  research schema present
+PASS  live procedure documented
+PASS  sample findings artifact present
+PASS  researchNeeded calculate exit 0
+PASS  calculate: engineering-research skill
+PASS  calculate: research validator
+PASS  Guard valid required research ok=true
+PASS  Guard trivial skip ok=true
+PASS  Guard recurring patch research ok=true
+PASS  Guard web-unavailable + local ok=true
+PASS  Guard empty findings ok=false
+PASS  Guard fabricated sources ok=false
+PASS  Guard no-alternatives ok=false
+NOTE  live ± not yet recorded — see LIVE_PROCEDURE.md
+PASS  live limitation placeholder recorded (honest; not a live pass claim)
+
+Report: E:\development\Matrix\_pilot\research_eval\evidence\REPORT.md
+RESULT: Research eval passed (script layer)

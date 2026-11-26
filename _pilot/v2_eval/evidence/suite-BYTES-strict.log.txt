@@ -1,0 +1,64 @@
+{
+    "measuredAt":  "2026-11-25T10:32:17.2137150Z",
+    "kitRoot":  "E:\\development\\Matrix",
+    "rulesDir":  "E:\\development\\Matrix\\constitution\\project-rules",
+    "baselinePath":  "E:\\development\\Matrix\\_pilot\\v2_baseline\\ALWAYS_ON_BYTES.json",
+    "files":  [
+                  {
+                      "file":  "00-m4trix-os.mdc",
+                      "bytes":  1546
+                  },
+                  {
+                      "file":  "01-production-bar.mdc",
+                      "bytes":  1519
+                  },
+                  {
+                      "file":  "02-mode-switching.mdc",
+                      "bytes":  681
+                  },
+                  {
+                      "file":  "03-token-discipline.mdc",
+                      "bytes":  2202
+                  },
+                  {
+                      "file":  "04-code-craft.mdc",
+                      "bytes":  3787
+                  },
+                  {
+                      "file":  "05-delivery-voice.mdc",
+                      "bytes":  2745
+                  },
+                  {
+                      "file":  "stack-firebase.mdc",
+                      "bytes":  776
+                  },
+                  {
+                      "file":  "stack-flutter.mdc",
+                      "bytes":  974
+                  },
+                  {
+                      "file":  "stack-flutter-reusability.mdc",
+                      "bytes":  1527
+                  },
+                  {
+                      "file":  "stack-nodejs.mdc",
+                      "bytes":  712
+                  },
+                  {
+                      "file":  "stack-python.mdc",
+                      "bytes":  571
+                  }
+              ],
+    "totals":  {
+                   "alwaysOnCoreBytes":  12480,
+                   "stackRulesBytes":  4560,
+                   "allProjectRulesBytes":  17040,
+                   "frozenBaselineCoreBytes":  11043,
+                   "budgetCeilingPlus25Core":  13804,
+                   "withinBudget":  true,
+                   "headroomBytes":  1324
+               },
+    "note":  "CTX-001 numerator is alwaysOnCoreBytes (00-05). Frozen baseline is T1 ALWAYS_ON_BYTES.json; this script never overwrites it."
+}
+Wrote: E:\development\Matrix\_pilot\v2_eval\evidence\ALWAYS_ON_LIVE.json
+ALWAYS_ON_CORE=12480 CEILING=13804 WITHIN_BUDGET=True

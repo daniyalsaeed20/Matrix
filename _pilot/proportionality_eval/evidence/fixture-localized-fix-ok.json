@@ -1,0 +1,6 @@
+﻿{
+    "id":  "localized-fix-ok",
+    "expectedVerdict":  "pass",
+    "actualVerdict":  "pass",
+    "pass":  true
+}

@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://m4trix.local/guard/research.schema.json",
+  "title": "ACTIVE_TASK.research",
+  "description": "Engineering research fields (RSH-001…RSH-004). Validated by bootstrap/guard/validators/research.ps1.",
+  "type": "object",
+  "required": ["required", "findings", "sources", "limitations"],
+  "properties": {
+    "required": {
+      "type": "boolean",
+      "description": "false skips strict findings/sources checks unless routing.researchNeeded + completion claim"
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["question", "alternatives", "recommendation", "rationale"],
+        "properties": {
+          "question": { "type": "string" },
+          "orderFollowed": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "alternatives": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": ["name", "kind"],
+              "properties": {
+                "name": { "type": "string" },
+                "kind": {
+                  "type": "string",
+                  "enum": ["native", "package", "custom", "other"]
+                },
+                "notes": { "type": ["string", "null"] }
+              }
+            }
+          },
+          "recommendation": { "type": "string" },
+          "rationale": { "type": "string" },
+          "versionCompat": { "type": ["string", "null"] }
+        }
+      }
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["title", "urlOrPath", "kind"],
+        "properties": {
+          "title": { "type": "string" },
+          "urlOrPath": { "type": "string" },
+          "kind": {
+            "type": "string",
+            "enum": ["project", "deps", "official", "package", "issue", "ref", "community"]
+          },
+          "verified": { "type": "boolean" }
+        }
+      }
+    },
+    "limitations": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "poc": {
+      "type": ["object", "null"],
+      "properties": {
+        "required": { "type": "boolean" },
+        "status": {
+          "type": "string",
+          "enum": ["skipped", "planned", "done"]
+        },
+        "notes": { "type": ["string", "null"] }
+      }
+    }
+  },
+  "additionalProperties": true
+}

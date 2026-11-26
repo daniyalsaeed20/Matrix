@@ -1,0 +1,8 @@
+﻿{
+    "cap":  "T2",
+    "label":  "Guard unit/min",
+    "script":  "bootstrap/guard/tests/Invoke-GuardTests.ps1",
+    "exitCode":  0,
+    "pass":  true,
+    "logPath":  "E:\\development\\Matrix\\_pilot\\v2_eval\\evidence\\suite-T2.log.txt"
+}

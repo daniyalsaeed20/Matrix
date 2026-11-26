@@ -1,0 +1,66 @@
+﻿{
+    "ok":  true,
+    "failed":  0,
+    "recordedAt":  "2026-11-25T10:31:41.0083116Z",
+    "algorithm":  "sha256-normalized-utf8-fail-closed",
+    "policySoT":  [
+                      "docs/sdlc/REQUIREMENTS.md VER-002..004",
+                      "docs/sdlc/REQUIREMENTS.md VER-003",
+                      "templates/sdlc/EGM_REVIEW.md Blocking policy"
+                  ],
+    "fingerprintLib":  "bootstrap/guard/lib/ApprovalFingerprint.ps1",
+    "limitations":  [
+                        "Not cryptographic captain auth",
+                        "No formatting-only detector — content hash fail closed (VER-004)",
+                        "Process gate only — model can skip invoking CompletionGate (see GUARD_BYPASS_MATRIX)"
+                    ],
+    "cases":  [
+                  {
+                      "name":  "Invoke-GuardTests",
+                      "fixture":  "bootstrap/guard/tests",
+                      "expectOk":  true,
+                      "exitCode":  0,
+                      "pass":  true
+                  },
+                  {
+                      "name":  "allow-valid",
+                      "fixture":  "valid-approval-done.json",
+                      "expectOk":  true,
+                      "exitCode":  0,
+                      "pass":  true,
+                      "outputPath":  "E:\\development\\Matrix\\_pilot\\approval_fingerprint_eval\\evidence\\gate-allow-valid.json"
+                  },
+                  {
+                      "name":  "refuse-self-approve",
+                      "fixture":  "invalid-approval-self-approve.json",
+                      "expectOk":  false,
+                      "exitCode":  1,
+                      "pass":  true,
+                      "outputPath":  "E:\\development\\Matrix\\_pilot\\approval_fingerprint_eval\\evidence\\gate-refuse-self-approve.json"
+                  },
+                  {
+                      "name":  "refuse-missing-fp",
+                      "fixture":  "invalid-approval-missing-fingerprints.json",
+                      "expectOk":  false,
+                      "exitCode":  1,
+                      "pass":  true,
+                      "outputPath":  "E:\\development\\Matrix\\_pilot\\approval_fingerprint_eval\\evidence\\gate-refuse-missing-fp.json"
+                  },
+                  {
+                      "name":  "refuse-stale-spec",
+                      "fixture":  "invalid-approval-stale-spec.json",
+                      "expectOk":  false,
+                      "exitCode":  1,
+                      "pass":  true,
+                      "outputPath":  "E:\\development\\Matrix\\_pilot\\approval_fingerprint_eval\\evidence\\gate-refuse-stale-spec.json"
+                  },
+                  {
+                      "name":  "refuse-scope-change",
+                      "fixture":  "invalid-approval-scope-change.json",
+                      "expectOk":  false,
+                      "exitCode":  1,
+                      "pass":  true,
+                      "outputPath":  "E:\\development\\Matrix\\_pilot\\approval_fingerprint_eval\\evidence\\gate-refuse-scope-change.json"
+                  }
+              ]
+}

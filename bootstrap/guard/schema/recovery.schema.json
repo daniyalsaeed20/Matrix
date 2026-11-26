@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://m4trix.local/guard/recovery.schema.json",
+  "title": "ACTIVE_TASK.recovery",
+  "description": "Intelligent Recovery fields (REC-001…REC-006). Validated by bootstrap/guard/validators/recovery.ps1.",
+  "type": "object",
+  "required": ["active", "status", "attemptBudget", "attemptCount", "attempts", "rejectedApproaches"],
+  "properties": {
+    "active": {
+      "type": "boolean",
+      "description": "false/inactive skips strict attempt/budget checks"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["inactive", "investigating", "attempting", "escalated", "resolved"]
+    },
+    "scale": {
+      "type": "string",
+      "enum": ["patch", "module", "product-critical"],
+      "description": "Recovery budget class; defaults attemptBudget when omitted elsewhere"
+    },
+    "attemptBudget": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Default: patch 2, module 3, product-critical 3"
+    },
+    "attemptCount": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Count of meaningful attempts; must match attempts where meaningful=true"
+    },
+    "facts": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "assumptions": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "hypotheses": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "contradicted": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "rejectedApproaches": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "summary"],
+        "properties": {
+          "id": { "type": "string" },
+          "summary": { "type": "string" },
+          "reason": { "type": "string" }
+        }
+      }
+    },
+    "attempts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "approach", "result"],
+        "properties": {
+          "id": { "type": "string" },
+          "approachId": {
+            "type": "string",
+            "description": "Stable approach key; blocked if present in rejectedApproaches without newEvidence"
+          },
+          "approach": { "type": "string" },
+          "hypothesis": { "type": "string" },
+          "predicted": { "type": "string" },
+          "actual": { "type": "string" },
+          "strategyDelta": {
+            "type": "string",
+            "description": "Required for meaningful attempts after the first failed attempt"
+          },
+          "newEvidence": {
+            "type": ["string", "null"],
+            "description": "Required to reuse a previously rejected approachId"
+          },
+          "meaningful": {
+            "type": "boolean",
+            "description": "false or renameOnly=true must not count toward attemptCount"
+          },
+          "renameOnly": {
+            "type": "boolean",
+            "description": "true → Guard fail if treated as meaningful attempt"
+          },
+          "result": {
+            "type": "string",
+            "enum": ["pass", "fail", "blocked", "pending"]
+          }
+        }
+      }
+    },
+    "checkpoint": { "type": ["string", "null"] },
+    "nextAction": { "type": ["string", "null"] },
+    "escalation": {
+      "type": "object",
+      "properties": {
+        "required": { "type": "boolean" },
+        "reported": { "type": "boolean" },
+        "summary": { "type": ["string", "null"] }
+      }
+    }
+  },
+  "additionalProperties": true
+}

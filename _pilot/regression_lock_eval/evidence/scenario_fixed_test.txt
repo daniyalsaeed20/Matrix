@@ -1,0 +1,25 @@
+﻿00:00 +0: loading E:/development/Matrix/_pilot/regression_lock_eval/test/scenario_fixed_test.dart
+00:00 +0: coordinated + localized repairs (expect PASS) B01–B05 still hold
+00:00 +1: coordinated + localized repairs (expect PASS) B06 fixed
+00:00 +2: coordinated + localized repairs (expect PASS) B07 fixed
+00:00 +3: coordinated + localized repairs (expect PASS) B08 fixed
+00:00 +4: coordinated + localized repairs (expect PASS) B09+B10 coordinated IdPad fix
+00:00 +5: intentional regress (expect FAIL) broken normalizeEmail must not pass as repair
+00:00 +5 -1: intentional regress (expect FAIL) broken normalizeEmail must not pass as repair [E]
+  Expected: 'ada@example.com'
+    Actual: '  ADA@EXAMPLE.COM '
+     Which: is different.
+            Expected: ada@exampl ...
+              Actual:   ADA@EXAM ...
+                      ^
+             Differ at offset 0
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test\scenario_fixed_test.dart 37:7                  main.<fn>.<fn>
+  
+00:00 +5 -1: Some tests failed.
+
+Failing tests:
+  E:/development/Matrix/_pilot/regression_lock_eval/test/scenario_fixed_test.dart: intentional regress (expect FAIL) broken normalizeEmail must not pass as repair
+

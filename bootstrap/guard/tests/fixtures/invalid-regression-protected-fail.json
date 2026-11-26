@@ -1,0 +1,45 @@
+{
+  "taskId": "T3-fixture-protected-fail",
+  "title": "Intentional protected regression must fail Guard",
+  "scale": "module",
+  "phase": "implement",
+  "status": "in_progress",
+  "approvedScope": "fixture only",
+  "acceptanceCriteria": ["must reject"],
+  "egm": {
+    "required": false,
+    "status": "skipped"
+  },
+  "regression": {
+    "baselineRev": "v1.6.0@_pilot/v2_baseline/2026-11-25",
+    "status": "unit_check",
+    "behaviours": [
+      {
+        "id": "B01",
+        "name": "normalizeEmail",
+        "state": "verified_working",
+        "evidence": "test:B01"
+      }
+    ],
+    "protectedChecks": [
+      {
+        "unitId": "bad-repair",
+        "protectedIds": ["B01"],
+        "result": "fail",
+        "command": "flutter test --name B01"
+      }
+    ],
+    "dirtyPaths": [],
+    "integrity": {
+      "status": "ok",
+      "notes": null,
+      "justification": null
+    }
+  },
+  "evidence": {
+    "commands": ["flutter test"],
+    "artifacts": [],
+    "limitations": [],
+    "recordedAt": "2026-11-25T00:00:00Z"
+  }
+}

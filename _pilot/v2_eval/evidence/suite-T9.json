@@ -1,0 +1,8 @@
+﻿{
+    "cap":  "T9",
+    "label":  "Visual verify",
+    "script":  "_pilot/visual_verify_eval/scripts/Invoke-VisualVerifyEval.ps1",
+    "exitCode":  0,
+    "pass":  true,
+    "logPath":  "E:\\development\\Matrix\\_pilot\\v2_eval\\evidence\\suite-T9.log.txt"
+}

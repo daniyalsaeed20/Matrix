@@ -12,7 +12,7 @@ A task/module is not done until:
 - No placeholder secrets; no `TODO` left as the only path for a claimed feature
 - Security/authz considered for the change (delegate to m4trix-security when sensitive)
 - Relevant docs in `docs/sdlc/` updated
-- For UI: uses the project design system / theme — no one-off colors/typography unless approved
+- For UI: uses the project design system / theme — no one-off colors/typography unless approved; significant UI holds under plausible content edge cases (proportional — see `ecc-cherry-pick/ui-stress.md`); motion is purposeful, not decorative
 - Code craft satisfied (`04-code-craft`): think → simple → surgical → verified; reuse where warranted
 - Verifier checklist passed (m4trix-verifier); no false “tests passed”
 - Delivery voice (`05-delivery-voice`): no IDE/AI-editor attribution in product docs, commits, or PRs

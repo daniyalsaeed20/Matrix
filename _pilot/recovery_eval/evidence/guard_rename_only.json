@@ -1,0 +1,46 @@
+﻿{
+    "ok":  false,
+    "errors":  [
+                   "recovery: attempt \u00271\u0027 is renameOnly — cannot count as a meaningful attempt (result must be blocked or omit from attemptCount)",
+                   "recovery: \u0027recovery.attemptCount\u0027 (1) must equal meaningful attempts count (0)"
+               ],
+    "warnings":  [
+
+                 ],
+    "checks":  [
+                   {
+                       "name":  "parse",
+                       "ok":  true,
+                       "errors":  [
+
+                                  ],
+                       "warnings":  [
+
+                                    ]
+                   },
+                   {
+                       "name":  "task-state",
+                       "ok":  true,
+                       "errors":  [
+
+                                  ],
+                       "warnings":  [
+
+                                    ]
+                   },
+                   {
+                       "name":  "recovery",
+                       "ok":  false,
+                       "errors":  [
+                                      "attempt \u00271\u0027 is renameOnly — cannot count as a meaningful attempt (result must be blocked or omit from attemptCount)",
+                                      "\u0027recovery.attemptCount\u0027 (1) must equal meaningful attempts count (0)"
+                                  ],
+                       "warnings":  [
+
+                                    ]
+                   }
+               ],
+    "taskPath":  "E:\\development\\Matrix\\bootstrap\\guard\\tests\\fixtures\\invalid-recovery-rename-only.json",
+    "runner":  "Invoke-M4trixGuard.ps1",
+    "schemaVersion":  "1.0.0"
+}

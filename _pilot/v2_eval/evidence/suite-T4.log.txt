@@ -1,0 +1,20 @@
+=== Recovery eval (T4) ===
+EvalRoot: E:\development\Matrix\_pilot\recovery_eval
+KitRoot:  E:\development\Matrix
+PASS  Guard runner present
+PASS  pipeline-recovery skill present
+PASS  m4trix-debugger agent present
+PASS  triggers/non-triggers documented
+PASS  debugger forbids owning feature impl
+PASS  strategy-change after fail → ok=true
+PASS  budget escalate reported → ok=true
+PASS  repeat rejected approach → ok=false
+PASS  over budget without escalate → ok=false
+PASS  rename-only attempt → ok=false
+PASS  protected fail mid-recovery → ok=false
+PASS  handoff-continued fixture present
+PASS  handoff attemptCount remains 2 (not reset)
+PASS  handoff-continued Guard ok=true
+PASS  REPORT.md written
+
+RESULT: recovery eval passed

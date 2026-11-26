@@ -1,0 +1,113 @@
+{
+  "version": "1.0.0",
+  "description": "Deterministic m4tr!x routing policy (RTE-001…RTE-003). LLM fills attributes only; calculate is scripted.",
+  "agentPaths": {
+    "m4trix-security": "agents/m4trix-security.md",
+    "m4trix-debugger": "agents/m4trix-debugger.md",
+    "m4trix-ui-designer": "agents/m4trix-ui-designer.md",
+    "m4trix-flutter": "agents/m4trix-flutter.md",
+    "m4trix-node": "agents/m4trix-node.md",
+    "m4trix-python": "agents/m4trix-python.md",
+    "m4trix-firebase": "agents/m4trix-firebase.md",
+    "m4trix-verifier": "agents/m4trix-verifier.md",
+    "m4trix-architect": "agents/m4trix-architect.md",
+    "m4trix-design-system": "agents/m4trix-design-system.md",
+    "m4trix-scrum": "agents/m4trix-scrum.md"
+  },
+  "skillPaths": {
+    "engineering-research": "skills/engineering-research/SKILL.md",
+    "pipeline-recovery": "skills/pipeline-recovery/SKILL.md",
+    "pipeline-module": "skills/pipeline-module/SKILL.md",
+    "pipeline-patch": "skills/pipeline-patch/SKILL.md",
+    "pipeline-product": "skills/pipeline-product/SKILL.md",
+    "egm-review": "skills/egm-review/SKILL.md"
+  },
+  "forwardDeclare": {
+    "m4trix-ui-designer": { "kind": "agent", "introducedAt": "T8" },
+    "engineering-research": { "kind": "skill", "introducedAt": "T6" }
+  },
+  "rules": [
+    {
+      "id": "always-routing-validator",
+      "when": { "always": true },
+      "requiredValidators": ["routing"]
+    },
+    {
+      "id": "security-risk",
+      "when": { "securityRisk": true },
+      "mandatoryAgents": ["m4trix-security"]
+    },
+    {
+      "id": "significant-ui",
+      "when": { "uiInvolvement": "significant" },
+      "mandatoryAgents": ["m4trix-ui-designer", "m4trix-design-system"],
+      "requiredValidators": ["visual"]
+    },
+    {
+      "id": "ui-patch",
+      "when": { "uiInvolvement": "patch" },
+      "conditionalAgents": ["m4trix-design-system"]
+    },
+    {
+      "id": "recovery-active",
+      "when": { "recoveryActive": true },
+      "mandatoryAgents": ["m4trix-debugger"],
+      "requiredSkills": ["pipeline-recovery"],
+      "requiredValidators": ["recovery"]
+    },
+    {
+      "id": "research-needed",
+      "when": { "researchNeeded": true },
+      "requiredSkills": ["engineering-research"],
+      "requiredValidators": ["research"]
+    },
+    {
+      "id": "regression-risk",
+      "when": { "regressionRisk": true },
+      "requiredValidators": ["regression"]
+    },
+    {
+      "id": "stack-flutter",
+      "when": { "stacksContains": "flutter" },
+      "conditionalAgents": ["m4trix-flutter"]
+    },
+    {
+      "id": "stack-nodejs",
+      "when": { "stacksContains": "nodejs" },
+      "conditionalAgents": ["m4trix-node"]
+    },
+    {
+      "id": "stack-python",
+      "when": { "stacksContains": "python" },
+      "conditionalAgents": ["m4trix-python"]
+    },
+    {
+      "id": "stack-firebase",
+      "when": { "stacksContains": "firebase" },
+      "conditionalAgents": ["m4trix-firebase"]
+    },
+    {
+      "id": "module-or-product-scale",
+      "when": { "scaleIn": ["module", "product"] },
+      "conditionalAgents": ["m4trix-scrum", "m4trix-verifier"],
+      "requiredSkills": ["pipeline-module"]
+    },
+    {
+      "id": "product-scale",
+      "when": { "scale": "product" },
+      "mandatoryAgents": ["m4trix-architect"],
+      "requiredSkills": ["pipeline-product", "egm-review"]
+    },
+    {
+      "id": "trivial-patch-minimal",
+      "when": { "trivialPatch": true },
+      "requiredSkills": ["pipeline-patch"],
+      "unnecessaryAgents": [
+        "m4trix-ui-designer",
+        "m4trix-architect",
+        "m4trix-product",
+        "m4trix-debugger"
+      ]
+    }
+  ]
+}

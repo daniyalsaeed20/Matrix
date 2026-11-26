@@ -1,0 +1,24 @@
+﻿{
+    "ok":  false,
+    "errors":  [
+                   "parse: invalid JSON: Invalid object passed in, \u0027:\u0027 or \u0027}\u0027 expected. (8): { this is not valid json\r\n"
+               ],
+    "warnings":  [
+
+                 ],
+    "checks":  [
+                   {
+                       "name":  "parse",
+                       "ok":  false,
+                       "errors":  [
+                                      "invalid JSON: Invalid object passed in, \u0027:\u0027 or \u0027}\u0027 expected. (8): { this is not valid json\r\n"
+                                  ],
+                       "warnings":  [
+
+                                    ]
+                   }
+               ],
+    "taskPath":  "e:\\development\\Matrix\\bootstrap\\guard\\tests\\fixtures\\invalid-not-json.txt",
+    "runner":  "Invoke-M4trixGuard.ps1",
+    "schemaVersion":  "1.0.0"
+}

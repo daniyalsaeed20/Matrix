@@ -1,23 +1,27 @@
-# Module handoff — EGM planning intelligence
+# MODULE_HANDOFF — T16 Activation (globals only)
 
-**From:** 1.5.1 → **1.5.2**  
-**Scope:** Final install/packaging reliability corrections; no new agents/pipelines; no customer app edits
+**Status:** **in_progress** 2026-11-26 (captain `Activate globals 2.0.0 — globals only`)  
+**Preflight:** `_pilot/v2_activation/evidence/PREFLIGHT_RESULT.json` — checks ok  
+**Agent Fresh:** **forbidden** — captain executes `install-globals.ps1 -Fresh`
 
-## What changed
+## Preflight delivered
 
-- `package-source` reliably includes hidden `.cursor` (+ inclusion smoke asserts)
-- Install/Fresh preflight: malformed `hooks.json` or missing sources abort before managed mutations
-- Top-level hooks.json metadata preserved; collision-resistant backups
-- Isolated `M4TRIX_CURSOR_HOME` regression for install + Fresh fail-closed
+| Area | Path / result |
+|------|----------------|
+| RB-01…RB-10 | clear (`_pilot/v2_eval/evidence/RB_CHECKLIST.md`) |
+| RC zip | `dist/matrix-kit-2.0.0-src.zip` — see `PACKAGE_INTEGRITY.json` / `RC_ZIP_VERIFY.json` |
+| Rollback zip | `dist/matrix-kit-1.6.0-src.zip` — `ROLLBACK_ZIP_VERIFY.json` VERSION 1.6.0 |
+| Live backup | `_pilot/v2_activation/evidence/pre-activation-backup-2026-11-26T102412Z/` |
+| Checklist | `_pilot/v2_activation/ACTIVATION_CHECKLIST.md` |
+| Release status | `_pilot/v2_activation/RELEASE_STATUS.md` |
+| Scope | **Globals only** — no workspace apply this task |
 
-## Verified
+## Captain next
 
-- `bootstrap/smoke-tests.ps1` PASS (Windows) including isolated malformed-hooks homes  
-- Live IDE sessionStart injection: not automatable via Task (hook stdout + Cursor-like stdin covered)
+1. Run Fresh from checklist (no `-AutoApplyWorkspaces`)
+2. Reload Cursor; paste `~/.cursor/m4trix/USER_RULES.md`; Attribution off
+3. Reply `Fresh complete — verify T16`
 
-## Limits
+## After verify
 
-- macOS runtime not claimed unless executed on macOS  
-- sessionStart IDE chat injection requires manual Cursor session check  
-
-
+Record post-activate inventory; captain `accept Task 16`; freeze v2.0.0 implementation.

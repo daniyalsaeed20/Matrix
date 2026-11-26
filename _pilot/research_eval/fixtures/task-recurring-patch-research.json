@@ -1,0 +1,83 @@
+{
+  "taskId": "T6-eval-recurring-patch",
+  "title": "Recurring patch defect still triggers research",
+  "scale": "patch",
+  "phase": "done",
+  "status": "done",
+  "approvedScope": "fixture — recurring null crash on submit",
+  "acceptanceCriteria": ["research required despite patch scale"],
+  "egm": { "required": false, "status": "skipped" },
+  "routing": {
+    "attributes": {
+      "scale": "patch",
+      "taskType": "bugfix",
+      "stacks": ["flutter"],
+      "layers": ["client"],
+      "uncertainty": "med",
+      "securityRisk": false,
+      "uiInvolvement": "none",
+      "regressionRisk": false,
+      "recoveryActive": false,
+      "researchNeeded": true,
+      "reviewsRequired": [],
+      "recurringDefect": true
+    },
+    "calculated": null,
+    "invoked": ["engineering-research", "pipeline-patch"],
+    "evidence": [
+      {
+        "type": "artifact",
+        "name": "engineering-research",
+        "ref": "skills/engineering-research/SKILL.md",
+        "note": "recurring unfamiliar defect"
+      },
+      {
+        "type": "artifact",
+        "name": "pipeline-patch",
+        "ref": "skills/pipeline-patch/SKILL.md",
+        "note": "patch pipeline"
+      }
+    ],
+    "validated": true,
+    "evidenceLimitation": null,
+    "limitationAck": false
+  },
+  "research": {
+    "required": true,
+    "findings": [
+      {
+        "question": "Why does FormState.save throw on second submit after validation error?",
+        "orderFollowed": ["project", "deps", "officialDocs"],
+        "alternatives": [
+          { "name": "Reset form key after error", "kind": "native", "notes": "GlobalKey remount" },
+          { "name": "Custom validation controller", "kind": "custom", "notes": "More code" }
+        ],
+        "recommendation": "Reset form key after error",
+        "rationale": "Matches Flutter Form docs; project already uses GlobalKey pattern nearby",
+        "versionCompat": "Flutter stable Form API"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Existing form screen",
+        "urlOrPath": "lib/screens/submit_form.dart",
+        "kind": "project",
+        "verified": true
+      },
+      {
+        "title": "Flutter Form docs",
+        "urlOrPath": "https://api.flutter.dev/flutter/widgets/Form-class.html",
+        "kind": "official",
+        "verified": true
+      }
+    ],
+    "limitations": [],
+    "poc": { "required": false, "status": "skipped", "notes": null }
+  },
+  "evidence": {
+    "commands": ["Invoke-M4trixGuard -Validators task-state,research"],
+    "artifacts": ["_pilot/research_eval/fixtures/task-recurring-patch-research.json"],
+    "limitations": [],
+    "recordedAt": "2026-11-25T13:00:00+05:00"
+  }
+}

@@ -1,0 +1,8 @@
+﻿{
+    "cap":  "T7",
+    "label":  "Proportionality",
+    "script":  "_pilot/proportionality_eval/scripts/Invoke-ProportionalityEval.ps1",
+    "exitCode":  0,
+    "pass":  true,
+    "logPath":  "E:\\development\\Matrix\\_pilot\\v2_eval\\evidence\\suite-T7.log.txt"
+}

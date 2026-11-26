@@ -1,0 +1,44 @@
+﻿{
+    "ok":  true,
+    "errors":  [
+
+               ],
+    "warnings":  [
+                     "routing: mandatory agent \u0027m4trix-security\u0027 missing invoke/evidence; accepted via evidenceLimitation + limitationAck"
+                 ],
+    "checks":  [
+                   {
+                       "name":  "parse",
+                       "ok":  true,
+                       "errors":  [
+
+                                  ],
+                       "warnings":  [
+
+                                    ]
+                   },
+                   {
+                       "name":  "task-state",
+                       "ok":  true,
+                       "errors":  [
+
+                                  ],
+                       "warnings":  [
+
+                                    ]
+                   },
+                   {
+                       "name":  "routing",
+                       "ok":  true,
+                       "errors":  [
+
+                                  ],
+                       "warnings":  [
+                                        "mandatory agent \u0027m4trix-security\u0027 missing invoke/evidence; accepted via evidenceLimitation + limitationAck"
+                                    ]
+                   }
+               ],
+    "taskPath":  "E:\\development\\Matrix\\bootstrap\\guard\\tests\\fixtures\\valid-routing-limitation-ack.json",
+    "runner":  "Invoke-M4trixGuard.ps1",
+    "schemaVersion":  "1.0.0"
+}

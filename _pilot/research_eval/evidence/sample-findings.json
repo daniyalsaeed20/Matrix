@@ -1,0 +1,49 @@
+{
+  "required": true,
+  "findings": [
+    {
+      "question": "How should offline queue flush on reconnect?",
+      "orderFollowed": ["project", "deps", "officialDocs", "packages"],
+      "alternatives": [
+        {
+          "name": "Firebase SDK built-in persistence",
+          "kind": "native",
+          "notes": "Already in stack"
+        },
+        {
+          "name": "Custom Drift outbox",
+          "kind": "custom",
+          "notes": "More control, more code"
+        },
+        {
+          "name": "connectivity_plus + manual retry",
+          "kind": "package",
+          "notes": "Needs careful ack"
+        }
+      ],
+      "recommendation": "Firebase SDK built-in persistence",
+      "rationale": "Project already on Firebase; avoids custom queue until proven insufficient",
+      "versionCompat": "firebase_core ^3.x matches project pubspec"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Project firebase usage",
+      "urlOrPath": "lib/services/sync_service.dart",
+      "kind": "project",
+      "verified": true
+    },
+    {
+      "title": "Firebase Flutter offline docs",
+      "urlOrPath": "https://firebase.google.com/docs/firestore/manage-data/enable-offline",
+      "kind": "official",
+      "verified": true
+    }
+  ],
+  "limitations": [],
+  "poc": {
+    "required": false,
+    "status": "skipped",
+    "notes": "Sample artifact for T6 research_eval"
+  }
+}

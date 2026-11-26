@@ -1,0 +1,61 @@
+Workspace: C:\Users\Datab\AppData\Local\Temp\m4trix-rel002-sdlc-5eb1f88638d64b07a7ba9886c723b074
+Kit: E:\development\Matrix v2.0.0
+Detected stacks: flutter
+
+---- plan ----
+create	constitution/project-rules/00-m4trix-os.mdc	->	C:\Users\Datab\AppData\Local\Temp\m4trix-rel002-sdlc-5eb1f88638d64b07a7ba9886c723b074\.cursor\rules\00-m4trix-os.mdc
+create	constitution/project-rules/01-production-bar.mdc	->	C:\Users\Datab\AppData\Local\Temp\m4trix-rel002-sdlc-5eb1f88638d64b07a7ba9886c723b074\.cursor\rules\01-production-bar.mdc
+create	constitution/project-rules/02-mode-switching.mdc	->	C:\Users\Datab\AppData\Local\Temp\m4trix-rel002-sdlc-5eb1f88638d64b07a7ba9886c723b074\.cursor\rules\02-mode-switching.mdc
+create	constitution/project-rules/03-token-discipline.mdc	->	C:\Users\Datab\AppData\Local\Temp\m4trix-rel002-sdlc-5eb1f88638d64b07a7ba9886c723b074\.cursor\rules\03-token-discipline.mdc
+create	constitution/project-rules/04-code-craft.mdc	->	C:\Users\Datab\AppData\Local\Temp\m4trix-rel002-sdlc-5eb1f88638d64b07a7ba9886c723b074\.cursor\rules\04-code-craft.mdc
+create	constitution/project-rules/05-delivery-voice.mdc	->	C:\Users\Datab\AppData\Local\Temp\m4trix-rel002-sdlc-5eb1f88638d64b07a7ba9886c723b074\.cursor\rules\05-delivery-voice.mdc
+create	agents/m4trix-product.md	->	C:\Users\Datab\AppData\Local\Temp\m4trix-rel002-sdlc-5eb1f88638d64b07a7ba9886c723b074\.cursor\agents\m4trix-product.md
+create	agents/m4trix-requirements.md	->	C:\Users\Datab\AppData\Local\Temp\m4trix-rel002-sdlc-5eb1f88638d64b07a7ba9886c723b074\.cursor\agents\m4trix-requirements.md
+create	agents/m4trix-architect.md	->	C:\Users\Datab\AppData\Local\Temp\m4trix-rel002-sdlc-5eb1f88638d64b07a7ba9886c723b074\.cursor\agents\m4trix-architect.md
+create	agents/m4trix-design-system.md	->	C:\Users\Datab\AppData\Local\Temp\m4trix-rel002-sdlc-5eb1f88638d64b07a7ba9886c723b074\.cursor\agents\m4trix-design-system.md
+create	agents/m4trix-scrum.md	->	C:\Users\Datab\AppData\Local\Temp\m4trix-rel002-sdlc-5eb1f88638d64b07a7ba9886c723b074\.cursor\agents\m4trix-scrum.md
+create	agents/m4trix-verifier.md	->	C:\Users\Datab\AppData\Local\Temp\m4trix-rel002-sdlc-5eb1f88638d64b07a7ba9886c723b074\.cursor\agents\m4trix-verifier.md
+create	agents/m4trix-security.md	->	C:\Users\Datab\AppData\Local\Temp\m4trix-rel002-sdlc-5eb1f88638d64b07a7ba9886c723b074\.cursor\agents\m4trix-security.md
+create	agents/m4trix-docs-deploy.md	->	C:\Users\Datab\AppData\Local\Temp\m4trix-rel002-sdlc-5eb1f88638d64b07a7ba9886c723b074\.cursor\agents\m4trix-docs-deploy.md
+create	agents/m4trix-debugger.md	->	C:\Users\Datab\AppData\Local\Temp\m4trix-rel002-sdlc-5eb1f88638d64b07a7ba9886c723b074\.cursor\agents\m4trix-debugger.md
+create	agents/m4trix-ui-designer.md	->	C:\Users\Datab\AppData\Local\Temp\m4trix-rel002-sdlc-5eb1f88638d64b07a7ba9886c723b074\.cursor\agents\m4trix-ui-designer.md
+create	skills/bootstrap-org	->	C:\Users\Datab\AppData\Local\Temp\m4trix-rel002-sdlc-5eb1f88638d64b07a7ba9886c723b074\.cursor\skills\bootstrap-org
+create	skills/pipeline-product	->	C:\Users\Datab\AppData\Local\Temp\m4trix-rel002-sdlc-5eb1f88638d64b07a7ba9886c723b074\.cursor\skills\pipeline-product
+create	skills/pipeline-module	->	C:\Users\Datab\AppData\Local\Temp\m4trix-rel002-sdlc-5eb1f88638d64b07a7ba9886c723b074\.cursor\skills\pipeline-module
+create	skills/pipeline-patch	->	C:\Users\Datab\AppData\Local\Temp\m4trix-rel002-sdlc-5eb1f88638d64b07a7ba9886c723b074\.cursor\skills\pipeline-patch
+create	skills/pipeline-recovery	->	C:\Users\Datab\AppData\Local\Temp\m4trix-rel002-sdlc-5eb1f88638d64b07a7ba9886c723b074\.cursor\skills\pipeline-recovery
+create	skills/engineering-research	->	C:\Users\Datab\AppData\Local\Temp\m4trix-rel002-sdlc-5eb1f88638d64b07a7ba9886c723b074\.cursor\skills\engineering-research
+create	skills/egm-review	->	C:\Users\Datab\AppData\Local\Temp\m4trix-rel002-sdlc-5eb1f88638d64b07a7ba9886c723b074\.cursor\skills\egm-review
+skip	templates/sdlc/PRD.md	->	C:\Users\Datab\AppData\Local\Temp\m4trix-rel002-sdlc-5eb1f88638d64b07a7ba9886c723b074\docs\sdlc\PRD.md (existing content)
+create	templates/sdlc/REQUIREMENTS.md	->	C:\Users\Datab\AppData\Local\Temp\m4trix-rel002-sdlc-5eb1f88638d64b07a7ba9886c723b074\docs\sdlc\REQUIREMENTS.md
+create	templates/sdlc/DESIGN.md	->	C:\Users\Datab\AppData\Local\Temp\m4trix-rel002-sdlc-5eb1f88638d64b07a7ba9886c723b074\docs\sdlc\DESIGN.md
+create	templates/sdlc/DESIGN_SYSTEM.md	->	C:\Users\Datab\AppData\Local\Temp\m4trix-rel002-sdlc-5eb1f88638d64b07a7ba9886c723b074\docs\sdlc\DESIGN_SYSTEM.md
+create	templates/sdlc/BACKLOG.md	->	C:\Users\Datab\AppData\Local\Temp\m4trix-rel002-sdlc-5eb1f88638d64b07a7ba9886c723b074\docs\sdlc\BACKLOG.md
+create	templates/sdlc/TEST_PLAN.md	->	C:\Users\Datab\AppData\Local\Temp\m4trix-rel002-sdlc-5eb1f88638d64b07a7ba9886c723b074\docs\sdlc\TEST_PLAN.md
+create	templates/sdlc/DEPLOYMENT.md	->	C:\Users\Datab\AppData\Local\Temp\m4trix-rel002-sdlc-5eb1f88638d64b07a7ba9886c723b074\docs\sdlc\DEPLOYMENT.md
+create	templates/sdlc/MODULE_HANDOFF.md	->	C:\Users\Datab\AppData\Local\Temp\m4trix-rel002-sdlc-5eb1f88638d64b07a7ba9886c723b074\docs\sdlc\MODULE_HANDOFF.md
+create	templates/sdlc/HANDOFF.md	->	C:\Users\Datab\AppData\Local\Temp\m4trix-rel002-sdlc-5eb1f88638d64b07a7ba9886c723b074\docs\sdlc\HANDOFF.md
+create	templates/sdlc/EGM_REVIEW.md	->	C:\Users\Datab\AppData\Local\Temp\m4trix-rel002-sdlc-5eb1f88638d64b07a7ba9886c723b074\docs\sdlc\EGM_REVIEW.md
+create	templates/sdlc/ACTIVE_TASK.json	->	C:\Users\Datab\AppData\Local\Temp\m4trix-rel002-sdlc-5eb1f88638d64b07a7ba9886c723b074\docs\sdlc\ACTIVE_TASK.json
+create	templates/sdlc/routing-policy.json	->	C:\Users\Datab\AppData\Local\Temp\m4trix-rel002-sdlc-5eb1f88638d64b07a7ba9886c723b074\docs\sdlc\routing-policy.json
+create	templates/sdlc/DECISIONS.md	->	C:\Users\Datab\AppData\Local\Temp\m4trix-rel002-sdlc-5eb1f88638d64b07a7ba9886c723b074\docs\sdlc\DECISIONS.md
+create	constitution/project-rules/stack-flutter.mdc	->	C:\Users\Datab\AppData\Local\Temp\m4trix-rel002-sdlc-5eb1f88638d64b07a7ba9886c723b074\.cursor\rules\stack-flutter.mdc
+create	constitution/project-rules/stack-flutter-reusability.mdc	->	C:\Users\Datab\AppData\Local\Temp\m4trix-rel002-sdlc-5eb1f88638d64b07a7ba9886c723b074\.cursor\rules\stack-flutter-reusability.mdc
+create	agents/m4trix-flutter.md	->	C:\Users\Datab\AppData\Local\Temp\m4trix-rel002-sdlc-5eb1f88638d64b07a7ba9886c723b074\.cursor\agents\m4trix-flutter.md
+create	ecc-cherry-pick/ORIGIN.md	->	C:\Users\Datab\AppData\Local\Temp\m4trix-rel002-sdlc-5eb1f88638d64b07a7ba9886c723b074\docs\sdlc\ecc-reference\ORIGIN.md
+create	ecc-cherry-pick/flutter-patterns.md	->	C:\Users\Datab\AppData\Local\Temp\m4trix-rel002-sdlc-5eb1f88638d64b07a7ba9886c723b074\docs\sdlc\ecc-reference\flutter-patterns.md
+create	ecc-cherry-pick/flutter-review-checklist.md	->	C:\Users\Datab\AppData\Local\Temp\m4trix-rel002-sdlc-5eb1f88638d64b07a7ba9886c723b074\docs\sdlc\ecc-reference\flutter-review-checklist.md
+create	ecc-cherry-pick/python-patterns.md	->	C:\Users\Datab\AppData\Local\Temp\m4trix-rel002-sdlc-5eb1f88638d64b07a7ba9886c723b074\docs\sdlc\ecc-reference\python-patterns.md
+create	ecc-cherry-pick/security-checklist.md	->	C:\Users\Datab\AppData\Local\Temp\m4trix-rel002-sdlc-5eb1f88638d64b07a7ba9886c723b074\docs\sdlc\ecc-reference\security-checklist.md
+create	ecc-cherry-pick/tdd-verify.md	->	C:\Users\Datab\AppData\Local\Temp\m4trix-rel002-sdlc-5eb1f88638d64b07a7ba9886c723b074\docs\sdlc\ecc-reference\tdd-verify.md
+create	ecc-cherry-pick/deployment-checklist.md	->	C:\Users\Datab\AppData\Local\Temp\m4trix-rel002-sdlc-5eb1f88638d64b07a7ba9886c723b074\docs\sdlc\ecc-reference\deployment-checklist.md
+create	ecc-cherry-pick/karpathy-principles.md	->	C:\Users\Datab\AppData\Local\Temp\m4trix-rel002-sdlc-5eb1f88638d64b07a7ba9886c723b074\docs\sdlc\ecc-reference\karpathy-principles.md
+create	ecc-cherry-pick/context-engineering.md	->	C:\Users\Datab\AppData\Local\Temp\m4trix-rel002-sdlc-5eb1f88638d64b07a7ba9886c723b074\docs\sdlc\ecc-reference\context-engineering.md
+create	ecc-cherry-pick/model-policy.md	->	C:\Users\Datab\AppData\Local\Temp\m4trix-rel002-sdlc-5eb1f88638d64b07a7ba9886c723b074\docs\sdlc\ecc-reference\model-policy.md
+create	ecc-cherry-pick/egm.md	->	C:\Users\Datab\AppData\Local\Temp\m4trix-rel002-sdlc-5eb1f88638d64b07a7ba9886c723b074\docs\sdlc\ecc-reference\egm.md
+create	ecc-cherry-pick/ui-craft.md	->	C:\Users\Datab\AppData\Local\Temp\m4trix-rel002-sdlc-5eb1f88638d64b07a7ba9886c723b074\docs\sdlc\ecc-reference\ui-craft.md
+create	ecc-cherry-pick/ui-stress.md	->	C:\Users\Datab\AppData\Local\Temp\m4trix-rel002-sdlc-5eb1f88638d64b07a7ba9886c723b074\docs\sdlc\ecc-reference\ui-stress.md
+create	MARKER	->	C:\Users\Datab\AppData\Local\Temp\m4trix-rel002-sdlc-5eb1f88638d64b07a7ba9886c723b074\docs\sdlc\.m4trix-kit.json
+skip	commit-msg hook	->	no .git in workspace
+
+Applied.

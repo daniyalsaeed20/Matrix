@@ -1,0 +1,12 @@
+{
+  "id": "localized-fix-ok",
+  "title": "Localized fix sufficient",
+  "decisionClass": "localized",
+  "ladderLevel": 1,
+  "significant": false,
+  "proposedChange": "One-line fix in helper normalizeEmail",
+  "justification": null,
+  "captainApproval": false,
+  "expectedVerdict": "pass",
+  "expectEssay": false
+}

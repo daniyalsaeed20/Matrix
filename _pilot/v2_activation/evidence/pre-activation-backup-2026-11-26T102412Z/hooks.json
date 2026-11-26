@@ -1,0 +1,17 @@
+﻿{
+    "version":  1,
+    "hooks":  {
+                  "sessionStart":  [
+                                       {
+                                           "command":  "powershell -NoProfile -ExecutionPolicy Bypass -File ./hooks/m4trix-session-start.ps1",
+                                           "timeout":  20
+                                       }
+                                   ],
+                  "workspaceOpen":  [
+                                        {
+                                            "command":  "powershell -NoProfile -ExecutionPolicy Bypass -File ./hooks/m4trix-workspace-open.ps1",
+                                            "timeout":  120
+                                        }
+                                    ]
+              }
+}

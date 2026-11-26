@@ -1,0 +1,94 @@
+{
+  "taskId": "T13-integrated-ok",
+  "title": "Integrated completion across task-state routing approval completion",
+  "scale": "module",
+  "phase": "done",
+  "status": "done",
+  "approvedScope": "T13 integrated positive fixture only",
+  "acceptanceCriteria": [
+    "CompletionGate allows done when task-state routing approval completion all ok"
+  ],
+  "permittedPaths": [
+    "_pilot/v2_eval/",
+    "docs/sdlc/"
+  ],
+  "filesChanged": [
+    "_pilot/v2_eval/MASTER_REPORT.md"
+  ],
+  "egm": {
+    "required": false,
+    "status": "skipped",
+    "blockingOpen": false,
+    "reviewPaths": [
+      "bootstrap/guard/tests/fixtures/fp-content/locked-spec.md"
+    ]
+  },
+  "approval": {
+    "by": "captain",
+    "at": "2026-11-25T12:00:00Z",
+    "note": "fixture approval",
+    "baselineRev": null,
+    "specFingerprint": "1d750c859d74a835dd4231ff658a080188ce61fb1259565124221caba7bb41f0",
+    "scopeFingerprint": "6b8af93fe2a4a169a4d5ff18ed986a9ae1fa9d3a5f9e7700c6870fa3be61ad35"
+  },
+  "routing": {
+    "attributes": {
+      "scale": "module",
+      "taskType": "auth",
+      "stacks": ["scripts"],
+      "layers": ["tooling"],
+      "uiInvolvement": "none",
+      "securityRisk": true,
+      "recoveryActive": false,
+      "researchNeeded": false,
+      "regressionRisk": false,
+      "uncertainty": "med",
+      "reviewsRequired": ["security"]
+    },
+    "calculated": {
+      "schemaVersion": "1.0.0",
+      "trivialPatch": false,
+      "mandatoryAgents": ["m4trix-security"],
+      "conditionalAgents": ["m4trix-scrum", "m4trix-verifier"],
+      "unnecessaryAgents": [],
+      "requiredSkills": ["pipeline-module"],
+      "requiredValidators": ["routing"],
+      "deferred": [],
+      "errors": [],
+      "ok": true,
+      "policyVersion": "1.0.0",
+      "policyPath": "templates/sdlc/routing-policy.json"
+    },
+    "invoked": [
+      "m4trix-security",
+      "pipeline-module"
+    ],
+    "evidence": [
+      {
+        "type": "task",
+        "name": "m4trix-security",
+        "ref": "_pilot/v2_eval/evidence/security-task-note.md",
+        "note": "integrated + security invoke evidence"
+      },
+      {
+        "type": "artifact",
+        "name": "pipeline-module",
+        "ref": "skills/pipeline-module/SKILL.md",
+        "note": "skill loaded"
+      }
+    ],
+    "validated": true,
+    "evidenceLimitation": null,
+    "limitationAck": false
+  },
+  "evidence": {
+    "commands": [
+      "powershell -NoProfile -File _pilot/v2_eval/scripts/Invoke-V2IntegratedEval.ps1"
+    ],
+    "artifacts": [
+      "_pilot/v2_eval/evidence/SUMMARY.json"
+    ],
+    "limitations": [],
+    "recordedAt": "2026-11-25T12:00:00Z"
+  }
+}

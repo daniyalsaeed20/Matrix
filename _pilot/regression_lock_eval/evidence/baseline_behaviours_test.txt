@@ -1,0 +1,72 @@
+﻿00:00 +0: loading E:/development/Matrix/_pilot/regression_lock_eval/test/behaviours_test.dart
+00:00 +0: protected baseline (expect PASS) B01 normalizeEmail
+00:00 +1: protected baseline (expect PASS) B02 parseAmount
+00:00 +2: protected baseline (expect PASS) B03 clampPercent
+00:00 +3: protected baseline (expect PASS) B04 slugify
+00:00 +4: protected baseline (expect PASS) B05 formatPersonLabel
+00:00 +5: known failing at baseline (expect FAIL until repaired) B06 validateUsername rejects empty
+00:00 +5 -1: known failing at baseline (expect FAIL until repaired) B06 validateUsername rejects empty [E]
+  Expected: false
+    Actual: <true>
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test\behaviours_test.dart 33:7                      main.<fn>.<fn>
+  
+00:00 +5 -1: known failing at baseline (expect FAIL until repaired) B07 computeDiscount applies percent
+00:00 +5 -2: known failing at baseline (expect FAIL until repaired) B07 computeDiscount applies percent [E]
+  Expected: a numeric value within <0.001> of <180>
+    Actual: <190.0>
+     Which:  differs by <10.0>
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test\behaviours_test.dart 39:7                      main.<fn>.<fn>
+  
+00:00 +5 -2: known failing at baseline (expect FAIL until repaired) B08 mergeTags unique sorted
+00:00 +5 -3: known failing at baseline (expect FAIL until repaired) B08 mergeTags unique sorted [E]
+  Expected: ['a', 'b', 'c']
+    Actual: ['b', 'a', 'a', 'c']
+     Which: at location [0] is 'b' instead of 'a'
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test\behaviours_test.dart 43:7                      main.<fn>.<fn>
+  
+00:00 +5 -3: known failing at baseline (expect FAIL until repaired) B09 nextInvoiceId zero-pads
+00:00 +5 -4: known failing at baseline (expect FAIL until repaired) B09 nextInvoiceId zero-pads [E]
+  Expected: 'INV-0007'
+    Actual: 'INV-   7'
+     Which: is different.
+            Expected: INV-0007
+              Actual: INV-   7
+                          ^
+             Differ at offset 4
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test\behaviours_test.dart 47:7                      main.<fn>.<fn>
+  
+00:00 +5 -4: known failing at baseline (expect FAIL until repaired) B10 formatMoneyCode zero-pads
+00:00 +5 -5: known failing at baseline (expect FAIL until repaired) B10 formatMoneyCode zero-pads [E]
+  Expected: 'C000042'
+    Actual: 'C    42'
+     Which: is different.
+            Expected: C000042
+              Actual: C    42
+                       ^
+             Differ at offset 1
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test\behaviours_test.dart 51:7                      main.<fn>.<fn>
+  
+00:00 +5 -5: Some tests failed.
+
+Failing tests:
+  E:/development/Matrix/_pilot/regression_lock_eval/test/behaviours_test.dart: known failing at baseline (expect FAIL until repaired) B06 validateUsername rejects empty
+  E:/development/Matrix/_pilot/regression_lock_eval/test/behaviours_test.dart: known failing at baseline (expect FAIL until repaired) B07 computeDiscount applies percent
+  E:/development/Matrix/_pilot/regression_lock_eval/test/behaviours_test.dart: known failing at baseline (expect FAIL until repaired) B08 mergeTags unique sorted
+  E:/development/Matrix/_pilot/regression_lock_eval/test/behaviours_test.dart: known failing at baseline (expect FAIL until repaired) B09 nextInvoiceId zero-pads
+  E:/development/Matrix/_pilot/regression_lock_eval/test/behaviours_test.dart: known failing at baseline (expect FAIL until repaired) B10 formatMoneyCode zero-pads
+

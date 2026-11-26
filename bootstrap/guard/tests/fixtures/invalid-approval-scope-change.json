@@ -1,0 +1,46 @@
+﻿{
+    "taskId":  "T11-fixture-scope-change",
+    "title":  "Scope fingerprint mismatch must fail",
+    "scale":  "module",
+    "phase":  "done",
+    "status":  "done",
+    "approvedScope":  "T11 approval fixture only â€” CHANGED SCOPE",
+    "acceptanceCriteria":  [
+                               "scope mismatch fails"
+                           ],
+    "permittedPaths":  [
+                           "bootstrap/guard/",
+                           "agents/"
+                       ],
+    "filesChanged":  [
+                         "bootstrap/guard/validators/approval.ps1"
+                     ],
+    "egm":  {
+                "required":  false,
+                "status":  "skipped",
+                "blockingOpen":  false,
+                "reviewPaths":  [
+                                    "bootstrap/guard/tests/fixtures/fp-content/locked-spec.md"
+                                ]
+            },
+    "approval":  {
+                     "by":  "captain",
+                     "at":  "2026-11-25T12:00:00Z",
+                     "note":  "scope fingerprint was for different approvedScope",
+                     "baselineRev":  null,
+                     "specFingerprint":  "1d750c859d74a835dd4231ff658a080188ce61fb1259565124221caba7bb41f0",
+                     "scopeFingerprint":  "1111111111111111111111111111111111111111111111111111111111111111"
+                 },
+    "evidence":  {
+                     "commands":  [
+                                      "echo fake"
+                                  ],
+                     "artifacts":  [
+                                       "bootstrap/guard/tests/fixtures/invalid-approval-scope-change.json"
+                                   ],
+                     "limitations":  [
+
+                                     ],
+                     "recordedAt":  "2026-11-25T12:00:00Z"
+                 }
+}

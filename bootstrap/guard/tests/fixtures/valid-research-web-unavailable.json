@@ -1,0 +1,82 @@
+{
+  "taskId": "T6-fixture-research-offline",
+  "title": "Web unavailable with local sources",
+  "scale": "module",
+  "phase": "done",
+  "status": "done",
+  "approvedScope": "fixture only",
+  "acceptanceCriteria": ["limitation + local evidence"],
+  "egm": { "required": false, "status": "skipped" },
+  "routing": {
+    "attributes": {
+      "scale": "module",
+      "taskType": "unfamiliar-api",
+      "stacks": ["powershell"],
+      "layers": ["kit"],
+      "uncertainty": "med",
+      "securityRisk": false,
+      "uiInvolvement": "none",
+      "regressionRisk": false,
+      "recoveryActive": false,
+      "researchNeeded": true,
+      "reviewsRequired": []
+    },
+    "calculated": null,
+    "invoked": ["engineering-research", "pipeline-module"],
+    "evidence": [
+      {
+        "type": "artifact",
+        "name": "engineering-research",
+        "ref": "skills/engineering-research/SKILL.md",
+        "note": "skill loaded"
+      },
+      {
+        "type": "artifact",
+        "name": "pipeline-module",
+        "ref": "skills/pipeline-module/SKILL.md",
+        "note": "pipeline"
+      }
+    ],
+    "validated": true,
+    "evidenceLimitation": null,
+    "limitationAck": false
+  },
+  "research": {
+    "required": true,
+    "findings": [
+      {
+        "question": "Preferred pattern for Guard validator return shape?",
+        "orderFollowed": ["project", "deps"],
+        "alternatives": [
+          { "name": "New-M4trixGuardCheck helper", "kind": "native", "notes": "Existing GuardCommon" },
+          { "name": "Ad-hoc hashtable", "kind": "custom", "notes": "Inconsistent" }
+        ],
+        "recommendation": "New-M4trixGuardCheck helper",
+        "rationale": "Matches recovery/routing validators; web docs unreachable this run",
+        "versionCompat": "PowerShell 5.1"
+      }
+    ],
+    "sources": [
+      {
+        "title": "GuardCommon helpers",
+        "urlOrPath": "bootstrap/guard/lib/GuardCommon.ps1",
+        "kind": "project",
+        "verified": true
+      },
+      {
+        "title": "recovery validator convention",
+        "urlOrPath": "bootstrap/guard/validators/recovery.ps1",
+        "kind": "project",
+        "verified": true
+      }
+    ],
+    "limitations": ["web unavailable — official docs not fetched; local project evidence only"],
+    "poc": { "required": false, "status": "skipped", "notes": null }
+  },
+  "evidence": {
+    "commands": ["Invoke-M4trixGuard -Validators task-state,routing,research"],
+    "artifacts": ["bootstrap/guard/tests/fixtures/valid-research-web-unavailable.json"],
+    "limitations": ["web unavailable"],
+    "recordedAt": "2026-11-25T13:00:00+05:00"
+  }
+}

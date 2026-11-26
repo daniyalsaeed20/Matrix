@@ -1,0 +1,44 @@
+﻿{
+    "ok":  false,
+    "errors":  [
+                   "recovery: attempt \u00272\u0027 reuses rejected approachId \u0027A1\u0027 without newEvidence"
+               ],
+    "warnings":  [
+
+                 ],
+    "checks":  [
+                   {
+                       "name":  "parse",
+                       "ok":  true,
+                       "errors":  [
+
+                                  ],
+                       "warnings":  [
+
+                                    ]
+                   },
+                   {
+                       "name":  "task-state",
+                       "ok":  true,
+                       "errors":  [
+
+                                  ],
+                       "warnings":  [
+
+                                    ]
+                   },
+                   {
+                       "name":  "recovery",
+                       "ok":  false,
+                       "errors":  [
+                                      "attempt \u00272\u0027 reuses rejected approachId \u0027A1\u0027 without newEvidence"
+                                  ],
+                       "warnings":  [
+
+                                    ]
+                   }
+               ],
+    "taskPath":  "E:\\development\\Matrix\\bootstrap\\guard\\tests\\fixtures\\invalid-recovery-repeat-rejected.json",
+    "runner":  "Invoke-M4trixGuard.ps1",
+    "schemaVersion":  "1.0.0"
+}

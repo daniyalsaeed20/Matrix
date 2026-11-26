@@ -1,0 +1,40 @@
+{
+    "recordedAt":  "2026-11-26T05:25:10.6120888Z",
+    "kitVersion":  "1.6.0",
+    "kitRoot":  "E:\\development\\Matrix",
+    "autoApplyWorkspaces":  false,
+    "agents":  [
+                   "m4trix-architect.md",
+                   "m4trix-design-system.md",
+                   "m4trix-docs-deploy.md",
+                   "m4trix-firebase.md",
+                   "m4trix-flutter.md",
+                   "m4trix-node.md",
+                   "m4trix-product.md",
+                   "m4trix-python.md",
+                   "m4trix-requirements.md",
+                   "m4trix-scrum.md",
+                   "m4trix-security.md",
+                   "m4trix-verifier.md"
+               ],
+    "managedSkills":  [
+                          "bootstrap-org",
+                          "egm-review",
+                          "pipeline-module",
+                          "pipeline-patch",
+                          "pipeline-product"
+                      ],
+    "allSkillDirs":  [
+                         "bootstrap-org",
+                         "egm-review",
+                         "pipeline-module",
+                         "pipeline-patch",
+                         "pipeline-product"
+                     ],
+    "hooksEvents":  [
+                        "sessionStart",
+                        "workspaceOpen"
+                    ],
+    "thirdPartyHooksPresent":  false,
+    "note":  "hooks.json contained only m4trix sessionStart + workspaceOpen at backup time"
+}

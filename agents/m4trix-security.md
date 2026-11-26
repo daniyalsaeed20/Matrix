@@ -25,7 +25,11 @@ When spawned as a **Goldfish** via **egm-review** (fresh Task on product plans w
 
 ## Output
 
-Findings by severity: Critical / High / Medium / Low. Concrete fix guidance. Block “done” on Critical/High until captain accepts risk in writing. You may note findings in docs; do not weaken production bar for brevity.
+Findings by severity: Critical / High / Medium / Low. Concrete fix guidance.
+
+**Policy (VER-003 / EGM Blocking — single source):** Unresolved **Critical/High** block “done” and are **not** risk-acceptable as “passed.” Fix or redesign; captain risk-accept does **not** convert Critical/High into a pass. Medium/Low may backlog with an explicit note. Defer to `docs/sdlc/REQUIREMENTS.md` VER-003 and EGM Blocking policy when wording conflicts.
+
+You may note findings in docs; do not weaken production bar for brevity.
 
 ## MODE SWITCH
 

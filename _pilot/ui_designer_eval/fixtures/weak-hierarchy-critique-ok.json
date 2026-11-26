@@ -1,0 +1,15 @@
+{
+  "id": "weak-hierarchy-critique-ok",
+  "title": "Weak hierarchy fixture produces critique",
+  "uiInvolvement": "significant",
+  "defectId": "weak-hierarchy",
+  "defectFixture": "fixtures/defects/weak-hierarchy.md",
+  "designerInvoked": true,
+  "rendered": true,
+  "critiqueNotes": [
+    "Headline and body share same weight — no clear primary",
+    "All actions use identical button emphasis"
+  ],
+  "designDocOnly": false,
+  "expectedVerdict": "pass"
+}

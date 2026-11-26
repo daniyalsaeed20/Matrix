@@ -1,6 +1,7 @@
 # Context engineering (reference)
 
-On-demand. Always-on summary: `constitution/project-rules/03-token-discipline.mdc`.
+On-demand. Always-on summary: `constitution/project-rules/03-token-discipline.mdc`.  
+Model / reasoning defaults: `docs/sdlc/ecc-reference/model-policy.md` (and DECISIONS Model policy).
 
 **Upstream:** [jasontang-ai/Context-Engineering](https://github.com/jasontang-ai/Context-Engineering) (MIT; Copyright davidkimai).  
 **m4tr!x policy:** do **not** install that course/repo wholesale. No vector DB / memory server unless captain later approves a real need.

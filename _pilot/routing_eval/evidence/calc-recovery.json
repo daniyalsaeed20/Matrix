@@ -1,0 +1,33 @@
+﻿{
+    "schemaVersion":  "1.0.0",
+    "trivialPatch":  false,
+    "mandatoryAgents":  [
+                            "m4trix-debugger"
+                        ],
+    "conditionalAgents":  [
+                              "m4trix-flutter",
+                              "m4trix-scrum",
+                              "m4trix-verifier"
+                          ],
+    "unnecessaryAgents":  [
+
+                          ],
+    "requiredSkills":  [
+                           "pipeline-recovery",
+                           "pipeline-module"
+                       ],
+    "requiredValidators":  [
+                               "routing",
+                               "recovery",
+                               "regression"
+                           ],
+    "deferred":  [
+
+                 ],
+    "errors":  [
+
+               ],
+    "ok":  true,
+    "policyVersion":  "1.0.0",
+    "policyPath":  "E:\\development\\Matrix\\templates\\sdlc\\routing-policy.json"
+}

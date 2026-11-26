@@ -21,13 +21,17 @@
       "agents/m4trix-scrum.md",
       "agents/m4trix-verifier.md",
       "agents/m4trix-security.md",
-      "agents/m4trix-docs-deploy.md"
+      "agents/m4trix-docs-deploy.md",
+      "agents/m4trix-debugger.md",
+      "agents/m4trix-ui-designer.md"
     ],
     "skills": [
       "skills/bootstrap-org",
       "skills/pipeline-product",
       "skills/pipeline-module",
       "skills/pipeline-patch",
+      "skills/pipeline-recovery",
+      "skills/engineering-research",
       "skills/egm-review"
     ],
     "templates": [
@@ -42,6 +46,7 @@
       "templates/sdlc/HANDOFF.md",
       "templates/sdlc/EGM_REVIEW.md",
       "templates/sdlc/ACTIVE_TASK.json",
+      "templates/sdlc/routing-policy.json",
       "templates/sdlc/DECISIONS.md"
     ]
   },
@@ -89,6 +94,7 @@
       "ecc-cherry-pick/deployment-checklist.md",
       "ecc-cherry-pick/karpathy-principles.md",
       "ecc-cherry-pick/context-engineering.md",
+      "ecc-cherry-pick/model-policy.md",
       "ecc-cherry-pick/egm.md",
       "ecc-cherry-pick/ui-craft.md",
       "ecc-cherry-pick/ui-stress.md"

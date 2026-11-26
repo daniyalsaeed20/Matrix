@@ -1,0 +1,178 @@
+=== m4tr!x smoke tests ===
+KitRoot: E:\development\Matrix
+Platform: Windows (launcher via Get-M4trixShellLauncher)
+PASS  clone path is a valid kit root
+PASS  04-code-craft.mdc exists
+PASS  05-delivery-voice.mdc exists
+PASS  stack-flutter-reusability.mdc exists
+PASS  ACTIVE_TASK.json template exists
+PASS  session-start hook exists
+PASS  before-prompt hook script removed
+PASS  before-shell deny-candidate script exists
+PASS  pre-tool-use deny-candidate script exists
+PASS  subagent-start deny-candidate script exists
+PASS  default hooks.json does not register deny events
+PASS  completion gate script exists
+PASS  bypass matrix exists
+PASS  guard complete eval fixture exists
+PASS  karpathy reference exists
+PASS  craft scenarios fixture exists
+PASS  proportionality eval fixture exists
+PASS  ui designer eval fixture exists
+PASS  visual verify eval fixture exists
+PASS  m4trix-ui-designer agent exists
+PASS  package-source script exists
+PASS  craft: Think before coding
+PASS  craft: Simplicity first
+PASS  craft: Surgical changes
+PASS  craft: Goal-driven execution
+PASS  craft: Decision hierarchy
+PASS  craft: rejects pure LOC golf
+PASS  craft: Solution Escalation Ladder
+PASS  craft: Significant decision
+PASS  verifier checks surgical/unrelated diffs
+PASS  verifier requires real verification evidence
+PASS  verifier checks delivery voice
+PASS  verifier checks proportionality ladder
+PASS  delivery voice covers commits/PRs
+PASS  delivery voice exempts Matrix kit install docs
+PASS  delivery voice covers injected IDE trailers
+PASS  delivery voice: kit exception excludes git trailers
+PASS  commit-msg strip hook source exists
+PASS  commit-msg strips Cursor co-author email
+PASS  MANIFEST ships 05-delivery-voice
+PASS  context: progressive load
+PASS  context: soft budgets
+PASS  token: avoid extra agents on patches
+PASS  context must not skip reuse/craft
+PASS  HANDOFF.md template exists
+PASS  context-engineering reference exists
+PASS  context eval fixture exists
+PASS  ACTIVE_TASK has acceptanceCriteria
+PASS  ACTIVE_TASK has reusableComponents
+PASS  ACTIVE_TASK has stale marker
+PASS  ACTIVE_TASK has egm block
+PASS  ACTIVE_TASK has evidence block
+PASS  Guard runner exists
+PASS  Guard result schema exists
+PASS  Guard task-state validator exists
+PASS  Guard regression validator exists
+PASS  Guard regression schema exists
+PASS  Guard recovery validator exists
+PASS  Guard recovery schema exists
+PASS  Guard routing validator exists
+PASS  Guard routing schema exists
+PASS  Guard research validator exists
+PASS  Guard research schema exists
+PASS  Guard visual validator exists
+PASS  Evaluate-Routing.ps1 exists
+PASS  routing-policy.json exists
+PASS  ACTIVE_TASK template has routing block
+PASS  ACTIVE_TASK template has research block
+PASS  ACTIVE_TASK template has verificationEvidence block
+PASS  pipeline-recovery skill exists
+PASS  engineering-research skill exists
+PASS  m4trix-debugger agent exists
+PASS  Guard test script exists
+PASS  Guard isolated tests exit 0
+PASS  egm-review skill exists
+PASS  EGM_REVIEW template exists
+PASS  egm attribution reference exists
+PASS  ui-craft reference exists
+PASS  ui-stress reference exists
+PASS  product pipeline activates EGM
+PASS  module pipeline activates EGM when needed
+PASS  patch pipeline skips EGM
+PASS  egm-review distinguishes risk acceptance
+PASS  egm-review blocks unresolved security via docs fix
+PASS  EGM_REVIEW template encodes Blocking classes
+PASS  EGM_REVIEW keeps captain approval gate
+PASS  managed skill cleanup includes egm-review
+PASS  always-apply rules stay lean (≤6)
+PASS  14 m4trix agents including debugger + ui-designer (no permanent Goldfish agent)
+PASS  m4trix-debugger among agents
+PASS  m4trix-ui-designer among agents
+PASS  shell launcher Exe present
+PASS  Windows launcher is powershell
+PASS  version compare: 1.5.0 < 1.5.1
+PASS  version compare: equal
+PASS  version compare: 1.6.0 > 1.5.1
+  hooks.json backup -> C:\Users\Datab\AppData\Local\Temp\m4trix-smoke-hooks-f953061e016c4871b57138ed130c50a9\hooks.json.m4trix-backup-20261126-094212128-5f80e116
+PASS  third-party beforeSubmitPrompt preserved (count)
+PASS  third-party command preserved
+PASS  custom hook property preserved
+PASS  failClosed property preserved
+PASS  m4trix beforeSubmitPrompt not registered
+PASS  top-level experimentalFlag preserved
+PASS  top-level vendorMeta.owner preserved
+PASS  top-level vendorMeta.schema preserved
+PASS  third-party sessionStart kept
+PASS  exactly one m4trix sessionStart after merge
+PASS  hooks.json backed up before mutation
+PASS  backup filename is collision-resistant
+  hooks.json backup -> C:\Users\Datab\AppData\Local\Temp\m4trix-smoke-hooks-f953061e016c4871b57138ed130c50a9\hooks.json.m4trix-backup-20261126-094212179-99a6f35d
+PASS  repeated backups create distinct files
+PASS  backup names are unique
+PASS  reinstall does not duplicate m4trix sessionStart
+PASS  third-party sessionStart still present after reinstall
+PASS  custom props survive reinstall
+PASS  top-level metadata survives reinstall
+  hooks.json backup -> C:\Users\Datab\AppData\Local\Temp\m4trix-smoke-hooks-f953061e016c4871b57138ed130c50a9\hooks.json.m4trix-backup-20261126-094212199-18b1b083
+PASS  strip removes only m4trix-owned commands
+PASS  strip keeps third-party beforeSubmitPrompt
+PASS  strip keeps third-party sessionStart
+PASS  strip preserves top-level metadata
+PASS  malformed hooks.json causes failure
+PASS  malformed hooks.json left unmodified
+PASS  egm-review listed once in managed skills
+PASS  unrelated skills not in managed list
+PASS  install fails safely on malformed hooks.json (isolated home)
+PASS  isolated install left malformed hooks.json unchanged
+PASS  isolated install did not replace agents
+PASS  isolated install did not replace skills
+PASS  isolated install did not replace hook scripts
+PASS  isolated install did not replace kit state
+PASS  Fresh install fails safely on malformed hooks.json (isolated home)
+PASS  isolated Fresh left malformed hooks.json unchanged
+PASS  isolated Fresh did not remove agents before abort
+PASS  isolated Fresh did not remove skills before abort
+PASS  isolated Fresh did not remove hooks before abort
+PASS  isolated Fresh did not remove kit state before abort
+PASS  no backup written when preflight rejects malformed hooks
+PASS  sessionStart advises when project marker is behind
+PASS  sessionStart requires captain auth / dry-run
+PASS  sessionStart emits additional_context for advisory
+PASS  sessionStart additional_context is valid JSON field
+NOTE  sessionStart live IDE chat injection: NOT automated (Cursor hooks fire in IDE sessions only)
+PASS  Get-M4trixKitRoot resolves via hint/clone
+PASS  mixed-stack detects flutter
+PASS  mixed-stack detects nodejs additively with flutter
+PASS  pilot dry-run detects flutter
+PASS  pilot plan includes code-craft rule
+PASS  package-source excludes .git
+PASS  package-source excludes caches/markers
+PASS  package-source enumerates hidden files explicitly
+PASS  package-source produced zip
+PASS  zip has no .git entries
+PASS  zip has no .m4trix-kit.json
+PASS  zip has no .dart_tool
+PASS  zip keeps pilot verification sources
+PASS  zip includes .cursor/rules
+PASS  zip includes .cursor/agents
+PASS  zip includes .cursor/skills
+PASS  zip includes .gitignore
+PASS  zip includes bootstrap/install-globals.ps1
+PASS  zip includes bootstrap/smoke-tests.ps1
+PASS  zip includes bootstrap/package-source.ps1
+PASS  zip includes README.md
+PASS  zip includes INSTALL.md
+PASS  zip includes docs/sdlc kit documentation
+PASS  smoke-tests use platform launcher (no hard-coded powershell &invoke)
+PASS  Install-M4trixGitCommitMsgHook returns true for git repo
+PASS  commit-msg hook installed under .git/hooks
+PASS  commit-msg stripped Cursor co-author trailer
+PASS  commit-msg stripped Made with Cursor
+PASS  commit subject preserved after strip
+
+NOTE: macOS execution not claimed unless this run was on macOS/pwsh non-Windows.
+RESULT: all checks passed

@@ -1,0 +1,13 @@
+{
+  "id": "unjustified-restructure-fail",
+  "title": "Unjustified restructure",
+  "decisionClass": "restructure",
+  "ladderLevel": 4,
+  "significant": true,
+  "proposedChange": "Rename packages into a new layered architecture for a one-line bugfix",
+  "justification": null,
+  "captainApproval": false,
+  "expectedVerdict": "fail",
+  "expectEssay": true,
+  "rejectReason": "levels 1-3 not shown insufficient; no captain approval"
+}

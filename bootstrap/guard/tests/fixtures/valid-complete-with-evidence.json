@@ -1,0 +1,23 @@
+{
+  "taskId": "T2-fixture-done",
+  "title": "Valid completion claim with evidence",
+  "scale": "module",
+  "phase": "verify",
+  "status": "done",
+  "approvedScope": "fixture only",
+  "acceptanceCriteria": ["evidence present"],
+  "egm": {
+    "required": false,
+    "status": "skipped"
+  },
+  "evidence": {
+    "commands": [
+      "powershell -NoProfile -File bootstrap/guard/tests/Invoke-GuardTests.ps1"
+    ],
+    "artifacts": [
+      "bootstrap/guard/tests/fixtures/valid-complete-with-evidence.json"
+    ],
+    "limitations": [],
+    "recordedAt": "2026-11-25T00:00:00Z"
+  }
+}

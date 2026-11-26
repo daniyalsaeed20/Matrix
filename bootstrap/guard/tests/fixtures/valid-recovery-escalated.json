@@ -1,0 +1,68 @@
+{
+  "taskId": "T4-fixture-escalate",
+  "title": "Valid: budget exhausted with escalation report",
+  "scale": "module",
+  "phase": "implement",
+  "status": "in_progress",
+  "approvedScope": "fixture only",
+  "acceptanceCriteria": ["escalate after budget"],
+  "egm": {
+    "required": false,
+    "status": "skipped"
+  },
+  "recovery": {
+    "active": true,
+    "status": "escalated",
+    "scale": "module",
+    "attemptBudget": 3,
+    "attemptCount": 3,
+    "facts": ["defect persists after 3 meaningful attempts"],
+    "assumptions": [],
+    "hypotheses": ["platform bug"],
+    "contradicted": [],
+    "rejectedApproaches": [
+      { "id": "A1", "summary": "local null guard", "reason": "fail" },
+      { "id": "A2", "summary": "empty-list producer fix", "reason": "fail" },
+      { "id": "A3", "summary": "diagnostic logging path", "reason": "fail" }
+    ],
+    "attempts": [
+      {
+        "id": "1",
+        "approachId": "A1",
+        "approach": "local null guard",
+        "meaningful": true,
+        "result": "fail"
+      },
+      {
+        "id": "2",
+        "approachId": "A2",
+        "approach": "empty-list producer fix",
+        "strategyDelta": "moved fix upstream",
+        "meaningful": true,
+        "result": "fail"
+      },
+      {
+        "id": "3",
+        "approachId": "A3",
+        "approach": "diagnostic logging path",
+        "strategyDelta": "gather runtime evidence only",
+        "newEvidence": "logs show third-party callback",
+        "meaningful": true,
+        "result": "fail"
+      }
+    ],
+    "checkpoint": "after-attempt-3",
+    "nextAction": "await captain direction",
+    "escalation": {
+      "required": true,
+      "reported": true,
+      "summary": "Three meaningful attempts exhausted module budget. Suspected third-party callback. Need captain decision on research vs stop."
+    }
+  },
+  "evidence": {
+    "commands": ["Invoke-M4trixGuard -Validators task-state,recovery"],
+    "artifacts": ["bootstrap/guard/tests/fixtures/valid-recovery-escalated.json"],
+    "limitations": [],
+    "recordedAt": "2026-11-25T00:00:00Z"
+  }
+}

@@ -1,0 +1,562 @@
+=== T11 approval fingerprint eval ===
+KitRoot: E:\development\Matrix
+=== m4tr!x Guard tests ===
+Runner: E:\development\Matrix\bootstrap\guard\Invoke-M4trixGuard.ps1
+PASS  Invoke-M4trixGuard.ps1 exists
+PASS  result.schema.json exists
+PASS  evidence.schema.json exists
+PASS  task-state validator exists
+PASS  regression validator exists
+PASS  regression.schema.json exists
+PASS  recovery validator exists
+PASS  recovery.schema.json exists
+PASS  routing validator exists
+PASS  routing.schema.json exists
+PASS  research.schema.json exists
+PASS  research.ps1 exists
+PASS  Evaluate-Routing.ps1 exists
+PASS  routing-policy.json exists
+PASS  valid-minimal exit 0
+PASS  valid-minimal ok=true
+PASS  valid-complete-with-evidence exit 0
+PASS  valid-complete-with-evidence ok=true
+PASS  invalid-not-json non-zero exit
+PASS  invalid-not-json ok=false
+PASS  invalid-missing-required non-zero exit
+PASS  invalid-missing-required ok=false
+PASS  invalid-empty-evidence non-zero exit
+PASS  invalid-empty-evidence ok=false (no false-pass)
+PASS  invalid-done-without-evidence non-zero exit
+PASS  invalid-done-without-evidence ok=false
+PASS  missing file non-zero exit
+PASS  missing file ok=false
+PASS  missing GitBaseline non-zero exit
+PASS  missing GitBaseline ok=false
+PASS  valid-regression-unit exit 0
+PASS  valid-regression-unit ok=true
+PASS  invalid-regression-protected-fail non-zero exit
+PASS  invalid-regression-protected-fail ok=false
+PASS  invalid-regression-integrity non-zero exit
+PASS  invalid-regression-integrity ok=false
+PASS  invalid-regression-missing-baseline non-zero exit
+PASS  invalid-regression-missing-baseline ok=false
+PASS  valid-recovery-strategy-change exit 0
+PASS  valid-recovery-strategy-change ok=true
+PASS  valid-recovery-escalated exit 0
+PASS  valid-recovery-escalated ok=true
+PASS  invalid-recovery-repeat-rejected non-zero exit
+PASS  invalid-recovery-repeat-rejected ok=false
+PASS  invalid-recovery-over-budget non-zero exit
+PASS  invalid-recovery-over-budget ok=false
+PASS  invalid-recovery-rename-only non-zero exit
+PASS  invalid-recovery-rename-only ok=false
+PASS  invalid-recovery-protected-mid non-zero exit
+PASS  invalid-recovery-protected-mid ok=false
+PASS  valid-routing-security exit 0
+PASS  valid-routing-security ok=true
+PASS  valid-routing-ui-significant exit 0
+PASS  valid-routing-ui-significant ok=true
+PASS  valid-routing-limitation-ack exit 0
+PASS  valid-routing-limitation-ack ok=true
+PASS  invalid-routing-omit-mandatory non-zero exit
+PASS  invalid-routing-omit-mandatory ok=false
+PASS  invalid-routing-parent-impersonation non-zero exit
+PASS  invalid-routing-parent-impersonation ok=false
+PASS  valid-research-required exit 0
+PASS  valid-research-required ok=true
+PASS  valid-research-skip exit 0
+PASS  valid-research-skip ok=true
+PASS  valid-research-web-unavailable exit 0
+PASS  valid-research-web-unavailable ok=true
+PASS  invalid-research-empty non-zero exit
+PASS  invalid-research-empty ok=false
+PASS  invalid-research-fabricated non-zero exit
+PASS  invalid-research-fabricated ok=false
+PASS  invalid-research-no-alternatives non-zero exit
+PASS  invalid-research-no-alternatives ok=false
+PASS  valid-visual-verified exit 0
+PASS  valid-visual-verified ok=true
+PASS  valid-visual-blocked exit 0
+PASS  valid-visual-blocked ok=true
+PASS  invalid-visual-static-verified non-zero exit
+PASS  invalid-visual-static-verified ok=false
+PASS  invalid-visual-missing-artifact non-zero exit
+PASS  invalid-visual-missing-artifact ok=false
+PASS  valid-completion-done exit 0
+PASS  valid-completion-done ok=true
+PASS  invalid-completion-missing-approval non-zero exit
+PASS  invalid-completion-missing-approval ok=false
+PASS  invalid-completion-egm-block non-zero exit
+PASS  invalid-completion-egm-block ok=false
+PASS  invalid-completion-exhausted-retries non-zero exit
+PASS  invalid-completion-exhausted-retries ok=false
+PASS  invalid-completion-out-of-scope non-zero exit
+PASS  invalid-completion-out-of-scope ok=false
+PASS  invalid-completion-missing-evidence non-zero exit
+PASS  invalid-completion-missing-evidence ok=false
+PASS  valid-approval-done exit 0
+PASS  valid-approval-done ok=true
+PASS  invalid-approval-self-approve non-zero exit
+PASS  invalid-approval-self-approve ok=false
+PASS  invalid-approval-missing-fingerprints non-zero exit
+PASS  invalid-approval-missing-fingerprints ok=false
+PASS  invalid-approval-stale-spec non-zero exit
+PASS  invalid-approval-stale-spec ok=false
+PASS  invalid-approval-scope-change non-zero exit
+PASS  invalid-approval-scope-change ok=false
+PASS  Invoke-CompletionGate.ps1 present
+{
+    "ok":  true,
+    "errors":  [
+
+               ],
+    "warnings":  [
+
+                 ],
+    "checks":  [
+                   {
+                       "name":  "parse",
+                       "ok":  true,
+                       "errors":  [
+
+                                  ],
+                       "warnings":  [
+
+                                    ]
+                   },
+                   {
+                       "name":  "task-state",
+                       "ok":  true,
+                       "errors":  [
+
+                                  ],
+                       "warnings":  [
+
+                                    ]
+                   },
+                   {
+                       "name":  "completion",
+                       "ok":  true,
+                       "errors":  [
+
+                                  ],
+                       "warnings":  [
+
+                                    ]
+                   },
+                   {
+                       "name":  "approval",
+                       "ok":  true,
+                       "errors":  [
+
+                                  ],
+                       "warnings":  [
+
+                                    ]
+                   }
+               ],
+    "taskPath":  "E:\\development\\Matrix\\bootstrap\\guard\\tests\\fixtures\\valid-approval-done.json",
+    "runner":  "Invoke-M4trixGuard.ps1",
+    "schemaVersion":  "1.0.0"
+}
+PASS  Invoke-CompletionGate valid-approval-done exit 0
+{
+    "ok":  false,
+    "errors":  [
+                   "approval: approval.by must be \u0027captain\u0027 (self-approve / agent approve rejected)"
+               ],
+    "warnings":  [
+
+                 ],
+    "checks":  [
+                   {
+                       "name":  "parse",
+                       "ok":  true,
+                       "errors":  [
+
+                                  ],
+                       "warnings":  [
+
+                                    ]
+                   },
+                   {
+                       "name":  "task-state",
+                       "ok":  true,
+                       "errors":  [
+
+                                  ],
+                       "warnings":  [
+
+                                    ]
+                   },
+                   {
+                       "name":  "completion",
+                       "ok":  true,
+                       "errors":  [
+
+                                  ],
+                       "warnings":  [
+
+                                    ]
+                   },
+                   {
+                       "name":  "approval",
+                       "ok":  false,
+                       "errors":  [
+                                      "approval.by must be \u0027captain\u0027 (self-approve / agent approve rejected)"
+                                  ],
+                       "warnings":  [
+
+                                    ]
+                   }
+               ],
+    "taskPath":  "E:\\development\\Matrix\\bootstrap\\guard\\tests\\fixtures\\invalid-approval-self-approve.json",
+    "runner":  "Invoke-M4trixGuard.ps1",
+    "schemaVersion":  "1.0.0"
+}
+m4tr!x completion gate REFUSE done/accepted: Guard ok=false (validators: task-state,completion,approval). Fix errors or do not claim done.
+PASS  Invoke-CompletionGate self-approve refuses (non-zero)
+{
+    "ok":  false,
+    "errors":  [
+                   "completion: completion claim requires non-empty approval.at (captain approval)",
+                   "approval: approval.at required for completion claim",
+                   "approval: approval.specFingerprint and approval.scopeFingerprint required (VER-002 bind)"
+               ],
+    "warnings":  [
+
+                 ],
+    "checks":  [
+                   {
+                       "name":  "parse",
+                       "ok":  true,
+                       "errors":  [
+
+                                  ],
+                       "warnings":  [
+
+                                    ]
+                   },
+                   {
+                       "name":  "task-state",
+                       "ok":  true,
+                       "errors":  [
+
+                                  ],
+                       "warnings":  [
+
+                                    ]
+                   },
+                   {
+                       "name":  "completion",
+                       "ok":  false,
+                       "errors":  [
+                                      "completion claim requires non-empty approval.at (captain approval)"
+                                  ],
+                       "warnings":  [
+
+                                    ]
+                   },
+                   {
+                       "name":  "approval",
+                       "ok":  false,
+                       "errors":  [
+                                      "approval.at required for completion claim",
+                                      "approval.specFingerprint and approval.scopeFingerprint required (VER-002 bind)"
+                                  ],
+                       "warnings":  [
+
+                                    ]
+                   }
+               ],
+    "taskPath":  "E:\\development\\Matrix\\bootstrap\\guard\\tests\\fixtures\\invalid-completion-missing-approval.json",
+    "runner":  "Invoke-M4trixGuard.ps1",
+    "schemaVersion":  "1.0.0"
+}
+m4tr!x completion gate REFUSE done/accepted: Guard ok=false (validators: task-state,completion,approval). Fix errors or do not claim done.
+PASS  Invoke-CompletionGate missing-approval refuses (non-zero)
+
+RESULT: all Guard tests passed
+PASS  Invoke-GuardTests (exit=0)
+{
+    "ok":  true,
+    "errors":  [
+
+               ],
+    "warnings":  [
+
+                 ],
+    "checks":  [
+                   {
+                       "name":  "parse",
+                       "ok":  true,
+                       "errors":  [
+
+                                  ],
+                       "warnings":  [
+
+                                    ]
+                   },
+                   {
+                       "name":  "task-state",
+                       "ok":  true,
+                       "errors":  [
+
+                                  ],
+                       "warnings":  [
+
+                                    ]
+                   },
+                   {
+                       "name":  "completion",
+                       "ok":  true,
+                       "errors":  [
+
+                                  ],
+                       "warnings":  [
+
+                                    ]
+                   },
+                   {
+                       "name":  "approval",
+                       "ok":  true,
+                       "errors":  [
+
+                                  ],
+                       "warnings":  [
+
+                                    ]
+                   }
+               ],
+    "taskPath":  "E:\\development\\Matrix\\bootstrap\\guard\\tests\\fixtures\\valid-approval-done.json",
+    "runner":  "Invoke-M4trixGuard.ps1",
+    "schemaVersion":  "1.0.0"
+}
+PASS  allow-valid (exit=0 expectOk=True)
+{
+    "ok":  false,
+    "errors":  [
+                   "approval: approval.by must be \u0027captain\u0027 (self-approve / agent approve rejected)"
+               ],
+    "warnings":  [
+
+                 ],
+    "checks":  [
+                   {
+                       "name":  "parse",
+                       "ok":  true,
+                       "errors":  [
+
+                                  ],
+                       "warnings":  [
+
+                                    ]
+                   },
+                   {
+                       "name":  "task-state",
+                       "ok":  true,
+                       "errors":  [
+
+                                  ],
+                       "warnings":  [
+
+                                    ]
+                   },
+                   {
+                       "name":  "completion",
+                       "ok":  true,
+                       "errors":  [
+
+                                  ],
+                       "warnings":  [
+
+                                    ]
+                   },
+                   {
+                       "name":  "approval",
+                       "ok":  false,
+                       "errors":  [
+                                      "approval.by must be \u0027captain\u0027 (self-approve / agent approve rejected)"
+                                  ],
+                       "warnings":  [
+
+                                    ]
+                   }
+               ],
+    "taskPath":  "E:\\development\\Matrix\\bootstrap\\guard\\tests\\fixtures\\invalid-approval-self-approve.json",
+    "runner":  "Invoke-M4trixGuard.ps1",
+    "schemaVersion":  "1.0.0"
+}
+m4tr!x completion gate REFUSE done/accepted: Guard ok=false (validators: task-state,completion,approval). Fix errors or do not claim done.
+PASS  refuse-self-approve (exit=1 expectOk=False)
+{
+    "ok":  false,
+    "errors":  [
+                   "approval: approval.specFingerprint and approval.scopeFingerprint required (VER-002 bind)"
+               ],
+    "warnings":  [
+
+                 ],
+    "checks":  [
+                   {
+                       "name":  "parse",
+                       "ok":  true,
+                       "errors":  [
+
+                                  ],
+                       "warnings":  [
+
+                                    ]
+                   },
+                   {
+                       "name":  "task-state",
+                       "ok":  true,
+                       "errors":  [
+
+                                  ],
+                       "warnings":  [
+
+                                    ]
+                   },
+                   {
+                       "name":  "completion",
+                       "ok":  true,
+                       "errors":  [
+
+                                  ],
+                       "warnings":  [
+
+                                    ]
+                   },
+                   {
+                       "name":  "approval",
+                       "ok":  false,
+                       "errors":  [
+                                      "approval.specFingerprint and approval.scopeFingerprint required (VER-002 bind)"
+                                  ],
+                       "warnings":  [
+
+                                    ]
+                   }
+               ],
+    "taskPath":  "E:\\development\\Matrix\\bootstrap\\guard\\tests\\fixtures\\invalid-approval-missing-fingerprints.json",
+    "runner":  "Invoke-M4trixGuard.ps1",
+    "schemaVersion":  "1.0.0"
+}
+m4tr!x completion gate REFUSE done/accepted: Guard ok=false (validators: task-state,completion,approval). Fix errors or do not claim done.
+PASS  refuse-missing-fp (exit=1 expectOk=False)
+{
+    "ok":  false,
+    "errors":  [
+                   "approval: approval.specFingerprint stale or mismatched (re-approve after spec/reviewPaths change)"
+               ],
+    "warnings":  [
+
+                 ],
+    "checks":  [
+                   {
+                       "name":  "parse",
+                       "ok":  true,
+                       "errors":  [
+
+                                  ],
+                       "warnings":  [
+
+                                    ]
+                   },
+                   {
+                       "name":  "task-state",
+                       "ok":  true,
+                       "errors":  [
+
+                                  ],
+                       "warnings":  [
+
+                                    ]
+                   },
+                   {
+                       "name":  "completion",
+                       "ok":  true,
+                       "errors":  [
+
+                                  ],
+                       "warnings":  [
+
+                                    ]
+                   },
+                   {
+                       "name":  "approval",
+                       "ok":  false,
+                       "errors":  [
+                                      "approval.specFingerprint stale or mismatched (re-approve after spec/reviewPaths change)"
+                                  ],
+                       "warnings":  [
+
+                                    ]
+                   }
+               ],
+    "taskPath":  "E:\\development\\Matrix\\bootstrap\\guard\\tests\\fixtures\\invalid-approval-stale-spec.json",
+    "runner":  "Invoke-M4trixGuard.ps1",
+    "schemaVersion":  "1.0.0"
+}
+m4tr!x completion gate REFUSE done/accepted: Guard ok=false (validators: task-state,completion,approval). Fix errors or do not claim done.
+PASS  refuse-stale-spec (exit=1 expectOk=False)
+{
+    "ok":  false,
+    "errors":  [
+                   "approval: approval.scopeFingerprint stale or mismatched (re-approve after approvedScope/permittedPaths change)"
+               ],
+    "warnings":  [
+
+                 ],
+    "checks":  [
+                   {
+                       "name":  "parse",
+                       "ok":  true,
+                       "errors":  [
+
+                                  ],
+                       "warnings":  [
+
+                                    ]
+                   },
+                   {
+                       "name":  "task-state",
+                       "ok":  true,
+                       "errors":  [
+
+                                  ],
+                       "warnings":  [
+
+                                    ]
+                   },
+                   {
+                       "name":  "completion",
+                       "ok":  true,
+                       "errors":  [
+
+                                  ],
+                       "warnings":  [
+
+                                    ]
+                   },
+                   {
+                       "name":  "approval",
+                       "ok":  false,
+                       "errors":  [
+                                      "approval.scopeFingerprint stale or mismatched (re-approve after approvedScope/permittedPaths change)"
+                                  ],
+                       "warnings":  [
+
+                                    ]
+                   }
+               ],
+    "taskPath":  "E:\\development\\Matrix\\bootstrap\\guard\\tests\\fixtures\\invalid-approval-scope-change.json",
+    "runner":  "Invoke-M4trixGuard.ps1",
+    "schemaVersion":  "1.0.0"
+}
+m4tr!x completion gate REFUSE done/accepted: Guard ok=false (validators: task-state,completion,approval). Fix errors or do not claim done.
+PASS  refuse-scope-change (exit=1 expectOk=False)
+
+SUMMARY: E:\development\Matrix\_pilot\approval_fingerprint_eval\evidence\SUMMARY.json
+EXIT_CODE=0

@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://m4trix.local/guard/evidence.schema.json",
+  "title": "M4TR!X ACTIVE_TASK.evidence",
+  "description": "Evidence object convention for task completion claims. When the key is present it must match this shape. When status/phase is done or accepted, evidence must be present and non-empty (at least one command or artifact).",
+  "type": "object",
+  "required": ["commands", "artifacts", "limitations"],
+  "additionalProperties": true,
+  "properties": {
+    "commands": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Commands that were actually run (with enough detail to reproduce)."
+    },
+    "artifacts": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Paths or URIs to logs, JSON samples, screenshots, etc."
+    },
+    "limitations": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Honest gaps (e.g. isolation:unproven, metrics unavailable)."
+    },
+    "recordedAt": {
+      "type": ["string", "null"],
+      "description": "ISO-8601 timestamp when evidence was last recorded."
+    }
+  }
+}

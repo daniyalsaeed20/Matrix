@@ -1,0 +1,7 @@
+{
+  "scale": "patch",
+  "taskType": "copy-fix",
+  "stacks": ["flutter"],
+  "uiInvolvement": "none",
+  "securityRisk": false
+}

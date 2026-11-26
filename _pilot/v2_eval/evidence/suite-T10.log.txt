@@ -1,0 +1,158 @@
+=== Guard complete eval (T10) ===
+EvalRoot: E:\development\Matrix\_pilot\guard_complete_eval
+KitRoot:  E:\development\Matrix
+PASS  completion.ps1 present
+PASS  Invoke-CompletionGate.ps1 present
+PASS  GUARD_BYPASS_MATRIX.md present
+PASS  fixture valid-completion-done.json
+PASS  fixture invalid-completion-missing-approval.json
+PASS  fixture invalid-completion-egm-block.json
+PASS  fixture invalid-completion-exhausted-retries.json
+PASS  fixture invalid-completion-out-of-scope.json
+PASS  fixture invalid-completion-missing-evidence.json
+PASS  bypass matrix: no unbypassable claim
+PASS  bypass matrix: Write/StrReplace path
+PASS  bypass matrix: fail-open/failClosed
+PASS  bypass matrix: completion-blocking
+PASS  pipeline-module: completion gate
+PASS  verifier: completion gate
+PASS  hooks.json: sessionStart
+PASS  hooks.json: workspaceOpen
+PASS  hooks.json: beforeShellExecution NOT registered
+PASS  hooks.json: preToolUse NOT registered
+PASS  hooks.json: subagentStart NOT registered
+PASS  m4trix-before-shell.ps1 present
+PASS  m4trix-pre-tool-use.ps1 present
+PASS  m4trix-subagent-start.ps1 present
+PASS  HOOK_PROBE_T10.json present
+PASS  probe: preventive still unverified
+PASS  probe: no verifiedPreventive claims
+PASS  Invoke-GuardTests.ps1 present
+PASS  Invoke-GuardTests.ps1 EXIT_CODE=0
+PASS  Guard: valid-completion-done ok
+PASS  Guard: missing-approval fails
+PASS  Guard: egm-block fails
+PASS  Guard: exhausted-retries fails
+PASS  Guard: out-of-scope fails
+PASS  Guard: missing-evidence fails
+PASS  Guard: gate refuse path
+{
+    "ok":  false,
+    "errors":  [
+                   "completion: completion claim requires non-empty approval.at (captain approval)",
+                   "approval: approval.at required for completion claim",
+                   "approval: approval.specFingerprint and approval.scopeFingerprint required (VER-002 bind)"
+               ],
+    "warnings":  [
+
+                 ],
+    "checks":  [
+                   {
+                       "name":  "parse",
+                       "ok":  true,
+                       "errors":  [
+
+                                  ],
+                       "warnings":  [
+
+                                    ]
+                   },
+                   {
+                       "name":  "task-state",
+                       "ok":  true,
+                       "errors":  [
+
+                                  ],
+                       "warnings":  [
+
+                                    ]
+                   },
+                   {
+                       "name":  "completion",
+                       "ok":  false,
+                       "errors":  [
+                                      "completion claim requires non-empty approval.at (captain approval)"
+                                  ],
+                       "warnings":  [
+
+                                    ]
+                   },
+                   {
+                       "name":  "approval",
+                       "ok":  false,
+                       "errors":  [
+                                      "approval.at required for completion claim",
+                                      "approval.specFingerprint and approval.scopeFingerprint required (VER-002 bind)"
+                                  ],
+                       "warnings":  [
+
+                                    ]
+                   }
+               ],
+    "taskPath":  "E:\\development\\Matrix\\bootstrap\\guard\\tests\\fixtures\\invalid-completion-missing-approval.json",
+    "runner":  "Invoke-M4trixGuard.ps1",
+    "schemaVersion":  "1.0.0"
+}
+m4tr!x completion gate REFUSE done/accepted: Guard ok=false (validators: task-state,completion,approval). Fix errors or do not claim done.
+PASS  live procedure: completion gate refuses done with Guard fail
+PASS  gate refuse result written
+{
+    "ok":  true,
+    "errors":  [
+
+               ],
+    "warnings":  [
+
+                 ],
+    "checks":  [
+                   {
+                       "name":  "parse",
+                       "ok":  true,
+                       "errors":  [
+
+                                  ],
+                       "warnings":  [
+
+                                    ]
+                   },
+                   {
+                       "name":  "task-state",
+                       "ok":  true,
+                       "errors":  [
+
+                                  ],
+                       "warnings":  [
+
+                                    ]
+                   },
+                   {
+                       "name":  "completion",
+                       "ok":  true,
+                       "errors":  [
+
+                                  ],
+                       "warnings":  [
+
+                                    ]
+                   },
+                   {
+                       "name":  "approval",
+                       "ok":  true,
+                       "errors":  [
+
+                                  ],
+                       "warnings":  [
+
+                                    ]
+                   }
+               ],
+    "taskPath":  "E:\\development\\Matrix\\bootstrap\\guard\\tests\\fixtures\\valid-completion-done.json",
+    "runner":  "Invoke-M4trixGuard.ps1",
+    "schemaVersion":  "1.0.0"
+}
+PASS  live procedure: completion gate allows valid done
+PASS  gate allow result written
+PASS  before-shell script denies Fresh pattern (script-level)
+PASS  before-shell script allows ordinary smoke
+
+RESULT: guard_complete_eval passed

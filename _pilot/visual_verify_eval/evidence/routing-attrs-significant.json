@@ -1,0 +1,20 @@
+{
+    "taskType":  "ui-feature",
+    "reviewsRequired":  [
+                            "design-system",
+                            "ui-designer"
+                        ],
+    "researchNeeded":  false,
+    "uncertainty":  "med",
+    "stacks":  [
+                   "flutter"
+               ],
+    "uiInvolvement":  "significant",
+    "scale":  "module",
+    "recoveryActive":  false,
+    "regressionRisk":  false,
+    "layers":  [
+                   "presentation"
+               ],
+    "securityRisk":  false
+}

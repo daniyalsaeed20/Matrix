@@ -164,13 +164,17 @@ function Get-M4trixManagedSkillNames {
     "pipeline-product",
     "pipeline-module",
     "pipeline-patch",
+    "pipeline-recovery",
+    "engineering-research",
     "egm-review"
   )
 }
 
 function Test-M4trixOwnedHookCommand([string]$command) {
   if ([string]::IsNullOrWhiteSpace($command)) { return $false }
-  return [bool]($command -match "m4trix-(workspace-open|before-prompt|session-start|platform)")
+  # Include selective T10 deny-candidate script names so future registration still merges/strips cleanly.
+  # Default hooks.json still registers only sessionStart + workspaceOpen (advisory).
+  return [bool]($command -match "m4trix-(workspace-open|before-prompt|session-start|platform|before-shell|pre-tool-use|subagent-start)")
 }
 
 function ConvertTo-M4trixHookEntryMap($item) {

@@ -1,0 +1,6 @@
+﻿{
+    "id":  "ordinary-patch-ok",
+    "expectedVerdict":  "pass",
+    "actualVerdict":  "pass",
+    "pass":  true
+}

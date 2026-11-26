@@ -1,0 +1,8 @@
+﻿{
+    "cap":  "T11",
+    "label":  "Approval fingerprints",
+    "script":  "_pilot/approval_fingerprint_eval/scripts/Invoke-ApprovalFingerprintEval.ps1",
+    "exitCode":  0,
+    "pass":  true,
+    "logPath":  "E:\\development\\Matrix\\_pilot\\v2_eval\\evidence\\suite-T11.log.txt"
+}

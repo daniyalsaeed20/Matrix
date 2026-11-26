@@ -1,0 +1,13 @@
+{
+  "taskId": "T2-fixture",
+  "title": "Valid minimal ACTIVE_TASK",
+  "scale": "module",
+  "phase": "implement",
+  "status": "in_progress",
+  "approvedScope": "fixture only",
+  "acceptanceCriteria": ["passes guard"],
+  "egm": {
+    "required": false,
+    "status": "skipped"
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "taskId": "T4-fixture-reg-edge",
+  "title": "Edge: protected regression fail mid-recovery rejects unit",
+  "scale": "module",
+  "phase": "implement",
+  "status": "in_progress",
+  "approvedScope": "fixture only",
+  "acceptanceCriteria": ["must fail via regression"],
+  "egm": {
+    "required": false,
+    "status": "skipped"
+  },
+  "recovery": {
+    "active": true,
+    "status": "attempting",
+    "scale": "module",
+    "attemptBudget": 3,
+    "attemptCount": 1,
+    "facts": ["repairing B06"],
+    "assumptions": [],
+    "hypotheses": ["username regex"],
+    "contradicted": [],
+    "rejectedApproaches": [],
+    "attempts": [
+      {
+        "id": "1",
+        "approachId": "R1",
+        "approach": "broad shared TextNorm change",
+        "hypothesis": "shared helper",
+        "predicted": "B06 fixed",
+        "actual": "B01 protected broke",
+        "meaningful": true,
+        "result": "fail"
+      }
+    ],
+    "checkpoint": null,
+    "nextAction": "revert shared change",
+    "escalation": {
+      "required": false,
+      "reported": false,
+      "summary": null
+    }
+  },
+  "regression": {
+    "baselineRev": "v1.6.0@_pilot/v2_baseline/2026-11-25",
+    "status": "unit_check",
+    "behaviours": [
+      {
+        "id": "B01",
+        "name": "normalizeEmail",
+        "state": "verified_working",
+        "evidence": "test:B01"
+      },
+      {
+        "id": "B06",
+        "name": "validateUsername",
+        "state": "verified_failing",
+        "evidence": "test:B06"
+      }
+    ],
+    "protectedChecks": [
+      {
+        "unitId": "recovery-attempt-1",
+        "protectedIds": ["B01"],
+        "result": "fail",
+        "command": "flutter test --name B01"
+      }
+    ],
+    "dirtyPaths": [],
+    "integrity": {
+      "status": "ok",
+      "notes": null,
+      "justification": null
+    }
+  },
+  "evidence": {
+    "commands": ["guard"],
+    "artifacts": ["fixture"],
+    "limitations": [],
+    "recordedAt": "2026-11-25T00:00:00Z"
+  }
+}

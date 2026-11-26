@@ -16,4 +16,28 @@ Use **only** when a second agent is truly needed. Skip for trivial single-agent 
 | Next | Remaining work for the receiving agent |
 | Blockers | Open issues |
 
-Receiving agent: continue from this table; **do not** re-investigate unless evidence is missing, stale, or contradictory.
+## Recovery (when active)
+
+Copy from `ACTIVE_TASK.recovery` — do **not** reset budget or invent approval.
+
+| Field | Content |
+|-------|---------|
+| attemptCount / attemptBudget | Current counts |
+| rejectedApproaches | IDs + summaries (keep cumulative) |
+| nextAction | What the receiving agent should do next |
+| escalation | reported? summary? |
+
+Receiving agent: continue from this table; **do not** re-investigate unless evidence is missing, stale, or contradictory. Never treat handoff as a fresh attempt budget.
+
+## Routing (when recorded)
+
+Copy from `ACTIVE_TASK.routing` — parent prose claiming a specialist ran is **not** evidence.
+
+| Field | Content |
+|-------|---------|
+| attributes | Classification used for calculate |
+| calculated.mandatoryAgents | From Evaluate-Routing |
+| invoked / evidence | Names + type task\|subagent\|artifact\|limitation |
+| deferred / limitation | Forward-declare or evidenceLimitation + ack |
+
+Receiving agent: invoke remaining mandatory specialists; do not invent a markdown-only route.

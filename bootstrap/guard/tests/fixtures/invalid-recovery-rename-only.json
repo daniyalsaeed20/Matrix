@@ -1,0 +1,50 @@
+{
+  "taskId": "T4-fixture-rename",
+  "title": "Invalid: rename-only counted as meaningful attempt",
+  "scale": "patch",
+  "phase": "implement",
+  "status": "in_progress",
+  "approvedScope": "fixture only",
+  "acceptanceCriteria": ["must fail"],
+  "egm": {
+    "required": false,
+    "status": "skipped"
+  },
+  "recovery": {
+    "active": true,
+    "status": "attempting",
+    "scale": "patch",
+    "attemptBudget": 2,
+    "attemptCount": 1,
+    "facts": ["bug still present"],
+    "assumptions": [],
+    "hypotheses": [],
+    "contradicted": [],
+    "rejectedApproaches": [],
+    "attempts": [
+      {
+        "id": "1",
+        "approachId": "R1",
+        "approach": "renamed FooHelper to BarHelper with identical body",
+        "predicted": "looks like new attempt",
+        "actual": "same defect",
+        "meaningful": true,
+        "renameOnly": true,
+        "result": "fail"
+      }
+    ],
+    "checkpoint": null,
+    "nextAction": null,
+    "escalation": {
+      "required": false,
+      "reported": false,
+      "summary": null
+    }
+  },
+  "evidence": {
+    "commands": ["guard"],
+    "artifacts": ["fixture"],
+    "limitations": [],
+    "recordedAt": "2026-11-25T00:00:00Z"
+  }
+}

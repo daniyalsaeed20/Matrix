@@ -1,0 +1,32 @@
+{
+  "taskId": "T10-out-of-scope",
+  "title": "Done with filesChanged outside permittedPaths must fail",
+  "scale": "module",
+  "phase": "done",
+  "status": "done",
+  "approvedScope": "fixture",
+  "acceptanceCriteria": ["must fail"],
+  "permittedPaths": [
+    "bootstrap/guard/"
+  ],
+  "filesChanged": [
+    "bootstrap/guard/validators/completion.ps1",
+    "secret/not-allowed.ps1"
+  ],
+  "egm": {
+    "required": false,
+    "status": "skipped",
+    "blockingOpen": false
+  },
+  "approval": {
+    "by": "captain",
+    "at": "2026-11-25T12:00:00Z",
+    "note": "fixture"
+  },
+  "evidence": {
+    "commands": ["guard"],
+    "artifacts": ["fixture"],
+    "limitations": [],
+    "recordedAt": "2026-11-25T12:00:00Z"
+  }
+}

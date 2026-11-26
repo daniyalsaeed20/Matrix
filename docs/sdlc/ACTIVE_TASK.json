@@ -1,67 +1,232 @@
 {
-  "taskId": "KIT-rel-1.6.0",
-  "title": "Design engineering intelligence upgrade (UI craft / motion / stress)",
+  "taskId": "T16",
+  "title": "Captain-approved activation and rollback",
   "scale": "module",
-  "phase": "accepted",
-  "status": "accepted",
-  "approvedScope": "Selectively adapt emilkowalski/skills principles into existing Matrix agents/rules/templates; on-demand ui-craft + ui-stress refs; isolated ui_craft_eval fixtures; no new agents/skills; no SDLC/EGM change; no customer projects; no commit without captain auth",
+  "phase": "implement",
+  "status": "in_progress",
+  "approvedScope": "Captain Activate globals 2.0.0 — globals only (2026-11-26). Written activation go; acknowledge documented limitations; confirm RB clear + RC/rollback package integrity; pre-activation backup; git release checkpoint; captain-executed install-globals -Fresh (agent must not Fresh); no workspace apply; post-Fresh verify markers/agents/skills/hooks/Guard/router/recovery/research/ui-designer; record release status; freeze v2.0 after success. No T1–T15 reopen; no new epic.",
   "acceptanceCriteria": [
-    "Happy: design-system, flutter, verifier point at condensed craft/motion/stress guidance without duplicating full upstream skills",
-    "Fail: backend-only / tiny patch paths skip loading ui-craft/ui-stress",
-    "Edge: Flutter motion notes stay Flutter-native; web/RN notes stay platform-specific; MIT attribution in ORIGIN"
+    "Written captain activation go recorded",
+    "RB-01…RB-10 remain clear",
+    "v2.0.0 package integrity verified",
+    "v1.6.0 rollback package integrity verified",
+    "Pre-activation backup of kit.json/hooks/USER_RULES retained",
+    "Git release checkpoint for v2.0.0 created",
+    "Captain executes install-globals -Fresh (agent does not self-activate)",
+    "Post-activate kit.json version 2.0.0",
+    "Agents/skills/hooks/Guard/router/recovery/research/ui-designer present",
+    "No automatic apply to product workspaces",
+    "Release status + limitations + rollback instructions recorded"
   ],
   "permittedPaths": [
-    "agents/",
-    "constitution/",
-    "skills/",
-    "templates/",
-    "ecc-cherry-pick/",
-    "bootstrap/",
     "docs/sdlc/",
-    "_pilot/ui_craft_eval/",
+    "_pilot/v2_activation/",
+    "dist/",
     "VERSION",
-    "README.md",
-    ".cursor/"
+    "HOW_MATRIX_WORKS.md",
+    "INSTALL.md",
+    "README.md"
   ],
   "designSystemChangesApproved": false,
   "decisionRefs": [
-    "2026-11-12 Selective design-eng principles via on-demand ecc-cherry-pick; no new agents"
+    "2026-11-26 captain Activate globals 2.0.0 — globals only",
+    "docs/sdlc/V2_TASKS.md T16",
+    "REL-001",
+    "ISO-002 lifted for T16 only",
+    "RB-01…RB-10"
   ],
-  "conventions": ["04-code-craft", "03-token-discipline", "01-production-bar"],
-  "reusableComponents": [],
+  "conventions": [
+    "00-m4trix-os",
+    "01-production-bar",
+    "04-code-craft",
+    "05-delivery-voice"
+  ],
+  "reusableComponents": [
+    "bootstrap/install-globals.ps1",
+    "dist/ROLLBACK_2.0.0.md",
+    "_pilot/v2_eval/evidence/RB_CHECKLIST.md"
+  ],
   "filesChanged": [
-    "ecc-cherry-pick/ui-craft.md",
-    "ecc-cherry-pick/ui-stress.md",
-    "ecc-cherry-pick/ORIGIN.md",
-    "ecc-cherry-pick/flutter-review-checklist.md",
-    "agents/m4trix-design-system.md",
-    "agents/m4trix-flutter.md",
-    "agents/m4trix-verifier.md",
-    "constitution/project-rules/01-production-bar.mdc",
-    "constitution/project-rules/03-token-discipline.mdc",
-    "templates/sdlc/DESIGN_SYSTEM.md",
-    "skills/pipeline-patch/SKILL.md",
-    "skills/pipeline-module/SKILL.md",
-    "bootstrap/MANIFEST.json",
-    "bootstrap/smoke-tests.ps1",
-    "_pilot/ui_craft_eval/",
-    "VERSION",
-    "README.md",
+    "docs/sdlc/ACTIVE_TASK.json",
+    "docs/sdlc/V2_TASKS.md",
     "docs/sdlc/DECISIONS.md",
-    "docs/sdlc/ACTIVE_TASK.json"
+    "docs/sdlc/MODULE_HANDOFF.md",
+    "docs/sdlc/TEST_PLAN.md",
+    "_pilot/v2_activation/"
   ],
   "verified": [
-    "flutter test in _pilot/ui_craft_eval — All tests passed (9)",
-    "bootstrap/smoke-tests.ps1 RESULT: all checks passed (includes ui-craft/ui-stress path asserts)",
-    "Scenario 5 patch ceremony: policy check against pipeline-patch + token-discipline (manual)"
+    "PREFLIGHT PASS: RB clear; RC + rollback zip verify; pre-activation backup; globals-only scope",
+    "Agent has not run install-globals -Fresh"
   ],
-  "blockers": [],
-  "context": {
-    "staleAfterHours": 48,
-    "notes": "Scenario 5 (patch ceremony) is policy/manual. Do not commit until captain authorizes."
-  },
+  "blockers": [
+    "Awaiting captain execution of install-globals.ps1 -Fresh and reply: Fresh complete — verify T16"
+  ],
+  "qualityChecks": [
+    "production-bar",
+    "package-integrity",
+    "rollback-verify",
+    "post-activate-inventory"
+  ],
   "egm": {
     "required": false,
-    "status": "skipped"
-  }
+    "status": "skipped",
+    "reviewPaths": [],
+    "blockingOpen": false,
+    "note": "Thin locked DESIGN T16; captain written activation go authorizes cutover checklist."
+  },
+  "evidence": {
+    "commands": [
+      "Get-FileHash dist/matrix-kit-2.0.0-src.zip / 1.6.0 zip",
+      "Expand-Archive structural verify → RC_ZIP_VERIFY.json / ROLLBACK_ZIP_VERIFY.json"
+    ],
+    "artifacts": [
+      "_pilot/v2_activation/ACTIVATION_CHECKLIST.md",
+      "_pilot/v2_activation/RELEASE_STATUS.md",
+      "_pilot/v2_activation/evidence/PREFLIGHT_RESULT.json",
+      "_pilot/v2_activation/evidence/PACKAGE_INTEGRITY.json",
+      "_pilot/v2_activation/evidence/RC_ZIP_VERIFY.json",
+      "_pilot/v2_activation/evidence/ROLLBACK_ZIP_VERIFY.json",
+      "_pilot/v2_activation/evidence/pre-activation-backup-2026-11-26T102412Z/"
+    ],
+    "limitations": [
+      "isolation:unproven",
+      "CTX-003 primary token/cost unavailable",
+      "T14 residual field risk",
+      "Guard is process gate",
+      "Live Cursor procedures incomplete (BL-004)",
+      "dist/ gitignored — release zips on disk with recorded SHA256"
+    ],
+    "recordedAt": "2026-11-26T05:26:00Z"
+  },
+  "verificationEvidence": {
+    "commands": [],
+    "exitCodes": [],
+    "artifacts": [],
+    "visualStatus": null,
+    "method": "script",
+    "interactionChecks": [],
+    "limitations": [
+      "Post-Fresh verification pending captain execution"
+    ],
+    "note": "Preflight only; activation incomplete until captain Fresh"
+  },
+  "recovery": {
+    "active": false,
+    "status": "inactive",
+    "scale": "module",
+    "attemptBudget": 3,
+    "attemptCount": 0,
+    "facts": [],
+    "assumptions": [],
+    "hypotheses": [],
+    "contradicted": [],
+    "rejectedApproaches": [],
+    "attempts": [],
+    "checkpoint": null,
+    "nextAction": null,
+    "escalation": {
+      "required": false,
+      "reported": false,
+      "summary": null
+    }
+  },
+  "routing": {
+    "attributes": {
+      "scale": "module",
+      "taskType": "activation-cutover",
+      "stacks": [],
+      "layers": ["bootstrap", "docs"],
+      "uncertainty": "low",
+      "securityRisk": false,
+      "uiInvolvement": "none",
+      "regressionRisk": true,
+      "recoveryActive": false,
+      "researchNeeded": false,
+      "unfamiliarTech": false,
+      "recurringDefect": false,
+      "reviewsRequired": ["verifier"]
+    },
+    "calculated": {
+      "ok": true,
+      "mandatoryAgents": [],
+      "conditionalAgents": ["m4trix-docs-deploy", "m4trix-verifier"],
+      "requiredSkills": ["pipeline-module"],
+      "requiredValidators": ["task-state"],
+      "artifact": null
+    },
+    "invoked": ["pipeline-module"],
+    "evidence": [
+      {
+        "type": "artifact",
+        "name": "pipeline-module",
+        "ref": "skills/pipeline-module/SKILL.md",
+        "note": "T16 module pipeline; captain executes Fresh"
+      }
+    ],
+    "validated": false,
+    "evidenceLimitation": null,
+    "limitationAck": false
+  },
+  "research": {
+    "required": false,
+    "findings": [],
+    "sources": [],
+    "limitations": [],
+    "poc": {
+      "required": false,
+      "status": "skipped",
+      "notes": "T16 research: none"
+    }
+  },
+  "regression": {
+    "required": true,
+    "baselineRev": "T15-accepted + pre-activation-backup 1.6.0 globals",
+    "status": "in_progress",
+    "behaviours": [
+      {
+        "id": "R01",
+        "name": "third-party-hooks-preservation",
+        "state": "baseline_recorded",
+        "evidence": "pre-activation-backup hooks.json (m4trix-only at backup)"
+      },
+      {
+        "id": "R02",
+        "name": "rollback-zip-usable",
+        "state": "verified_working",
+        "evidence": "ROLLBACK_ZIP_VERIFY.json"
+      },
+      {
+        "id": "R03",
+        "name": "no-silent-workspace-apply",
+        "state": "verified_working",
+        "evidence": "scope globals-only; AutoApplyWorkspaces false"
+      }
+    ],
+    "protectedChecks": [],
+    "dirtyPaths": [],
+    "integrity": {
+      "status": "ok",
+      "notes": "No tests weakened",
+      "justification": null
+    },
+    "lastVerified": "2026-11-26T05:25:00Z preflight"
+  },
+  "context": {
+    "updatedAt": "2026-11-26T05:26:00Z",
+    "staleAfterHours": 72,
+    "note": "T16 in progress. Awaiting captain Fresh. Agent must not self-activate."
+  },
+  "approval": {
+    "by": "captain",
+    "at": "2026-11-26T05:23:00Z",
+    "note": "Activate globals 2.0.0 — globals only; limitations acknowledged",
+    "specFingerprint": null,
+    "scopeFingerprint": null,
+    "baselineRev": "T15-accepted"
+  },
+  "guard": {
+    "lastResultPath": null,
+    "status": "pending"
+  },
+  "notes": "Captain executes Fresh. After reply Fresh complete — verify T16, agent verifies markers only. No product apply."
 }

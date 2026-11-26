@@ -1,0 +1,51 @@
+{
+  "taskId": "T3-fixture-pass",
+  "title": "Valid regression unit with protected checks",
+  "scale": "module",
+  "phase": "implement",
+  "status": "in_progress",
+  "approvedScope": "fixture only",
+  "acceptanceCriteria": ["protected pass"],
+  "egm": {
+    "required": false,
+    "status": "skipped"
+  },
+  "regression": {
+    "baselineRev": "v1.6.0@_pilot/v2_baseline/2026-11-25",
+    "status": "unit_check",
+    "behaviours": [
+      {
+        "id": "B01",
+        "name": "normalizeEmail",
+        "state": "verified_working",
+        "evidence": "test:B01"
+      },
+      {
+        "id": "B06",
+        "name": "validateUsername",
+        "state": "verified_failing",
+        "evidence": "test:B06"
+      }
+    ],
+    "protectedChecks": [
+      {
+        "unitId": "fix-B06",
+        "protectedIds": ["B01"],
+        "result": "pass",
+        "command": "flutter test --name B01"
+      }
+    ],
+    "dirtyPaths": ["user_notes.md"],
+    "integrity": {
+      "status": "ok",
+      "notes": null,
+      "justification": null
+    }
+  },
+  "evidence": {
+    "commands": ["flutter test"],
+    "artifacts": ["_pilot/regression_lock_eval/"],
+    "limitations": [],
+    "recordedAt": "2026-11-25T00:00:00Z"
+  }
+}

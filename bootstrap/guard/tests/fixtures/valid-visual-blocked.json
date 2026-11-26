@@ -1,0 +1,58 @@
+{
+  "taskId": "T9-fixture-visual-blocked",
+  "title": "Significant UI verification blocked honestly",
+  "scale": "module",
+  "phase": "done",
+  "status": "done",
+  "approvedScope": "fixture only",
+  "acceptanceCriteria": ["blocked with limitations"],
+  "egm": {
+    "required": false,
+    "status": "skipped"
+  },
+  "routing": {
+    "attributes": {
+      "scale": "module",
+      "taskType": "ui-feature",
+      "stacks": ["flutter"],
+      "layers": ["presentation"],
+      "uncertainty": "med",
+      "securityRisk": false,
+      "uiInvolvement": "significant",
+      "regressionRisk": false,
+      "recoveryActive": false,
+      "researchNeeded": false,
+      "reviewsRequired": ["verifier"]
+    },
+    "calculated": null,
+    "invoked": ["m4trix-verifier"],
+    "evidence": [
+      {
+        "type": "limitation",
+        "name": "m4trix-verifier",
+        "ref": "agents/m4trix-verifier.md",
+        "note": "no device in CI"
+      }
+    ],
+    "validated": false,
+    "evidenceLimitation": "no emulator in this environment",
+    "limitationAck": true
+  },
+  "evidence": {
+    "commands": ["Invoke-M4trixGuard -Validators task-state,visual"],
+    "artifacts": ["bootstrap/guard/tests/fixtures/valid-visual-blocked.json"],
+    "limitations": ["visual verification blocked — no device"],
+    "recordedAt": "2026-11-25T00:00:00Z"
+  },
+  "verificationEvidence": {
+    "commands": [],
+    "exitCodes": [],
+    "artifacts": [],
+    "visualStatus": "blocked",
+    "method": "blocked",
+    "interactionChecks": [],
+    "limitations": [
+      "No emulator/device available in this environment; did not fabricate screenshots"
+    ]
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "taskId": "T6-fixture-research-skip",
+  "title": "Trivial patch skips research",
+  "scale": "patch",
+  "phase": "done",
+  "status": "done",
+  "approvedScope": "fixture only — copy change",
+  "acceptanceCriteria": ["research not required"],
+  "egm": { "required": false, "status": "skipped" },
+  "routing": {
+    "attributes": {
+      "scale": "patch",
+      "taskType": "copy",
+      "stacks": ["flutter"],
+      "uiInvolvement": "patch",
+      "securityRisk": false
+    },
+    "calculated": null,
+    "invoked": ["pipeline-patch"],
+    "evidence": [
+      {
+        "type": "artifact",
+        "name": "pipeline-patch",
+        "ref": "skills/pipeline-patch/SKILL.md",
+        "note": "trivial patch"
+      }
+    ],
+    "validated": true,
+    "evidenceLimitation": null,
+    "limitationAck": false
+  },
+  "research": {
+    "required": false,
+    "findings": [],
+    "sources": [],
+    "limitations": [],
+    "poc": { "required": false, "status": "skipped", "notes": "Routine copy patch" }
+  },
+  "evidence": {
+    "commands": ["Invoke-M4trixGuard -Validators task-state,research"],
+    "artifacts": ["bootstrap/guard/tests/fixtures/valid-research-skip.json"],
+    "limitations": [],
+    "recordedAt": "2026-11-25T13:00:00+05:00"
+  }
+}

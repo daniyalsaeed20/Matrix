@@ -1,0 +1,46 @@
+﻿{
+    "taskId":  "T11-fixture-self-approve",
+    "title":  "Agent self-approve must fail",
+    "scale":  "module",
+    "phase":  "done",
+    "status":  "done",
+    "approvedScope":  "T11 approval fixture only",
+    "acceptanceCriteria":  [
+                               "self-approve fails"
+                           ],
+    "permittedPaths":  [
+                           "bootstrap/guard/",
+                           "agents/"
+                       ],
+    "filesChanged":  [
+                         "bootstrap/guard/validators/approval.ps1"
+                     ],
+    "egm":  {
+                "required":  false,
+                "status":  "skipped",
+                "blockingOpen":  false,
+                "reviewPaths":  [
+                                    "bootstrap/guard/tests/fixtures/fp-content/locked-spec.md"
+                                ]
+            },
+    "approval":  {
+                     "by":  "agent",
+                     "at":  "2026-11-25T12:00:00Z",
+                     "note":  "illegal self-approve",
+                     "baselineRev":  null,
+                     "specFingerprint":  "1d750c859d74a835dd4231ff658a080188ce61fb1259565124221caba7bb41f0",
+                     "scopeFingerprint":  "7679183a2500b6af658381111a18fe666f5c6866fefae197d447ad311a980ee6"
+                 },
+    "evidence":  {
+                     "commands":  [
+                                      "echo fake"
+                                  ],
+                     "artifacts":  [
+                                       "bootstrap/guard/tests/fixtures/invalid-approval-self-approve.json"
+                                   ],
+                     "limitations":  [
+
+                                     ],
+                     "recordedAt":  "2026-11-25T12:00:00Z"
+                 }
+}

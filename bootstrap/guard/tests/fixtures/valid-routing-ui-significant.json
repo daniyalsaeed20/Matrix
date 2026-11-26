@@ -1,0 +1,59 @@
+{
+  "taskId": "T8-fixture-ui-significant",
+  "title": "Significant UI with ui-designer present and invoked",
+  "scale": "module",
+  "phase": "implement",
+  "status": "in_progress",
+  "approvedScope": "fixture only",
+  "acceptanceCriteria": ["ui-designer invoked; design-system invoked"],
+  "egm": {
+    "required": false,
+    "status": "skipped"
+  },
+  "routing": {
+    "attributes": {
+      "scale": "module",
+      "taskType": "ui-feature",
+      "stacks": ["flutter"],
+      "layers": ["presentation"],
+      "uncertainty": "med",
+      "securityRisk": false,
+      "uiInvolvement": "significant",
+      "regressionRisk": false,
+      "recoveryActive": false,
+      "researchNeeded": false,
+      "reviewsRequired": ["design-system", "ui-designer"]
+    },
+    "calculated": null,
+    "invoked": ["m4trix-ui-designer", "m4trix-design-system", "pipeline-module"],
+    "evidence": [
+      {
+        "type": "task",
+        "name": "m4trix-ui-designer",
+        "ref": "agents/m4trix-ui-designer.md",
+        "note": "Task tool"
+      },
+      {
+        "type": "task",
+        "name": "m4trix-design-system",
+        "ref": "agents/m4trix-design-system.md",
+        "note": "Task tool"
+      },
+      {
+        "type": "artifact",
+        "name": "pipeline-module",
+        "ref": "skills/pipeline-module/SKILL.md",
+        "note": null
+      }
+    ],
+    "validated": false,
+    "evidenceLimitation": null,
+    "limitationAck": false
+  },
+  "evidence": {
+    "commands": ["Invoke-M4trixGuard -Validators task-state,routing"],
+    "artifacts": ["bootstrap/guard/tests/fixtures/valid-routing-ui-significant.json"],
+    "limitations": [],
+    "recordedAt": "2026-11-25T00:00:00Z"
+  }
+}

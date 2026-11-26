@@ -1,0 +1,38 @@
+{
+    "measuredAt":  "2026-11-25T10:56:32+05:00",
+    "cursorHome":  "C:\\Users\\Datab\\.cursor",
+    "kitJsonExists":  true,
+    "hooksJsonExists":  true,
+    "kitJson":  {
+                    "kit":  "m4trix",
+                    "kitRoot":  "E:\\development\\Matrix",
+                    "version":  "1.6.0",
+                    "installedAt":  "2026-11-12T16:58:50.8090155+05:00",
+                    "autoApplyWorkspaces":  false,
+                    "installed":  true
+                },
+    "hooksEvents":  [
+                        "sessionStart",
+                        "workspaceOpen"
+                    ],
+    "hooksVersion":  1,
+    "m4trixDirExists":  true,
+    "m4trixChildren":  [
+                           "kit.json",
+                           "USER_RULES.md"
+                       ],
+    "globalM4trixAgents":  [
+                               "m4trix-architect.md",
+                               "m4trix-design-system.md",
+                               "m4trix-docs-deploy.md",
+                               "m4trix-firebase.md",
+                               "m4trix-flutter.md",
+                               "m4trix-node.md",
+                               "m4trix-product.md",
+                               "m4trix-python.md",
+                               "m4trix-requirements.md",
+                               "m4trix-scrum.md",
+                               "m4trix-security.md",
+                               "m4trix-verifier.md"
+                           ]
+}

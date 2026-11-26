@@ -1,0 +1,11 @@
+{
+  "scale": "module",
+  "taskType": "capability",
+  "stacks": ["scripts"],
+  "uiInvolvement": "none",
+  "securityRisk": false,
+  "recoveryActive": false,
+  "researchNeeded": true,
+  "regressionRisk": false,
+  "uncertainty": "low"
+}

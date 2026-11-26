@@ -1,0 +1,45 @@
+{
+  "taskId": "T12-PATCH-HEAVY",
+  "title": "Trivial copy tweak on settings label",
+  "scale": "patch",
+  "phase": "implement",
+  "status": "in_progress",
+  "approvedScope": "Change one settings label string only.",
+  "acceptanceCriteria": [
+    "Happy: label text updated"
+  ],
+  "egm": {
+    "required": true,
+    "status": "pending",
+    "reviewPaths": ["docs/sdlc/PRD.md"],
+    "blockingOpen": true,
+    "note": "INVALID for trivial copy — must not require EGM"
+  },
+  "routing": {
+    "attributes": {
+      "scale": "patch",
+      "taskType": "copy",
+      "uiInvolvement": "none",
+      "securityRisk": false,
+      "researchNeeded": true,
+      "uncertainty": "low"
+    },
+    "invoked": [
+      "pipeline-patch",
+      "egm-review",
+      "engineering-research",
+      "m4trix-ui-designer"
+    ],
+    "evidence": []
+  },
+  "research": {
+    "required": true,
+    "poc": { "required": false, "status": "pending", "notes": "INVALID research on routine copy" }
+  },
+  "verificationEvidence": {
+    "visualStatus": "visually_verified",
+    "method": "static",
+    "note": "INVALID full designer/visual path for trivial copy"
+  },
+  "notes": "Negative fixture: trivial copy wrongly pulls EGM/research/designer — refuse"
+}

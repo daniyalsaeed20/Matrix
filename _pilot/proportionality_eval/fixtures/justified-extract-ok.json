@@ -1,0 +1,12 @@
+{
+  "id": "justified-extract-ok",
+  "title": "Justified shared extraction",
+  "decisionClass": "extract",
+  "ladderLevel": 3,
+  "significant": true,
+  "proposedChange": "Extract formatCurrency helper used by three screens into shared util",
+  "justification": "Same formatter duplicated in three call sites; reuse foreseeable; design tokens unchanged",
+  "captainApproval": false,
+  "expectedVerdict": "pass",
+  "expectEssay": true
+}

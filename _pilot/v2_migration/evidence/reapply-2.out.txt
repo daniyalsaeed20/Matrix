@@ -1,0 +1,46 @@
+m4tr!x kit install
+  version  -> 2.0.0
+  kitRoot  -> E:\development\Matrix
+  cursorHome -> C:\Users\Datab\AppData\Local\Temp\m4trix-rel002-reapply-90a670e415db4ca095791032d6965f37\cursor-home
+  fresh    -> False
+  autoApplyWorkspaces -> False
+  platform -> Windows (powershell)
+  agent -> m4trix-architect.md
+  agent -> m4trix-debugger.md
+  agent -> m4trix-design-system.md
+  agent -> m4trix-docs-deploy.md
+  agent -> m4trix-firebase.md
+  agent -> m4trix-flutter.md
+  agent -> m4trix-node.md
+  agent -> m4trix-product.md
+  agent -> m4trix-python.md
+  agent -> m4trix-requirements.md
+  agent -> m4trix-scrum.md
+  agent -> m4trix-security.md
+  agent -> m4trix-ui-designer.md
+  agent -> m4trix-verifier.md
+  skill -> bootstrap-org
+  skill -> egm-review
+  skill -> engineering-research
+  skill -> pipeline-module
+  skill -> pipeline-patch
+  skill -> pipeline-product
+  skill -> pipeline-recovery
+  hooks -> m4trix-platform, workspace-open, session-start
+  state -> C:\Users\Datab\AppData\Local\Temp\m4trix-rel002-reapply-90a670e415db4ca095791032d6965f37\cursor-home\m4trix\kit.json
+  user rules copy -> C:\Users\Datab\AppData\Local\Temp\m4trix-rel002-reapply-90a670e415db4ca095791032d6965f37\cursor-home\m4trix\USER_RULES.md
+  cli attribution -> skipped (no cli-config.json or update failed)
+  kit git hook -> .git/hooks/commit-msg (strip IDE trailers)
+  hooks.json backup -> C:\Users\Datab\AppData\Local\Temp\m4trix-rel002-reapply-90a670e415db4ca095791032d6965f37\cursor-home\hooks.json.m4trix-backup-20261126-093915685-cf5c96ff
+  hooks.json -> workspaceOpen + sessionStart (beforeSubmitPrompt not registered)
+
+DONE. Globals installed from E:\development\Matrix
+NEXT:
+  1. Paste User Rules from: C:\Users\Datab\AppData\Local\Temp\m4trix-rel002-reapply-90a670e415db4ca095791032d6965f37\cursor-home\m4trix\USER_RULES.md
+     (Cursor Settings -> Rules / Customize -> Rules)
+  2. Turn OFF Cursor Settings -> Git & PRs -> Attribution (commit + PR).
+     (Older builds: Settings -> Agent -> Attribution)
+  3. Reload Cursor so hooks load.
+  4. Apply to a project only when you choose:
+     powershell -NoProfile -ExecutionPolicy Bypass -File "E:\development\Matrix\bootstrap\apply-to-workspace.ps1" -Workspace "<projectRoot>"
+  Auto-apply on workspace open is OFF (default). Re-run with -AutoApplyWorkspaces to enable.

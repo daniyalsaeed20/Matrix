@@ -1,0 +1,202 @@
+﻿{
+    "ok":  true,
+    "failed":  0,
+    "recordedAt":  "2026-11-25T10:32:22.6911753Z",
+    "taskId":  "T13",
+    "baselineCoreBytes":  11043,
+    "ceilingBytes":  13804,
+    "liveCoreBytes":  12480,
+    "isolation":  "isolation:unproven",
+    "suites":  [
+                   {
+                       "cap":  "T2",
+                       "label":  "Guard unit/min",
+                       "script":  "bootstrap/guard/tests/Invoke-GuardTests.ps1",
+                       "exitCode":  0,
+                       "pass":  true,
+                       "logPath":  "E:\\development\\Matrix\\_pilot\\v2_eval\\evidence\\suite-T2.log.txt"
+                   },
+                   {
+                       "cap":  "T3",
+                       "label":  "Regression Lock",
+                       "script":  "_pilot/regression_lock_eval/scripts/Invoke-RegressionEval.ps1",
+                       "exitCode":  0,
+                       "pass":  true,
+                       "logPath":  "E:\\development\\Matrix\\_pilot\\v2_eval\\evidence\\suite-T3.log.txt"
+                   },
+                   {
+                       "cap":  "T4",
+                       "label":  "Recovery",
+                       "script":  "_pilot/recovery_eval/scripts/Invoke-RecoveryEval.ps1",
+                       "exitCode":  0,
+                       "pass":  true,
+                       "logPath":  "E:\\development\\Matrix\\_pilot\\v2_eval\\evidence\\suite-T4.log.txt"
+                   },
+                   {
+                       "cap":  "T5",
+                       "label":  "Routing",
+                       "script":  "_pilot/routing_eval/scripts/Invoke-RoutingEval.ps1",
+                       "exitCode":  0,
+                       "pass":  true,
+                       "logPath":  "E:\\development\\Matrix\\_pilot\\v2_eval\\evidence\\suite-T5.log.txt"
+                   },
+                   {
+                       "cap":  "T6",
+                       "label":  "Research",
+                       "script":  "_pilot/research_eval/scripts/Invoke-ResearchEval.ps1",
+                       "exitCode":  0,
+                       "pass":  true,
+                       "logPath":  "E:\\development\\Matrix\\_pilot\\v2_eval\\evidence\\suite-T6.log.txt"
+                   },
+                   {
+                       "cap":  "T7",
+                       "label":  "Proportionality",
+                       "script":  "_pilot/proportionality_eval/scripts/Invoke-ProportionalityEval.ps1",
+                       "exitCode":  0,
+                       "pass":  true,
+                       "logPath":  "E:\\development\\Matrix\\_pilot\\v2_eval\\evidence\\suite-T7.log.txt"
+                   },
+                   {
+                       "cap":  "T8",
+                       "label":  "UI designer",
+                       "script":  "_pilot/ui_designer_eval/scripts/Invoke-UiDesignerEval.ps1",
+                       "exitCode":  0,
+                       "pass":  true,
+                       "logPath":  "E:\\development\\Matrix\\_pilot\\v2_eval\\evidence\\suite-T8.log.txt"
+                   },
+                   {
+                       "cap":  "T9",
+                       "label":  "Visual verify",
+                       "script":  "_pilot/visual_verify_eval/scripts/Invoke-VisualVerifyEval.ps1",
+                       "exitCode":  0,
+                       "pass":  true,
+                       "logPath":  "E:\\development\\Matrix\\_pilot\\v2_eval\\evidence\\suite-T9.log.txt"
+                   },
+                   {
+                       "cap":  "T10",
+                       "label":  "Guard complete",
+                       "script":  "_pilot/guard_complete_eval/scripts/Invoke-GuardCompleteEval.ps1",
+                       "exitCode":  0,
+                       "pass":  true,
+                       "logPath":  "E:\\development\\Matrix\\_pilot\\v2_eval\\evidence\\suite-T10.log.txt"
+                   },
+                   {
+                       "cap":  "T11",
+                       "label":  "Approval fingerprints",
+                       "script":  "_pilot/approval_fingerprint_eval/scripts/Invoke-ApprovalFingerprintEval.ps1",
+                       "exitCode":  0,
+                       "pass":  true,
+                       "logPath":  "E:\\development\\Matrix\\_pilot\\v2_eval\\evidence\\suite-T11.log.txt"
+                   },
+                   {
+                       "cap":  "T12",
+                       "label":  "Context / model / tokens",
+                       "script":  "_pilot/context_token_eval/scripts/Invoke-ContextTokenEval.ps1",
+                       "exitCode":  0,
+                       "pass":  true,
+                       "logPath":  "E:\\development\\Matrix\\_pilot\\v2_eval\\evidence\\suite-T12.log.txt"
+                   },
+                   {
+                       "cap":  "SMOKE",
+                       "label":  "Baseline smoke",
+                       "script":  "bootstrap/smoke-tests.ps1",
+                       "exitCode":  0,
+                       "pass":  true,
+                       "logPath":  "E:\\development\\Matrix\\_pilot\\v2_eval\\evidence\\suite-SMOKE.log.txt"
+                   },
+                   {
+                       "cap":  "BYTES",
+                       "label":  "Always-on bytes",
+                       "script":  "bootstrap/Measure-AlwaysOnBytes.ps1",
+                       "exitCode":  0,
+                       "pass":  true,
+                       "logPath":  "E:\\development\\Matrix\\_pilot\\v2_eval\\evidence\\suite-BYTES.log.txt"
+                   },
+                   {
+                       "cap":  "BYTES-STRICT",
+                       "label":  "Always-on bytes \u003c= ceiling",
+                       "script":  "bootstrap/Measure-AlwaysOnBytes.ps1 -FailAboveCeiling",
+                       "exitCode":  0,
+                       "pass":  true,
+                       "logPath":  "E:\\development\\Matrix\\_pilot\\v2_eval\\evidence\\suite-BYTES-strict.log.txt",
+                       "artifact":  "E:\\development\\Matrix\\_pilot\\v2_eval\\evidence\\ALWAYS_ON_LIVE.json"
+                   }
+               ],
+    "integrated":  [
+                       {
+                           "name":  "integrated-ok",
+                           "fixture":  "fixtures/integrated-ok.json",
+                           "expectOk":  true,
+                           "exitCode":  0,
+                           "pass":  true,
+                           "outputPath":  "E:\\development\\Matrix\\_pilot\\v2_eval\\evidence\\gate-integrated-ok.json"
+                       },
+                       {
+                           "name":  "integrated-omit-mandatory",
+                           "fixture":  "fixtures/integrated-omit-mandatory.json",
+                           "expectOk":  false,
+                           "exitCode":  1,
+                           "pass":  true,
+                           "outputPath":  "E:\\development\\Matrix\\_pilot\\v2_eval\\evidence\\gate-integrated-omit-mandatory.json"
+                       }
+                   ],
+    "liveProcedures":  [
+                           {
+                               "path":  "_pilot/routing_eval/LIVE_PROCEDURE.md",
+                               "exists":  true,
+                               "status":  "incomplete",
+                               "note":  "Documented captain/live procedure; not re-executed as live Cursor agent in T13 session"
+                           },
+                           {
+                               "path":  "_pilot/research_eval/LIVE_PROCEDURE.md",
+                               "exists":  true,
+                               "status":  "incomplete",
+                               "note":  "Documented captain/live procedure; not re-executed as live Cursor agent in T13 session"
+                           },
+                           {
+                               "path":  "_pilot/proportionality_eval/LIVE_PROCEDURE.md",
+                               "exists":  true,
+                               "status":  "incomplete",
+                               "note":  "Documented captain/live procedure; not re-executed as live Cursor agent in T13 session"
+                           },
+                           {
+                               "path":  "_pilot/ui_designer_eval/LIVE_PROCEDURE.md",
+                               "exists":  true,
+                               "status":  "incomplete",
+                               "note":  "Documented captain/live procedure; not re-executed as live Cursor agent in T13 session"
+                           },
+                           {
+                               "path":  "_pilot/visual_verify_eval/LIVE_PROCEDURE.md",
+                               "exists":  true,
+                               "status":  "incomplete",
+                               "note":  "Documented captain/live procedure; not re-executed as live Cursor agent in T13 session"
+                           },
+                           {
+                               "path":  "_pilot/guard_complete_eval/LIVE_PROCEDURE.md",
+                               "exists":  true,
+                               "status":  "incomplete",
+                               "note":  "Documented captain/live procedure; not re-executed as live Cursor agent in T13 session"
+                           },
+                           {
+                               "path":  "_pilot/approval_fingerprint_eval/SELF_APPROVE_PROCEDURE.md",
+                               "exists":  true,
+                               "status":  "incomplete",
+                               "note":  "Documented captain/live procedure; not re-executed as live Cursor agent in T13 session"
+                           }
+                       ],
+    "artifacts":  [
+                      "MASTER_REPORT.md",
+                      "evidence/SUMMARY.json",
+                      "evidence/RB_CHECKLIST.md",
+                      "evidence/ALWAYS_ON_LIVE.json"
+                  ],
+    "limitations":  [
+                        "Live Cursor agent procedures not re-executed this session (incomplete)",
+                        "isolation:unproven",
+                        "Primary token/cost metrics unavailable (CTX-003)",
+                        "RB-09 deferred to T15 REL-002 fixtures"
+                    ],
+    "remediationProposals":  [
+
+                             ]
+}

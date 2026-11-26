@@ -1,0 +1,57 @@
+﻿{
+    "ok":  false,
+    "errors":  [
+                   "completion: completion claim requires non-empty approval.at (captain approval)",
+                   "approval: approval.at required for completion claim",
+                   "approval: approval.specFingerprint and approval.scopeFingerprint required (VER-002 bind)"
+               ],
+    "warnings":  [
+
+                 ],
+    "checks":  [
+                   {
+                       "name":  "parse",
+                       "ok":  true,
+                       "errors":  [
+
+                                  ],
+                       "warnings":  [
+
+                                    ]
+                   },
+                   {
+                       "name":  "task-state",
+                       "ok":  true,
+                       "errors":  [
+
+                                  ],
+                       "warnings":  [
+
+                                    ]
+                   },
+                   {
+                       "name":  "completion",
+                       "ok":  false,
+                       "errors":  [
+                                      "completion claim requires non-empty approval.at (captain approval)"
+                                  ],
+                       "warnings":  [
+
+                                    ]
+                   },
+                   {
+                       "name":  "approval",
+                       "ok":  false,
+                       "errors":  [
+                                      "approval.at required for completion claim",
+                                      "approval.specFingerprint and approval.scopeFingerprint required (VER-002 bind)"
+                                  ],
+                       "warnings":  [
+
+                                    ]
+                   }
+               ],
+    "taskPath":  "E:\\development\\Matrix\\bootstrap\\guard\\tests\\fixtures\\invalid-completion-missing-approval.json",
+    "runner":  "Invoke-M4trixGuard.ps1",
+    "schemaVersion":  "1.0.0"
+}

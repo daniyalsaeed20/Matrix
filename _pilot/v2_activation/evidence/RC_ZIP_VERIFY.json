@@ -1,0 +1,12 @@
+{
+    "evaluateRoutingPath":  "bootstrap\\guard\\Evaluate-Routing.ps1",
+    "hasEvaluateRouting":  true,
+    "version":  "2.0.0",
+    "hasDebugger":  true,
+    "hasResearch":  true,
+    "hasRecovery":  true,
+    "hasRoutingPolicy":  true,
+    "hasGuard":  true,
+    "kitRootLeaf":  "m4trix-rc-verify-f322b0e44dac4a6cb35eba2c4ea9b06b",
+    "hasUiDesigner":  true
+}

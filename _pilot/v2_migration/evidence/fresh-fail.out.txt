@@ -1,0 +1,7 @@
+m4tr!x kit install
+  version  -> 2.0.0
+  kitRoot  -> E:\development\Matrix
+  cursorHome -> C:\Users\Datab\AppData\Local\Temp\m4trix-rel002-fresh-fail-660a05e47b344bba8ea7e7b119859ee8\cursor-home
+  fresh    -> True
+  autoApplyWorkspaces -> False
+  platform -> Windows (powershell)

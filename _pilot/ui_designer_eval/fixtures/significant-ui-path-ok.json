@@ -1,0 +1,13 @@
+{
+  "id": "significant-ui-path-ok",
+  "title": "Significant UI requires designer path",
+  "uiInvolvement": "significant",
+  "designerInvoked": true,
+  "rendered": true,
+  "critiqueNotes": [
+    "Primary CTA competes with secondary actions — raise hierarchy",
+    "Empty state missing on first load"
+  ],
+  "designDocOnly": false,
+  "expectedVerdict": "pass"
+}

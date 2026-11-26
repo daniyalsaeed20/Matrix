@@ -8,7 +8,7 @@
 
 | | |
 |--|--|
-| **Version** | `1.6.0` (`VERSION`) |
+| **Version** | `2.0.0` (`VERSION`) |
 | **Kit root** | This clone (self-locating). Override: `M4TRIX_KIT_ROOT` |
 | **Platforms** | Windows + macOS (`pwsh` on Mac) |
 | **Defaults** | Flutter (BLoC + GoRouter + M3), Firebase-first; Node/Python only when approved |
@@ -19,18 +19,19 @@ This repo **is** the kit. Nothing wires itself until you install and apply.
 
 ---
 
-## What's new in 1.6.0
+## What's new in 2.0.0
 
 | Area | Change |
 |------|--------|
-| **Brand** | Official **m4tr!x** logo (`assets/m4trix-logo.png`) |
-| **UI craft** | Selective design-eng principles via `ecc-cherry-pick/ui-craft.md` + `ui-stress.md` (adapted from [emilkowalski/skills](https://github.com/emilkowalski/skills), MIT) — purpose-gated motion, hierarchy, a11y |
-| **UI stress** | Proportional worst-case checks in verifier / production bar (long copy, overflow, reduced motion) — not a 13th agent |
-| **Token load** | `03-token-discipline` loads UI craft refs **only** for relevant UI work; backend / tiny copy patches skip them |
-| **Pipelines** | Module/patch skills + design-system / Flutter / verifier agents wire the new refs without ceremony bloat |
-| **Pilot** | `_pilot/ui_craft_eval` — theme, reuse, stress, motion restraint, MediaQuery a11y |
+| **Guard** | Deterministic validators + completion gate (`bootstrap/guard/`) — refuse done while `ok=false` |
+| **Regression / recovery** | Regression Lock; skill `pipeline-recovery` + agent `m4trix-debugger` |
+| **Routing** | Attribute → `Evaluate-Routing.ps1` mandatory agents/skills/validators |
+| **Research** | Skill `engineering-research` with persisted findings/sources |
+| **UI intelligence** | Agent `m4trix-ui-designer`; significant-UI path + honest `visualStatus` |
+| **Migration** | REL-002 fixtures (`_pilot/v2_migration/`); keep `dist/matrix-kit-1.6.0-src.zip` for rollback |
+| **Release blockers** | RB-01…RB-10 checklist; activation remains Task 16 (captain go only) |
 
-Prior (1.5.x): delivery-voice hardening — `commit-msg` strip of IDE trailers, CLI attribution off, `strip-ide-commit-trailers.ps1`.
+Prior (1.6.0): UI craft/stress refs, brand logo, delivery-voice hardening. See `dist/RELEASE_NOTES_1.6.0.md`.
 
 ---
 
@@ -85,12 +86,12 @@ Residual: progressive load / handoffs rely on agent compliance (hooks do not har
 | Layer | Contents |
 |-------|----------|
 | **Constitution** | User Rules + project rules `00`–`05` + stack rules |
-| **Agents** | 12× `m4trix-*` specialists |
-| **Skills** | `bootstrap-org`, `pipeline-product`, `pipeline-module`, `pipeline-patch`, `egm-review` |
+| **Agents** | 14× `m4trix-*` specialists (incl. debugger, ui-designer) |
+| **Skills** | `bootstrap-org`, `pipeline-*` (product/module/patch/recovery), `egm-review`, `engineering-research` |
 | **SDLC templates** | PRD, REQUIREMENTS, DESIGN, DESIGN_SYSTEM, BACKLOG, ACTIVE_TASK, HANDOFF, EGM_REVIEW, … |
 | **UI refs** | `ecc-cherry-pick/ui-craft.md` + `ui-stress.md` (on-demand for UI work) |
 | **Hooks** | `sessionStart` advisory; `workspaceOpen` only with `-AutoApplyWorkspaces` |
-| **Validation** | `bootstrap/smoke-tests.ps1` + `_pilot/` evals (behavior / EGM / UI craft) |
+| **Validation** | Guard completion gate + `bootstrap/smoke-tests.ps1` + `_pilot/` evals (incl. REL-002 migration) |
 
 ### Specialist agents
 
@@ -104,6 +105,8 @@ Captain directs the org. Typical order: plan → design → implement → securi
 | Design | `m4trix-architect` | `DESIGN.md`; Elephant or **Goldfish** |
 | Design | `m4trix-design-system` | Themes, catalog, motion |
 | Build | `m4trix-flutter` / `firebase` / `node` / `python` | Stack implementers (Node/Python only when approved) |
+| Design | `m4trix-ui-designer` | Journeys, composition, post-render critique (significant UI) |
+| Build / recover | `m4trix-debugger` | Complex recovery diagnosis (with `pipeline-recovery`) |
 | Gate | `m4trix-security` | Auth, PII, payments, rules — OWASP-minded |
 | Gate | `m4trix-verifier` | Skeptical QA — never rubber-stamps |
 | Ship docs | `m4trix-docs-deploy` | SDLC / handoff / late deploy docs (you still deploy) |
@@ -116,6 +119,8 @@ Captain directs the org. Typical order: plan → design → implement → securi
 | Full new app / epic | `pipeline-product` |
 | One multi-file feature | `pipeline-module` |
 | Small UI / bug / copy | `pipeline-patch` |
+| Stuck / flaky recovery | `pipeline-recovery` |
+| Unfamiliar / complex research | `engineering-research` |
 | Planning review | `egm-review` |
 
 ### Rules (always-on)

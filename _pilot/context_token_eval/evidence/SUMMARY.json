@@ -1,0 +1,110 @@
+﻿{
+    "ok":  true,
+    "failed":  0,
+    "recordedAt":  "2026-11-25T10:31:43.0983683Z",
+    "alwaysOnCoreBytes":  12480,
+    "ceiling":  13804,
+    "modelPolicySoT":  [
+                           "docs/sdlc/DECISIONS.md Model policy",
+                           "docs/sdlc/ecc-reference/model-policy.md"
+                       ],
+    "limitations":  [
+                        "Primary token/cost metrics unavailable in this environment (CTX-003)",
+                        "Patch ceremony verdict is fixture/policy check — not a live Cursor Task run",
+                        "USER_RULES byte size is not in CTX-001 numerator"
+                    ],
+    "cases":  [
+                  {
+                      "name":  "Measure-AlwaysOnBytes exit 0 (within ceiling)",
+                      "pass":  true
+                  },
+                  {
+                      "name":  "ALWAYS_ON_LIVE.json written",
+                      "pass":  true
+                  },
+                  {
+                      "name":  "withinBudget true",
+                      "pass":  true
+                  },
+                  {
+                      "name":  "core bytes \u003c= 13804 ceiling",
+                      "pass":  true
+                  },
+                  {
+                      "name":  "frozen baseline still 11043",
+                      "pass":  true
+                  },
+                  {
+                      "name":  "no new always-on 0x rule files ()",
+                      "pass":  true
+                  },
+                  {
+                      "name":  "always-on free of fingerprint/CompletionGate paths",
+                      "pass":  true
+                  },
+                  {
+                      "name":  "always-on free of Guard validator path literals",
+                      "pass":  true
+                  },
+                  {
+                      "name":  "model-policy.md present in ecc-reference",
+                      "pass":  true
+                  },
+                  {
+                      "name":  "model-policy.md present in ecc-cherry-pick",
+                      "pass":  true
+                  },
+                  {
+                      "name":  "DECISIONS has Model policy section",
+                      "pass":  true
+                  },
+                  {
+                      "name":  "DECISIONS model policy mentions inherit",
+                      "pass":  true
+                  },
+                  {
+                      "name":  "all agents/m4trix-*.md use model: inherit",
+                      "pass":  true
+                  },
+                  {
+                      "name":  "pipeline-patch skips EGM",
+                      "pass":  true
+                  },
+                  {
+                      "name":  "pipeline-patch skips routine research",
+                      "pass":  true
+                  },
+                  {
+                      "name":  "pipeline-patch skips designer for ordinary copy",
+                      "pass":  true
+                  },
+                  {
+                      "name":  "positive fixture patch-light-ok -\u003e allow",
+                      "pass":  true
+                  },
+                  {
+                      "name":  "negative fixture patch-heavy-refuse -\u003e refuse",
+                      "pass":  true
+                  },
+                  {
+                      "name":  "metrics marks unavailable honestly",
+                      "pass":  true
+                  },
+                  {
+                      "name":  "no fabricated improvement %",
+                      "pass":  true
+                  },
+                  {
+                      "name":  "AUDIT.md present",
+                      "pass":  true
+                  },
+                  {
+                      "name":  "USER_RULES has authoritative-locations note",
+                      "pass":  true
+                  },
+                  {
+                      "name":  "USER_RULES notes CTX-001 budget exclusion",
+                      "pass":  true
+                  }
+              ]
+}

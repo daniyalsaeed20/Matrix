@@ -1,0 +1,45 @@
+{
+  "taskId": "T3-fixture-integrity",
+  "title": "Test integrity violation must fail Guard",
+  "scale": "module",
+  "phase": "verify",
+  "status": "done",
+  "approvedScope": "fixture only",
+  "acceptanceCriteria": ["must reject"],
+  "egm": {
+    "required": false,
+    "status": "skipped"
+  },
+  "regression": {
+    "baselineRev": "v1.6.0@_pilot/v2_baseline/2026-11-25",
+    "status": "done",
+    "behaviours": [
+      {
+        "id": "B01",
+        "name": "normalizeEmail",
+        "state": "verified_working",
+        "evidence": "test:B01-deleted"
+      }
+    ],
+    "protectedChecks": [
+      {
+        "unitId": "fake-green",
+        "protectedIds": ["B01"],
+        "result": "pass",
+        "command": "echo skipped"
+      }
+    ],
+    "dirtyPaths": [],
+    "integrity": {
+      "status": "violated",
+      "notes": "deleted failing test to claim green",
+      "justification": null
+    }
+  },
+  "evidence": {
+    "commands": ["echo skipped"],
+    "artifacts": ["fake"],
+    "limitations": [],
+    "recordedAt": "2026-11-25T00:00:00Z"
+  }
+}

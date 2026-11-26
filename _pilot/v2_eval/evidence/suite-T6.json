@@ -1,0 +1,8 @@
+﻿{
+    "cap":  "T6",
+    "label":  "Research",
+    "script":  "_pilot/research_eval/scripts/Invoke-ResearchEval.ps1",
+    "exitCode":  0,
+    "pass":  true,
+    "logPath":  "E:\\development\\Matrix\\_pilot\\v2_eval\\evidence\\suite-T6.log.txt"
+}

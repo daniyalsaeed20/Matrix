@@ -1,0 +1,243 @@
+﻿{
+    "pass":  38,
+    "note":  "Does not activate globals on captain machine (T16).",
+    "fail":  0,
+    "version":  "2.0.0",
+    "requirement":  "REL-002",
+    "isolation":  "M4TRIX_CURSOR_HOME temp homes only",
+    "taskId":  "T15",
+    "ok":  true,
+    "kitRoot":  "E:\\development\\Matrix",
+    "recordedAt":  "2026-11-26T04:39:21.4717767Z",
+    "schemaVersion":  "1.0.0",
+    "cases":  [
+                  {
+                      "id":  "REL-002-FRESH",
+                      "kind":  "happy",
+                      "status":  "PASS",
+                      "message":  "Fresh install exit 0"
+                  },
+                  {
+                      "id":  "REL-002-FRESH",
+                      "kind":  "happy",
+                      "status":  "PASS",
+                      "message":  "kit.json version=2.0.0"
+                  },
+                  {
+                      "id":  "REL-002-FRESH",
+                      "kind":  "happy",
+                      "status":  "PASS",
+                      "message":  "architect agent installed"
+                  },
+                  {
+                      "id":  "REL-002-FRESH",
+                      "kind":  "happy",
+                      "status":  "PASS",
+                      "message":  "pipeline-module skill installed"
+                  },
+                  {
+                      "id":  "REL-002-FRESH",
+                      "kind":  "happy",
+                      "status":  "PASS",
+                      "message":  "session-start hook installed"
+                  },
+                  {
+                      "id":  "REL-002-FRESH",
+                      "kind":  "edge",
+                      "status":  "PASS",
+                      "message":  "autoApplyWorkspaces default false (no silent apply)"
+                  },
+                  {
+                      "id":  "REL-002-FRESH-FAIL",
+                      "kind":  "fail",
+                      "status":  "PASS",
+                      "message":  "Fresh fails on malformed hooks.json"
+                  },
+                  {
+                      "id":  "REL-002-FRESH-FAIL",
+                      "kind":  "fail",
+                      "status":  "PASS",
+                      "message":  "malformed hooks.json unmodified"
+                  },
+                  {
+                      "id":  "REL-002-FRESH-FAIL",
+                      "kind":  "fail",
+                      "status":  "PASS",
+                      "message":  "managed agents not wiped before abort"
+                  },
+                  {
+                      "id":  "REL-002-FRESH-FAIL",
+                      "kind":  "edge",
+                      "status":  "PASS",
+                      "message":  "no backup when preflight rejects"
+                  },
+                  {
+                      "id":  "REL-002-REAPPLY",
+                      "kind":  "happy",
+                      "status":  "PASS",
+                      "message":  "first install exit 0"
+                  },
+                  {
+                      "id":  "REL-002-REAPPLY",
+                      "kind":  "happy",
+                      "status":  "PASS",
+                      "message":  "third-party hooks after first install"
+                  },
+                  {
+                      "id":  "REL-002-REAPPLY",
+                      "kind":  "happy",
+                      "status":  "PASS",
+                      "message":  "m4trix sessionStart after first install"
+                  },
+                  {
+                      "id":  "REL-002-REAPPLY",
+                      "kind":  "happy",
+                      "status":  "PASS",
+                      "message":  "reapply install exit 0"
+                  },
+                  {
+                      "id":  "REL-002-REAPPLY",
+                      "kind":  "happy",
+                      "status":  "PASS",
+                      "message":  "third-party hooks after reapply"
+                  },
+                  {
+                      "id":  "REL-002-REAPPLY",
+                      "kind":  "edge",
+                      "status":  "PASS",
+                      "message":  "reapply does not duplicate m4trix sessionStart"
+                  },
+                  {
+                      "id":  "REL-002-UPGRADE",
+                      "kind":  "happy",
+                      "status":  "PASS",
+                      "message":  "1.6→current upgrade install exit 0"
+                  },
+                  {
+                      "id":  "REL-002-UPGRADE",
+                      "kind":  "happy",
+                      "status":  "PASS",
+                      "message":  "kit.json upgraded to 2.0.0"
+                  },
+                  {
+                      "id":  "REL-002-UPGRADE",
+                      "kind":  "happy",
+                      "status":  "PASS",
+                      "message":  "kitRoot points at current clone"
+                  },
+                  {
+                      "id":  "REL-002-UPGRADE",
+                      "kind":  "happy",
+                      "status":  "PASS",
+                      "message":  "legacy agent content replaced"
+                  },
+                  {
+                      "id":  "REL-002-UPGRADE",
+                      "kind":  "happy",
+                      "status":  "PASS",
+                      "message":  "third-party hooks survive upgrade"
+                  },
+                  {
+                      "id":  "REL-002-UPGRADE",
+                      "kind":  "edge",
+                      "status":  "PASS",
+                      "message":  "upgrade does not enable auto-apply"
+                  },
+                  {
+                      "id":  "REL-002-UPGRADE-FRESH",
+                      "kind":  "happy",
+                      "status":  "PASS",
+                      "message":  "Fresh upgrade exit 0"
+                  },
+                  {
+                      "id":  "REL-002-UPGRADE-FRESH",
+                      "kind":  "happy",
+                      "status":  "PASS",
+                      "message":  "Fresh upgrade version=2.0.0"
+                  },
+                  {
+                      "id":  "REL-002-UPGRADE-FRESH",
+                      "kind":  "happy",
+                      "status":  "PASS",
+                      "message":  "third-party hooks survive Fresh upgrade"
+                  },
+                  {
+                      "id":  "REL-002-UPGRADE-FRESH",
+                      "kind":  "edge",
+                      "status":  "PASS",
+                      "message":  "unrelated skill dir not removed by Fresh"
+                  },
+                  {
+                      "id":  "REL-002-SDLC-SKIP",
+                      "kind":  "happy",
+                      "status":  "PASS",
+                      "message":  "apply exit 0 with customized PRD"
+                  },
+                  {
+                      "id":  "REL-002-SDLC-SKIP",
+                      "kind":  "happy",
+                      "status":  "PASS",
+                      "message":  "plan skips customized PRD.md"
+                  },
+                  {
+                      "id":  "REL-002-SDLC-SKIP",
+                      "kind":  "happy",
+                      "status":  "PASS",
+                      "message":  "custom PRD content preserved"
+                  },
+                  {
+                      "id":  "REL-002-SDLC-SKIP",
+                      "kind":  "edge",
+                      "status":  "PASS",
+                      "message":  "marker still written on reapply"
+                  },
+                  {
+                      "id":  "REL-002-KIT-CLONE",
+                      "kind":  "happy",
+                      "status":  "PASS",
+                      "message":  "kit-clone dry-run exit 0"
+                  },
+                  {
+                      "id":  "REL-002-KIT-CLONE",
+                      "kind":  "happy",
+                      "status":  "PASS",
+                      "message":  "dry-run skips kit SDLC docs"
+                  },
+                  {
+                      "id":  "REL-002-KIT-CLONE",
+                      "kind":  "edge",
+                      "status":  "PASS",
+                      "message":  "dry-run did not mutate kit PRD"
+                  },
+                  {
+                      "id":  "REL-002-KIT-CLONE",
+                      "kind":  "happy",
+                      "status":  "PASS",
+                      "message":  "kit-clone apply exit 0"
+                  },
+                  {
+                      "id":  "REL-002-KIT-CLONE",
+                      "kind":  "fail",
+                      "status":  "PASS",
+                      "message":  "kit PRD unchanged after apply"
+                  },
+                  {
+                      "id":  "REL-002-KIT-CLONE",
+                      "kind":  "edge",
+                      "status":  "PASS",
+                      "message":  "apply plan records kit SDLC skips"
+                  },
+                  {
+                      "id":  "REL-002-NO-SILENT",
+                      "kind":  "edge",
+                      "status":  "PASS",
+                      "message":  "fixtures never targeted real ~/.cursor (M4TRIX_CURSOR_HOME isolation)"
+                  },
+                  {
+                      "id":  "REL-002-NO-SILENT",
+                      "kind":  "edge",
+                      "status":  "PASS",
+                      "message":  "AutoApplyWorkspaces is opt-in switch only"
+                  }
+              ]
+}

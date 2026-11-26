@@ -1,0 +1,12 @@
+{
+  "id": "ordinary-patch-ok",
+  "title": "Ordinary copy/token patch",
+  "decisionClass": "ordinary-patch",
+  "ladderLevel": 1,
+  "significant": false,
+  "proposedChange": "Update button label string from Save to Save changes",
+  "justification": null,
+  "captainApproval": false,
+  "expectedVerdict": "pass",
+  "expectEssay": false
+}

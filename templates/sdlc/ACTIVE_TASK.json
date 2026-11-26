@@ -22,6 +22,74 @@
     "blockingOpen": false,
     "note": "required=true for product and for modules needing upfront design. patch always skipped. status: skipped|pending|in_review|findings|resolved|blocked. Implementation blocked while blockingOpen is true."
   },
+  "evidence": {
+    "commands": [],
+    "artifacts": [],
+    "limitations": [],
+    "recordedAt": null
+  },
+  "verificationEvidence": {
+    "commands": [],
+    "exitCodes": [],
+    "artifacts": [],
+    "visualStatus": null,
+    "method": null,
+    "interactionChecks": [],
+    "limitations": [],
+    "note": "Significant UI: set visualStatus (visually_verified|functionally_verified_visually_unverified|partial|blocked|changes_requested). visually_verified requires real on-disk artifacts + method render|manual — never static-only or fabricated paths. Patch/none may leave null. Guard -Validators …,visual."
+  },
+  "regression": {
+    "baselineRev": null,
+    "status": "inventory",
+    "behaviours": [],
+    "protectedChecks": [],
+    "dirtyPaths": [],
+    "integrity": {
+      "status": "ok",
+      "notes": null,
+      "justification": null
+    }
+  },
+  "recovery": {
+    "active": false,
+    "status": "inactive",
+    "scale": "patch",
+    "attemptBudget": 2,
+    "attemptCount": 0,
+    "facts": [],
+    "assumptions": [],
+    "hypotheses": [],
+    "contradicted": [],
+    "rejectedApproaches": [],
+    "attempts": [],
+    "checkpoint": null,
+    "nextAction": null,
+    "escalation": {
+      "required": false,
+      "reported": false,
+      "summary": null
+    }
+  },
+  "routing": {
+    "attributes": {},
+    "calculated": null,
+    "invoked": [],
+    "evidence": [],
+    "validated": false,
+    "evidenceLimitation": null,
+    "limitationAck": false
+  },
+  "research": {
+    "required": false,
+    "findings": [],
+    "sources": [],
+    "limitations": [],
+    "poc": {
+      "required": false,
+      "status": "skipped",
+      "notes": null
+    }
+  },
   "context": {
     "updatedAt": null,
     "staleAfterHours": 72,
@@ -30,7 +98,10 @@
   "approval": {
     "by": "captain",
     "at": null,
-    "note": "Captain must explicitly approve; agents must not self-approve. EGM/Goldfish completion does not grant approval. Handoffs do not grant new approval."
+    "note": "Captain must explicitly approve; agents must not self-approve. EGM/Goldfish completion does not grant approval. Handoffs do not grant new approval. Bind via Get-ApprovalFingerprints.ps1 before done|accepted.",
+    "specFingerprint": null,
+    "scopeFingerprint": null,
+    "baselineRev": null
   },
-  "notes": "Durable truth stays in PRD/REQUIREMENTS/DESIGN/DECISIONS/EGM_REVIEW. This file is the active slice + lightweight task memory."
+  "notes": "Durable truth stays in PRD/REQUIREMENTS/DESIGN/DECISIONS/EGM_REVIEW. This file is the active slice + lightweight task memory. Before done|accepted run bootstrap/guard/Invoke-CompletionGate.ps1 (task-state+completion+approval + auto plugs); refuse while ok=false — see docs/sdlc/GUARD_BYPASS_MATRIX.md. Stamp approval.specFingerprint/scopeFingerprint with bootstrap/guard/Get-ApprovalFingerprints.ps1 (-WriteToTask). evidence shape is validated by bootstrap/guard (required non-empty commands or artifacts when status/phase is done|accepted). For multi-behaviour repairs, fill regression (inventory → baseline_locked → unit_check) and invoke Guard with -Validators task-state,regression. For recovery, set recovery.active=true and invoke Guard with -Validators task-state,recovery (keep attempts[] cumulative; do not reset attemptCount on new chat). For routing: classify attributes → Evaluate-Routing.ps1 → record invoked/evidence → Guard -Validators …,routing. Patch-minimal attrs unless non-trivial. For research: when unfamiliar/complex or researchNeeded, invoke skills/engineering-research, set research.required=true with findings+sources (alternatives required), Guard -Validators …,research. Routine copy patches skip. For significant UI: fill verificationEvidence.visualStatus honestly; Guard -Validators …,visual before done; static analysis alone ≠ visually_verified. VER-003: Critical/High unresolved security defects are not risk-acceptable as passed."
 }

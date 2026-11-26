@@ -1,0 +1,20 @@
+=== Regression Lock eval ===
+EvalRoot: E:\development\Matrix\_pilot\regression_lock_eval
+PASS  dirty user_notes.md present before eval
+PASS  Guard runner present
+PASS  baseline behaviours_test exits non-zero (5 known fails expected)
+PASS  baseline ran B01
+PASS  baseline reports failures
+PASS  baseline includes failing B06
+PASS  baseline includes failing B10
+PASS  scenario_fixed exits non-zero because intentional regress test fails
+PASS  localized repair B06 exercised
+PASS  coordinated fix exercised
+PASS  intentional regress case present
+PASS  Guard accepts valid regression unit
+PASS  Guard rejects protected fail
+PASS  Guard rejects integrity violation
+PASS  Guard rejects missing baseline
+PASS  dirty user_notes.md preserved after eval
+
+RESULT: regression eval passed

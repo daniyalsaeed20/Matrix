@@ -1,0 +1,13 @@
+{
+  "scale": "module",
+  "taskType": "api-ui",
+  "stacks": ["flutter", "nodejs"],
+  "layers": ["client", "api"],
+  "uncertainty": "med",
+  "securityRisk": false,
+  "uiInvolvement": "patch",
+  "regressionRisk": false,
+  "recoveryActive": false,
+  "researchNeeded": false,
+  "reviewsRequired": []
+}

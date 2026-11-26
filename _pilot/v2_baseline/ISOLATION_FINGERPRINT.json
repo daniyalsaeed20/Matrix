@@ -1,0 +1,146 @@
+{
+    "measuredAt":  "2026-11-25T10:58:57+05:00",
+    "verdict":  "isolation:unproven",
+    "verdictReason":  [
+                          "Sibling eval workspace E:\\development\\Matrix-v2-eval does not exist",
+                          "No separate Cursor window fingerprint of project-over-global load executed",
+                          "Hash equality of kit source vs globals proves install sync, not override"
+                      ],
+    "kitRoot":  "e:\\development\\Matrix",
+    "cursorHome":  "C:\\Users\\Datab\\.cursor",
+    "siblingEvalWorkspace":  {
+                                 "exists":  false,
+                                 "path":  "E:\\development\\Matrix-v2-eval"
+                             },
+    "projectRulesLocation":  {
+                                 "matrixWorkspaceRulesExist":  true,
+                                 "userRulesDirExists":  false,
+                                 "note":  "Applied project rules live under workspace .cursor/rules; ~/.cursor/rules absent",
+                                 "sample00":  {
+                                                  "allThreeMatch":  true,
+                                                  "constitutionSha":  "7E07822568903C4F18ED32C882AFBBBEF2CFBE98493E9CC01B9B20D14C427DC7",
+                                                  "matrixDotCursorSha":  "7E07822568903C4F18ED32C882AFBBBEF2CFBE98493E9CC01B9B20D14C427DC7",
+                                                  "nestedPilotSha":  "7E07822568903C4F18ED32C882AFBBBEF2CFBE98493E9CC01B9B20D14C427DC7"
+                                              }
+                             },
+    "agents":  {
+                   "matchCount":  12,
+                   "total":  12,
+                   "pairs":  [
+                                 {
+                                     "globalSha":  "DA59941656B51B3F5E1643BD21E931AA6D1C59C8122BF3CFD93F2605D51D1FB4",
+                                     "match":  true,
+                                     "name":  "m4trix-architect.md",
+                                     "kitSha":  "DA59941656B51B3F5E1643BD21E931AA6D1C59C8122BF3CFD93F2605D51D1FB4"
+                                 },
+                                 {
+                                     "globalSha":  "12D5A359804F5DF437D1C5EDC69D3DE5865A7519D11AC0783455E07E08825D8C",
+                                     "match":  true,
+                                     "name":  "m4trix-design-system.md",
+                                     "kitSha":  "12D5A359804F5DF437D1C5EDC69D3DE5865A7519D11AC0783455E07E08825D8C"
+                                 },
+                                 {
+                                     "globalSha":  "B66205D18566C97DBA4287F7FA13F0F52C7A53F89F79405D136BDD62907F3AE0",
+                                     "match":  true,
+                                     "name":  "m4trix-docs-deploy.md",
+                                     "kitSha":  "B66205D18566C97DBA4287F7FA13F0F52C7A53F89F79405D136BDD62907F3AE0"
+                                 },
+                                 {
+                                     "globalSha":  "F15B0CB011C80515B99EC348AA8374ED49503623B01B4C673B3F31E803BC16B8",
+                                     "match":  true,
+                                     "name":  "m4trix-firebase.md",
+                                     "kitSha":  "F15B0CB011C80515B99EC348AA8374ED49503623B01B4C673B3F31E803BC16B8"
+                                 },
+                                 {
+                                     "globalSha":  "556DE084E61274AFB69ADF6EA5D62F1B95F336B44689B96E99468545CC5E71B8",
+                                     "match":  true,
+                                     "name":  "m4trix-flutter.md",
+                                     "kitSha":  "556DE084E61274AFB69ADF6EA5D62F1B95F336B44689B96E99468545CC5E71B8"
+                                 },
+                                 {
+                                     "globalSha":  "100C6350199ECCC2EA744E504EF0DA55387C965D8DE179BA6368124BABB55EBD",
+                                     "match":  true,
+                                     "name":  "m4trix-node.md",
+                                     "kitSha":  "100C6350199ECCC2EA744E504EF0DA55387C965D8DE179BA6368124BABB55EBD"
+                                 },
+                                 {
+                                     "globalSha":  "F6EA785DA357A5124F36972A1B52572C529B9DD010AF895CBD15617FB9DB024B",
+                                     "match":  true,
+                                     "name":  "m4trix-product.md",
+                                     "kitSha":  "F6EA785DA357A5124F36972A1B52572C529B9DD010AF895CBD15617FB9DB024B"
+                                 },
+                                 {
+                                     "globalSha":  "95A562A4ABEB3A996E82EACE52CEE571192772401F22376A436164F4E6A9383C",
+                                     "match":  true,
+                                     "name":  "m4trix-python.md",
+                                     "kitSha":  "95A562A4ABEB3A996E82EACE52CEE571192772401F22376A436164F4E6A9383C"
+                                 },
+                                 {
+                                     "globalSha":  "807493CEE9DC031A2EA0E1229954D652D07C92B5A32329AC64EA065431F5307D",
+                                     "match":  true,
+                                     "name":  "m4trix-requirements.md",
+                                     "kitSha":  "807493CEE9DC031A2EA0E1229954D652D07C92B5A32329AC64EA065431F5307D"
+                                 },
+                                 {
+                                     "globalSha":  "98CD9049F621B46C8D1F2C007A11C4FEDDC4737C806CE8717DC07BC09FD3C85E",
+                                     "match":  true,
+                                     "name":  "m4trix-scrum.md",
+                                     "kitSha":  "98CD9049F621B46C8D1F2C007A11C4FEDDC4737C806CE8717DC07BC09FD3C85E"
+                                 },
+                                 {
+                                     "globalSha":  "8093C7E9AD62D40FD9B7B365D8EF131EC89F664ECCB65037A269F44A9243A2E2",
+                                     "match":  true,
+                                     "name":  "m4trix-security.md",
+                                     "kitSha":  "8093C7E9AD62D40FD9B7B365D8EF131EC89F664ECCB65037A269F44A9243A2E2"
+                                 },
+                                 {
+                                     "globalSha":  "B4BEB45C21AFD7BC5433A61C6D19D8DFEE30182B98E9B66D1741716CB592AAAE",
+                                     "match":  true,
+                                     "name":  "m4trix-verifier.md",
+                                     "kitSha":  "B4BEB45C21AFD7BC5433A61C6D19D8DFEE30182B98E9B66D1741716CB592AAAE"
+                                 }
+                             ]
+               },
+    "skills":  {
+                   "matchCount":  5,
+                   "total":  5,
+                   "pairs":  [
+                                 {
+                                     "globalSha":  "3DAB88F4DC94754292B81DDCFF66C1AE361050CA7024766D4FB9FD07899E97A3",
+                                     "globalExists":  true,
+                                     "name":  "bootstrap-org",
+                                     "kitSha":  "3DAB88F4DC94754292B81DDCFF66C1AE361050CA7024766D4FB9FD07899E97A3",
+                                     "match":  true
+                                 },
+                                 {
+                                     "globalSha":  "EB738FFC82F1B52CBD46C6D9BC44C2D8FEBA66CF3AA997AB1B216EC62B8F0DAF",
+                                     "globalExists":  true,
+                                     "name":  "egm-review",
+                                     "kitSha":  "EB738FFC82F1B52CBD46C6D9BC44C2D8FEBA66CF3AA997AB1B216EC62B8F0DAF",
+                                     "match":  true
+                                 },
+                                 {
+                                     "globalSha":  "4F0100A7475716759C67CA3CB8E05164EC7D5EA34A8CB2B8E1A4B3BAADB76555",
+                                     "globalExists":  true,
+                                     "name":  "pipeline-module",
+                                     "kitSha":  "4F0100A7475716759C67CA3CB8E05164EC7D5EA34A8CB2B8E1A4B3BAADB76555",
+                                     "match":  true
+                                 },
+                                 {
+                                     "globalSha":  "66139A3256B3D9FAD9536B0FE945D3D9A698309FB0BC469E0F6FA840339CA1E3",
+                                     "globalExists":  true,
+                                     "name":  "pipeline-patch",
+                                     "kitSha":  "66139A3256B3D9FAD9536B0FE945D3D9A698309FB0BC469E0F6FA840339CA1E3",
+                                     "match":  true
+                                 },
+                                 {
+                                     "globalSha":  "6CE31D63C8D47DD51499432458E6858885F18D29F25DC983A1795AE0CE8D47AF",
+                                     "globalExists":  true,
+                                     "name":  "pipeline-product",
+                                     "kitSha":  "6CE31D63C8D47DD51499432458E6858885F18D29F25DC983A1795AE0CE8D47AF",
+                                     "match":  true
+                                 }
+                             ]
+               },
+    "fallback":  "Label live evals isolation:unproven; use scripts + captain procedures"
+}

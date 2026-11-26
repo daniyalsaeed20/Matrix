@@ -1,0 +1,8 @@
+﻿{
+    "cap":  "T12",
+    "label":  "Context / model / tokens",
+    "script":  "_pilot/context_token_eval/scripts/Invoke-ContextTokenEval.ps1",
+    "exitCode":  0,
+    "pass":  true,
+    "logPath":  "E:\\development\\Matrix\\_pilot\\v2_eval\\evidence\\suite-T12.log.txt"
+}

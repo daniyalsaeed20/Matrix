@@ -1,0 +1,48 @@
+{
+  "taskId": "T12-PATCH-OK",
+  "title": "Trivial copy tweak on settings label",
+  "scale": "patch",
+  "phase": "implement",
+  "status": "in_progress",
+  "approvedScope": "Change one settings label string only.",
+  "acceptanceCriteria": [
+    "Happy: label text updated",
+    "Fail: no other strings changed",
+    "Edge: empty string rejected"
+  ],
+  "egm": {
+    "required": false,
+    "status": "skipped",
+    "reviewPaths": [],
+    "blockingOpen": false,
+    "note": "Ordinary patch — EGM skip"
+  },
+  "routing": {
+    "attributes": {
+      "scale": "patch",
+      "taskType": "copy",
+      "uiInvolvement": "none",
+      "securityRisk": false,
+      "researchNeeded": false,
+      "uncertainty": "low"
+    },
+    "invoked": ["pipeline-patch"],
+    "evidence": [
+      {
+        "type": "artifact",
+        "name": "pipeline-patch",
+        "ref": "skills/pipeline-patch/SKILL.md",
+        "note": "trivial copy; no designer; no research"
+      }
+    ]
+  },
+  "research": {
+    "required": false,
+    "poc": { "required": false, "status": "skipped", "notes": "routine copy" }
+  },
+  "verificationEvidence": {
+    "visualStatus": null,
+    "note": "trivial copy — skip full visual bar"
+  },
+  "notes": "Positive fixture: patch stays light"
+}

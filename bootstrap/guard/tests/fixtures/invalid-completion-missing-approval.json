@@ -1,0 +1,27 @@
+{
+  "taskId": "T10-missing-approval",
+  "title": "Done without approval.at must fail",
+  "scale": "module",
+  "phase": "done",
+  "status": "done",
+  "approvedScope": "fixture",
+  "acceptanceCriteria": ["must fail"],
+  "permittedPaths": ["docs/sdlc/"],
+  "filesChanged": ["docs/sdlc/ACTIVE_TASK.json"],
+  "egm": {
+    "required": false,
+    "status": "skipped",
+    "blockingOpen": false
+  },
+  "approval": {
+    "by": "captain",
+    "at": null,
+    "note": "missing at"
+  },
+  "evidence": {
+    "commands": ["guard"],
+    "artifacts": ["fixture"],
+    "limitations": [],
+    "recordedAt": "2026-11-25T12:00:00Z"
+  }
+}

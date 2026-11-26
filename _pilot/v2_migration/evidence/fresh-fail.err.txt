@@ -1,0 +1,13 @@
+hooks.json at 
+'C:\Users\Datab\AppData\Local\Temp\m4trix-rel002-fresh-fail-660a05e47b344bba8ea7e7b119859ee8\cursor-home\hooks.json' 
+is malformed JSON (Invalid object passed in, ':' or '}' expected. (23): { deliberately-broken
+). Fix or move it aside before installing/uninstalling m4tr!x — existing file was not modified.
+At E:\development\Matrix\hooks\m4trix-platform.ps1:235 char:5
++     throw "hooks.json at '$Path' is malformed JSON ($($_.Exception.Me ...
++     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (hooks.json at '...s not modified.:String) [], RuntimeException
+    + FullyQualifiedErrorId : hooks.json at 'C:\Users\Datab\AppData\Local\Temp\m4trix-rel002-fresh-fail-660a05e47b344b 
+   ba8ea7e7b119859ee8\cursor-home\hooks.json' is malformed JSON (Invalid object passed in, ':' or '}' expected. (23):  
+   { deliberately-broken
+). Fix or move it aside before installing/uninstalling m4tr!x — existing file was not modified.
+ 

@@ -1,0 +1,75 @@
+{
+  "taskId": "T4-fixture-budget",
+  "title": "Invalid: over budget without escalation",
+  "scale": "module",
+  "phase": "implement",
+  "status": "in_progress",
+  "approvedScope": "fixture only",
+  "acceptanceCriteria": ["must fail"],
+  "egm": {
+    "required": false,
+    "status": "skipped"
+  },
+  "recovery": {
+    "active": true,
+    "status": "attempting",
+    "scale": "module",
+    "attemptBudget": 3,
+    "attemptCount": 4,
+    "facts": ["persistent defect"],
+    "assumptions": [],
+    "hypotheses": [],
+    "contradicted": [],
+    "rejectedApproaches": [
+      { "id": "A1", "summary": "approach 1", "reason": "fail" },
+      { "id": "A2", "summary": "approach 2", "reason": "fail" },
+      { "id": "A3", "summary": "approach 3", "reason": "fail" }
+    ],
+    "attempts": [
+      {
+        "id": "1",
+        "approachId": "A1",
+        "approach": "first try",
+        "meaningful": true,
+        "result": "fail"
+      },
+      {
+        "id": "2",
+        "approachId": "A2",
+        "approach": "second try",
+        "strategyDelta": "different root cause guess",
+        "meaningful": true,
+        "result": "fail"
+      },
+      {
+        "id": "3",
+        "approachId": "A3",
+        "approach": "third try",
+        "strategyDelta": "instrumentation path",
+        "meaningful": true,
+        "result": "fail"
+      },
+      {
+        "id": "4",
+        "approachId": "A4",
+        "approach": "fourth speculative rewrite",
+        "strategyDelta": "rewrite module",
+        "meaningful": true,
+        "result": "fail"
+      }
+    ],
+    "checkpoint": null,
+    "nextAction": "keep trying",
+    "escalation": {
+      "required": true,
+      "reported": false,
+      "summary": null
+    }
+  },
+  "evidence": {
+    "commands": ["guard"],
+    "artifacts": ["fixture"],
+    "limitations": [],
+    "recordedAt": "2026-11-25T00:00:00Z"
+  }
+}

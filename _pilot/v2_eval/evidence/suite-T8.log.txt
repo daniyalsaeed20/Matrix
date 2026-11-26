@@ -1,0 +1,42 @@
+=== UI designer eval (T8) ===
+EvalRoot: E:\development\Matrix\_pilot\ui_designer_eval
+KitRoot:  E:\development\Matrix
+PASS  agents/m4trix-ui-designer.md present
+PASS  agent: design-doc-only fail limit
+PASS  agent: critique in mission
+PASS  agent: disposition vs other roles
+PASS  agent: journey workflow
+PASS  agent: patch skip
+PASS  .cursor ui-designer mirror present
+PASS  MANIFEST lists m4trix-ui-designer
+PASS  USER_RULES thin pointer to ui-designer
+PASS  pipeline-module: significant UI designer
+PASS  pipeline-module: design-doc-only fail
+PASS  pipeline-product: significant UI designer
+PASS  pipeline-patch: mentions designer skip
+PASS  pipeline-patch: skip designer for patches
+PASS  design-system disposition pointer
+PASS  flutter disposition pointer
+PASS  verifier significant-UI / disposition
+PASS  routing attrs-significant-ui fixture present
+PASS  Evaluate-Routing.ps1 present
+PASS  Evaluate-Routing significant UI exit 0
+PASS  calc-significant-ui.json parseable
+PASS  routing: m4trix-ui-designer mandatory on significant UI
+PASS  routing: m4trix-ui-designer not deferred
+PASS  fixture present: significant-ui-path-ok.json
+PASS  fixture significant-ui-path-ok: expected=pass got=pass
+PASS  fixture present: weak-hierarchy-critique-ok.json
+PASS  fixture weak-hierarchy-critique-ok: expected=pass got=pass
+PASS  fixture present: design-doc-only-fail.json
+PASS  fixture design-doc-only-fail: expected=fail got=fail
+PASS  fixture present: trivial-patch-skip-ok.json
+PASS  fixture trivial-patch-skip-ok: expected=pass got=pass
+PASS  defect seed weak-hierarchy.md present
+PASS  defect seed describes hierarchy
+PASS  defect seed expects critique
+PASS  live procedure documented
+PASS  README present
+
+Report: E:\development\Matrix\_pilot\ui_designer_eval\evidence\REPORT.md
+RESULT: UI designer eval passed (script layer)

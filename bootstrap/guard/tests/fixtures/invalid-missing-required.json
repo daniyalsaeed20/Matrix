@@ -1,0 +1,11 @@
+{
+  "taskId": "",
+  "title": "Missing required fields",
+  "scale": "patch",
+  "phase": "draft",
+  "status": "draft",
+  "acceptanceCriteria": "not-an-array",
+  "egm": {
+    "required": false
+  }
+}

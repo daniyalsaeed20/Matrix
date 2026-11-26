@@ -1,0 +1,8 @@
+﻿{
+    "cap":  "T8",
+    "label":  "UI designer",
+    "script":  "_pilot/ui_designer_eval/scripts/Invoke-UiDesignerEval.ps1",
+    "exitCode":  0,
+    "pass":  true,
+    "logPath":  "E:\\development\\Matrix\\_pilot\\v2_eval\\evidence\\suite-T8.log.txt"
+}

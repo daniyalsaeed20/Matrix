@@ -40,9 +40,22 @@ If the module needs meaningful upfront design: `egm.required=true`. If it is a t
 - **m4trix-scrum** if multi-task; else one task  
 - Captain names what to build  
 - Progressive context; reuse shared components; HANDOFF only if multi-agent  
+- **Regression Lock** when multi-behaviour: fill `ACTIVE_TASK.regression` (inventory → baselineRev → protectedChecks); after each unit re-verify protected behaviours; invoke Guard `-Validators task-state,regression` before claiming done  
+- **Recovery:** on repeated/uncertain failures activate skill **pipeline-recovery** (not a fourth scale); record `ACTIVE_TASK.recovery`; invoke **m4trix-debugger** for complex diagnosis; Guard `-Validators …,recovery` before done. Routine understood bugs skip.  
+- **Routing:** classify full attributes → `Evaluate-Routing.ps1` → record `ACTIVE_TASK.routing` (invoked + evidence type task|subagent|artifact|limitation) → Guard `-Validators …,routing` before done. Parent prose ≠ invocation. Forward-declared agents may be `deferred` until their introduction task.  
+- **Research:** when unfamiliar/complex/integration/security/perf/tradeoff or `researchNeeded=true`, invoke skill **engineering-research** (not scale alone); persist `ACTIVE_TASK.research` findings+sources with alternatives; Guard `-Validators …,research` before done. Routine familiar work may skip.  
+- **Solution Escalation Ladder (`04-code-craft`):** on significant decisions (architecture/API reshape, new abstraction, scale promotion) apply localized→extend→extract→restructure; record a short justification in evidence/notes; Level-4 needs captain approval. Do not inflate a patch into a module without captain acknowledgment.  
+- **Significant UI (`uiInvolvement=significant`):** invoke **m4trix-ui-designer** + **m4trix-design-system**; bounded journey→direction→reuse→implement→render→critique→refine→honest `verificationEvidence.visualStatus`. Designer owns critique direction; implementer owns framework code; verifier owns pass/fail + visual honesty. Design-doc-only done fails. Guard `-Validators …,visual` before done. Load `ecc-cherry-pick/ui-craft.md` + proportional `ui-stress.md`. Trivial copy/colour is not significant UI — use patch pipeline.  
+- **Completion gate (mandatory before done/accepted):** run `bootstrap/guard/Invoke-CompletionGate.ps1 -TaskPath docs/sdlc/ACTIVE_TASK.json`. Always includes `task-state` + `completion` + `approval` (fingerprints). Stamp fingerprints via `Get-ApprovalFingerprints.ps1` before done. Refuse `status`/`phase` `done|accepted` while Guard `ok=false`. Process gate only — not unbypassable security. See `docs/sdlc/GUARD_BYPASS_MATRIX.md`.  
+ 
 
 ## Hard rules
 
 - Production-ready module  
-- Do not silently expand from patch; upgrade scale only with captain acknowledgment  
+- Do not silently expand from patch; upgrade scale only with captain acknowledgment (anti-promotion)  
 - EGM skip only when captain confirms no meaningful upfront design  
+- Never claim green by deleting/skipping/weakening tests; protected fail rejects the unit  
+- Do not reset recovery attemptCount on new chat; rename-only retries are forbidden  
+- Significant UI must not claim done without designer path + rendered critique (or honest limitation) and honest `visualStatus` (static-only ≠ `visually_verified`)  
+- Never claim done/accepted when `Invoke-CompletionGate` exits non-zero / `ok=false`  
+

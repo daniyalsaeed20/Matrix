@@ -1,0 +1,11 @@
+{
+  "id": "design-doc-only-fail",
+  "title": "Design-doc-only claimed done",
+  "uiInvolvement": "significant",
+  "designerInvoked": false,
+  "rendered": false,
+  "critiqueNotes": [],
+  "designDocOnly": true,
+  "claimedDone": true,
+  "expectedVerdict": "fail"
+}

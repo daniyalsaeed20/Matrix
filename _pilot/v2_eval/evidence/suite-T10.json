@@ -1,0 +1,8 @@
+﻿{
+    "cap":  "T10",
+    "label":  "Guard complete",
+    "script":  "_pilot/guard_complete_eval/scripts/Invoke-GuardCompleteEval.ps1",
+    "exitCode":  0,
+    "pass":  true,
+    "logPath":  "E:\\development\\Matrix\\_pilot\\v2_eval\\evidence\\suite-T10.log.txt"
+}

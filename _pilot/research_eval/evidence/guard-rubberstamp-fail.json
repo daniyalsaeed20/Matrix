@@ -1,0 +1,44 @@
+﻿{
+    "ok":  false,
+    "errors":  [
+                   "research: findings[1] needs ≥1 alternative (rubber-stamp without alternatives fails)"
+               ],
+    "warnings":  [
+
+                 ],
+    "checks":  [
+                   {
+                       "name":  "parse",
+                       "ok":  true,
+                       "errors":  [
+
+                                  ],
+                       "warnings":  [
+
+                                    ]
+                   },
+                   {
+                       "name":  "task-state",
+                       "ok":  true,
+                       "errors":  [
+
+                                  ],
+                       "warnings":  [
+
+                                    ]
+                   },
+                   {
+                       "name":  "research",
+                       "ok":  false,
+                       "errors":  [
+                                      "findings[1] needs ≥1 alternative (rubber-stamp without alternatives fails)"
+                                  ],
+                       "warnings":  [
+
+                                    ]
+                   }
+               ],
+    "taskPath":  "E:\\development\\Matrix\\bootstrap\\guard\\tests\\fixtures\\invalid-research-no-alternatives.json",
+    "runner":  "Invoke-M4trixGuard.ps1",
+    "schemaVersion":  "1.0.0"
+}

@@ -41,8 +41,20 @@ Assert-True (Test-Path (Join-Path $KitRoot "constitution\project-rules\stack-flu
 Assert-True (Test-Path (Join-Path $KitRoot "templates\sdlc\ACTIVE_TASK.json")) "ACTIVE_TASK.json template exists"
 Assert-True (Test-Path (Join-Path $KitRoot "hooks\m4trix-session-start.ps1")) "session-start hook exists"
 Assert-True (-not (Test-Path (Join-Path $KitRoot "hooks\m4trix-before-prompt.ps1"))) "before-prompt hook script removed"
+Assert-True (Test-Path (Join-Path $KitRoot "hooks\m4trix-before-shell.ps1")) "before-shell deny-candidate script exists"
+Assert-True (Test-Path (Join-Path $KitRoot "hooks\m4trix-pre-tool-use.ps1")) "pre-tool-use deny-candidate script exists"
+Assert-True (Test-Path (Join-Path $KitRoot "hooks\m4trix-subagent-start.ps1")) "subagent-start deny-candidate script exists"
+$hooksJsonSmoke = Get-Content (Join-Path $KitRoot "hooks\hooks.json") -Raw
+Assert-True ($hooksJsonSmoke -notmatch "beforeShellExecution|preToolUse|subagentStart") "default hooks.json does not register deny events"
+Assert-True (Test-Path (Join-Path $KitRoot "bootstrap\guard\Invoke-CompletionGate.ps1")) "completion gate script exists"
+Assert-True (Test-Path (Join-Path $KitRoot "docs\sdlc\GUARD_BYPASS_MATRIX.md")) "bypass matrix exists"
+Assert-True (Test-Path (Join-Path $KitRoot "_pilot\guard_complete_eval\README.md")) "guard complete eval fixture exists"
 Assert-True (Test-Path (Join-Path $KitRoot "ecc-cherry-pick\karpathy-principles.md")) "karpathy reference exists"
 Assert-True (Test-Path (Join-Path $KitRoot "_pilot\craft_scenarios\README.md")) "craft scenarios fixture exists"
+Assert-True (Test-Path (Join-Path $KitRoot "_pilot\proportionality_eval\README.md")) "proportionality eval fixture exists"
+Assert-True (Test-Path (Join-Path $KitRoot "_pilot\ui_designer_eval\README.md")) "ui designer eval fixture exists"
+Assert-True (Test-Path (Join-Path $KitRoot "_pilot\visual_verify_eval\README.md")) "visual verify eval fixture exists"
+Assert-True (Test-Path (Join-Path $KitRoot "agents\m4trix-ui-designer.md")) "m4trix-ui-designer agent exists"
 Assert-True (Test-Path (Join-Path $KitRoot "bootstrap\package-source.ps1")) "package-source script exists"
 
 $craft = Get-Content (Join-Path $KitRoot "constitution\project-rules\04-code-craft.mdc") -Raw
@@ -52,11 +64,14 @@ Assert-True ($craft -match "Surgical changes") "craft: Surgical changes"
 Assert-True ($craft -match "Goal-driven execution") "craft: Goal-driven execution"
 Assert-True ($craft -match "Decision hierarchy") "craft: Decision hierarchy"
 Assert-True ($craft -match "Never cut lines") "craft: rejects pure LOC golf"
+Assert-True ($craft -match "Solution Escalation Ladder") "craft: Solution Escalation Ladder"
+Assert-True ($craft -match "Significant decision") "craft: Significant decision"
 
 $ver = Get-Content (Join-Path $KitRoot "agents\m4trix-verifier.md") -Raw
 Assert-True ($ver -match "drive-by|Unrelated|surgical") "verifier checks surgical/unrelated diffs"
 Assert-True ($ver -match "actually run|What was verified") "verifier requires real verification evidence"
 Assert-True ($ver -match "Delivery voice|IDE / AI-editor attribution|no Cursor") "verifier checks delivery voice"
+Assert-True ($ver -match "Proportionality|Solution Escalation Ladder") "verifier checks proportionality ladder"
 $voice = Get-Content (Join-Path $KitRoot "constitution\project-rules\05-delivery-voice.mdc") -Raw
 Assert-True ($voice -match "commit|Pull request|PR") "delivery voice covers commits/PRs"
 Assert-True ($voice -match "Matrix kit") "delivery voice exempts Matrix kit install docs"
@@ -81,6 +96,35 @@ Assert-True ($activeTpl -match "acceptanceCriteria") "ACTIVE_TASK has acceptance
 Assert-True ($activeTpl -match "reusableComponents") "ACTIVE_TASK has reusableComponents"
 Assert-True ($activeTpl -match "staleAfterHours") "ACTIVE_TASK has stale marker"
 Assert-True ($activeTpl -match '"egm"') "ACTIVE_TASK has egm block"
+Assert-True ($activeTpl -match '"evidence"') "ACTIVE_TASK has evidence block"
+Assert-True (Test-Path (Join-Path $KitRoot "bootstrap\guard\Invoke-M4trixGuard.ps1")) "Guard runner exists"
+Assert-True (Test-Path (Join-Path $KitRoot "bootstrap\guard\schema\result.schema.json")) "Guard result schema exists"
+Assert-True (Test-Path (Join-Path $KitRoot "bootstrap\guard\validators\task-state.ps1")) "Guard task-state validator exists"
+Assert-True (Test-Path (Join-Path $KitRoot "bootstrap\guard\validators\regression.ps1")) "Guard regression validator exists"
+Assert-True (Test-Path (Join-Path $KitRoot "bootstrap\guard\schema\regression.schema.json")) "Guard regression schema exists"
+Assert-True (Test-Path (Join-Path $KitRoot "bootstrap\guard\validators\recovery.ps1")) "Guard recovery validator exists"
+Assert-True (Test-Path (Join-Path $KitRoot "bootstrap\guard\schema\recovery.schema.json")) "Guard recovery schema exists"
+Assert-True (Test-Path (Join-Path $KitRoot "bootstrap\guard\validators\routing.ps1")) "Guard routing validator exists"
+Assert-True (Test-Path (Join-Path $KitRoot "bootstrap\guard\schema\routing.schema.json")) "Guard routing schema exists"
+Assert-True (Test-Path (Join-Path $KitRoot "bootstrap\guard\validators\research.ps1")) "Guard research validator exists"
+Assert-True (Test-Path (Join-Path $KitRoot "bootstrap\guard\schema\research.schema.json")) "Guard research schema exists"
+Assert-True (Test-Path (Join-Path $KitRoot "bootstrap\guard\validators\visual.ps1")) "Guard visual validator exists"
+Assert-True (Test-Path (Join-Path $KitRoot "bootstrap\guard\Evaluate-Routing.ps1")) "Evaluate-Routing.ps1 exists"
+Assert-True (Test-Path (Join-Path $KitRoot "templates\sdlc\routing-policy.json")) "routing-policy.json exists"
+Assert-True ($activeTpl -match '"routing"') "ACTIVE_TASK template has routing block"
+Assert-True ($activeTpl -match '"research"') "ACTIVE_TASK template has research block"
+Assert-True ($activeTpl -match '"verificationEvidence"') "ACTIVE_TASK template has verificationEvidence block"
+Assert-True (Test-Path (Join-Path $KitRoot "skills\pipeline-recovery\SKILL.md")) "pipeline-recovery skill exists"
+Assert-True (Test-Path (Join-Path $KitRoot "skills\engineering-research\SKILL.md")) "engineering-research skill exists"
+Assert-True (Test-Path (Join-Path $KitRoot "agents\m4trix-debugger.md")) "m4trix-debugger agent exists"
+$guardTestScript = Join-Path $KitRoot "bootstrap\guard\tests\Invoke-GuardTests.ps1"
+Assert-True (Test-Path $guardTestScript) "Guard test script exists"
+$guardTestOut = Invoke-KitScript $guardTestScript 2>&1 | Out-String
+$guardTestCode = $LASTEXITCODE
+Assert-True ($guardTestCode -eq 0) "Guard isolated tests exit 0"
+if ($guardTestCode -ne 0) {
+  Write-Host $guardTestOut
+}
 Assert-True (Test-Path (Join-Path $KitRoot "skills\egm-review\SKILL.md")) "egm-review skill exists"
 Assert-True (Test-Path (Join-Path $KitRoot "templates\sdlc\EGM_REVIEW.md")) "EGM_REVIEW template exists"
 Assert-True (Test-Path (Join-Path $KitRoot "ecc-cherry-pick\egm.md")) "egm attribution reference exists"
@@ -102,7 +146,9 @@ Assert-True ((Get-M4trixManagedSkillNames) -contains "egm-review") "managed skil
 Assert-True ((@(Get-ChildItem (Join-Path $KitRoot "constitution\project-rules") -Filter "*.mdc" | Where-Object {
   (Get-Content $_.FullName -Raw) -match "alwaysApply:\s*true"
 }).Count) -le 6) "always-apply rules stay lean (≤6)"
-Assert-True ((@(Get-ChildItem (Join-Path $KitRoot "agents") -Filter "m4trix-*.md")).Count -eq 12) "still 12 m4trix agents (no permanent Goldfish agent)"
+Assert-True ((@(Get-ChildItem (Join-Path $KitRoot "agents") -Filter "m4trix-*.md")).Count -eq 14) "14 m4trix agents including debugger + ui-designer (no permanent Goldfish agent)"
+Assert-True (Test-Path (Join-Path $KitRoot "agents\m4trix-debugger.md")) "m4trix-debugger among agents"
+Assert-True (Test-Path (Join-Path $KitRoot "agents\m4trix-ui-designer.md")) "m4trix-ui-designer among agents"
 
 # Platform launcher helpers (no hard-coded powershell in smoke execution path)
 $launcher = Get-M4trixShellLauncher
