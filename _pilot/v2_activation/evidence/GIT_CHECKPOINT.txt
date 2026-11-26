@@ -1,1 +1,2 @@
-gitReleaseCheckpoint=6c67a11718c9e419007c06aa7c12ae9eb6496d83
+releaseCommit=094df71bd47ead8a4d74932de3085244ddf8aaf7
+checkpointRecordCommit=ceb202d7f5de24d1c24f50d9e32195738e239ad4

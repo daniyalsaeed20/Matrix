@@ -29,9 +29,9 @@ This repo **is** the kit. Nothing wires itself until you install and apply.
 | **Research** | Skill `engineering-research` with persisted findings/sources |
 | **UI intelligence** | Agent `m4trix-ui-designer`; significant-UI path + honest `visualStatus` |
 | **Migration** | REL-002 fixtures (`_pilot/v2_migration/`); keep `dist/matrix-kit-1.6.0-src.zip` for rollback |
-| **Release blockers** | RB-01…RB-10 checklist; activation remains Task 16 (captain go only) |
+| **Release blockers** | RB-01…RB-10 checklist; machine globals cutover is Task 16 (captain Fresh only) |
 
-Prior (1.6.0): UI craft/stress refs, brand logo, delivery-voice hardening. See `dist/RELEASE_NOTES_1.6.0.md`.
+Prior (1.6.0): UI craft/stress refs, brand logo, delivery-voice hardening. Full notes: [`docs/releases/RELEASE_NOTES_2.0.0.md`](docs/releases/RELEASE_NOTES_2.0.0.md).
 
 ---
 
@@ -45,7 +45,7 @@ Prior (1.6.0): UI craft/stress refs, brand logo, delivery-voice hardening. See `
 6. Named slice is implemented and verified.
 7. `docs/sdlc` and `BACKLOG.md` are updated; derived ideas stay in backlog only.
 
-Always-on under the hood: **rules**, **12 agents**, **pipeline skills**, and **`docs/sdlc`** as source of truth.
+Always-on under the hood: **rules**, **14 agents**, **pipeline skills**, and **`docs/sdlc`** as source of truth.
 
 ---
 
@@ -311,14 +311,15 @@ Matrix/                         ← kit root = clone path
 ├── INSTALL.md                  ← shorter install cheat sheet
 ├── assets/                     brand (m4trix-logo.png)
 ├── constitution/               USER_RULES + project-rules (+ stack rules)
-├── agents/                     m4trix-*.md (12 specialists)
-├── skills/                     bootstrap-org, pipelines, egm-review
+├── agents/                     m4trix-*.md (14 specialists)
+├── skills/                     bootstrap-org, pipelines, egm-review, engineering-research
 ├── templates/sdlc/             PRD, requirements, ACTIVE_TASK, …
 ├── ecc-cherry-pick/            adapted reference excerpts (incl. ui-craft / ui-stress)
-├── bootstrap/                  MANIFEST, install-globals, apply-to-workspace, smoke-tests
+├── bootstrap/                  MANIFEST, install-globals, apply, Guard, smoke-tests
 ├── hooks/                      platform + user hooks + hooks.json template
 ├── docs/sdlc/                  kit’s own SDLC / marker (when used as a workspace)
-└── _pilot/                     smoke fixtures + behavior / EGM / craft / UI / context evals
+├── docs/releases/              version release notes (tracked)
+└── _pilot/                     smoke / migration / activation / eval evidence
 ```
 
 ---
@@ -359,6 +360,7 @@ If you used a fixed path (e.g. `D:\cursor-org-kit`):
 | Doc | Contents |
 |-----|----------|
 | [`INSTALL.md`](INSTALL.md) | Condensed install / uninstall |
+| [`docs/releases/RELEASE_NOTES_2.0.0.md`](docs/releases/RELEASE_NOTES_2.0.0.md) | v2.0.0 release notes |
 | [`assets/m4trix-logo.png`](assets/m4trix-logo.png) | Brand mark + wordmark |
 | [`constitution/USER_RULES.md`](constitution/USER_RULES.md) | Captain constitution (pre path-resolve) |
 | [`bootstrap/MANIFEST.json`](bootstrap/MANIFEST.json) | Exact files applied per stack |

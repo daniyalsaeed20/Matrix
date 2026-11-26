@@ -16,6 +16,7 @@
 | 6 | Third-party hooks | None present at backup (only m4trix sessionStart/workspaceOpen). Merge path preserves unrelated hooks if added later. |
 | 7 | Scope | Globals only — no `apply-to-workspace` |
 | 8 | Limitations accepted | Captain acknowledgment recorded in DECISIONS / ACTIVE_TASK |
+| 9 | Git release checkpoint | `094df71` (v2.0.0 release) — see `evidence/GIT_CHECKPOINT.json` |
 
 ## Captain — run these steps now
 

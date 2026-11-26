@@ -1,12 +1,13 @@
 # M4TR!X v2.0.0 — release / activation status
 
-**Status:** Pre-activation complete; awaiting captain Fresh execution  
+**Source release:** **ready** — `VERSION` `2.0.0`, GitHub tag/release `v2.0.0`  
+**Machine activation (T16):** **incomplete** — post-Fresh verify **FAIL** (globals still 1.6.0)  
 **Date:** 2026-11-26  
 **Scope:** Globals only (no automatic project apply)
 
 ## Implementation freeze
 
-T1–T15 accepted. After successful T16 activation, **v2.0.0 implementation is frozen**. Further changes require observed field problems and new backlog IDs — not speculative expansion of this epic.
+T1–T15 accepted. **Do not freeze v2.0.0 implementation** until T16 post-Fresh verify PASSes (source may still publish). After successful activation, further changes require observed field problems and new backlog IDs — not speculative expansion of this epic.
 
 ## Release artifacts (on disk; `dist/` gitignored)
 
@@ -35,8 +36,8 @@ Hashes: `_pilot/v2_activation/evidence/PACKAGE_INTEGRITY.json`
 | Checklist | `_pilot/v2_activation/ACTIVATION_CHECKLIST.md` |
 | Preflight | `_pilot/v2_activation/evidence/PREFLIGHT_RESULT.json` |
 | Pre-backup | `_pilot/v2_activation/evidence/pre-activation-backup-*` |
-| Post-verify | *(filled after captain Fresh)* |
+| Post-verify | `_pilot/v2_activation/evidence/POST_FRESH_VERIFY.json` — **FAIL** |
 
 ## Rollback
 
-`dist/ROLLBACK_2.0.0.md` — reinstall from 1.6.0 zip with `-Fresh`, then re-apply only intentionally upgraded workspaces.
+Not required yet (machine still on 1.6.0). Procedure remains: `dist/ROLLBACK_2.0.0.md`.

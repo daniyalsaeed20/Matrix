@@ -56,10 +56,11 @@
   ],
   "verified": [
     "PREFLIGHT PASS: RB clear; RC + rollback zip verify; pre-activation backup; globals-only scope",
-    "Agent has not run install-globals -Fresh"
+    "Agent has not run install-globals -Fresh",
+    "POST_FRESH_VERIFY FAIL 2026-11-26: kit.json still 1.6.0 (matches pre-activation backup); missing m4trix-debugger, m4trix-ui-designer, engineering-research, pipeline-recovery"
   ],
   "blockers": [
-    "Awaiting captain execution of install-globals.ps1 -Fresh and reply: Fresh complete — verify T16"
+    "Fresh did not take effect on captain machine — kit.json remains 1.6.0; captain must re-run install-globals.ps1 -Fresh then reply Fresh complete — verify T16"
   ],
   "qualityChecks": [
     "production-bar",
@@ -86,7 +87,8 @@
       "_pilot/v2_activation/evidence/PACKAGE_INTEGRITY.json",
       "_pilot/v2_activation/evidence/RC_ZIP_VERIFY.json",
       "_pilot/v2_activation/evidence/ROLLBACK_ZIP_VERIFY.json",
-      "_pilot/v2_activation/evidence/pre-activation-backup-2026-11-26T102412Z/"
+      "_pilot/v2_activation/evidence/pre-activation-backup-2026-11-26T102412Z/",
+      "_pilot/v2_activation/evidence/POST_FRESH_VERIFY.json"
     ],
     "limitations": [
       "isolation:unproven",
@@ -99,16 +101,23 @@
     "recordedAt": "2026-11-26T05:26:00Z"
   },
   "verificationEvidence": {
-    "commands": [],
-    "exitCodes": [],
-    "artifacts": [],
+    "commands": [
+      "Read ~/.cursor/m4trix/kit.json",
+      "Inventory ~/.cursor/agents/m4trix-*.md and ~/.cursor/skills",
+      "Compare to kit agents/skills + pre-activation backup"
+    ],
+    "exitCodes": [0],
+    "artifacts": [
+      "_pilot/v2_activation/evidence/POST_FRESH_VERIFY.json"
+    ],
     "visualStatus": null,
     "method": "script",
     "interactionChecks": [],
     "limitations": [
-      "Post-Fresh verification pending captain execution"
+      "Globals not updated to 2.0.0 after captain Fresh-complete claim",
+      "Missing v2 agents/skills on machine"
     ],
-    "note": "Preflight only; activation incomplete until captain Fresh"
+    "note": "Post-Fresh verify FAIL — activation incomplete; do not accept T16"
   },
   "recovery": {
     "active": false,
@@ -212,9 +221,9 @@
     "lastVerified": "2026-11-26T05:25:00Z preflight"
   },
   "context": {
-    "updatedAt": "2026-11-26T05:26:00Z",
+    "updatedAt": "2026-11-26T05:35:00Z",
     "staleAfterHours": 72,
-    "note": "T16 in progress. Awaiting captain Fresh. Agent must not self-activate."
+    "note": "T16 in progress. POST_FRESH_VERIFY FAIL (still 1.6.0). Source v2.0.0 GitHub publish allowed. Agent must not self-activate. Captain re-run Fresh."
   },
   "approval": {
     "by": "captain",
@@ -228,5 +237,5 @@
     "lastResultPath": null,
     "status": "pending"
   },
-  "notes": "Captain executes Fresh. After reply Fresh complete — verify T16, agent verifies markers only. No product apply."
+  "notes": "Captain Fresh-complete claim verified FAIL — markers unchanged from 1.6.0 backup. Re-run Fresh; agent verifies only. No product apply."
 }

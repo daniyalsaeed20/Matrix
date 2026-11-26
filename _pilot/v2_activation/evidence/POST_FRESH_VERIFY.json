@@ -1,0 +1,98 @@
+{
+    "taskId":  "T16",
+    "recordedAt":  "2026-11-26T05:30:00Z",
+    "verdict":  "FAIL",
+    "reason":  "Globals still at 1.6.0; kit.json identical to pre-activation backup; Fresh did not update machine markers",
+    "kitJson":  {
+                    "version":  "1.6.0",
+                    "installedAt":  "2026-11-12T16:58:50.8090155+05:00",
+                    "kitRoot":  "E:\\development\\Matrix",
+                    "autoApplyWorkspaces":  false,
+                    "matchesPreActivationBackup":  true
+                },
+    "expectedVersion":  "2.0.0",
+    "versionOk":  false,
+    "agentsInstalled":  [
+                            "m4trix-architect.md",
+                            "m4trix-design-system.md",
+                            "m4trix-docs-deploy.md",
+                            "m4trix-firebase.md",
+                            "m4trix-flutter.md",
+                            "m4trix-node.md",
+                            "m4trix-product.md",
+                            "m4trix-python.md",
+                            "m4trix-requirements.md",
+                            "m4trix-scrum.md",
+                            "m4trix-security.md",
+                            "m4trix-verifier.md"
+                        ],
+    "agentsExpectedFromKit":  [
+                                  "m4trix-architect.md",
+                                  "m4trix-debugger.md",
+                                  "m4trix-design-system.md",
+                                  "m4trix-docs-deploy.md",
+                                  "m4trix-firebase.md",
+                                  "m4trix-flutter.md",
+                                  "m4trix-node.md",
+                                  "m4trix-product.md",
+                                  "m4trix-python.md",
+                                  "m4trix-requirements.md",
+                                  "m4trix-scrum.md",
+                                  "m4trix-security.md",
+                                  "m4trix-ui-designer.md",
+                                  "m4trix-verifier.md"
+                              ],
+    "missingAgents":  [
+                          "m4trix-debugger.md",
+                          "m4trix-ui-designer.md"
+                      ],
+    "skillsInstalled":  [
+                            "bootstrap-org",
+                            "egm-review",
+                            "pipeline-module",
+                            "pipeline-patch",
+                            "pipeline-product"
+                        ],
+    "skillsExpectedFromKit":  [
+                                  "bootstrap-org",
+                                  "egm-review",
+                                  "engineering-research",
+                                  "pipeline-module",
+                                  "pipeline-patch",
+                                  "pipeline-product",
+                                  "pipeline-recovery"
+                              ],
+    "missingSkills":  [
+                          "engineering-research",
+                          "pipeline-recovery"
+                      ],
+    "hooksJsonLastWrite":  "2026-11-12T16:58:50.8510164+05:00",
+    "hookScripts":  [
+                        {
+                            "name":  "m4trix-platform.ps1",
+                            "exists":  true,
+                            "lastWrite":  "2026-11-12T16:06:30.3767100+05:00"
+                        },
+                        {
+                            "name":  "m4trix-workspace-open.ps1",
+                            "exists":  true,
+                            "lastWrite":  "2026-11-12T12:45:05.5441592+05:00"
+                        },
+                        {
+                            "name":  "m4trix-session-start.ps1",
+                            "exists":  true,
+                            "lastWrite":  "2026-11-12T15:38:46.0428431+05:00"
+                        }
+                    ],
+    "kitRootChecks":  {
+                          "hasGuard":  true,
+                          "hasEvaluateRouting":  true,
+                          "hasRecoverySkill":  true,
+                          "hasResearchSkill":  true,
+                          "hasDebuggerAgent":  true,
+                          "hasUiDesignerAgent":  true,
+                          "sourceVersion":  "2.0.0"
+                      },
+    "noProductApply":  true,
+    "note":  "Agent did not run install-globals -Fresh. Captain must re-run Fresh from ACTIVATION_CHECKLIST.md then reply again."
+}

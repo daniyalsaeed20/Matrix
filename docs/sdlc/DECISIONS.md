@@ -87,6 +87,8 @@ Short log of **accepted** choices only. Date · choice · reason. Do not duplica
 | 2026-11-26 | T15 implement complete awaiting accept: REL-002 38/38; smoke-t15 exit 0; `VERSION` 2.0.0; `dist/matrix-kit-2.0.0-src.zip`; RB-09 clear; Guard routing+regression ok; captain globals remain 1.6.0; no T16 | REL-002 / RB-09 / RB-10 / CTX-003 |
 | 2026-11-26 | Captain `accept Task 15` — T15 accepted; completion gate ok; T16 remains blocked until written activation go; no auto-start; globals stay 1.6.0 | Progression gate per V2_TASKS protocol |
 | 2026-11-26 | Captain `Activate globals 2.0.0 — globals only` — T16 in progress; limitations acknowledged (pilots/isolation/CTX-003/live evals/Guard process-gate); agent prepares checklist + git checkpoint only; captain executes Fresh; no product-app apply; freeze v2.0 after success | REL-001 / ISO-002 lift for T16 / T16 AC |
+| 2026-11-26 | Captain `Fresh complete — verify T16` — POST_FRESH_VERIFY **FAIL**: `~/.cursor/m4trix/kit.json` still `1.6.0` (matches pre-backup); missing debugger/ui-designer agents + recovery/research skills; no product apply; T16 remains in_progress; captain must re-run Fresh | REL-001 / T16 AC |
+| 2026-11-26 | Captain asked commit/push + docs + GitHub release — publish source `v2.0.0` while T16 machine activation remains FAIL; freeze still blocked until post-Fresh PASS | REL-001 / captain release request |
 
 ## Model policy
 
